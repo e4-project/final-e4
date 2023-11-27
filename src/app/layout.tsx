@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import RootStyleRegistry from "@/libs/RootStyleRegistry";
+import { GlobalStyle } from "@/styles/global";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,6 +18,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       {/* 공통 컴포넌트 */}
+      <GlobalStyle />
       <body className={inter.className}>
         <RootStyleRegistry>{children}</RootStyleRegistry>
       </body>

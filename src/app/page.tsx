@@ -1,6 +1,6 @@
 "use client";
 
-import styled from "styled-components";
+import { Main } from "./styles";
 export default function Home() {
   return (
     <Main>
@@ -8,8 +8,3 @@ export default function Home() {
     </Main>
   );
 }
-
-const Main = styled.main`
-  padding: 20px;
-  color: blue;
-`;
