@@ -1,3 +1,4 @@
+import { GlobalStyle } from "@/styles/global";
 import { useState } from "react";
 import { ServerStyleSheet, StyleSheetManager } from "styled-components";
 
@@ -16,6 +17,7 @@ export function useStyledComponentsRegistry() {
     children: React.ReactNode;
   }) => (
     <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
+      <GlobalStyle />
       {children as React.ReactElement}
     </StyleSheetManager>
   );
