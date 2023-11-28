@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import '@/styles/global.css'
+import Header from '../components/common/Header'
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ export default function RootLayout({
     <html lang="ko">
       {/* 공통 컴포넌트 */}
       <body className={inter.className}>
+        <Header/>
         {children}
       </body>
     </html>
