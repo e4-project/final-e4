@@ -1,4 +1,3 @@
-import StyledComponentsRegistry from "@/libs/StyleComponentsRegistry";
 import { Metadata } from "next";
 import React from "react";
 
@@ -15,7 +14,7 @@ export default function HelloLayout({
   return (
     <>
       {/* 공통 컴포넌트 */}
-        <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        {children}
     </>
   );
 }
