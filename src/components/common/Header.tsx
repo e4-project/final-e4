@@ -1,11 +1,13 @@
 
-import style from '../../styles/header.module.css';
+import style from '@/styles/header.module.css';
 
-/*
-    컴포넌트 명 : 헤더
-    작성자 : 오동주
-    기능 : 
-*/
+/**
+ * @name header
+ * @author 오동주
+ * @prop name
+ * @desc 헤더 컴포넌트
+ * @returns number
+ */
 
 export default function Header (){
     return(
