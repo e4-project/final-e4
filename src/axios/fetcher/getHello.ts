@@ -2,9 +2,10 @@ import { api } from "../api";
 
 export const getHello = async () => {
   try {
-    const res = await api.get<{msg: string}>("/hello");
-    return res;
+    const data = await api.get("/hello");
+    console.log({data})
+    return data;
   } catch (err: any) {
-    throw new Error(err);
+    console.log(err);
   }
 };
