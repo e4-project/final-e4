@@ -10,7 +10,7 @@ import style from './note.module.css';
  * @returns number
  */
 
-const page = () => {
+const Page = () => {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
     const [selectWeek, setSelectWeek] = useState<number | null>(null);
 
@@ -44,4 +44,4 @@ const page = () => {
     )
 }
 
-export default page;
+export default Page;

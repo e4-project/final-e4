@@ -1,7 +1,6 @@
 "use client";
 import React, {useState} from 'react';
 import style from './study.module.css';
-import Link from 'next/link';
 
 /**
  * @name note
@@ -11,10 +10,10 @@ import Link from 'next/link';
  * @returns number
  */
 
-const page = () => {
+const Page = () => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   // 수정 상태
-  const [inputs, setInputs] = useState<InputData[]>([
+  const [inputs, setInputs] = useState([
     { weekInput: '', studyContentInput: '' },
     { weekInput: '', studyContentInput: '' },
     { weekInput: '', studyContentInput: '' },
@@ -105,4 +104,4 @@ const page = () => {
   );
 }
 
-export default page;
+export default Page;
