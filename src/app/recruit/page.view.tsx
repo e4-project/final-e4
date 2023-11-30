@@ -1,6 +1,6 @@
 "use client";
 import React, { use, useState } from "react";
-import { IRecruit } from "@/models/recruit";
+import { IRecruit } from "@/interfaces/recruit";
 import style from "../../styles/recruit.module.css";
 import { TfiSearch } from "react-icons/tfi";
 import ImgSlider from "@/components/ImgSlider";
@@ -15,11 +15,11 @@ import ImgSlider from "@/components/ImgSlider";
 
 interface IProps {
   data: IRecruit[];
-  children?: React.ReactNode;
 }
 
 const RecruitView = (props: IProps) => {
   const { data } = props;
+  console.log({data})
   return (
     <div className={style.container}>
       <div className={style.banner_slide_wrap}>
