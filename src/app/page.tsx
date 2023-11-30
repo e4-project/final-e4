@@ -1,7 +1,7 @@
-"use client";
-
 export default function Home() {
   return (
-      <div>프로젝트 시작!</div>
+      <div>
+        스터디 모집글 
+      </div>
   );
 }
