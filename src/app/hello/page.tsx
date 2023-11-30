@@ -2,8 +2,8 @@ import { getHello } from "@/axios/fetcher/getHello";
 import React from "react";
 
 const Page = async () => {
-  const { data } = await getHello();
-  return <div>{data.msg}</div>;
+    const msg = await getHello();
+    console.log(msg);
+    return <div>hello</div>
 };
-
 export default Page;

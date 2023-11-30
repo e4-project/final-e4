@@ -6,5 +6,9 @@ import { NextResponse, NextRequest } from "next/server";
  * 함수는 http method(대문자)명으로 생성.
  * */
 export const GET = async (req: NextRequest) => {
-  return NextResponse.json({ msg: "Hello Word!" });
+  try {
+    return NextResponse.json({ msg: "Hello Word!" });
+  } catch (error) {
+    return NextResponse.json({ msg: "error message!" }, { status: 500 });
+  }
 };

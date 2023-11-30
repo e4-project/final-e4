@@ -16,7 +16,7 @@ async function connectDB() {
       .connect(`${DB_URI}`, { dbName: "e4" })
       .then((mongoose) => mongoose)
       .catch((error) => {
-        throw new Error("Error connecting to Database" + error.message);
+        throw ("Error connecting to Database" + error.message);
       });
   }
 
