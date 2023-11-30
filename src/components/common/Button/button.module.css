@@ -1,0 +1,21 @@
+.button {
+  width: 86px;
+  height: 35px;
+  font-size: 16px;
+  background-color: transparent;
+  color: #000;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+.button:active {
+  transform: translateY(3px);
+}
+
+.button + .button {
+  margin-left: 10px;
+}
