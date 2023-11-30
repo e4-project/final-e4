@@ -15,7 +15,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      {/* 공통 컴포넌트 */}
       <body className={inter.className}>
         {children}
       </body>
