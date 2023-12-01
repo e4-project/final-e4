@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import '@/styles/global.css'
-import Header from '@/components/common/Header'
+import "@/styles/global.css";
+import Header from "@/components/common/Header";
 
 export const metadata: Metadata = {
   title: "e4",
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <Header/>
+        <Header />
         {children}
       </body>
     </html>
