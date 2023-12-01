@@ -11,7 +11,7 @@ const WriteForm = () => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const data = Object.fromEntries(formData);
-    const response = await fetch("/api/hello", {
+    const response = await fetch("/api/post", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,12 +22,16 @@ const WriteForm = () => {
       const responseData = await response.json();
       console.log(responseData);
     } else {
-      console.error("서버 오류:", response.status, response.statusText);
+      console.error(
+        "데이터에 빈 칸이 있습니다.:",
+        response.status,
+        response.statusText
+      );
     }
   };
   return (
     <div className={style.wrapper}>
-      <form onSubmit={handleSubmit} action="/api/hello" method="POST">
+      <form onSubmit={handleSubmit} action="/api/post" method="POST">
         <h1 className={style.title}>스터디에 사용될 교재 정보를 알려주세요!</h1>
 
         <div className={style.mb120}>
