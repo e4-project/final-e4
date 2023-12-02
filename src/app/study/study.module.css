@@ -1,7 +1,7 @@
-.mainContainer{
+.mainContainer {
     display: flex;
     width: 1276px;
-    height: 100vh;
+    height: 90vh;
     padding: 10px 20px;
     margin: 0 auto;
 }
@@ -29,7 +29,7 @@
     margin: 30px 28px 30px 28px;
 }
 
-.leftInfo p{
+.leftInfo p {
     margin-top: 14px;
     margin-bottom: 10px;
 }
@@ -41,7 +41,7 @@
     height: 150px;
 }
 
-.studyMiniInfo p{
+.studyMiniInfo p {
     margin-top: 10px;
 }
 
@@ -55,7 +55,7 @@
     background-color: #f5f7ff;
 }
 
-.studyMiniInfo span{
+.studyMiniInfo span {
     margin-left: 20px;
 }
 
@@ -120,7 +120,7 @@
     border: none;
 }
 
-.inputBox{
+.inputBox {
     display: flex;
     width: 100%;
     gap: 20px;
@@ -149,7 +149,7 @@
 .changeBtn {
     display: flex;
     width: 100%;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .editSaveBtn {
@@ -180,4 +180,9 @@
     background-color: #f5f7ff;
     color: #748FFC;
     cursor: pointer;
+}
+
+.content_warp {
+    height: 85%;
+    overflow: auto;
 }
