@@ -38,7 +38,7 @@ export default function StudyLayout({
             <Link className={style.linkMenu} href="/study/board" >게시판</Link>
             <Link className={style.linkMenu} href="/study/introduce">스터디 소개</Link>
           </div>
-          <div>{children}</div>
+          <div className={style.content_warp}>{children}</div>
       </div>
     </div>
   );
