@@ -43,6 +43,7 @@
   align-items: center;
   margin-bottom: 20px;
   border-radius: 10px;
+  border: none;
 }
 .kakao_bg {
   background-color: #f3f581;
