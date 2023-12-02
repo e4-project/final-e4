@@ -19,7 +19,13 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
           className={style.modalContent}
           onClick={(e) => e.stopPropagation()}
         >
-          LoginModal
+          <h1 className={style.h1}>간편하게 시작해보세요</h1>
+          <div className={`${style.login_wrapper} ${style.kakao_bg}`}>
+            <p>카카오 로그인</p>
+          </div>
+          <div className={`${style.login_wrapper} ${style.github_bg}`}>
+            <p className={style.white}>GitHub 로그인</p>
+          </div>
         </div>
       </div>
     </div>
