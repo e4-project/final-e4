@@ -25,7 +25,7 @@ const LikesSchema = new Schema<ILike>(
     },
     LikesType: {
       type: String,
-      require: true
+      require: true,
     },
   },
   {
@@ -34,5 +34,6 @@ const LikesSchema = new Schema<ILike>(
   }
 );
 
-const Likes = mongoose.model<ILike>("Likes", LikesSchema);
+const Likes =
+  mongoose.models.Likes || mongoose.model<ILike>("Likes", LikesSchema);
 export default Likes;

@@ -21,5 +21,7 @@ const StudyMemberSchema = new Schema<IStudyMember>({
   },
 });
 
-const StudyMember = mongoose.model("StudyMember", StudyMemberSchema);
+const StudyMember =
+  mongoose.models.StudyMember ||
+  mongoose.model("StudyMember", StudyMemberSchema);
 export default StudyMember;
