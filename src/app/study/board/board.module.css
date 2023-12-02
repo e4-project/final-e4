@@ -1,0 +1,16 @@
+.board_view_wrap {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.top_button {
+  padding: 15px 0;
+  margin: 10px 0px;
+  text-align: end;
+}
+
+.board_post_wrap{
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
