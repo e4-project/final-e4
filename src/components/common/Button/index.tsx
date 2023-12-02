@@ -21,9 +21,9 @@ interface customType {
  *  그 외 스타일은 className(추천), style 속성을 통해 수정해주세요.
  */
 const Button: FC<customType & commonButtonProps> = ({
-  className,
+  className = '',
   text,
-  size,
+  size = 16,
   bgColor,
   color,
   ...rest

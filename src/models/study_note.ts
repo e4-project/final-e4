@@ -27,5 +27,7 @@ const StudyNoteSchema = new Schema<IStudyNote>({
   },
 });
 
-const StudyNote = mongoose.model<IStudyNote>("StudyNote", StudyNoteSchema);
+const StudyNote =
+  mongoose.models.StudyNote ||
+  mongoose.model<IStudyNote>("StudyNote", StudyNoteSchema);
 export default StudyNote;

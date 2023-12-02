@@ -5,8 +5,10 @@ import Avatar from "@/components/common/Avatar";
 
 interface IProps {
   name?: string;
-  content?: string;
+  contentEl?: string | React.ReactNode;
+  actionEl?: string | React.ReactNode;
   createdAt?: string;
+  imagePath?: string;
 }
 
 const StyledImg = {
@@ -20,26 +22,20 @@ const StyledImg = {
  * @author 이동현
  * @desc 컨텐츠 Card 컴포넌트
  */
-const Card = ({ name, content, createdAt }: IProps) => {
+const Card = ({ name, imagePath, actionEl, contentEl, createdAt }: IProps) => {
   return (
     <div className={style.card_container}>
       <div className={style.cards_header}>
         <div className={style.card_header_left}>
-          <Avatar src={"/pet.jpg"} alt="pimg" style={StyledImg} />
+          <Avatar src={imagePath || "/pet.jpg"} alt="pimg" style={StyledImg} />
           <div>
             <div className={style.name}>{name}</div>
             <div className={style.time}>방금 전</div>
           </div>
         </div>
-        <div className={style.card_header_left}>
-          <div>??</div>
-          <div>숨기기</div>
-          <div>취소</div>
-        </div>
+        <div className={style.card_header_left}>{actionEl && actionEl}</div>
       </div>
-      <div className={style.card_contents}>
-        <p>{content}</p>
-      </div>
+      <div className={style.card_contents_wrap}>{contentEl}</div>
     </div>
   );
 };
