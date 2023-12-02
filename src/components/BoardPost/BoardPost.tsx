@@ -21,9 +21,6 @@ const BoardPost = ({ _id, contents, createdAt }: IResponseBoard) => {
           <div>
             <span>좋아요 icon {0}</span>
           </div>
-          <div>
-            <span>댓글 {0}</span>
-          </div>
         </div>
       </div>
       <div className={style.comment_container}>

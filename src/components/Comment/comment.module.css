@@ -6,7 +6,7 @@
   margin: 20px 13px;
 }
 
-.button_wrap {
+.comment_form .button_wrap {
   margin: 10px 0px;
   text-align: end;
 }
@@ -14,4 +14,24 @@
 .button_wrap button {
   width: 60px;
   height: 30px;
+}
+
+.comment_ctrl {
+  width: fit-content;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 5px;
+  margin-bottom: 13px
+}
+
+.comment_ctrl:hover {
+  background-color: #f0f8ff;
+  color: #748ffc;
+}
+
+.show_ctrl {
+  color: rgb(116, 143, 252);
+  cursor: pointer;
 }
