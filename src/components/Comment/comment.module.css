@@ -1,0 +1,17 @@
+.commentWrap {
+  padding: 10px 30px;
+}
+
+.comment_form {
+  margin: 20px 13px;
+}
+
+.button_wrap {
+  margin: 10px 0px;
+  text-align: end;
+}
+
+.button_wrap button {
+  width: 60px;
+  height: 30px;
+}
