@@ -23,7 +23,7 @@ const Textarea = (
 ) => {
   const textAreaElment = ref as React.RefObject<HTMLTextAreaElement>;
   useAutoSizeTextArea(textAreaElment?.current, value as string);
-  return <textarea ref={ref} {...rest} className={style.textarea_interface}/>;
+  return <textarea ref={ref} {...rest} wrap="hard" cols={34} className={style.textarea_interface}/>;
 };
 
 export default React.memo(forwardRef(Textarea));
