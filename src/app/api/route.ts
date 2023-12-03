@@ -4,19 +4,19 @@ import Message from "@/models/message";
 
 export const GET = async (req: NextRequest) => {
   try {
+    await connectDB();
     const data = await Message.findOne();;
     console.log(data)
     return NextResponse.json({msg: "hello!"});
   } catch (error) {
     console.error(error);
     return NextResponse.json(error, { status: 500 });
-  } finally {
-    connectDB();
   }
 };
 
 export const POST = async (req: NextRequest) => {
   try {
+    await connectDB();
     const { name, email, message } = await req.json();
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -29,7 +29,5 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json(saveData);
   } catch (error) {
     return NextResponse.json(error, { status: 500 });
-  } finally {
-    connectDB();
   }
 };

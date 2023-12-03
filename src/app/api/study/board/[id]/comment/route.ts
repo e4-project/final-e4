@@ -8,19 +8,19 @@ export const GET = async (
   { params }: { params: { id: string } }
 ) => {
   try {
+    await connectDB();
     const comment = await Comment.find()
       .where({ studyPostId: params.id })
       .sort({ createdAt: -1 });
     return NextResponse.json(comment);
   } catch (error) {
     return NextResponse.json(error, { status: 500 });
-  } finally {
-    connectDB();
   }
 };
 
 export const POST = async (req: NextRequest) => {
   try {
+    await connectDB();
     const { contents, studyPostId } = await req.json();
     console.log({ contents, studyPostId });
     if (!contents || !studyPostId) {
@@ -33,7 +33,5 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json(savedData);
   } catch (error) {
     return NextResponse.json(error, { status: 500 });
-  } finally {
-    connectDB();
   }
 };
