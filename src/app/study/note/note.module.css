@@ -19,20 +19,26 @@
 }
 
 .write_btn {
-    width: 140px;
+    width: 150px;
     height: 30px;
     background-color: #f5f7ff;
+    border: 1px solid #ced4da;
     color: #748ffc;
     border-radius: 5px;
     text-align: center;
-    border: none;
     cursor: pointer;
 }
 
 .member_list {
+    display: flex;
     margin-bottom: 20px;
     background-color: #f5f7ff;
     border: 1px solid lightgrey;
+    width: 150px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
 .week_menu {

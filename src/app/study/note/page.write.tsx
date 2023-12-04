@@ -12,7 +12,6 @@ const MyEditorComponent = () => {
 
     return (
         <div>
-            <h2>Your CKEditor 5 Component</h2>
             <CKEditor
             editor={ClassicEditor}
             data={editorData}
