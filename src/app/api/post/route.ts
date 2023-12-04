@@ -1,6 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
 import Post from "@/models/post";
 import connectDB from "@/config/db/connectDB";
+import StudyPost from "@/models/study_post";
 
 const withErrorHandling =
   (fn: (data: any) => Promise<NextResponse>) => async (req: NextRequest) => {
@@ -35,3 +36,13 @@ export const POST = withErrorHandling(async (data) => {
 
   return NextResponse.json(result);
 });
+
+export const GET = async (req: NextRequest) => {
+  try {
+    await connectDB();
+    const post = await Post.find({});
+    return NextResponse.json(post);
+  } catch (error) {
+    return NextResponse.json(error, { status: 500 });
+  }
+};
