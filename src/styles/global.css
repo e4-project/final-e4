@@ -1,27 +1,29 @@
-  * {
-    font-family: 'Pretendard, sans-serif';
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    line-height: 1.4;
-  }
+@import url("../styles/font.css");
 
-  html {
-    font-size: 16px;
-  }
+* {
+  font-family: 'Pretendard';
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.4;
+}
 
-  body {
-    font-size: 1rem;
-    color: #000;
-  }
+html {
+  font-size: 16px;
+}
 
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
+body {
+  font-size: 1rem;
+  color: #000;
+}
 
-  ol,
-  ul,
-  li {
-    list-style: none;
-  }
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ol,
+ul,
+li {
+  list-style: none;
+}

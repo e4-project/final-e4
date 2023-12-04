@@ -10,12 +10,12 @@ http://scripts.sil.org/OFL
 	font-family: 'Pretendard';
 	font-weight: 600;
 	font-display: swap;
-	src: local('Pretendard SemiBold'), url(../font/Pretendard-SemiBold.woff2) format('woff2'), url(../font//Pretendard-SemiBold.woff) format('woff');
+	src: local('Pretendard SemiBold'), url(/font/Pretendard-SemiBold.woff2) format('woff2'), url(/font//Pretendard-SemiBold.woff) format('woff');
 }
 
 @font-face {
 	font-family: 'Pretendard';
 	font-weight: 400;
 	font-display: swap;
-	src: local('Pretendard Regular'), url(../font/Pretendard-Regular.woff2) format('woff2'), url(../font/Pretendard-Regular.woff) format('woff');
+	src: local('Pretendard Regular'), url(/font/Pretendard-Regular.woff2) format('woff2'), url(/font/Pretendard-Regular.woff) format('woff');
 }
