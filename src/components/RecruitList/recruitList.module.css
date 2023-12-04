@@ -10,16 +10,12 @@
   max-width: 100%;
   width: 1300px;
   margin: 100px auto;
-  position: relative;
 }
 
-/* 검색어 */
 .search {
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
   flex-wrap: nowrap;
-  position: relative;
-  left: -23px;
 }
 
 .serarch_input {
@@ -29,7 +25,10 @@
   margin-bottom: 30px;
   display: flex;
   border: 1px solid #c9cbd7;
-  border-radius: 8px;
+}
+
+.serarch_input:hover{
+  border: 1px solid #77787e;
 }
 
 .serarch_icon {
@@ -40,27 +39,23 @@
   padding: 5px;
 }
 
+.input_wrap {
+  width: 100%;
+  height: 100%;
+}
+
+.serarch_input label {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .serarch_input input {
-  width: 95%;
+  width: 100%;
   height: 100%;
   font-size: 18px;
   outline: none;
   border: none;
-}
-
-.serarch_input:focus-within{
-  border:1px solid #748ffc;
-}
-
-.registr_btn {
-  border: 1px solid #748ffc;
-  height: 55px;
-  border-radius: 8px;
-}
-
-.input_wrap {
-  width: 100%;
-  height: 100%;
 }
 
 .card_wrap {
@@ -77,7 +72,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 15px;
+  padding: 20px;
   width: 292px;
   height: 340px;
   border: 1px solid #748ffc;
@@ -88,54 +83,9 @@
 }
 
 .card_container:hover {
-  transform: scale(1.02);
+  transform: scale(1.08);
   box-shadow: 0 14px 28px rgba(79, 79, 79, 0.116),
     0 10px 10px rgba(41, 36, 36, 0.265);
   border: 1px solid #274ce3;
   border-radius: 8px;
-}
-
-.card_text {
-  width: 100%;
-}
-
-.card_keyword p {
-  background-color: #f5f7ff;
-  border-radius: 5px;
-  color: #BAC8FF;
-  position: absolute;
-  padding: 5px;
-  top: 3%;
-  left: 4%;
-}
-
-.card_choice p {
-  position: absolute;
-  top: 16%;
-}
-
-.card_textbook h2 {
-  /* border: 1px solid blue; */
-  position: absolute;
-  top: 23%;
-  left: 19px;
-  font-size: 20px;
-  line-height: 1.5rem;
-  margin: 1rem -5px 1lvb;
-}
-
-.card_title p {
-  margin-top: 50px;
-  margin: 4rem 0px -0.5rem;
-  letter-spacing: -0.05em;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
-}
-
-.card_date p {
-  position: relative;
-  bottom: -70px;
-  color: #878CA0;
 }
