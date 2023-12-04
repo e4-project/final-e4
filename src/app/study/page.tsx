@@ -1,7 +1,6 @@
 "use client";
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import style from './study.module.css';
-
 /**
  * @name note
  * @author 문태랑
@@ -10,15 +9,15 @@ import style from './study.module.css';
  * @returns number
  */
 
-const Page = () => {
+const page = () => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   // 수정 상태
-  const [inputs, setInputs] = useState([
-    { weekInput: '', studyContentInput: '' },
-    { weekInput: '', studyContentInput: '' },
-    { weekInput: '', studyContentInput: '' },
-    { weekInput: '', studyContentInput: '' },
-    { weekInput: '', studyContentInput: '' },
+  const [inputs, setInputs] = useState<InputData[]>([
+    { week_input: '', study_content_input: '' },
+    { week_input: '', study_content_input: '' },
+    { week_input: '', study_content_input: '' },
+    { week_input: '', study_content_input: '' },
+    { week_input: '', study_content_input: '' },
   ]);
   // 입력값 저장, 기본 5개 보여줌
 
@@ -36,21 +35,21 @@ const Page = () => {
 
     const setNote = inputs.map((input, index) => ({
       title: `${index + 1}주차`,
-      content: input.studyContentInput,
+      content: input.study_content_input,
     }));
     // 입력한 값 setNote에 title, content담고
 
     setNoteData(setNote); // 노트 데이터에 저장
   };
 
-  const onInputChange = (index: number, type: 'weekInput' | 'studyContentInput', value: string) => {
+  const onInputChange = (index: number, type: 'week_input' | 'study_content_input', value: string) => {
     const newInputs = [...inputs]; // 기존 입력값 배열에 복사
     newInputs[index][type] = value; // 새 배열에 변경 값 넣고
     setInputs(newInputs); // 상태 업데이트
   };
 
   const onAddClick = () => {
-    setInputs([...inputs, { weekInput: '', studyContentInput: '' }]);
+    setInputs([...inputs, { week_input: '', study_content_input: '' }]);
   };
   // 새로운 입력값 배열에 추가
 
@@ -64,38 +63,37 @@ const Page = () => {
   };
 
   return (
-    <div className={style.progressContainer}>
-      <div className={style.changeBtn}>
-        <button className={style.editSaveBtn} onClick={isEdit ? onSaveClick : onEditClick}>
+    <div className={style.progress_container}>
+      <div className={style.change_btn}>
+        <button className={style.edit_save_btn} onClick={isEdit ? onSaveClick : onEditClick}>
           {isEdit ? '저장' : '수정'}
         </button>
       </div>
-      <div className={style.inputContainer}>
+      <div className={style.input_container}>
         {inputs.map((input, index) => (
-          <div className={style.inputBox} key={index}>
+          <div className={style.input_box} key={index}>
             <input
-              className={`${style.weekInput} ${isEdit ? style.editWeekInput : ''}`} // 수정 상태일 때 스타일 적용, 아니면 빈 문자열 추가
+              className={`${style.week_input} ${isEdit ? style.edit_week_input : ''}`} // 수정 상태일 때 스타일 적용, 아니면 빈 문자열 추가
               type="text"
               placeholder="주차"
-              value={isEdit ? input.weekInput : input.weekInput || ''} // 값이 그대로 있어야하니까 있던거 or 빈칸
-              onChange={(e) => onInputChange(index, 'weekInput', e.target.value)}
+              value={isEdit ? input.week_input : input.week_input || ''} // 값이 그대로 있어야하니까 있던거 or 빈칸
+              onChange={(e) => onInputChange(index, 'week_input', e.target.value)}
             />
-            <input
-              className={`${style.studyContentInput} ${isEdit ? style.editStudyContentInput : ''}`}
-              type="text"
+            <textarea
+              className={`${style.study_content_input} ${isEdit ? style.edit_study_content_input : ''}`}
               placeholder="스터디 내용 입력"
-              value={isEdit ? input.studyContentInput : input.studyContentInput || ''}
-              onChange={(e) => onInputChange(index, 'studyContentInput', e.target.value)}
+              value={isEdit ? input.study_content_input : input.study_content_input || ''}
+              onChange={(e) => onInputChange(index, 'study_content_input', e.target.value)}
             />
             {isEdit && (
-              <button className={style.removeBtn} onClick={() => onRemoveClick(index)}>
+              <button className={style.remove_btn} onClick={() => onRemoveClick(index)}>
                 삭제
               </button>
             )}
           </div>
         ))}
         {isEdit && (
-          <button className={style.addBtn} onClick={onAddClick}>
+          <button className={style.add_btn} onClick={onAddClick}>
             추가
           </button>
         )}
@@ -104,4 +102,4 @@ const Page = () => {
   );
 }
 
-export default Page;
+export default page;

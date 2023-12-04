@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^40.1.0",
+    "@ckeditor/ckeditor5-react": "^6.2.0",
+    "@toast-ui/editor": "^3.2.2",
     "axios": "^1.6.2",
     "mongoose": "^8.0.2",
     "next": "13.5.6",

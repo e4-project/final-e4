@@ -1,4 +1,4 @@
-.mainContainer{
+.main_container{
     display: flex;
     width: 1276px;
     height: 100vh;
@@ -6,20 +6,20 @@
     margin: 0 auto;
 }
 
-.leftContainer {
+.left_container {
     display: flex;
     flex-direction: column;
     width: 412px;
     height: 60vh;
     margin: 10px;
     margin-top: 8vh;
-    background-color: white;
+    background-color: #f8f8f8;
     border: 1px solid lightgrey;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.leftInfo {
+.left_info {
     display: flex;
     flex-direction: column;
     width: max-content;
@@ -29,23 +29,23 @@
     margin: 30px 28px 30px 28px;
 }
 
-.leftInfo p{
+.left_info p{
     margin-top: 14px;
     margin-bottom: 10px;
 }
 
-.studyMiniInfo {
+.study_mini_info {
     display: flex;
     flex-direction: column;
     width: 350px;
     height: 150px;
 }
 
-.studyMiniInfo p{
+.study_mini_info p{
     margin-top: 10px;
 }
 
-.studyMiniInfo button {
+.study_mini_info button {
     width: 70px;
     height: 20px;
     margin-left: 20px;
@@ -55,21 +55,26 @@
     background-color: #f5f7ff;
 }
 
-.studyMiniInfo span{
+.study_mini_info span{
     margin-left: 20px;
 }
 
-.rightContainer {
+.right_container {
     width: 844px;
     margin: 10px;
     margin-top: 8vh;
-    background-color: white;
+    background-color: #f8f8f8;
     border: 1px solid lightgrey;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-x: hidden;
 }
 
-.linkList {
+.right_container .progress_container {
+    height: 100%;
+}
+
+.link_list {
     display: flex;
     width: 40vw;
     height: 41px;
@@ -80,24 +85,24 @@
     font-size: 1rem;
 }
 
-.linkList a:focus {
+.link_list a:focus {
     color: #748FFC;
     border-bottom: 2px solid #748FFC;
 }
 
-.linkMenu {
+.link_menu {
     text-decoration: none;
     position: relative;
 }
 
-.menuContent {
+.menu_content {
     display: flex;
     flex: 1;
     width: 80%;
     margin: 10px;
 }
 
-.progressContainer {
+.progress_container {
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -106,53 +111,67 @@
     margin-top: 30px;
 }
 
-.weekInput {
+.week_input {
     width: 50px;
     height: 40px;
     text-align: center;
     border: none;
+    border-radius: 8px;
+    background-color: #f8f8f8;
 }
 
-.studyContentInput {
+.study_content_input {
     width: 100%;
-    height: 40px;
-    resize: vertical;
+    padding: 5px;
+    outline: none;
+    font-size: 16px;
+    border-radius: 8px;
+    background-color: #f8f8f8;
     border: none;
+    resize: none;
+    overflow-y: hidden;
 }
 
-.inputBox{
+.input_box{
     display: flex;
     width: 100%;
     gap: 20px;
     margin-top: 20px;
+    overflow: auto;
 }
 
-.editWeekInput {
-    border: 1px solid gray;
-    border-color: gray;
-    color: gray;
+.edit_week_input {
+    border: 1px solid #c4c4c4;
+    border-color: #c4c4c4;
+    color: #c4c4c4;
 }
 
-.editStudyContentInput {
-    border: 1px solid gray;
-    border-color: gray;
-    color: gray;
+.edit_study_content_input {
+    border: 1px solid #c4c4c4;
+    border-color: #c4c4c4;
+    color: #c4c4c4;
+    padding: 5px;
+    outline: none;
+    font-size: 16px;
+    border-radius: 8px;
+    resize: none;
+    overflow-y: hidden;
 }
 
-.inputContainer {
+.input_container {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin-right: 20px;
 }
 
-.changeBtn {
+.change_btn {
     display: flex;
     width: 100%;
     justify-content: end;
 }
 
-.editSaveBtn {
+.edit_save_btn {
     width: 60px;
     height: 30px;
     border: none;
@@ -162,7 +181,7 @@
     cursor: pointer;
 }
 
-.removeBtn {
+.remove_btn {
     margin-left: 10px;
     padding: 5px 10px;
     border: none;
@@ -172,7 +191,7 @@
     cursor: pointer;
 }
 
-.addBtn {
+.add_btn {
     margin-top: 10px;
     padding: 5px 10px;
     border: none;
