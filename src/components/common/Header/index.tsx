@@ -1,7 +1,8 @@
-'use client';
+"use client";
 import Link from "next/link";
 import style from "./header.module.css";
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from "react";
+import LoginModal from "@/components/LoginModal/LoginModal";
 
 /**
  * @name header
@@ -12,23 +13,33 @@ import { useRef, useEffect } from 'react';
  */
 
 const Header = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const searchRef = useRef<HTMLInputElement | null>(null);
-  
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
-  	function handleFocus(e:any) {
-      const bell = document.getElementById('bell') as HTMLInputElement;
-      const profile = document.getElementById('profile') as HTMLInputElement;
-      	if (searchRef.current && bell && profile) {
-          if(!searchRef.current.contains(e.target)) {
-            bell.checked = false;
-            profile.checked = false;
-          }
+    function handleFocus(e: any) {
+      const bell = document.getElementById("bell") as HTMLInputElement;
+      const profile = document.getElementById("profile") as HTMLInputElement;
+      if (searchRef.current && bell && profile) {
+        if (!searchRef.current.contains(e.target)) {
+          bell.checked = false;
+          profile.checked = false;
         }
       }
-      
-      document.addEventListener("mouseup", handleFocus);
-      return () => { document.removeEventListener("mouseup", handleFocus); }
+    }
+
+    document.addEventListener("mouseup", handleFocus);
+    return () => {
+      document.removeEventListener("mouseup", handleFocus);
+    };
   }, [searchRef]);
 
   return (
@@ -47,15 +58,24 @@ const Header = () => {
         </ul>
         <div>
           <div className={style.profile_title}>
-            <input ref={searchRef} type="checkbox" name="profile" id="bell" className={style.bell_check} />
+            <input
+              ref={searchRef}
+              type="checkbox"
+              name="profile"
+              id="bell"
+              className={style.bell_check}
+            />
             <label htmlFor="bell" className={style.bell}>
               <img src="/Frame 59.png" alt="" />
             </label>
 
-            <input type="checkbox" name="profile" id="profile" className={style.profile_check}/>
-            <label htmlFor="profile" className={style.profile}>
-
-            </label>
+            <input
+              type="checkbox"
+              name="profile"
+              id="profile"
+              className={style.profile_check}
+            />
+            <label htmlFor="profile" className={style.profile}></label>
             <ul className={style.bell_menu}>
               <li>알림내용</li>
               <li>알림내용</li>
@@ -65,17 +85,20 @@ const Header = () => {
                 <div className={style.profile_menu_img}></div>
                 <ul className={style.profile_menu_sheet}>
                   <li className={style.profile_menu_name}>닉네임</li>
-                  <li><Link href="/Studypage">My Study</Link></li>
+                  <li>
+                    <Link href="/Studypage">My Study</Link>
+                  </li>
                   <li>마이페이지</li>
                   <li>내 스터디</li>
                   <li>설정</li>
-                  <li>로그아웃/로그인</li>
+                  <li onClick={openModal}>로그아웃/로그인</li>
                 </ul>
               </li>
             </ul>
           </div>
         </div>
       </div>
+      {isModalOpen && <LoginModal onClose={closeModal} />}
     </div>
   );
 };
