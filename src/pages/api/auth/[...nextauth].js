@@ -1,10 +1,8 @@
 import connectDB from "@/config/db/connectDB";
-import { MongooseAdapter } from "@choutkamartin/mongoose-adapter";
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 
 export const authOptions = {
-  adapter: MongooseAdapter(process.env.MONGODB_URI),
   providers: [
     GithubProvider({
       clientId: "d89cc9b0b347e69a7ad3",
