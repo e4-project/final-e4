@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 .main_container{
+=======
+.mainContainer {
+>>>>>>> b27b7ffb8368cf2be2596ce50f73ddee207c9c09
     display: flex;
     width: 1276px;
-    height: 100vh;
+    height: 90vh;
     padding: 10px 20px;
     margin: 0 auto;
 }
@@ -29,7 +33,11 @@
     margin: 30px 28px 30px 28px;
 }
 
+<<<<<<< HEAD
 .left_info p{
+=======
+.leftInfo p {
+>>>>>>> b27b7ffb8368cf2be2596ce50f73ddee207c9c09
     margin-top: 14px;
     margin-bottom: 10px;
 }
@@ -41,7 +49,11 @@
     height: 150px;
 }
 
+<<<<<<< HEAD
 .study_mini_info p{
+=======
+.studyMiniInfo p {
+>>>>>>> b27b7ffb8368cf2be2596ce50f73ddee207c9c09
     margin-top: 10px;
 }
 
@@ -55,7 +67,11 @@
     background-color: #f5f7ff;
 }
 
+<<<<<<< HEAD
 .study_mini_info span{
+=======
+.studyMiniInfo span {
+>>>>>>> b27b7ffb8368cf2be2596ce50f73ddee207c9c09
     margin-left: 20px;
 }
 
@@ -132,7 +148,11 @@
     overflow-y: hidden;
 }
 
+<<<<<<< HEAD
 .input_box{
+=======
+.inputBox {
+>>>>>>> b27b7ffb8368cf2be2596ce50f73ddee207c9c09
     display: flex;
     width: 100%;
     gap: 20px;
@@ -168,7 +188,7 @@
 .change_btn {
     display: flex;
     width: 100%;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .edit_save_btn {
@@ -199,4 +219,9 @@
     background-color: #f5f7ff;
     color: #748FFC;
     cursor: pointer;
+}
+
+.content_warp {
+    height: 85%;
+    overflow: auto;
 }

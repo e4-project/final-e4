@@ -9,14 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@ckeditor/ckeditor5-build-classic": "^40.1.0",
     "@ckeditor/ckeditor5-react": "^6.2.0",
     "@toast-ui/editor": "^3.2.2",
+=======
+    "@types/react-slick": "^0.23.12",
+>>>>>>> b27b7ffb8368cf2be2596ce50f73ddee207c9c09
     "axios": "^1.6.2",
     "mongoose": "^8.0.2",
     "next": "13.5.6",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.12.0",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@types/node": "^20",

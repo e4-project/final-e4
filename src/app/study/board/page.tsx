@@ -1,9 +1,16 @@
-import React from 'react'
+// 프론트 서버
+import { loadBoardApi } from "@/axios/fetcher/board/loadBoardApi";
+import BoardView from "./page.view";
+import { IResponseBoard } from "@/interfaces/study_board";
 
-const page = () => {
-  return (
-    <div>일단 게시판</div>
-  )
-}
+const Page = async () => {
+  try {
+    const data: IResponseBoard[] = await loadBoardApi();
+    return <BoardView data={data} />;
+  } catch(error) {
+    console.error(error)
+    throw new Error('error loading board');
+  }
+};
 
-export default page
+export default Page;

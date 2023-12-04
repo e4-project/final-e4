@@ -6,7 +6,6 @@ import Dummy from "@/dummy/data.json";
 import Coment from '@/components/coment/ComentEditer';
 import ComentList from '@/components/coment/ComentList';
 
-
 const coment_data:any = []
 
 export default function Studypage(){

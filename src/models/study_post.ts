@@ -10,23 +10,24 @@ interface IStudyPost {
 
 const StudyPostSchema = new Schema<IStudyPost>(
   {
-    author: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      trim: true,
-    },
-    studyId: {
-      type: Schema.Types.ObjectId,
-      ref: "RecruitPost",
-    },
-    likes: {
-      type: Schema.Types.ObjectId,
-      ref: "Likes",
-    },
-    views: {
-      type: Number,
-      default: 0
-    },
+    // < -- 아래 주석은 구현후 활성화 -->
+    // author: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "User",
+    //   trim: true,
+    // },
+    // studyId: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "RecruitPost",
+    // },
+    // likes: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: "Likes",
+    // },
+    // views: {
+    //   type: Number,
+    //   default: 0,
+    // },
     contents: {
       type: String,
       required: true,
@@ -39,5 +40,7 @@ const StudyPostSchema = new Schema<IStudyPost>(
   }
 );
 
-const StudyPost = mongoose.model<IStudyPost>("StudyPost", StudyPostSchema);
+const StudyPost =
+  mongoose.models.StudyPost ||
+  mongoose.model<IStudyPost>("StudyPost", StudyPostSchema);
 export default StudyPost;

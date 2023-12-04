@@ -1,0 +1,91 @@
+.container {
+  width: 100%;
+}
+
+.banner_slide_container {
+  width: 100%;
+}
+
+.recruit_wrap {
+  max-width: 100%;
+  width: 1300px;
+  margin: 100px auto;
+}
+
+.search {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+}
+
+.serarch_input {
+  width: 380px;
+  height: 55px;
+  margin-right: 24px;
+  margin-bottom: 30px;
+  display: flex;
+  border: 1px solid #c9cbd7;
+}
+
+.serarch_input:hover{
+  border: 1px solid #77787e;
+}
+
+.serarch_icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 8px;
+  padding: 5px;
+}
+
+.input_wrap {
+  width: 100%;
+  height: 100%;
+}
+
+.serarch_input label {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.serarch_input input {
+  width: 100%;
+  height: 100%;
+  font-size: 18px;
+  outline: none;
+  border: none;
+}
+
+.card_wrap {
+  position: relative;
+  display: flex;
+  grid-gap: 22px;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.card_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  width: 292px;
+  height: 340px;
+  border: 1px solid #748ffc;
+  border-radius: 12px;
+  position: relative;
+  transition: transform 0.4s;
+  transform: scale(1);
+}
+
+.card_container:hover {
+  transform: scale(1.08);
+  box-shadow: 0 14px 28px rgba(79, 79, 79, 0.116),
+    0 10px 10px rgba(41, 36, 36, 0.265);
+  border: 1px solid #274ce3;
+  border-radius: 8px;
+}
