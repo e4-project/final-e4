@@ -1,0 +1,124 @@
+.bg {background-color: #F8F8F8;}
+
+
+.container {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    margin: 0px auto;
+}
+
+.left_container {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    padding: 10px;
+}
+
+.section_title {
+    padding-bottom: 10px;
+}
+
+.section_item{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: #F5F7FF 1px solid;
+    font-weight: 400;
+}
+
+.study_info{
+    background-color: white;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.study_info_titles{
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 16px;
+    
+}
+
+.study_info_titles p {
+    padding: 2px;
+}
+
+.study_info_contents{
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.study_info_contents p {
+    padding: 2px;
+}
+
+.study_start{
+    width: auto;
+    margin-bottom: 10px;
+    font-weight: 600;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #BAC8FF;
+    color: #4E515B;
+    border: 1px #BAC8FF solid;
+    border-radius: 5px;
+}
+.member{
+    background-color: white;
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.applicant_list{
+    background-color: white;
+    margin: 10px;
+    width: 60%;
+    border-radius: 8px;
+    padding: 20px;
+	font-weight: 600;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+.applicant_btns{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.approve_btn{
+    margin: 5px;
+    padding: 4px 12px;
+    font-size: 12px;
+    background-color: #F5F7FF;
+    color: #748FFC;
+    border: 1px #F5F7FF solid;
+    border-radius: 5px;
+}
+
+                    
+.reject_btn{
+    margin: 5px;
+    padding: 4px 12px;
+    font-size: 12px;
+    background-color: #fff4f4;
+    color: #ff5858;
+    border: 1px #fff4f4 solid;
+    border-radius: 5px;
+}
