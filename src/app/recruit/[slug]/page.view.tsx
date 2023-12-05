@@ -2,11 +2,10 @@
 import Link from "next/link";
 import { useState, useRef } from "react";
 import Modal from "@/components/common/modal/page";
-import Dummy from "@/dummy/data.json";
 import Coment from "@/components/coment/ComentEditer";
 import ComentList from "@/components/coment/ComentList";
-import { IRequestRecruitPost } from "@/interfaces/recruit_list";
 import style from "@/styles/style.module.css";
+import { IRequestRecruitPost } from "@/interfaces/recruit";
 
 const coment_data: any = [];
 interface IProps {
@@ -52,11 +51,11 @@ export default function StudyPageView({data}: IProps) {
           <ul className={style.area1_sheet}>
             <li className={style.list}>
               {data.studyKeyword.split(", ").map((item, idx) => (
-                <li key={idx}>{item}</li>
+                <p key={idx}>{item}</p>
               ))}
             </li>
-            <li className={style.list}>{data.materialType}</li>
-            <li className={style.list}>{data.material}</li>
+            <li className={style.list}><span>{data.materialType}</span></li>
+            <li className={style.list}><h2>{data.material}</h2></li>
             <li className={style.list}>
               <button>
                 <Link href={data.materialUrl} target="_blank">
@@ -66,8 +65,7 @@ export default function StudyPageView({data}: IProps) {
             </li>
             <li className={style.list}>
               <span>
-                스터디 기간
-                {data.duration}
+                스터디 기간 {data.duration}
               </span>
             </li>
             <li className={style.list}>
