@@ -37,6 +37,12 @@ const Header = () => {
           if(!searchRef.current.contains(e.target)) {
             profile.checked = false;
           }
+        }
+      }  
+      document.addEventListener("click", handleFocus);
+      return () => { document.removeEventListener("click", handleFocus); }
+    }, [searchRef]);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
@@ -45,13 +51,6 @@ const Header = () => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-        }
-        
-      }  
-      document.addEventListener("click", handleFocus);
-      return () => { document.removeEventListener("click", handleFocus); }
-    }
-  }, [searchRef]);
 
   // 알림 개수 보여주는 코드
   const [liCount, setLiCount] = useState(0);
@@ -113,7 +112,7 @@ const Header = () => {
                     <li>마이페이지</li>
                     <li>내 스터디</li>
                     <li>설정</li>
-                    <li>로그아웃/로그인</li>
+                    <li onClick={openModal}>로그아웃/로그인</li>
                   </ul>
                 </li>
               </ul>
