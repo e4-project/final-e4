@@ -1,9 +1,9 @@
 import React from "react";
 import ImgSlider from "../ImgSlider";
 import { TfiSearch } from "react-icons/tfi";
-import { IRecruit } from "@/interfaces/recruit";
 import Link from "next/link";
 import style from "./recruitList.module.css";
+import { IRequestRecruitPost } from "@/interfaces/recruit";
 
 /**
  * @name recruit
@@ -12,9 +12,11 @@ import style from "./recruitList.module.css";
  * @desc 모집글 리스트
  */
 
-const RecruitList = ({ data }: any) => {
-  console.log(data);
+interface IProps {
+  data: IRequestRecruitPost[]
+}
 
+const RecruitList = ({ data }: IProps) => {
   return (
     <div className={style.container}>
       {/* 배너 만들기 */}
@@ -41,26 +43,34 @@ const RecruitList = ({ data }: any) => {
             </div>
           </div>
         </form>
-
         <ul className={style.card_wrap}>
-          {data.map((item: IRecruit) => (
+          {data?.map((item: IRequestRecruitPost) => (
             // recruit 리스트 만들기 key는 부모한테만 줘야함
-            <li key={item.id} className={style.card_container}>
-              <Link href="/recruit">
-                <div className={style.card_keyword}>{item.cal}</div>
-
-                <div className={style.card_top}>
-                  <p>{item.Choice}</p>
-                  <div className={style.textbook_title}>{item.textbook}</div>
+            <li key={item._id}>
+              <Link href={`/recruit/${item.studyName}`} className={style.card_container}>
+                <div>
+                  <div className={style.card_keyword}>
+                    <div>
+                      {item.studyKeyword.split(", ").map((item, idx) => (
+                        <div key={idx}>{item}</div>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <div className={style.materialType}>
+                      <p>{item.materialType}</p>
+                    </div>
+                </div>
+                <div className={style.card_textbook}>
+                  <h2>{item.material}</h2>
                 </div>
 
-                <div className={style.card_bottom}>
-                  <div className={style.card_title}>
-                    <span>{item.title}</span>
-                  </div>
+                <div className={style.card_title}>
+                  <p>{item.studyName}</p>
+                </div>
 
                   <div className={style.card_date}>
-                    <span>{item.date}</span>
+                    <p>{item.duration}</p>
                   </div>
                 </div>
               </Link>

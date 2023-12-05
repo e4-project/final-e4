@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@/styles/global.css";
 import Header from "@/components/common/Header";
+import AuthSession from "@/components/AuthSession.tsx/AuthSession";
 
 export const metadata: Metadata = {
   title: "e4",
@@ -15,8 +16,10 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <Header />
-        {children}
+        <AuthSession>
+          <Header />
+          {children}
+        </AuthSession>
       </body>
     </html>
   );

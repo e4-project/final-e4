@@ -2,6 +2,8 @@ import { NextResponse, NextRequest } from "next/server";
 import Post from "@/models/post";
 import connectDB from "@/config/db/connectDB";
 import StudyPost from "@/models/study_post";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 const withErrorHandling =
   (fn: (data: any) => Promise<NextResponse>) => async (req: NextRequest) => {
@@ -27,14 +29,17 @@ const withErrorHandling =
   };
 
 export const POST = withErrorHandling(async (data) => {
-  // 데이터베이스에 연결. 연결 된 상태면 연결된걸로 진행.
+  let session = await getServerSession(authOptions);
+  if (session) {
+    data.author = session?.user?.email;
+  }
+  console.log(session);
+  console.log(data);
   await connectDB();
-
-  // 데이터를 데이터베이스에 저장
   const post = new Post(data);
   const result = await post.save();
-
-  return NextResponse.json(result);
+  // 리디렉션 URL을 포함한 JSON 응답 반환
+  return NextResponse.json({ redirectURL: "/" });
 });
 
 export const GET = async (req: NextRequest) => {
