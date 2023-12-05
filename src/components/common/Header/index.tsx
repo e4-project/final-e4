@@ -49,6 +49,9 @@ const Header = () => {
     };
   }, [searchRef]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  useEffect(() => {
+    setIsModalOpen(false);
+  }, [session]);
   const openModal = () => {
     setIsModalOpen(true);
   };

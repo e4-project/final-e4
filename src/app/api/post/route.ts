@@ -33,6 +33,7 @@ export const POST = withErrorHandling(async (data) => {
   if (session) {
     data.author = session?.user?.email;
   }
+  console.log(session);
   console.log(data);
   await connectDB();
   const post = new Post(data);
