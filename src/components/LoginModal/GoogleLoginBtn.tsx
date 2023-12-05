@@ -4,10 +4,12 @@ import style from "./LoginModal.module.css";
 export default function LoginBtn() {
   return (
     <button
-      onClick={() => signIn("kakao")}
-      className={`${style.login_wrapper} ${style.kakao_bg}`}
+      onClick={() => {
+        signIn("google");
+      }}
+      className={`${style.login_wrapper} ${style.google_bg}`}
     >
-      <p>카카오 로그인</p>
+      <p className={style.white}>Google 로그인</p>
     </button>
   );
 }
