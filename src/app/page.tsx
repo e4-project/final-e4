@@ -5,7 +5,7 @@ import RecruitView from "./page.view";
 const Page = async () => {
   const { data } = await getRecruitApi();
   //데이터 입력
-  console.log({ data });
+  // console.log({ data });
   return (
     <div>
       <RecruitView data={data} />
