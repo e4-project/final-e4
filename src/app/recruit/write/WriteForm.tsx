@@ -1,11 +1,14 @@
 "use client";
 import React, { FormEvent, useState } from "react";
-import style from "./Write.module.css";
+import style from "./write.module.css";
 import DatePicker from "react-datepicker";
+import Button from "@/components/common/Button";
+import Textarea from "@/components/common/Textarea";
+import { ko } from "date-fns/esm/locale";
 
 const WriteForm = () => {
   // 선택된 날짜를 관리하는 상태 변수를 선언하고 초기값을 현재 날짜로 설정
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [startDate, setStartDate] = useState<Date | null>(new Date());
   // 폼 제출 이벤트를 처리하는 함수
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -78,6 +81,7 @@ const WriteForm = () => {
                 <option value="3개월">3개월</option>
                 <option value="6개월">6개월</option>
                 <option value="장기">장기</option>
+                <option value="단기">단기</option>
               </select>
             </div>
           </div>
@@ -93,10 +97,14 @@ const WriteForm = () => {
             <div className={style.mt35}>
               <h4 className={style.text}>모집 마감일</h4>
               <DatePicker
-                name="study_deadline"
-                className={style.inputBox__S}
-                selected={selectedDate}
-                onChange={(date) => setSelectedDate(date as Date)}
+                // locale={ko} // 언어설정 기본값은 영어
+                dateFormat="yyyy.MM.dd" // 날짜 형식 설정
+                className={style.inputBox__S} // 클래스  css 지정
+                minDate={new Date()} // 선택할 수 있는 최소 날짜값 지정
+                closeOnScroll={true} // 스크롤을 움직였을 때 자동으로 닫히도록 설정 기본값 false
+                placeholderText="체크인 날짜 선택" // placeholder
+                selected={startDate} // value
+                onChange={(date) => setStartDate(date)} // 날짜를 선택하였을 때 실행될 함수
               />
             </div>
           </div>
@@ -109,19 +117,25 @@ const WriteForm = () => {
             />
             <div className={style.editor}></div>
           </div>
+          <div className={style.study_introduction}>
+            <h4>스터디 소개</h4>
+            <div>
+              <Textarea rows={10} style={{ width: "930px" }} />
+            </div>
+          </div>
         </div>
-        <div
-          className={`${style.flex} ${style.btn_wrapper} ${style.mt35} ${style.black}`}
-        >
-          <button className={style.btn} type="submit">
-            취소
-          </button>
-          <button
-            className={`${style.btn} ${style.blue} ${style.color_white}`}
-            type="submit"
-          >
-            업로드
-          </button>
+        <div className={style.btn_wrap}>
+          <Button
+            className={style.btn_component}
+            text="취소"
+            bgColor="#F8F8F8"
+          />
+          <Button
+            className={style.btn_component}
+            text="모집글 등록"
+            bgColor="#748ffc"
+            color="white"
+          />
         </div>
       </form>
     </div>

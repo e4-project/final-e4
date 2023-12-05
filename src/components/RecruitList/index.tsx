@@ -1,5 +1,5 @@
 import React from "react";
-import ImgSlider from "../ImgSlider";
+import ImgSlider from "../common/Slider/ImgSlider";
 import { TfiSearch } from "react-icons/tfi";
 import { IRecruit } from "@/interfaces/recruit_list";
 import Link from "next/link";
