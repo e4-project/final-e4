@@ -1,7 +1,7 @@
 import React from "react";
 import ImgSlider from "../ImgSlider";
 import { TfiSearch } from "react-icons/tfi";
-import { IRecruit } from "@/interfaces/recruit_list";
+import { IRequestRecruitPost } from "@/interfaces/recruit_list";
 import Link from "next/link";
 import style from "./recruitList.module.css";
 import Button from "../common/Button";
@@ -12,7 +12,11 @@ import Button from "../common/Button";
  * @prop 등록한 페이지 모집글 리스트 출력
  */
 
-const RecruitList = ({ data }: any) => {
+interface IProps {
+  data: IRequestRecruitPost[]
+}
+
+const RecruitList = ({ data }: IProps) => {
   return (
     <div className={style.container}>
       {/* 배너 만들기 */}
@@ -43,29 +47,37 @@ const RecruitList = ({ data }: any) => {
             </Link>
           </div>
         </form>
-
         <ul className={style.card_wrap}>
-          {data.map((item: IRecruit) => (
+          {data?.map((item: IRequestRecruitPost) => (
             // recruit 리스트 만들기 key는 부모한테만 줘야함
-            <li key={item.id} className={style.card_container}>
-              <Link href="/recruit">
-                <div className={style.card_keyword}>
-                  <p>{item.cal}</p>
-                </div>
-                <div className={style.card_choice}>
-                  <p>{item.Choice}</p>
-                </div>
+            <li key={item._id}>
+              <Link href={`/recruit/${item.studyName}`} className={style.card_container}>
+                <div>
+                  <div className={style.card_keyword}>
+                    <div>
+                      {item.studyKeyword.split(", ").map((item, idx) => (
+                        <div key={idx}>{item}</div>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <div className={style.materialType}>
+                      <p>{item.materialType}</p>
+                    </div>
 
-                <div className={style.card_textbook}>
-                  <h2>{item.textbook}</h2>
+                    <div className={style.studyName}>
+                      <h2>{item.studyName}</h2>
+                    </div>
+                  </div>
                 </div>
+                <div>
+                  <div className={style.material}>
+                    <p>{item.material}</p>
+                  </div>
 
-                <div className={style.card_title}>
-                  <p>{item.title}</p>
-                </div>
-
-                <div className={style.card_date}>
-                  <p>{item.date}</p>
+                  <div className={style.card_date}>
+                    <p>{item.duration}</p>
+                  </div>
                 </div>
               </Link>
             </li>

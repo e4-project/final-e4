@@ -1,11 +1,10 @@
 import React from "react";
-import { getRecruitApi } from "@/apis/getRecruitApi";
 import RecruitView from "./page.view";
+import { loadRecruitApi } from "@/axios/fetcher/recruit/loadRecruitApi";
+import { IRequestRecruitPost } from "@/interfaces/recruit_list";
 
 const Page = async () => {
-  const { data } = await getRecruitApi();
-  //데이터 입력
-  // console.log({ data });
+  const data: IRequestRecruitPost[] = await loadRecruitApi();
   return (
     <div>
       <RecruitView data={data} />
