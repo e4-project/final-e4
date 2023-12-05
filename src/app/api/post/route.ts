@@ -2,6 +2,8 @@ import { NextResponse, NextRequest } from "next/server";
 import Post from "@/models/post";
 import connectDB from "@/config/db/connectDB";
 import StudyPost from "@/models/study_post";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 const withErrorHandling =
   (fn: (data: any) => Promise<NextResponse>) => async (req: NextRequest) => {
@@ -27,6 +29,11 @@ const withErrorHandling =
   };
 
 export const POST = withErrorHandling(async (data) => {
+  let session = await getServerSession(authOptions);
+  if (session) {
+    data.author = session?.user?.email;
+  }
+  console.log(data);
   await connectDB();
   const post = new Post(data);
   const result = await post.save();
