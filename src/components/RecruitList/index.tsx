@@ -1,9 +1,9 @@
 import React from "react";
 import ImgSlider from "../ImgSlider";
 import { TfiSearch } from "react-icons/tfi";
-import { IRequestRecruitPost } from "@/interfaces/recruit_list";
 import Link from "next/link";
 import style from "./recruitList.module.css";
+import { IRequestRecruitPost } from "@/interfaces/recruit";
 
 /**
  * @name recruit
@@ -60,13 +60,13 @@ const RecruitList = ({ data }: IProps) => {
                     <div className={style.materialType}>
                       <p>{item.materialType}</p>
                     </div>
-
+                </div>
                 <div className={style.card_textbook}>
-                  <h2>{item.textbook}</h2>
+                  <h2>{item.material}</h2>
                 </div>
 
                 <div className={style.card_title}>
-                  <p>{item.title}</p>
+                  <p>{item.studyName}</p>
                 </div>
 
                   <div className={style.card_date}>
