@@ -1,4 +1,5 @@
 import connectDB from "@/config/db/connectDB";
+import { MongooseAdapter } from "@choutkamartin/mongoose-adapter";
 import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 
