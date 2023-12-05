@@ -1,7 +1,8 @@
-'use client';
+"use client";
 import Link from "next/link";
 import style from "./header.module.css";
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from "react";
+import LoginModal from "@/components/LoginModal/LoginModal";
 
 /**
  * @name header
@@ -10,9 +11,7 @@ import { useRef, useEffect, useState } from 'react';
  * @desc 헤더 컴포넌트
  * @returns number
  */
-
 const Header = () => {
-
   // 외부 영역 클릭시 드롭다운창 닫기
   const bellRef = useRef<HTMLInputElement | null>(null);
   const searchRef = useRef<HTMLInputElement | null>(null);
@@ -38,12 +37,20 @@ const Header = () => {
           if(!searchRef.current.contains(e.target)) {
             profile.checked = false;
           }
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
         }
         
-      }
-      
+      }  
       document.addEventListener("click", handleFocus);
       return () => { document.removeEventListener("click", handleFocus); }
+    }
   }, [searchRef]);
 
   // 알림 개수 보여주는 코드
@@ -92,7 +99,6 @@ const Header = () => {
                 <li className="push_list">알림내용</li>
               </ul>
             </label>
-  
             {/*  */}
             <input ref={searchRef} type="checkbox" name="profile" id="profile"
              className={style.profile_check}
@@ -114,9 +120,11 @@ const Header = () => {
             </label>
 
             {/*  */}
+
           </div>
         </div>
       </div>
+      {isModalOpen && <LoginModal onClose={closeModal} />}
     </div>
   );
 };
