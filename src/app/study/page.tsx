@@ -1,6 +1,8 @@
 "use client";
 import React, {useState, useEffect, useRef} from 'react';
 import style from './study.module.css';
+import Button from '@/components/common/Button';
+import TextareaAutosize from 'react-textarea-autosize';
 /**
  * @name note
  * @author 문태랑
@@ -65,9 +67,7 @@ const page = () => {
   return (
     <div className={style.progress_container}>
       <div className={style.change_btn}>
-        <button className={style.edit_save_btn} onClick={isEdit ? onSaveClick : onEditClick}>
-          {isEdit ? '저장' : '수정'}
-        </button>
+        <Button text={isEdit ? '저장' : '수정'} className={style.edit_save_btn} onClick={isEdit ? onSaveClick : onEditClick} />
       </div>
       <div className={style.input_container}>
         {inputs.map((input, index) => (
@@ -78,24 +78,22 @@ const page = () => {
               placeholder="주차"
               value={isEdit ? input.week_input : input.week_input || ''} // 값이 그대로 있어야하니까 있던거 or 빈칸
               onChange={(e) => onInputChange(index, 'week_input', e.target.value)}
+              disabled={!isEdit}
             />
-            <textarea
+            <TextareaAutosize
               className={`${style.study_content_input} ${isEdit ? style.edit_study_content_input : ''}`}
               placeholder="스터디 내용 입력"
               value={isEdit ? input.study_content_input : input.study_content_input || ''}
               onChange={(e) => onInputChange(index, 'study_content_input', e.target.value)}
+              disabled={!isEdit}
             />
             {isEdit && (
-              <button className={style.remove_btn} onClick={() => onRemoveClick(index)}>
-                삭제
-              </button>
+              <Button text='삭제' color='#748ffc' onClick={() => onRemoveClick(index)}/>
             )}
           </div>
         ))}
         {isEdit && (
-          <button className={style.add_btn} onClick={onAddClick}>
-            추가
-          </button>
+          <Button text='추가' className={style.add_btn} color='#748ffc' onClick={onAddClick}/>
         )}
       </div>
     </div>
@@ -103,3 +101,4 @@ const page = () => {
 }
 
 export default page;
+
