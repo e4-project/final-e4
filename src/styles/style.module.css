@@ -132,6 +132,8 @@
   margin-top: 10px;
   border-radius: 10px;
   cursor: pointer;
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
+  transition: all 0.3s;
 }
 .application_button:hover {
   background-color: #748ffc;
@@ -147,6 +149,11 @@
   border-radius: 10px;
   color: #748ffc;
   cursor: pointer;
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
+  transition: all 0.3s;
+}
+.good:hover {
+  background-color: #bac8ff;
 }
 
 /*  */
@@ -206,6 +213,11 @@
   color: #748ffc;
   border: none;
   margin-top: 14px;
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
+  transition: all 0.3s
+}
+.comment > button:hover {
+  background-color: #BAC8FF;
 }
 
 /*  */
@@ -278,9 +290,10 @@
   width: 96px;
   height: 36px;
   border-radius: 5px;
-  background-color: #748ffc;
+  background-color: #BAC8FF;
   margin-top: 30px;
   border: none;
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
 }
 
 /*  */

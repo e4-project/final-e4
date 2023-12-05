@@ -10,16 +10,12 @@
   max-width: 100%;
   width: 1300px;
   margin: 100px auto;
-  position: relative;
 }
 
-/* 검색어 */
 .search {
   display: flex;
-  justify-content: right;
+  justify-content: flex-end;
   flex-wrap: nowrap;
-  position: relative;
-  left: -23px;
 }
 
 .serarch_input {
@@ -29,7 +25,10 @@
   margin-bottom: 30px;
   display: flex;
   border: 1px solid #c9cbd7;
-  border-radius: 8px;
+}
+
+.serarch_input:hover{
+  border: 1px solid #77787e;
 }
 
 .serarch_icon {
@@ -40,8 +39,19 @@
   padding: 5px;
 }
 
+.input_wrap {
+  width: 100%;
+  height: 100%;
+}
+
+.serarch_input label {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .serarch_input input {
-  width: 95%;
+  width: 100%;
   height: 100%;
   font-size: 18px;
   outline: none;
@@ -88,7 +98,7 @@
 }
 
 .card_container:hover {
-  transform: scale(1.02);
+  transform: scale(1.08);
   box-shadow: 0 14px 28px rgba(79, 79, 79, 0.116),
     0 10px 10px rgba(41, 36, 36, 0.265);
   border: 1px solid #274ce3;

@@ -4,12 +4,12 @@ import { TfiSearch } from "react-icons/tfi";
 import { IRequestRecruitPost } from "@/interfaces/recruit_list";
 import Link from "next/link";
 import style from "./recruitList.module.css";
-import Button from "../common/Button";
 
 /**
- * @name recruitlist
+ * @name recruit
  * @author 이동훈
- * @prop 등록한 페이지 모집글 리스트 출력
+ * @prop
+ * @desc 모집글 리스트
  */
 
 interface IProps {
@@ -33,18 +33,14 @@ const RecruitList = ({ data }: IProps) => {
               <TfiSearch size={21} />
             </div>
             <div className={style.input_wrap}>
-              <input
-                id="text"
-                type="text"
-                name="focus"
-                placeholder="키워드, 제목, 내용을 검색해보세요."
-              />
+              <label className="" htmlFor="text">
+                <input
+                  id="text"
+                  type="text"
+                  placeholder="키워드, 제목, 내용을 검색해보세요."
+                />
+              </label>
             </div>
-          </div>
-          <div>
-            <Link href="/write">
-              <Button className={style.registr_btn} text="등록" />
-            </Link>
           </div>
         </form>
         <ul className={style.card_wrap}>
@@ -65,15 +61,13 @@ const RecruitList = ({ data }: IProps) => {
                       <p>{item.materialType}</p>
                     </div>
 
-                    <div className={style.studyName}>
-                      <h2>{item.studyName}</h2>
-                    </div>
-                  </div>
+                <div className={style.card_textbook}>
+                  <h2>{item.textbook}</h2>
                 </div>
-                <div>
-                  <div className={style.material}>
-                    <p>{item.material}</p>
-                  </div>
+
+                <div className={style.card_title}>
+                  <p>{item.title}</p>
+                </div>
 
                   <div className={style.card_date}>
                     <p>{item.duration}</p>
