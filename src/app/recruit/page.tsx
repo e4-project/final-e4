@@ -76,7 +76,7 @@ export default function Studypage(){
                             <div className={style.buttonarea}>
                                 <p>모집 마감</p>
                                 <button className={style.application_button} onClick={showModal}>스터디 참여 신청</button>
-                                <button className={style.good}>좋아요<img src="/Union.png" alt="" /></button>
+                                <button className={style.good}>좋아요<img src="/icons/icon_like.svg" alt="" /></button>
                             </div>
                         </li>
                     </ul>

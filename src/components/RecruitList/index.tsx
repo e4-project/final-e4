@@ -1,18 +1,20 @@
 import React from "react";
 import ImgSlider from "../ImgSlider";
 import { TfiSearch } from "react-icons/tfi";
-import { IRecruit } from "@/interfaces/recruit_list";
+import { IRecruit } from "@/interfaces/recruit";
 import Link from "next/link";
 import style from "./recruitList.module.css";
-import Button from "../common/Button";
 
 /**
- * @name recruitlist
+ * @name recruit
  * @author 이동훈
- * @prop 등록한 페이지 모집글 리스트 출력
+ * @prop
+ * @desc 모집글 리스트
  */
 
 const RecruitList = ({ data }: any) => {
+  console.log(data);
+
   return (
     <div className={style.container}>
       {/* 배너 만들기 */}
@@ -29,18 +31,14 @@ const RecruitList = ({ data }: any) => {
               <TfiSearch size={21} />
             </div>
             <div className={style.input_wrap}>
-              <input
-                id="text"
-                type="text"
-                name="focus"
-                placeholder="키워드, 제목, 내용을 검색해보세요."
-              />
+              <label className="" htmlFor="text">
+                <input
+                  id="text"
+                  type="text"
+                  placeholder="키워드, 제목, 내용을 검색해보세요."
+                />
+              </label>
             </div>
-          </div>
-          <div>
-            <Link href="/write">
-              <Button className={style.registr_btn} text="등록" />
-            </Link>
           </div>
         </form>
 
@@ -49,23 +47,21 @@ const RecruitList = ({ data }: any) => {
             // recruit 리스트 만들기 key는 부모한테만 줘야함
             <li key={item.id} className={style.card_container}>
               <Link href="/recruit">
-                <div className={style.card_keyword}>
-                  <p>{item.cal}</p>
-                </div>
-                <div className={style.card_choice}>
+                <div className={style.card_keyword}>{item.cal}</div>
+
+                <div className={style.card_top}>
                   <p>{item.Choice}</p>
+                  <div className={style.textbook_title}>{item.textbook}</div>
                 </div>
 
-                <div className={style.card_textbook}>
-                  <h2>{item.textbook}</h2>
-                </div>
+                <div className={style.card_bottom}>
+                  <div className={style.card_title}>
+                    <span>{item.title}</span>
+                  </div>
 
-                <div className={style.card_title}>
-                  <p>{item.title}</p>
-                </div>
-
-                <div className={style.card_date}>
-                  <p>{item.date}</p>
+                  <div className={style.card_date}>
+                    <span>{item.date}</span>
+                  </div>
                 </div>
               </Link>
             </li>

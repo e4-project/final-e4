@@ -1,6 +1,6 @@
 "use client";
 import React, { use, useState } from "react";
-import { IRecruit } from "@/interfaces/recruit_list";
+import { IRecruit } from "@/interfaces/recruit";
 // import style from "./style.module.css";
 // import { TfiSearch } from "react-icons/tfi";
 // import ImgSlider from "@/components/ImgSlider";

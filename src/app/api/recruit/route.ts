@@ -40,7 +40,7 @@ export const studydb = [
   Choice:"온라인문제집",
   textbook:"Java 문제집",
   title: '자바 문제 같이 푸실분!!',
-  date: "모집 마감",
+  date: "2023.04.30",
   cal:'문제집'
 },
 {  
@@ -80,7 +80,7 @@ export const studydb = [
   Choice:"온라인문제집",
   textbook:"Java 문제집",
   title: '자바 문제 같이 푸실분!!',
-  date: "모집 마감",
+  date: "2023.04.30",
   cal:'문제집'
 },
 {  
@@ -88,7 +88,7 @@ export const studydb = [
   Choice:"온라인문제집",
   textbook:"Java 문제집",
   title: '자바 문제 같이 푸실분!!',
-  date: "모집 마감",
+  date: "2023.04.30",
   cal:'문제집'
 },
 {  
@@ -96,7 +96,7 @@ export const studydb = [
   Choice:"온라인문제집",
   textbook:"Java 문제집",
   title: '자바 문제 같이 푸실분!!',
-  date: "모집 마감",
+  date: "2023.04.30",
   cal:'문제집'
 },
 {  
@@ -104,7 +104,7 @@ export const studydb = [
   Choice:"온라인문제집",
   textbook:"Java 문제집",
   title: '자바 문제 같이 푸실분!!',
-  date: "모집 마감",
+  date: "2023.04.30",
   cal:'문제집'
 },
 {  
@@ -112,7 +112,7 @@ export const studydb = [
   Choice:"온라인문제집",
   textbook:"Java 문제집",
   title: '자바 문제 같이 푸실분!!',
-  date: "모집 마감",
+  date: "2023.04.30",
   cal:'문제집'
 },
 {  
@@ -120,7 +120,7 @@ export const studydb = [
   Choice:"온라인문제집",
   textbook:"Java 문제집",
   title: '자바 문제 같이 푸실분!!',
-  date: "모집 마감",
+  date: "2023.04.30",
   cal:'문제집'
 },
 {  
@@ -136,7 +136,7 @@ export const studydb = [
   Choice:"온라인문제집",
   textbook:"Java 문제집",
   title: '자바 문제 같이 푸실분!!',
-  date: "모집 마감",
+  date: "2023.04.30",
   cal:'문제집'
 },
 {  
