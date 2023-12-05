@@ -1,11 +1,11 @@
 "use client";
 import React, { use, useState } from "react";
-import { IRecruit } from "@/interfaces/recruit";
 // import style from "./style.module.css";
 // import { TfiSearch } from "react-icons/tfi";
 // import ImgSlider from "@/components/ImgSlider";
 // import Link from "next/link";
 import RecruitList from "@/components/RecruitList";
+import { IRequestRecruitPost } from "@/interfaces/recruit_list";
 
 /**
  * @name recruit
@@ -15,12 +15,11 @@ import RecruitList from "@/components/RecruitList";
  */
 
 interface IProps {
-  data: IRecruit[];
+  data: IRequestRecruitPost[];
 }
 
 const RecruitView = (props: IProps) => {
   const { data } = props;
-  console.log({data})
   //화면 출력
   return (
      <RecruitList data={data}/>
