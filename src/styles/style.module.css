@@ -60,6 +60,12 @@
   border: 1px solid #999;
   width: 90px;
   height: 35px;
+  transition: all 0.3s;
+}
+.list:nth-child(4) > button:hover{
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
+  background-color: #bac8ff;
+  color: black;
 }
 
 .list:nth-child(5) {
@@ -294,6 +300,10 @@
   margin-top: 30px;
   border: none;
   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
+  transition: all 0.3s;
+}
+.application > button:hover{
+  background-color: #748ffc;
 }
 
 /*  */
