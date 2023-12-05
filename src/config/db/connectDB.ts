@@ -12,11 +12,12 @@ async function connectDB() {
 
   if (!cached.promise) {
     cached.promise = mongoose
-      .set({ debug: true, strictQuery: false })
+      .set("debug", true)
+      .set("strictQuery", false) // mongoose 버전 다운으로 인한 변경 .set이 객체를 인수로 못받음
       .connect(`${DB_URI}`, { dbName: "e4" })
       .then((mongoose) => mongoose)
       .catch((error) => {
-        throw ("Error connecting to Database" + error.message);
+        throw "Error connecting to Database" + error.message;
       });
   }
 
