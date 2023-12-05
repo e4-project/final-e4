@@ -1,7 +1,7 @@
 import React from "react";
 import RecruitView from "./page.view";
 import { loadRecruitApi } from "@/axios/fetcher/recruit/loadRecruitApi";
-import { IRequestRecruitPost } from "@/interfaces/recruit_list";
+import { IRequestRecruitPost } from "@/interfaces/recruit";
 
 const Page = async () => {
   const data: IRequestRecruitPost[] = await loadRecruitApi();
