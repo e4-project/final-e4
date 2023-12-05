@@ -5,7 +5,7 @@ import React, { use, useState } from "react";
 // import ImgSlider from "@/components/ImgSlider";
 // import Link from "next/link";
 import RecruitList from "@/components/RecruitList";
-import { IRequestRecruitPost } from "@/interfaces/recruit_list";
+import { IRequestRecruitPost } from "@/interfaces/recruit";
 
 /**
  * @name recruit
