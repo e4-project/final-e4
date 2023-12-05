@@ -2,7 +2,7 @@
 import React, { FormEvent, useState } from "react";
 import style from "./Write.module.css";
 import DatePicker from "react-datepicker";
-
+import { redirect } from "next/navigation";
 const WriteForm = () => {
   // 선택된 날짜를 관리하는 상태 변수를 선언하고 초기값을 현재 날짜로 설정
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -21,6 +21,10 @@ const WriteForm = () => {
     if (response.ok) {
       const responseData = await response.json();
       console.log(responseData);
+      // 서버로부터 받은 URL로 리디렉션
+      if (responseData.redirectURL) {
+        window.location.href = responseData.redirectURL;
+      }
     } else {
       console.error(
         "데이터에 빈 칸이 있습니다.:",

@@ -31,7 +31,7 @@
 
 .h1 {
   font-size: 1.5rem;
-  margin-top: 90px;
+  margin-top: 55px;
   margin-bottom: 55px;
 }
 .login_wrapper {
@@ -46,10 +46,13 @@
   border: none;
 }
 .kakao_bg {
-  background-color: #f3f581;
+  background-color: #fee500;
 }
 .github_bg {
   background-color: #24292e;
+}
+.google_bg {
+  background-color: #4285f4;
 }
 .white {
   color: white;

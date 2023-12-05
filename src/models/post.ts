@@ -8,9 +8,9 @@ const PostSchema = new Schema({
   study_capacity: { type: String, required: true },
   study_deadline: { type: String, required: true },
   study_name: { type: String, required: true },
-  userId: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
+  author: {
+    type: String,
+    required: true,
   },
 });
 
