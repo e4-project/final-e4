@@ -1,17 +1,17 @@
+export interface IRequestRecruitPost {
+  /* 교재 정보 */
+  _id: string;
+  material: string; // 강의|수업등의 교재 이름
+  materialUrl: string; // 교재 정보 링크
+  materialType: string; // 교재 유형
 
-
-export interface IRecruit{
-  id:number;      // 글 번호
-  Choice:string;  // 동영상 강의 책 온라인 문제집
-  textbook:string; // 책이름
-  title:string;    // 글 제목
-   date: string; //현재 날짜
-   deadline: string|Date; //마감 날짜
-
-
-   cal:string;  //가짜 키워드
-
-   //type ReactNode에는 Date타입이 없어서 
-   //ReactElement 타입에 Date를 넣으면 오류난다.
+  /* 스터디 모임 정보 */
+  leader: string; //스터디장
+  applicants: [string]; //참여자 목록
+  studyKeyword: string; //스터디 주제
+  duration: string; // 스터디 기간
+  headCount: number; //모집 인원
+  deadLine: string; // 모집 마감일
+  studyName: string; //스터디 모임 이름
+  content: string; // 스터디 소개
 }
-

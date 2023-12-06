@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: #f8f8f8;
+  background-color: #fff;
   width: 100%;
   height: 60px;
   position: sticky;
@@ -52,7 +52,7 @@
 }
 
 .profile_title > li {
-  margin-right: 30px;
+  margin-right: 40px;
 }
 
 /*  */
@@ -64,6 +64,9 @@
   width: 50px;
   height: 50px;
   margin-right: 40px;
+}
+.bell {
+  margin-right: 10px;
 }
 .bell_check,
 .profile_check {
@@ -83,7 +86,7 @@
   list-style: none;
   background-color: #f8f8f8;
   transform-origin: 0% 0%;
-  transform: translate(-60px, -1000%);
+  transform: translate(-100px, -1000%);
   transition: transfrom 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
   -webkit-font-smoothing: antialiased;
   top: 20px;
@@ -158,7 +161,7 @@
   list-style: none;
   background-color: #f8f8f8;
   transform-origin: 0% 0%;
-  transform: translate(-20px, -1000%);
+  transform: translate(-200px, -1000%);
   transition: transfrom 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
   -webkit-font-smoothing: antialiased;
   border-radius: 10px;

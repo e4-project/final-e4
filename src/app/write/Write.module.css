@@ -1,42 +1,41 @@
 .wrapper {
+  max-width: 995px;
+  width: 1024px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 70px 20px;
+  gap: 15px;
+  margin: 0 auto;
+  position: relative;
 }
 .title {
   color: #4e515b;
-  font-size: 1.5rem;
-  margin-bottom: 27px;
-}
-.text {
-  color: #4e515b;
-  font-size: 1rem;
   margin-bottom: 15px;
 }
 .inputBox__L {
-  width: 909px;
+  width: 930px;
   height: 50px;
   border-radius: 5px;
+  border: 1px solid #E2E2E2;
 }
 .inputBox__S {
   width: 445px;
   height: 50px;
   border-radius: 5px;
+  padding-left: 10px;
+  font-size: 18px;
+  border: 1px solid #E2E2E2;
 }
 .flex {
   display: flex;
-  gap: 18px;
+  gap: 38px;
 }
 .btn_wrapper {
   justify-content: center;
 }
 .mt35 {
   margin-top: 35px;
+  gap: 38px;
 }
 .mb120 {
   margin-bottom: 120px;
@@ -44,22 +43,28 @@
 .mb27 {
   margin-bottom: 27px;
 }
-.flex > div {
-  width: 50%;
+
+.study_introduction h4{
+  margin: 15px 0 15px 0px;
 }
-.btn {
-  width: 82px;
+
+.btn_wrap {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.btn_component {
+  width: 100px;
   height: 35px;
-  border-radius: 5px;
-  border: none;
-  font-size: 16px;
+  padding: 7px;
 }
+
 .blue {
   background-color: #748ffc;
 }
+
 .color_white {
   color: #f5f7ff;
-}
-.color_black {
-  color: #4e515b;
 }
