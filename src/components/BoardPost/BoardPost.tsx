@@ -5,17 +5,23 @@ import SingleComment from "@/components/Comment/SingleComment";
 import { IResponseBoard } from "@/interfaces/study_board";
 import Button from "@/components/common/Button";
 import style from "./boardPost.module.css";
+import { useSession } from "next-auth/react";
 
 const BoardPost = ({ _id, contents, createdAt }: IResponseBoard) => {
+  const { data } = useSession();
+  const user = data?.user;
   return (
     <div className={style.board_post_wrap}>
       <div className={style.board_post_container}>
         <div className="post_wrap">
-          <Card
-            name="강하늘"
-            actionEl={<Button text="삭제" className={style.post_btn_delete}/>}
-            contentEl={contents}
-          />
+          {
+              <Card
+                name="강하늘"
+                imagePath={user?.image as string}
+                actionEl={<Button text="삭제" className={style.post_btn_delete}/>}
+                contentEl={contents}
+              />
+          }
         </div>
         <div className={style.post_reaction}>
           <div>
