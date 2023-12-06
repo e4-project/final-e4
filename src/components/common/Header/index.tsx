@@ -3,8 +3,7 @@ import Link from "next/link";
 import style from "./header.module.css";
 import { useRef, useEffect, useState } from "react";
 import LoginModal from "@/components/LoginModal/LoginModal";
-import { useSession } from "next-auth/react";
-import { signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 /**
  * @name header
  * @author 오동주
@@ -119,13 +118,34 @@ const Header = () => {
               name="profile"
               id="profile"
               className={style.profile_check}
-            />
+            ></input>
             <label htmlFor="profile" className={style.profile}>
+              <div className={style.profile_img}>
+                {session && session.user && session.user.image && (
+                  <img
+                    src={session.user.image}
+                    alt="Profile"
+                    className={style.profile_image}
+                  />
+                )}
+              </div>
               <ul className={style.profile_menu}>
                 <li className={style.profile_menu_frame}>
-                  <div className={style.profile_menu_img}></div>
+                  <div className={style.profile_menu_img}>
+                    {session && session.user && session.user.image && (
+                      <img
+                        src={session.user.image}
+                        alt="Profile"
+                        className={style.profile_image}
+                      />
+                    )}
+                  </div>
                   <ul className={style.profile_menu_sheet}>
-                    <span className={style.profile_menu_name}>닉네임</span>
+                    <span className={style.profile_menu_name}>
+                      {session && session.user && session.user.name && (
+                        <span>{session.user.name}</span>
+                      )}
+                    </span>
                     <li>
                       <Link href="/Studypage">My Study</Link>
                     </li>
