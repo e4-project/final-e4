@@ -4,6 +4,7 @@ import { TfiSearch } from "react-icons/tfi";
 import Link from "next/link";
 import style from "./recruitList.module.css";
 import { IRequestRecruitPost } from "@/interfaces/recruit";
+import Button from "../common/Button";
 
 /**
  * @name recruit
@@ -33,14 +34,18 @@ const RecruitList = ({ data }: IProps) => {
               <TfiSearch size={21} />
             </div>
             <div className={style.input_wrap}>
-              <label className="" htmlFor="text">
-                <input
-                  id="text"
-                  type="text"
-                  placeholder="키워드, 제목, 내용을 검색해보세요."
-                />
-              </label>
+              <input
+                id="text"
+                type="text"
+                name="focus"
+                placeholder="키워드, 제목, 내용을 검색해보세요."
+              />
             </div>
+          </div>
+          <div>
+            <Link href="/write">
+              <Button className={style.registr_btn} text="등록" />
+            </Link>
           </div>
         </form>
         <ul className={style.card_wrap}>

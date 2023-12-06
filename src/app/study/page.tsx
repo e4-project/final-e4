@@ -11,10 +11,10 @@ import TextareaAutosize from 'react-textarea-autosize';
  * @returns number
  */
 
-const page = () => {
+const Page = () => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   // 수정 상태
-  const [inputs, setInputs] = useState<InputData[]>([
+  const [inputs, setInputs] = useState([
     { week_input: '', study_content_input: '' },
     { week_input: '', study_content_input: '' },
     { week_input: '', study_content_input: '' },
@@ -100,5 +100,5 @@ const page = () => {
   );
 }
 
-export default page;
+export default Page;
 
