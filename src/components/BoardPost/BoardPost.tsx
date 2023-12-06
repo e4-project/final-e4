@@ -1,11 +1,11 @@
 import React from "react";
+import { useSession } from "next-auth/react";
 import Card from "@/components/common/Card";
 import CommentForm from "@/components/Comment/CommentForm";
 import SingleComment from "@/components/Comment/SingleComment";
-import { IResponseBoard } from "@/interfaces/study_board";
 import Button from "@/components/common/Button";
+import { IResponseBoard } from "@/interfaces/study_board";
 import style from "./boardPost.module.css";
-import { useSession } from "next-auth/react";
 
 const BoardPost = ({ _id, contents, createdAt }: IResponseBoard) => {
   const { data } = useSession();
