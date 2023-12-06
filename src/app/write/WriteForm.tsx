@@ -3,16 +3,16 @@ import React, { FormEvent, useState } from "react";
 import style from "./write.module.css";
 import DatePicker from "react-datepicker";
 import Button from "@/components/common/Button";
-import Textarea from "@/components/common/Textarea";
-import { ko } from "date-fns/esm/locale";
+import WriteEditor from "@/components/common/Editor";
 
 const WriteForm = () => {
   // 선택된 날짜를 관리하는 상태 변수를 선언하고 초기값을 현재 날짜로 설정
   const [startDate, setStartDate] = useState<Date | null>(new Date());
+  const [content, setContent] = useState("");
   // 폼 제출 이벤트를 처리하는 함수
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-  
+
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const data = Object.fromEntries(formData);
     const response = await fetch("/api/post", {
@@ -121,9 +121,16 @@ const WriteForm = () => {
           </div>
           <div className={style.study_introduction}>
             <h4>스터디 소개</h4>
-            <div>
-              <Textarea rows={10} style={{ width: "930px" }} />
+            <div className={style.editor_wrap}>
+              <WriteEditor
+                content={content}
+                setContent={setContent}
+                placeholder="스터디 소개글을 작성해주세요"
+              />
             </div>
+            {/* <div>
+              <Textarea rows={10} style={{ width: "930px" }} />
+            </div> */}
           </div>
         </div>
         <div className={style.btn_wrap}>
