@@ -90,7 +90,7 @@ const Header = () => {
         {session ? (
           <div style={{display: 'none'}}></div>
           ) : (
-          <div className={style.login} onClick={openModal}>로그인</div>
+          <div className={style.login} onClick={openModal}>Login</div>
         )}
         {session ? (
         <div>
