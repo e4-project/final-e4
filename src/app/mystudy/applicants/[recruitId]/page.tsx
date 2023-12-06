@@ -1,8 +1,8 @@
 import { MongoClient } from "mongodb"
 // import { connectDB } from "@/dummydata"
 import { ObjectId } from "mongodb"
-import {loadRecruit} from '@/axios/fetcher/recruit/loadRecruit';
-import {connectDB} from '@/config/db/connectDB'
+// import {loadRecruit} from '@/axios/fetcher/recruit/loadRecruit';
+// import {connectDB} from '@/config/db/connectDB'
 import style from './applicants.module.css';
 
 /**
@@ -34,14 +34,14 @@ export default async function Applicants(props) {
                     {/* 스터디 시작시 스터디페이지 생성, 모집글 목록에서 숨김, 신청 마감(모집글에서 신청하기 버튼 비활성 */}
                     
                     <div className={style.member}>승인한 멤버들
-                        <p>member가 된 유저 이름</p>
-                        <p>member가 된 유저 이름</p>
+                        <p>recognition = 승인 인 유저 이름</p>
+                        <p>recognition = 승인 인 유저 이름</p>
                     </div>
                 </div>
 
-                <div className={style.applicant_list}>
+                <div className={style.right_container}>
                     <p className={style.section_title}>스터디 참여 신청자</p>
-                    <div> 
+                    <div className={style.applicant_list}> 
                         <Applicant/>
                         <Applicant/>
                         {/* <Applicant username={applicantData.username} message={applicantData.message} /> */}
@@ -79,9 +79,9 @@ function Applicant(props) {
             <p className={style.applicant_message}>참여 신청 메세지 message</p>
             <div className={style.applicant_btns}>
                 <button className={style.approve_btn}>승인</button>
-                {/* 승인시: applicants 에서 삭제 시키고 study member로 등록  */}
+                {/* 승인시: recognition = '승인'  */}
                 <button className={style.reject_btn}>거절</button>
-                {/* 거절시: applicants 에서 삭제 끝 */}
+                {/* 거절시: recognition = '거절' */}
             </div>
             
         </div>

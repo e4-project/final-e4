@@ -1,19 +1,21 @@
 .bg {background-color: #F8F8F8;}
 
-
 .container {
     padding: 10px;
     display: flex;
     flex-direction: row;
-    width: 90%;
+    justify-content: center;
+    width: 70%;
     margin: 0px auto;
 }
 
 .left_container {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    max-width: 412px;
+    width: 100%;
     padding: 10px;
+    margin: 0px auto;
 }
 
 .section_title {
@@ -33,6 +35,7 @@
 .study_info{
     background-color: white;
     margin-bottom: 10px;
+    max-width: 412px;
     width: 100%;
     border-radius: 8px;
     padding: 20px;
@@ -61,7 +64,8 @@
 }
 
 .study_start{
-    width: auto;
+    max-width: 412px;
+    width: 100%;
     margin-bottom: 10px;
     font-weight: 600;
     padding: 12px;
@@ -74,6 +78,7 @@
 .member{
     background-color: white;
     margin-bottom: 10px;
+    max-width: 412px;
     width: 100%;
     border-radius: 8px;
     padding: 20px;
@@ -81,20 +86,18 @@
     flex-direction: column;
 }
 
-
-.applicant_list{
+.right_container{
     background-color: white;
     margin: 10px;
-    width: 60%;
+    max-width: 844px;
+    width: 100%;
     border-radius: 8px;
     padding: 20px;
 	font-weight: 600;
     display: flex;
     flex-direction: column;
+    
 }
-
-
-
 
 .applicant_btns{
     width: 100%;
@@ -110,6 +113,7 @@
     color: #748FFC;
     border: 1px #F5F7FF solid;
     border-radius: 5px;
+    cursor:pointer;
 }
 
                     
@@ -121,4 +125,5 @@
     color: #ff5858;
     border: 1px #fff4f4 solid;
     border-radius: 5px;
+    cursor:pointer;
 }
