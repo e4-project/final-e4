@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction, useState } from "react";
+import PostFormEditor from "../common/Editor";
+import style from './boardPost.module.css'
 
-const EditPost = () => {
-  return (
-    <div>EditPost</div>
-  )
+interface IProp {
+  content: string
+  setContent: Dispatch<SetStateAction<string>>
 }
 
-export default EditPost
+const PostForm = ({content, setContent}: IProp) => {
+  return (
+    <div className={style.boardPostForm}>
+      <PostFormEditor
+        content={content}
+        setContent={setContent}
+        placeholder=""
+      />
+    </div>
+  );
+};
+
+export default PostForm;

@@ -5,7 +5,7 @@ import Avatar from "@/components/common/Avatar";
 
 interface IProps {
   name?: string;
-  contentEl?: string | React.ReactNode;
+  content: string;
   actionEl?: string | React.ReactNode;
   createdAt?: string;
   imagePath?: string;
@@ -22,7 +22,7 @@ const StyledImg = {
  * @author 이동현
  * @desc 컨텐츠 Card 컴포넌트
  */
-const Card = ({ name, imagePath, actionEl, contentEl, createdAt }: IProps) => {
+const Card = ({ name, imagePath, actionEl, content, createdAt }: IProps) => {
   return (
     <div className={style.card_container}>
       <div className={style.cards_header}>
@@ -35,7 +35,9 @@ const Card = ({ name, imagePath, actionEl, contentEl, createdAt }: IProps) => {
         </div>
         <div className={style.card_header_left}>{actionEl && actionEl}</div>
       </div>
-      <div className={style.card_contents_wrap}>{contentEl}</div>
+      <div className={style.card_contents_wrap}>
+        <div dangerouslySetInnerHTML={{ __html: `<div>${content}<div>` }} />
+      </div>
     </div>
   );
 };

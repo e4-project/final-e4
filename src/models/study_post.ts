@@ -1,25 +1,25 @@
 import mongoose, { Schema, Types } from "mongoose";
 
 interface IStudyPost {
-  author: Types.ObjectId;
+  user: Types.ObjectId;
   studyId: Types.ObjectId;
   likes: Types.ObjectId;
   views: number;
-  contents: string;
+  content: string;
 }
 
 const StudyPostSchema = new Schema<IStudyPost>(
   {
     // < -- 아래 주석은 구현후 활성화 -->
-    // author: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: "User",
-    //   trim: true,
-    // },
-    // studyId: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: "RecruitPost",
-    // },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      trim: true,
+    },
+    studyId: {
+      type: Schema.Types.ObjectId,
+      ref: "RecruitPost",
+    },
     // likes: {
     //   type: Schema.Types.ObjectId,
     //   ref: "Likes",
@@ -28,7 +28,7 @@ const StudyPostSchema = new Schema<IStudyPost>(
     //   type: Number,
     //   default: 0,
     // },
-    contents: {
+    content: {
       type: String,
       required: true,
       trim: true,
