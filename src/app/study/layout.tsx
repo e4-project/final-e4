@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "@/styles/global.css";
 import style from "./study.module.css";
 import React, {useState} from 'react';
 import Link from "next/link";
 import testDummy from '@/dummy/studydata.json';
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "e4 | 스터디방",
