@@ -1,7 +1,7 @@
 'use client';
 import React, { use, useState } from "react";
 import { IRequestRecruitPost } from "@/interfaces/recruit";
-import Applicants from '../../../../components/Applicants/Applicants';
+import Applicants from '@/components/Applicants/Applicants';
 
 
 
