@@ -15,7 +15,6 @@ const UPDATE = async (data: any) => {
   if (session) {
     data.email = session?.user?.email;
     try {
-      console.log("imageUrl:", data.imageUrl);
       await User.findOneAndUpdate(
         { email: data.email },
         { image: data.imageUrl },
