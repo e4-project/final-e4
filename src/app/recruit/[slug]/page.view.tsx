@@ -2,12 +2,14 @@
 import Link from "next/link";
 import { useState, useRef } from "react";
 import Modal from "@/components/common/modal/page";
-import Coment from "@/components/coment/ComentEditer";
-import ComentList from "@/components/coment/ComentList";
+// import Coment from "@/components/coment/ComentEditer";
+// import ComentList from "@/components/coment/ComentList";
 import style from "@/styles/style.module.css";
 import { IRequestRecruitPost } from "@/interfaces/recruit";
+import CommentForm from "@/components/Comment/CommentForm";
+import SingleComment from "@/components/Comment/SingleComment";
 
-const coment_data: any = [];
+// const coment_data: any = [];
 interface IProps {
   data: IRequestRecruitPost
 }
@@ -18,29 +20,29 @@ export default function StudyPageView({data}: IProps) {
     setModalOpen(true);
   };
 
-  const [coment, setComent] = useState(coment_data);
-  const idRef = useRef(3);
-  const onCreate = (content: any) => {
-    const newComent = {
-      id: idRef.current,
-      isDone: false,
-      content,
-      createdDate: new Date().getTime(),
-    };
-    setComent([newComent, ...coment]);
-    idRef.current += 1;
-    console.log(coment);
-  };
-  const onUpdate = (id: any) => {
-    setComent(
-      coment.map((coment: any) =>
-        coment.id === id ? { ...coment, isDone: !coment.isDone } : coment
-      )
-    );
-  };
-  const onDelete = (id: any) => {
-    setComent(coment.filter((coment: any) => coment.id !== id));
-  };
+  // const [coment, setComent] = useState(coment_data);
+  // const idRef = useRef(3);
+  // const onCreate = (content: any) => {
+  //   const newComent = {
+  //     id: idRef.current,
+  //     isDone: false,
+  //     content,
+  //     createdDate: new Date().getTime(),
+  //   };
+  //   setComent([newComent, ...coment]);
+  //   idRef.current += 1;
+  //   console.log(coment);
+  // };
+  // const onUpdate = (id: any) => {
+  //   setComent(
+  //     coment.map((coment: any) =>
+  //       coment.id === id ? { ...coment, isDone: !coment.isDone } : coment
+  //     )
+  //   );
+  // };
+  // const onDelete = (id: any) => {
+  //   setComent(coment.filter((coment: any) => coment.id !== id));
+  // };
 
   return (
     <div className={style.sheet}>
@@ -77,10 +79,14 @@ export default function StudyPageView({data}: IProps) {
                 <button className={style.application_button} onClick={showModal}>
                   스터디 참여 신청
                 </button>
-                <button className={style.good}>
-                  좋아요
-                  <img src="/Union.png" alt="" />
-                </button>
+
+                <input className={style.good_check} type="checkbox" name="" id="good" />
+                <label className={style.good_label} htmlFor="good">
+                  <div className={style.good}>
+                    좋아요
+                    <img src="/Union.png" alt="" />
+                  </div>
+                </label>
               </div>
             </li>
           </ul>
@@ -90,14 +96,23 @@ export default function StudyPageView({data}: IProps) {
           <div className={style.study_title}>
             <h3>{data.content}</h3>
           </div>
-          <div className={style.comment}>
+          <div className={style.comment_container}>
+            <div>
+              <CommentForm boardId="" />
+            </div>
+            <div>
+              <SingleComment boardPostId={''} />
+            </div>
+          </div>
+
+          {/* <div className={style.comment}>
             <Coment onCreate={onCreate} />
             <ComentList
               coment={coment}
               onUpdate={onUpdate}
               onDelete={onDelete}
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
