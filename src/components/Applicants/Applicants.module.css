@@ -127,3 +127,79 @@
     border-radius: 5px;
     cursor:pointer;
 }
+
+.apply_cancel_btn{
+    margin: 5px;
+    padding: 4px 12px;
+	font-weight: 400;
+    font-size: 12px;
+    background-color: #fff4f4;
+    color: #ff5858;
+    border: 1px #fff4f4 solid;
+    border-radius: 5px;
+    cursor:pointer;
+}
+
+.alert_bg{
+    position: fixed;
+	top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.alert{
+    padding: 30px;
+    width: 400px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+
+}
+
+.alert p {font-weight: 600;}
+
+.btns{
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.cancel_yes_btn{
+    margin: 5px;
+    padding: 6px 14px;
+	font-weight: 600;
+    font-size: 14px;
+    background-color: #ff5858;
+    color: #fff4f4;
+    border: 1px #ff5858 solid;
+    border-radius: 5px;
+}
+
+.approve_yes_btn{
+    margin: 5px;
+    padding: 6px 14px;
+	font-weight: 600;
+    font-size: 14px;
+    background-color: #748FFC;
+    color: #ffffff;
+    border: 1px #748FFC solid;
+    border-radius: 5px;
+}
+
+
+.cancel_no_btn{
+    margin: 5px;
+    padding: 6px 14px;
+	font-weight: 600;
+    font-size: 14px;
+    background-color: #a8a8a8;
+    color: #ffffff;
+    border: 1px #a8a8a8 solid;
+    border-radius: 5px;
+}
