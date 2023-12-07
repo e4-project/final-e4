@@ -14,8 +14,10 @@
   border: 1px solid #cbcaca;
 }
 
+
 .ql-editor {
   min-height: 480px !important;
+  font-size: 18px !important;
 }
 
 .ql-editor::before {

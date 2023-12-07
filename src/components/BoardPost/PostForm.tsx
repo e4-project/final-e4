@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useState } from "react";
+import PostFormEditor from "../common/Editor";
 
-const EditPost = () => {
+const PostForm = () => {
+  const [content, setContent] = useState("");
+
   return (
-    <div>EditPost</div>
-  )
-}
+    <div style={{ background: "#fff" }}>
+      <PostFormEditor
+        content={content}
+        setContent={setContent}
+        placeholder=""
+      />
+    </div>
+  );
+};
 
-export default EditPost
+export default PostForm;

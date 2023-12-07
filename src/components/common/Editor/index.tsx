@@ -106,6 +106,7 @@ export default function Editor({ content, setContent, placeholder }: IEditor) {
       modules={{ ...modules }}
       formats={formats}
       theme="snow"
+      value={content}
       onChange={setContent}
     />
   );
