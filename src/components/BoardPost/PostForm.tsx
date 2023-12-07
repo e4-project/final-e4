@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import PostFormEditor from "../common/Editor";
+import style from './boardPost.module.css'
 
-const PostForm = () => {
-  const [content, setContent] = useState("");
+interface IProp {
+  content: string
+  setContent: Dispatch<SetStateAction<string>>
+}
 
+const PostForm = ({content, setContent}: IProp) => {
   return (
-    <div style={{ background: "#fff" }}>
+    <div className={style.boardPostForm}>
       <PostFormEditor
         content={content}
         setContent={setContent}
