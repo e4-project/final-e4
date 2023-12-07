@@ -1,7 +1,10 @@
-import { MongoClient } from "mongodb"
-// import { connectDB } from "@/dummydata"
-import Link from 'next/link'
-import style from './mystudy.module.css';
+import React from "react";
+import Link from "next/link";
+import style from "./MyStudy.module.css";
+import ApplyCancel from '@/components/MyStudy/ApplyCancel';
+import { IRequestRecruitPost } from "@/interfaces/recruit";
+// 불러올 데이타 인터페이스 다 임포트해야댐
+
 
 /**
  * @name applicants
@@ -9,12 +12,11 @@ import style from './mystudy.module.css';
  * @desc 마이스터디: 참여 신청한 스터디(모집글), 좋아요한 스터디(모집글), 내가 만든 스터디(모집글), 참여 중인 스터디
  */
 
-export default async function MyStudy() {
-    // let db = (await connectDB).db('e4');
-    // let mypost = await db.collection('mystudy').find().toArray();
-   
-// Apply, MyRecruitPost는 studyName에 버튼까지 있어서 컴포넌트로 만듦
+ interface IProps {
+    data: IRequestRecruitPost[]
+  }
 
+  const MyStudy = ({data}: IProps) => {
     return(
         <div className={style.bg}>
             <div className={style.container}>
@@ -24,6 +26,7 @@ export default async function MyStudy() {
                         {/* 참여 신청한 recruit post 개수 만큼 map */}
                         <Apply/>
                         <Apply/>
+                        
                     </div>
 
                     <div className={style.section}>
@@ -61,35 +64,8 @@ export default async function MyStudy() {
             </div>
         </div>
     )
-}
-
-function Apply(props) {
-    return(
-            <div className={style.section_item}>  {/* key=[props.i] */}
-            
-                <Link className={style.study_name}
-                href={'/해당recruit post링크'}>
-                    <p>recruit post의 studyName</p>
-                </Link>
-                {/* {
-                    내가 신청자 목록(apllicants)에 있으면
-                    ? <button onClick={이 모집글 apllicants에서 '나' 삭제} className={style.apply_cancel_btn}>신청 취소</button>
-                    : (
-                        내가 member로 들어갔으면 (승인 받았으면)
-                        ? <p>승인됨</p>
-                        : <p>거절됨</p>
-                    )
-                } */}
-
-            {/* 아래 버튼은 위에 있는 if문 대신 더미버튼,, */}
-                <button className={style.apply_cancel_btn}>신청 취소</button>
-                
-            </div>
-    )
-}
-
-
-function MyRecruitPost(props) {
+  }
+  function MyRecruitPost(props) {
     return(
         <div className={style.section_item} >  {/* key=[props.i] */}
             <Link className={style.study_name}
@@ -101,9 +77,40 @@ function MyRecruitPost(props) {
                 {/* 해당 recruit post의 _id 로 구분된 applicants 페이지로*/}
                         {/*  href={'/mystudy/applicants/' + myRecruitPost[i]._id.toString()}> */}
                 
-                <button className={style.applicants_btn}>신청차 확인</button> 
+                <p className={style.applicants_btn}>신청자 확인</p> 
                 {/* if close==true(신청 마감되면) -> 버튼 대신 '신청 마감' 표기 */}
             </Link>
         </div>
     )
 }
+
+ function Apply(props) {
+    {/* const render = () => {
+        if (recognition === '거절'){
+            return <div>거절됨</div>
+        } else if (recognition === '승인'){
+            return <div>승인됨</div>
+        } else (recognition === '대기'){
+            return (
+                <ApplyCancel/>
+            )
+            
+        }
+    } */}
+
+    return(
+            <div className={style.section_item}>  {/* key=[props.i] */}
+            
+                <Link className={style.study_name}
+                href={'/해당recruit post링크'}>
+                    <p>recruit post의 studyName</p>
+                </Link>
+                {/* {render()} */} 
+
+                <ApplyCancel/>
+
+            </div>
+    )
+}
+
+  export default MyStudy;
