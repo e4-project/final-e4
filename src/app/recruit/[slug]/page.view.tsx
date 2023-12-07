@@ -86,6 +86,11 @@ export default function StudyPageView({data}: IProps) {
                     좋아요
                     <img src="/Union.png" alt="" />
                   </div>
+                  <div className={style.box}></div>
+                  <div className={style.box}></div>
+                  <div className={style.box}></div>
+                  <div className={style.box}></div>
+                  <div className={style.box}></div>
                 </label>
               </div>
             </li>
