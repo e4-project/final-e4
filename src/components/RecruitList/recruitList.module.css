@@ -1,5 +1,6 @@
 .container {
   width: 100%;
+  margin: 0 auto;
 }
 
 .banner_slide_container {
@@ -13,23 +14,40 @@
 }
 
 .search {
-  margin-right: 23px;
+  padding: 60px;
   display: flex;
-  justify-content: flex-end;
   flex-wrap: nowrap;
+  justify-content: space-between;
 }
 
 .serarch_input {
-  width: 380px;
-  height: 55px;
-  margin-right: 24px;
-  margin-bottom: 30px;
   display: flex;
-  border: 1px solid #c9cbd7;
+  width: 400px;
+	font-weight: 400;
+  font-size: 18px;
+  background-color: #FFFFFF;
+  color: #878CA0;
+  border: 1px #878CA0 solid;
+  border-radius: 5px;
+  cursor:pointer;
+}
+
+.input_text {
+  width: 500px;
+  color: #878CA0;
+}
+
+.input_text::placeholder {
+  font-size: 17px;
+}
+
+.input_wrap {
+  width: auto;
+  height: auto;
 }
 
 .serarch_input:hover{
-  border: 1px solid #77787e;
+  border: 1px solid #878CA0;
 }
 
 .serarch_icon {
@@ -40,10 +58,6 @@
   padding: 5px;
 }
 
-.input_wrap {
-  width: 100%;
-  height: 100%;
-}
 
 .serarch_input label {
   display: block;
@@ -63,15 +77,15 @@
   border: 1px solid #748ffc;
 }
 
-.registr_btn {
-  border: 1px solid #748ffc;
-  height: 55px;
-  border-radius: 8px;
-}
-
-.input_wrap {
-  width: 100%;
-  height: 100%;
+.write_btn { 
+  padding: 10px 18px;
+	font-weight: 400;
+  font-size: 18px;
+  background-color: #748FFC;
+  color: #FFFFFF;
+  border: 1px #748FFC solid;
+  border-radius: 5px;
+  cursor:pointer;
 }
 
 .card_wrap {
@@ -81,20 +95,21 @@
   gap: 30px;
   flex-wrap: wrap;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 60px;
 }
 
 .card_container {
   padding: 30px 20px;
-  width: 292px;
-  height: 350px;
+  width: 272px;
+  height: 311px;
   border: 1px solid #748ffc;
-  border-radius: 12px;
+  border-radius: 10px;
   position: relative;
   transition: transform 0.4s;
   transform: scale(1);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 70px;
 }
 
@@ -102,51 +117,64 @@
   transform: scale(1.08);
   box-shadow: 0 14px 28px rgba(79, 79, 79, 0.116),
     0 10px 10px rgba(41, 36, 36, 0.265);
-  border: 1px solid #274ce3;
-  border-radius: 8px;
+  border: 1px solid #748FFC;
+  /* border-radius: 8px; */
 }
 
-.card_text {
-  width: 100%;
+
+.card_bottom_container{
+position: absolute;
+bottom: 20px;
 }
 
-.card_keyword {
+.studyKeyword {
   margin-bottom: 20px;
+  color: #748FFC;
+  font-size: 14px;
 }
 
-.card_keyword ul {
+.studyKeyword ul {
   display: flex;
   gap: 10px;
 }
 
-.card_keyword ul li {
+.studyKeyword ul li {
   padding: 3px 5px;
   background-color: #f5f7ff;
   border-radius: 5px;
   color: #BAC8FF;
+}
+.materialType{
+  font-size: 14px;
+  color: #878CA0;
+}
+
+.material {
+  height: 45px;
+  font-size: 18px;
+  color: #4E515B;
+  font-weight: 600;
 }
 
 .studyName {
   height: 35px;
 }
 
-.studyName h2 {
+.studyName p {
   margin-top: 5px;
-  font-size: 24px;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  letter-spacing: -0.05em;
-  overflow: hidden;
-}
-
-.material {
-  height: 45px;
+  /* overflow: hidden; */
+  /* display: -webkit-box; */
+  /* -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; */
+  /* letter-spacing: -0.05em; */
+  /* overflow: hidden; */
+  
+  font-size: 18px;
+  color: #4E515B;
+  font-weight: 400;
 }
 
 .card_date p {
-  position: absolute;
-  bottom: 15px;
   color: #878CA0;
+  font-size: 14px;
 }
