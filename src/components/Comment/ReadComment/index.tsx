@@ -24,7 +24,7 @@ const ReadComment = ({ name, comment, createdAt }: IProps) => {
             <Button text="삭제" />
           </div>
         }
-        contentEl={<div>{comment.contents}</div>}
+        content={`<div>${comment.content}</div>`}
       />
     </div>
   );
