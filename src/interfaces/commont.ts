@@ -1,6 +1,6 @@
 export interface IRequestCommont {
   _id: string;
-  contents: string;
+  content: string;
   createdAt?: string;
   updatedAt?: string;
 }

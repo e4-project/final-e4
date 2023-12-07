@@ -7,7 +7,6 @@ export const GET = routeWrapperWithError(
   async (req: NextRequest, { params }: { params: { studyname: string } }) => {
     const studyName = params.studyname;
     const post = await RecruitPost.findOne({ studyName });
-    console.log({post})
     return NextResponse.json(post);
   }
 );
