@@ -21,6 +21,8 @@
   justify-content: center;
   margin-top: 20px;
   position: relative;
+  background-color: #F8F8F8;
+  height: auto;
 }
 .area1 {
   width: 412px;
@@ -28,7 +30,7 @@
   justify-content: flex-start;
   border-radius: 10px;
   padding: 30px 28px;
-  background-color: #f8f8f8;
+  background-color: #fff;
   position: sticky;
   top: 100px;
 }
@@ -39,7 +41,7 @@
   flex-direction: column;
   margin-left: 20px;
   padding: 10px;
-  background-color: #f8f8f8;
+  background-color: #fff;
 }
 
 /*  */
@@ -145,21 +147,49 @@
   background-color: #748ffc;
 }
 
+.good_check{
+  display: none;
+}
+.good_label{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 10px;
+  height: 60px;
+}
 .good {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 300px;
   height: 60px;
   background-color: #fff;
   border: 1px solid #748ffc;
   font-size: 20pt;
-  margin-top: 10px;
   border-radius: 10px;
   color: #748ffc;
   cursor: pointer;
   box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
   transition: all 0.3s;
 }
-.good:hover {
-  background-color: #bac8ff;
+/* .good:hover {
+  background-color: rgb(250, 213, 238);
+} */
+
+.good_check:checked + label {
+  .good {
+    width: 60px;
+    font-size: 0;
+    background-color: rgb(250, 213, 238);
+    border-radius: 50%;
+    /* animation-name: anime; */
+  } 
+  /* @keyframes anime {
+    0% { width: 0; height: 20px;}
+    100% { width: 50px; height: 50px; }
+  } */
 }
 
 /*  */

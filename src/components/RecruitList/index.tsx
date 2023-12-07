@@ -34,7 +34,7 @@ const RecruitList = ({ data }: IProps) => {
               <TfiSearch size={21} />
             </div>
             <div className={style.input_wrap}>
-              <input
+              <input className={style.input_text}
                 id="text"
                 type="text"
                 name="focus"
@@ -44,7 +44,8 @@ const RecruitList = ({ data }: IProps) => {
           </div>
           <div>
             <Link href="/write">
-              <Button className={style.registr_btn} text="등록" />
+              <p className={style.write_btn}>스터디 등록</p>
+              {/* <Button className={style.registr_btn} text="등록" /> */}
             </Link>
           </div>
         </form>
@@ -54,28 +55,34 @@ const RecruitList = ({ data }: IProps) => {
             <li key={item._id}>
               <Link href={`/recruit/${item.studyName}`} className={style.card_container}>
                 <div>
-                  <div className={style.card_keyword}>
+                  <div className={style.card_top_container}>
+                    <div className={style.studyKeyword}>
+                      <div>
+                        {item.studyKeyword.split(", ").map((item, idx) => (
+                          <div key={idx}>{item}</div>
+                        ))}
+                      </div>
+                    </div>
+
                     <div>
-                      {item.studyKeyword.split(", ").map((item, idx) => (
-                        <div key={idx}>{item}</div>
-                      ))}
+                        <div className={style.materialType}>
+                          <p>📖 {item.materialType}</p>
+                        </div>
+                    </div>
+
+                    <div className={style.material}>
+                      <p>{item.material}</p>
                     </div>
                   </div>
-                  <div>
-                    <div className={style.materialType}>
-                      <p>{item.materialType}</p>
+                  <div className={style.card_bottom_container}>
+                    <div className={style.studyName}>
+                      <p>{item.studyName}</p>
                     </div>
-                </div>
-                <div className={style.card_textbook}>
-                  <h2>{item.material}</h2>
-                </div>
 
-                <div className={style.card_title}>
-                  <p>{item.studyName}</p>
-                </div>
+                    <div className={style.card_date}>
+                      <p>⏱ {item.duration} | {item.deadLine} 모집 마감</p>
+                    </div>
 
-                  <div className={style.card_date}>
-                    <p>{item.duration}</p>
                   </div>
                 </div>
               </Link>

@@ -87,6 +87,12 @@ const Header = () => {
             <Link href="/">My Study</Link>
           </li>
         </ul>
+        {session ? (
+          <div style={{display: 'none'}}></div>
+          ) : (
+          <div className={style.login} onClick={openModal}>Login</div>
+        )}
+        {session ? (
         <div>
           <div className={style.profile_title}>
             {/*  */}
@@ -154,17 +160,7 @@ const Header = () => {
                     </li>
                     <li>내 스터디</li>
                     <li>설정</li>
-                    {session ? (
-                      <li
-                        onClick={() => {
-                          signOut();
-                        }}
-                      >
-                        로그아웃
-                      </li>
-                    ) : (
-                      <li onClick={openModal}>로그인</li>
-                    )}
+                    <li onClick={() => {signOut();}}>로그아웃</li>
                   </ul>
                 </li>
               </ul>
@@ -173,6 +169,8 @@ const Header = () => {
             {/*  */}
           </div>
         </div>
+        ): null}
+        
       </div>
       {isModalOpen && <LoginModal onClose={closeModal} />}
     </div>
