@@ -192,9 +192,10 @@
     animation: heartbeat 3s forwards ease-in-out;
   }
   .box{
-    top: 20px;
-    left: 169px;
+    top: 18px;
+    left: 166px;
     position: absolute;
+    animation: soda 3s forwards ease;
   }
    .box:nth-child(1){
     --size: 1.6;
@@ -236,6 +237,13 @@
   70%{ opacity: 1; }
   100% { transform: scale(calc(var(--size)*2)); opacity: 0;  }
 }
+@keyframes soda {
+  0%{ opacity: 0; }
+  50%{ opacity: 0; }
+  70%{ top: 18px; opacity: 1;}
+  100% { top: 0; opacity: 0; }
+}
+
 
 
 /*  */
