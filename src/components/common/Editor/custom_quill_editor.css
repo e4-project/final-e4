@@ -1,0 +1,25 @@
+/**
+ * @name custom_quill
+ * @author 이동현
+   desc react quill의 스타일을 적용할 때 모듈 css는 
+   적용되지 않기 때문에 일반 css를 사용해 스타일링을 해줘야한다.
+ */
+.editor_wrap {
+  width: 100%;
+  max-width: 100%;
+}
+
+.ql-toolbar,
+.ql-container {
+  border: 1px solid #cbcaca;
+}
+
+
+.ql-editor {
+  min-height: 480px !important;
+  font-size: 18px !important;
+}
+
+.ql-editor::before {
+  font-size: 16px !important;
+}

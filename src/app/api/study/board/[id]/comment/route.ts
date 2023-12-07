@@ -21,15 +21,14 @@ export const GET = async (
 export const POST = async (req: NextRequest) => {
   try {
     await connectDB();
-    const { contents, studyPostId } = await req.json();
-    console.log({ contents, studyPostId });
-    if (!contents || !studyPostId) {
+    const { content, studyPostId } = await req.json();
+    if (!content || !studyPostId) {
       return NextResponse.json(
         { isOk: false, message: "데이터가 비어있습니다." },
         { status: 404 }
       );
     }
-    const savedData = await Comment.create({ contents, studyPostId });
+    const savedData = await Comment.create({ content, studyPostId });
     return NextResponse.json(savedData);
   } catch (error) {
     return NextResponse.json(error, { status: 500 });

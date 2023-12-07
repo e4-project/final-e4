@@ -2,6 +2,7 @@
   padding: 12px 8px;
   width: 100%;
   border: 1px solid #e9e9e9;
+  background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.1);
 }
@@ -10,9 +11,15 @@
   border-bottom: 1px solid #f1f3f5;
 }
 
-.post_btn_delete {
+.post_btn {
   width: 60px;
   height: 30px;
+}
+
+.post_btn.btn_del {
+  background: #fd9494;
+  color: #fdfdfd;
+  border: none;
 }
 
 .comment_container {
@@ -26,4 +33,9 @@
   padding: 15px;
   display: flex;
   gap: 15px;
+}
+
+/* 게시글 폼 */
+.boardPostForm {
+  background-color: #fff;
 }
