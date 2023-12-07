@@ -84,7 +84,7 @@ const Header = () => {
             <Link href="/study">Study Home</Link>
           </li>
           <li>
-            <Link href="/">My Study</Link>
+            <Link href="/mystudy">My Study</Link>
           </li>
         </ul>
         {session ? (
