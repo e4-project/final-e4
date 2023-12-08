@@ -1,15 +1,21 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
-import { loadComment } from "@/axios/fetcher/comment/loadComment";
 import ReadComment from "./ReadComment";
 import style from "./comment.module.css";
 
-const SingleComment = ({ boardPostId }: { boardPostId: string }) => {
+interface IProps {
+  postId: string;
+  fetcher: (prop: string) => Promise<any>;
+}
+
+const SingleComment = ({ postId, fetcher }: IProps) => {
   const [commentToggle, setCommentToggle] = useState(false);
   const [comments, setComments] = useState([]);
-  const fetchComment = useCallback(() => {
-    loadComment(boardPostId).then((comments) => setComments(comments));
-  }, [boardPostId]);
+
+  const fetchComment = useCallback(async () => {
+    await fetcher(postId).then((comments) => {
+      setComments(comments)});
+  }, [fetcher, postId]);
 
   useEffect(() => {
     fetchComment();
@@ -31,11 +37,11 @@ const SingleComment = ({ boardPostId }: { boardPostId: string }) => {
             ▼
           </div>
         )}
-        <div>댓글 {comments.length}</div>
+        <div>댓글 {comments?.length}</div>
       </div>
       {commentToggle &&
-        (comments.length ? (
-          comments.map((comment, idx) => (
+        (comments?.length ? (
+          comments?.map((comment, idx) => (
             <ReadComment key={idx} comment={comment} />
           ))
         ) : (

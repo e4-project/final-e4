@@ -4,7 +4,6 @@ import { TfiSearch } from "react-icons/tfi";
 import Link from "next/link";
 import style from "./recruitList.module.css";
 import { IResponseRecruitPost } from "@/interfaces/recruit";
-import Button from "../common/Button";
 
 /**
  * @name recruit
@@ -61,7 +60,7 @@ const RecruitList = ({ data }: IProps) => {
             </div>
           </div>
           <div>
-            <Link href="/write">
+            <Link href="/recruit/write">
               <p className={style.write_btn}>스터디 등록</p>
               {/* <Button className={style.registr_btn} text="등록" /> */}
             </Link>
