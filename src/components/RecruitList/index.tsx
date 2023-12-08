@@ -3,7 +3,7 @@ import ImgSlider from "../ImgSlider";
 import { TfiSearch } from "react-icons/tfi";
 import Link from "next/link";
 import style from "./recruitList.module.css";
-import { IRequestRecruitPost } from "@/interfaces/recruit";
+import { IResponseRecruitPost } from "@/interfaces/recruit";
 import Button from "../common/Button";
 
 /**
@@ -14,7 +14,7 @@ import Button from "../common/Button";
  */
 
 interface IProps {
-  data: IRequestRecruitPost[]
+  data: IResponseRecruitPost[]
 }
 
 const RecruitList = ({ data }: IProps) => {
@@ -43,14 +43,14 @@ const RecruitList = ({ data }: IProps) => {
             </div>
           </div>
           <div>
-            <Link href="/write">
+            <Link href="/recruit/write">
               <p className={style.write_btn}>스터디 등록</p>
               {/* <Button className={style.registr_btn} text="등록" /> */}
             </Link>
           </div>
         </form>
         <ul className={style.card_wrap}>
-          {data?.map((item: IRequestRecruitPost) => (
+          {data?.map((item: IResponseRecruitPost) => (
             // recruit 리스트 만들기 key는 부모한테만 줘야함
             <li key={item._id}>
               <Link href={`/recruit/${item.studyName}`} className={style.card_container}>

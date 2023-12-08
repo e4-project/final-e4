@@ -98,7 +98,7 @@ export default function StudyPageView({data}: IProps) {
         {/*  */}
         <div className={style.area2}>
           <div className={style.study_title}>
-            <h3>{data.content}</h3>
+            <h3> <div dangerouslySetInnerHTML={{ __html: `<div>${data.content}<div>` }} /></h3>
           </div>
           <div className={style.comment_container}>
             <div>
