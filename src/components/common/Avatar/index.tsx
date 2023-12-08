@@ -16,14 +16,15 @@ interface IAvatar {
 const Avatar = ({ src, alt = "", style, ...props }: IAvatar) => {
   return (
     <div className="avatar">
-      <Image
+      {/* <Image
         src={src}
         alt={alt}
         width={40}
         height={40}
         style={style}
         {...props}
-      />
+      /> */}
+      <img src={src} alt="profile" width={40} height={40} style={style} {...props}/>
     </div>
   );
 };

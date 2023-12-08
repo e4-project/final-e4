@@ -31,8 +31,8 @@
 
 .h1 {
   font-size: 1.5rem;
-  margin-top: 55px;
-  margin-bottom: 55px;
+  margin-top: 60px;
+  margin-bottom: 40px;
 }
 .login_wrapper {
   width: 300px;
@@ -44,6 +44,11 @@
   margin-bottom: 20px;
   border-radius: 10px;
   border: none;
+  cursor:pointer;
+}
+.login_wrapper p {
+  font-size: 16px;
+  font-weight: 600;
 }
 .kakao_bg {
   background-color: #fee500;

@@ -1,30 +1,42 @@
 import connectDB from "@/config/db/connectDB";
 import StudyPost from "@/models/study_post";
+import User from "@/models/user";
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { routeWrapperWithError } from "@/utils/routeWrapperWithError";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async (req: NextRequest) => {
-  try {
-    await connectDB();
-    const studyPost = await StudyPost.find({}).sort({ createdAt: -1 });
-    return NextResponse.json(studyPost);
-  } catch (error) {
-    return NextResponse.json(error, { status: 500 });
-  }
-};
+export const GET = routeWrapperWithError(async () => {
+  const studyPost = await StudyPost.find({}).sort({ createdAt: -1 }).populate('user', '_id name image')
+  return NextResponse.json(studyPost);
+});
 
-export const POST = async (req: NextRequest) => {
-  try {
-    await connectDB();
-    const { contents } = await req.json();
-    if (!contents) {
+export const POST = routeWrapperWithError(async (req: NextRequest) => {
+  let session = await getServerSession(authOptions);
+  const { content } = await req.json();
+
+  if (session) {
+    if (!content) {
       return NextResponse.json(
         { isOk: false, message: "데이터가 비어있습니다." },
         { status: 404 }
       );
     }
-    const savedData = await StudyPost.create({ contents });
+    const user = await User.findOne({ name: session.user?.name });
+    const savedData = await StudyPost.create({ content, user: user._id });
     return NextResponse.json(savedData);
-  } catch (error) {
-    return NextResponse.json(error, { status: 500 });
   }
-};
+});
+
+// export const PATCH = async (
+//   req: NextRequest,
+//   { params }: { params: { id: string } }
+// ) => {
+//   const id = params.id;
+//   try {
+//     await connectDB();
+//     return NextResponse.json({ msg: "기록" });
+//   } catch (error) {
+//     return NextResponse.json(error, { status: 500 });
+//   }
+// };
