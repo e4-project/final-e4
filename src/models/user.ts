@@ -1,39 +1,26 @@
 import mongoose, { Schema } from "mongoose";
-
 interface IUser {
   name: string;
-  nickName: string;
-  token: string;
-  snsType: string;
-  imgPath: string;
-  isLimited: boolean;
+  email: string;
+  emailVerified: boolean;
+  image: string;
 }
-
 const UserSchema = new Schema<IUser>(
   {
     name: {
       type: String,
       require: true,
     },
-    nickName: {
+    email: {
       type: String,
+      unique: true
     },
-    token: {
-      type: String,
-      require: true,
-    },
-    snsType: {
-      type: String,
-      require: true,
-    },
-    imgPath: {
-      type: String,
-    },
-    isLimited: {
-      //신고받은 상태 신고됨: true
+    emailVerified: {
       type: Boolean,
-      require: true,
-      default: false,
+    },
+    image: {
+      //신고받은 상태 신고됨: true
+      type: String,
     },
   },
   {
@@ -41,6 +28,5 @@ const UserSchema = new Schema<IUser>(
     versionKey: false,
   }
 );
-
 const User = mongoose.models.User || mongoose.model<IUser>("User", UserSchema);
 export default User;
