@@ -322,6 +322,12 @@
   transform: translate(-50%, -50%);
   z-index: 100;
   border-radius: 10px;
+  transition: all 0.3s;
+  animation: modalopen 2s forwards;
+}
+@keyframes modalopen {
+  0%{ opacity: 0; }
+  100%{ opacity: 1; }
 }
 
 .back {
@@ -359,7 +365,16 @@
   margin-right: 16px;
   border: 0;
   padding: 8px;
+  transition: all 0.3s;
+  cursor: pointer;
 }
+.close > button:hover{
+  scale: 120%;
+  transform: rotate(-10deg);
+}
+
+
+
 .textarea > textarea {
   display: flex;
   margin-bottom: 20px;
