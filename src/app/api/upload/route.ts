@@ -1,10 +1,7 @@
-import { NextResponse, NextRequest } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../../../pages/api/auth/[...nextauth]";
+import { NextRequest } from "next/server";
 import connectDB from "@/config/db/connectDB";
 import User from "@/models/user";
 import { routeWrapperWithError } from "@/utils/routeWrapperWithError";
-import { Console } from "console";
 
 export const POST = routeWrapperWithError(async (req: NextRequest) => {
   const data = await req.json();
