@@ -47,7 +47,6 @@
     font-weight: 600;
     margin-bottom: 10px;
     font-size: 16px;
-    
 }
 
 .study_info_titles p {
@@ -59,7 +58,7 @@
     font-size: 14px;
 }
 
-.study_info_contents p {
+.study_info_contents > p {
     padding: 2px;
 }
 
@@ -75,6 +74,7 @@
     border: 1px #BAC8FF solid;
     border-radius: 5px;
 }
+
 .member{
     background-color: white;
     margin-bottom: 10px;
@@ -96,7 +96,6 @@
 	font-weight: 600;
     display: flex;
     flex-direction: column;
-    
 }
 
 .applicant_btns{
@@ -151,6 +150,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .alert{
     padding: 30px;
     width: 400px;
@@ -158,10 +158,9 @@
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
-
 }
 
-.alert p {font-weight: 600;}
+.alert > p {font-weight: 600;}
 
 .btns{
     margin-top: 30px;
@@ -179,6 +178,7 @@
     color: #fff4f4;
     border: 1px #ff5858 solid;
     border-radius: 5px;
+    cursor:pointer;
 }
 
 .approve_yes_btn{
@@ -190,6 +190,7 @@
     color: #ffffff;
     border: 1px #748FFC solid;
     border-radius: 5px;
+    cursor:pointer;
 }
 
 
@@ -202,4 +203,5 @@
     color: #ffffff;
     border: 1px #a8a8a8 solid;
     border-radius: 5px;
+    cursor:pointer;
 }

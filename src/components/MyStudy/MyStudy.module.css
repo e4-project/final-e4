@@ -40,7 +40,7 @@
     font-size: 14px;
 }
 
-.section_item p {
+.section_item > p {
 	font-weight: 400;
 }
 
@@ -55,7 +55,6 @@
     flex-grow: 1;
     margin-bottom: 5px;
     font-size: 16px;
-    
 }
 
 .applicants_btn{
@@ -67,6 +66,7 @@
     color: #748FFC;
     border: 1px #F5F7FF solid;
     border-radius: 5px;
+    cursor:pointer;
 }
 
 .apply_cancel_btn{
@@ -92,6 +92,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .alert{
     padding: 30px;
     width: 400px;
@@ -99,10 +100,9 @@
     display: flex;
     flex-direction: column;
     background-color: #ffffff;
-
 }
 
-.alert p {font-weight: 600;}
+.alert > p {font-weight: 600;}
 
 .btns{
     margin-top: 30px;
@@ -120,6 +120,7 @@
     color: #fff4f4;
     border: 1px #ff5858 solid;
     border-radius: 5px;
+    cursor:pointer;
 }
 
 .cancel_no_btn{
@@ -131,4 +132,5 @@
     color: #ffffff;
     border: 1px #a8a8a8 solid;
     border-radius: 5px;
+    cursor:pointer;
 }
