@@ -1,9 +1,9 @@
 "use client";
-import React,{useState, useRef} from 'react';
+import React,{useState, useEffect, useRef} from 'react';
 import style from './note.module.css';
-import testDummy from '@/dummy/studydata.json';
 import MyEditorComponent from './page.write';
 import Button from '@/components/common/Button';
+import { studyNoteApi } from '@/axios/fetcher/note/study_note';
 
 /**
  * @name note
@@ -13,9 +13,26 @@ import Button from '@/components/common/Button';
  * @returns number
  */
 
+interface StudyNote {
+    _id: string;
+    author: {
+        _id: string;
+        name: string;
+        image: string;
+    };
+    studyId: {
+        _id: string;
+        leader: string;
+        studyKeyword: string;
+    };
+    week: string;
+    contents: string;
+}
+
 const Page = () => {
-    const [selectWeek, setSelectWeek] = useState(); // 현재 선택된 주차 상태
+    const [selectWeek, setSelectWeek] = useState<string>('1'); // 현재 선택된 주차 상태
     const [onEditor, setOnEditor] = useState(false);
+    const [studyNote, setStudyNote] = useState<StudyNote | null>(null);
 
     const onWeekChange = (event:any) => {
         setSelectWeek(event.target.value);
@@ -28,6 +45,25 @@ const Page = () => {
     const onSaveButtonClick = () => {
         setOnEditor(false);
     };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await studyNoteApi();
+    
+                if (data && data.author) {
+                    const authorName = data.author.name || '';
+                    setStudyNote({ ...data, author: { ...data.author, name: authorName } });
+                } else {
+                    setStudyNote(null);
+                }
+            } catch (error) {
+                console.error('스터디 노트를 불러올 수 없습니다.', error);
+            }
+        };
+    
+        fetchData();
+    }, []);
 
     return (
         <div className={style.note_container}>
@@ -43,7 +79,6 @@ const Page = () => {
                     </label>
                 </div>
                 <div>
-                {/* ck에디터 추가 */}
                 {onEditor ? (
                     <Button text='학습노트 저장하기' className={style.write_btn} onClick={onSaveButtonClick}/>
                 ) : (
@@ -56,15 +91,9 @@ const Page = () => {
                         <MyEditorComponent />
                         ) : (
                         <div className={style.member_note}>
-                        {testDummy.member.map((member) => (
-                        <p
-                            className={style.member_list}
-                            key={member.id}
-                        >
-                            <span style={{ color: '#748ffc' }}>{member.content}</span>의 공부 노트
+                        <p className={style.member_list}>
+                            <span style={{ color: '#748ffc' }}>{studyNote?.author?.name}</span>의 공부 노트
                         </p>
-                    ))}
-
                 </div>
                 )}
             </div>

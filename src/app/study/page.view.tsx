@@ -21,7 +21,6 @@ const Pageview = () => {
                 console.error('스터디 정보를 불러올 수 없습니다.', error);
             }
         };
-
         fetchData();
     }, []);
 
