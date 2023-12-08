@@ -25,12 +25,17 @@ export default function StudyLayout({
             <h4 >함께 공부할 강의</h4>
             <p>[코딩애플] React 리액트 기초부터 쇼핑몰 프로젝트까지!</p>
             <div className={style.study_mini_info}>
-              <p>스터디룸 <button>입장하기</button></p>
+              <p className={style.study_room}>스터디룸 
+                <button className={style.Entrance}>
+                  <span>드과자</span>
+                  <span>입장하기</span>
+                </button>
+              </p>
               <p>스터디 기간 <span>{testDummy.period.map(period =>(
                 <span key={period.id}>{period.content}</span>
               ))}</span></p>
               <p>스터디 멤버 <span>{testDummy.member.map(member =>(
-                <p key={member.id}>{member.content}</p>
+                <p key={member.id}>{member.content} </p>
               ))}</span></p>
             </div>
           </div>
