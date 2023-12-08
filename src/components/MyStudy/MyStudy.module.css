@@ -1,4 +1,7 @@
-.bg {background-color: #F8F8F8;}
+.bg {
+    background-color: #F8F8F8;
+    min-height: 1000px;
+}
 
 .container {
     padding: 10px;

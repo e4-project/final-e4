@@ -1,6 +1,9 @@
-.bg {background-color: #F8F8F8;}
+.bg {
+    background-color: #F8F8F8;
+    min-height: 1000px;
+}
 
-.container {
+.container {    
     padding: 10px;
     display: flex;
     flex-direction: row;
@@ -73,6 +76,7 @@
     color: #4E515B;
     border: 1px #BAC8FF solid;
     border-radius: 5px;
+    cursor:pointer;
 }
 
 .member{
