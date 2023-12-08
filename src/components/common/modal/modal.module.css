@@ -12,6 +12,23 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 20;
 }
+.modal {
+  background-color: #fff;
+  position: absolute;
+  width: 800px;
+  height: 400px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  border-radius: 10px;
+  transition: all 0.3s;
+  animation: openmodal 2s forwards;
+}
+@keyframes openmodal {
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
 
 .modal_text > h2 {
   margin-bottom: 20px;
@@ -33,6 +50,12 @@
   margin-right: 16px;
   border: 0;
   padding: 8px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.close > button:hover {
+  scale: 110%;
+  transform: rotate(-10deg);
 }
 .textarea > textarea {
   display: flex;
@@ -42,4 +65,24 @@
   resize: none;
   border: 2px solid #eee;
   margin: 0 auto;
+}
+
+.application {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.application > button {
+  width: 96px;
+  height: 36px;
+  border-radius: 5px;
+  background-color: #BAC8FF;
+  margin-top: 30px;
+  border: none;
+  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
+  transition: all 0.3s;
+}
+.application > button:hover{
+  background-color: #748ffc;
 }
