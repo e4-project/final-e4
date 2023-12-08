@@ -13,8 +13,7 @@ interface Iprops {
 }
 
 const BoardPost = ({ board, onDelPost }: Iprops) => {
-  const { _id, content, user } = board;
-  console.log({ board });
+  const { _id, content, user, createdAt } = board;
 
   return (
     <div className={style.board_post_wrap}>
@@ -24,6 +23,7 @@ const BoardPost = ({ board, onDelPost }: Iprops) => {
             <Card
               name={user?.name as string}
               imagePath={user?.image as string}
+              createdAt={createdAt}
               actionEl={
                 <div className={style.post_btn_wrap}>
                   <Button

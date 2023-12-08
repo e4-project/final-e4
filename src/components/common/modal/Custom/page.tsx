@@ -1,6 +1,6 @@
 "use client";
-import style from '@/styles/style.module.css';
 import React, { Dispatch } from 'react';
+import style from '../modal.module.css'
 
 interface IProps {
     children : React.ReactNode;
