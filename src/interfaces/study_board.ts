@@ -1,6 +1,9 @@
+import { IResponseUser } from "./user";
+
 export interface IResponseBoard {
   _id: string;
+  user: IResponseUser;
   views?: number;
-  contents: string;
+  content: string;
   createdAt: string;
 }

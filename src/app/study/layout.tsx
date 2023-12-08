@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "@/styles/global.css";
 import style from "./study.module.css";
 import React, {useState, useEffect} from 'react';
 import Link from "next/link";
