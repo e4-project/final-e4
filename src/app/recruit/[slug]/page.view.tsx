@@ -2,12 +2,10 @@
 import Link from "next/link";
 import { useState, useRef } from "react";
 import Modal from "@/components/common/modal/page";
-// import Coment from "@/components/coment/ComentEditer";
-// import ComentList from "@/components/coment/ComentList";
-import style from "@/styles/style.module.css";
 import { IRequestRecruitPost } from "@/interfaces/recruit";
 import CommentForm from "@/components/Comment/CommentForm";
 import SingleComment from "@/components/Comment/SingleComment";
+import style from "./recruit.module.css";
 
 // const coment_data: any = [];
 interface IProps {
@@ -86,6 +84,11 @@ export default function StudyPageView({data}: IProps) {
                     좋아요
                     <img src="/Union.png" alt="" />
                   </div>
+                  <div className={style.box}></div>
+                  <div className={style.box}></div>
+                  <div className={style.box}></div>
+                  <div className={style.box}></div>
+                  <div className={style.box}></div>
                 </label>
               </div>
             </li>

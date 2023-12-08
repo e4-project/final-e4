@@ -147,6 +147,8 @@
 }
 
 .bell_menu {
+  display: none;
+  height: 0;
   margin: 0;
   width: 200px;
   padding: 0;
@@ -155,13 +157,14 @@
   list-style: none;
   background-color: #f8f8f8;
   transform-origin: 0% 0%;
-  transform: translate(-100px, -1000%);
+  /* transform: translate(-100px, -1000%); */
   transition: transfrom 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
   -webkit-font-smoothing: antialiased;
   top: 20px;
   border-radius: 10px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   cursor: auto;
+  transition: all 0.3s;
 }
 
 .bell_menu > li {
@@ -182,6 +185,8 @@
 .bell_check:checked + label > .bell_menu {
   transform: translate(-80px, 30px);
   border: 1px solid #999;
+  display: block;
+  height: auto;
 }
 
 .bell > img {
@@ -207,6 +212,8 @@
 
 /*  */
 .profile_menu {
+  display: none;
+  height: 0;
   margin: 0;
   width: 200px;
   padding: 0;
@@ -214,7 +221,7 @@
   list-style: none;
   background-color: #f8f8f8;
   transform-origin: 0% 0%;
-  transform: translate(-200px, -1000%);
+  /* transform: translate(-200px, -1000%); */
   transition: transfrom 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
   -webkit-font-smoothing: antialiased;
   border-radius: 10px;
@@ -223,6 +230,8 @@
 
 .profile_check:checked + label > .profile_menu {
   transform: translate(-120px, 10px);
+  display: block;
+  height: auto;
 }
 
 .profile_menu_frame {

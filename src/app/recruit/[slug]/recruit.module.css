@@ -158,6 +158,7 @@
   margin-top: 10px;
   border-radius: 10px;
   height: 60px;
+  position: relative;
 }
 .good {
   display: flex;
@@ -178,19 +179,72 @@
   background-color: rgb(250, 213, 238);
 } */
 
-.good_check:checked + label {
+.good_check:checked ~ label {
   .good {
-    width: 60px;
     font-size: 0;
-    background-color: rgb(250, 213, 238);
-    border-radius: 50%;
-    /* animation-name: anime; */
+    animation: anime 2s forwards ease;
   } 
-  /* @keyframes anime {
-    0% { width: 0; height: 20px;}
-    100% { width: 50px; height: 50px; }
+  .box::before{
+    content: '❤';
+    color: pink;
+    font-size: 25px;
+    line-height: 1;
+    animation: heartbeat 3s forwards ease-in-out;
+  }
+  .box{
+    top: 18px;
+    left: 166px;
+    position: absolute;
+    animation: soda 3s forwards ease;
+  }
+   .box:nth-child(1){
+    --size: 1.6;
+  }
+  /*
+  .box:nth-child(2){
+    --size: 1.7;
+    top: 28px;
+    left: 164px;
+  }
+  .box:nth-child(3){
+    --size: 2.6;
+    top: 30px;
+    left: 180px;
+  }
+  .box:nth-child(4){
+    --size: 2;
+    top: 14px;
+    left: 154px;
+  }
+  .box:nth-child(5){
+    --size: 1.3;
+    top: 12px;
+    left: 180px;
   } */
 }
+@keyframes anime {
+  30% { width: 80%; height: 1px;}
+  50% { width: 60px; height: 20px; }
+  /* 50% { width: 60px; height: 40px; } */
+  70% { width: 60px; height: 60px; border-radius: 50%; }
+  80% { width: 70px; height: 50px; }
+  100% { width: 60px; height: 60px; border-radius: 50%; background-color: rgb(250, 213, 238); }
+}
+
+@keyframes heartbeat {
+  0%{ opacity: 0; }
+  50%{ opacity: 0; }
+  70%{ opacity: 1; }
+  100% { transform: scale(calc(var(--size)*2)); opacity: 0;  }
+}
+@keyframes soda {
+  0%{ opacity: 0; }
+  50%{ opacity: 0; }
+  70%{ top: 18px; opacity: 1;}
+  100% { top: 0; opacity: 0; }
+}
+
+
 
 /*  */
 
@@ -270,30 +324,6 @@
   border-radius: 10px;
 }
 
-.back {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 20;
-}
-
-.modal_text > h2 {
-  margin-bottom: 20px;
-  font-size: 24pt;
-}
-.modal_text > p {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
 .close {
   display: flex;
   justify-content: flex-end;
@@ -305,15 +335,6 @@
   margin-right: 16px;
   border: 0;
   padding: 8px;
-}
-.textarea > textarea {
-  display: flex;
-  margin-bottom: 20px;
-  width: 570px;
-  height: 135px;
-  resize: none;
-  border: 2px solid #eee;
-  margin: 0 auto;
 }
 
 .application {

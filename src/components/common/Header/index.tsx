@@ -16,6 +16,7 @@ const Header = () => {
   const bellRef = useRef<HTMLInputElement | null>(null);
   const searchRef = useRef<HTMLInputElement | null>(null);
   const { data: session } = useSession();
+  const username = session?.user?.name;
 
   useEffect(() => {
     function handleFocus(e: any) {
@@ -84,7 +85,7 @@ const Header = () => {
             <Link href="/study">Study Home</Link>
           </li>
           <li>
-            <Link href="/mystudy">My Study</Link>
+            <Link href={`/mystudy/${username}`}>My Study</Link>
           </li>
         </ul>
         {session ? (
@@ -155,7 +156,9 @@ const Header = () => {
                     <li>
                       <Link href="/Studypage">My Study</Link>
                     </li>
-                    <li>마이페이지</li>
+                    <li>
+                      <Link href="/mypage">마이페이지</Link>
+                    </li>
                     <li>내 스터디</li>
                     <li>설정</li>
                     <li onClick={() => {signOut();}}>로그아웃</li>

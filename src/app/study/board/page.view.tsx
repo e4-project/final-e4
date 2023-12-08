@@ -1,13 +1,13 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
+import { useRouter } from "next/navigation";
 import Button from "@/components/common/Button";
 import BoardPost from "@/components/BoardPost/BoardPost";
 import PostForm from "@/components/BoardPost/PostForm";
 import { postBoardApi } from "@/axios/fetcher/board/postBoardApi";
 import { IResponseBoard } from "@/interfaces/study_board";
-import style from "./board.module.css";
 import { deleteBoardApi } from "@/axios/fetcher/board/deleteBoardApi";
-import { useRouter } from "next/navigation";
+import style from "./board.module.css";
 
 interface IProps {
   data: IResponseBoard[];
@@ -43,7 +43,6 @@ const BoardView = ({ data }: IProps) => {
   }, [isEdit, onAddNewPost]);
 
   const onClose = () => {
-    // 그냥 닫지 말고 경고 메시지
     const con = window.confirm(
       "취소하면 작성한 내용이 사라집니다. 그래도 취소하실건가요?"
     );
