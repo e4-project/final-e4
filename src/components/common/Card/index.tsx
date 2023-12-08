@@ -27,7 +27,7 @@ const Card = ({ name, imagePath, actionEl, content, createdAt }: IProps) => {
     <div className={style.card_container}>
       <div className={style.cards_header}>
         <div className={style.card_header_left}>
-          <Avatar src={imagePath || "/pet.jpg"} alt="pimg" style={StyledImg} />
+          <Avatar src={imagePath || "/img/pet.jpg"} alt="pimg" style={StyledImg} />
           <div>
             <div className={style.name}>{name}</div>
             <div className={style.time}>방금 전</div>

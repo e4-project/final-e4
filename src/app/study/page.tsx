@@ -2,7 +2,7 @@
 import React, {useState, useEffect, useRef} from 'react';
 import style from './study.module.css';
 import Button from '@/components/common/Button';
-import TextareaAutosize from 'react-textarea-autosize';
+// import TextareaAutosize from 'react-textarea-autosize';
 /**
  * @name note
  * @author 문태랑
@@ -80,13 +80,13 @@ const Page = () => {
               onChange={(e) => onInputChange(index, 'week_input', e.target.value)}
               disabled={!isEdit}
             />
-            <TextareaAutosize
+            {/* <TextareaAutosize
               className={`${style.study_content_input} ${isEdit ? style.edit_study_content_input : ''}`}
               placeholder="스터디 내용 입력"
               value={isEdit ? input.study_content_input : input.study_content_input || ''}
               onChange={(e) => onInputChange(index, 'study_content_input', e.target.value)}
               disabled={!isEdit}
-            />
+            /> */}
             {isEdit && (
               <Button text='삭제' color='#748ffc' onClick={() => onRemoveClick(index)}/>
             )}

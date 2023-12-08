@@ -1,8 +1,8 @@
 "use client";
 
 import React, { Dispatch } from 'react';
-import style from '@/styles/style.module.css';
 import CustomModal from '@/components/common/modal/Custom/page';
+import style from './modal.module.css';
 
 interface IProps {
     setModalOpen: Dispatch<React.SetStateAction<boolean>>;
