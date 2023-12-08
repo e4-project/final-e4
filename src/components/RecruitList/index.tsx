@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ImgSlider from "../ImgSlider";
 import { TfiSearch } from "react-icons/tfi";
 import Link from "next/link";
@@ -18,6 +18,24 @@ interface IProps {
 }
 
 const RecruitList = ({ data }: IProps) => {
+  const [keyword, setKeyword] = useState<string>("");
+  const [search, setSearch] = useState<IResponseRecruitPost[]>([]);
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const inputValue = keyword.toLowerCase();
+    const filteredResults = data.filter(
+      (data) =>
+        data.studyName.toLowerCase().includes(inputValue) ||
+        data.materialType.toLowerCase().includes(inputValue) ||
+        data.material.toLowerCase().includes(inputValue)
+    );
+    setSearch(filteredResults);
+  };
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyword(e.target.value);
+  };
+
   return (
     <div className={style.container}>
       {/* 배너 만들기 */}
@@ -43,7 +61,7 @@ const RecruitList = ({ data }: IProps) => {
             </div>
           </div>
           <div>
-            <Link href="/recruit/write">
+            <Link href="/write">
               <p className={style.write_btn}>스터디 등록</p>
               {/* <Button className={style.registr_btn} text="등록" /> */}
             </Link>
