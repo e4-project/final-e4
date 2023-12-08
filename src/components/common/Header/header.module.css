@@ -5,10 +5,13 @@
   text-align: center;
   background-color: #fff;
   width: 100%;
-  height: 60px;
+  height: 70px;
   position: sticky;
   z-index: 10;
   top: 0;
+  margin: auto;
+  padding: 0 50px;
+  box-shadow: 0 4px 20px -4px #e3e5eb;
 }
 
 .sheet {
@@ -18,6 +21,8 @@
   text-align: center;
   width: 100%;
   max-width: 1800px;
+  font-size: 18px;
+  letter-spacing:-0.5px;
 }
 
 /*  */
@@ -93,9 +98,9 @@
     position: absolute;
     top: 0;
     right: 0;
-    height: 2px;
+    height: 1px;
     width: 0;
-    background-color: #4E515B;
+    background-color:#bac8ff;
     transition: 200ms ease all;
 }
 .link > li::after{
@@ -129,14 +134,14 @@
   cursor: pointer;
   width: 40px;
   height: 40px;
-  border-radius: 10px;
+  border-radius: 0px;
 }
 .bell {
   position: relative;
   cursor: pointer;
-  margin-right: 10px;
-  width: 50px;
-  height: 50px;
+  margin-right: 15px;
+  width: 40px;
+  height: 40px;
 }
 .bell_check,
 .profile_check {
@@ -187,8 +192,8 @@
 }
 
 .bell > img {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
 }
 .bell > img:hover {
   transform-origin: 50% 0%;
@@ -216,12 +221,10 @@
   padding: 0;
   position: absolute;
   list-style: none;
-  background-color: #f8f8f8;
   transform-origin: 0% 0%;
   /* transform: translate(-200px, -1000%); */
   transition: transfrom 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
   -webkit-font-smoothing: antialiased;
-  border-radius: 10px;
   cursor: auto;
 }
 
@@ -239,15 +242,16 @@
   flex-direction: column;
   position: relative;
   padding-top: 80px;
-  background-color: #bac8ff;
+  background-image: linear-gradient(to bottom, #bac8ff 50%, white 50%);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  box-shadow: 0 12px 10px -1px #c3c6d3;
 }
 .profile_img {
   overflow: hidden;
   width: 40px;
   height: 40px;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 .profile_img img {
   object-fit: cover;
@@ -262,7 +266,7 @@
   height: 60px;
   position: absolute;
   background-color: #eee;
-  border-radius: 10px;
+  border-radius: 8px;
   z-index: 2;
   margin-left: 10px;
 }
@@ -270,7 +274,7 @@
   object-fit: cover;
   width: 100%;
   height: 100%;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 .profile_menu_sheet {
   position: absolute;
@@ -278,12 +282,11 @@
   height: auto;
   list-style-type: none;
   padding: 0;
-  background-color: #f8f8f8;
-  top: 40px;
-  padding-top: 30px;
+  background-color: #ffffff;
+  top: 80px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 12px 10px -1px #c3c6d3;
 }
 .profile_menu_sheet > li {
   margin: 10px;
@@ -293,10 +296,9 @@
   transition: all 0.3s;
 }
 .profile_menu_sheet > li:hover {
-  background-color: #bac8ff;
+  background-color: #F5F7FF;
   box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5);
   scale: 110%;
-  font-weight: bold;
 }
 
 /*  */
@@ -306,6 +308,7 @@
   padding: 10px;
   cursor: pointer;
   margin-left: 15px;
+  font-weight: 600;
 }
 
 /*  */
@@ -314,15 +317,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: tomato;
+  background-color: #FC7474;
   border-radius: 50px;
   width: auto;
-  height: 20px;
+  height: auto;
   position: absolute;
-  top: 2px;
-  left: 5px;
+  top: 4px;
+  right: 2px;
   z-index: 2;
   color: #fff;
-  padding: 0 5px;
+  padding: 1px 6px;
   font-size: 12px;
 }

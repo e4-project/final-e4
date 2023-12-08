@@ -59,7 +59,8 @@ export default function StudyPageView({data}: IProps) {
             <li className={style.list}>
               <button>
                 <Link href={data.materialUrl} target="_blank">
-                  교재 정보 <img src="/Vector 63.png" alt="" />
+                <span>정보보기</span>
+                <span>교재정보</span>
                 </Link>
               </button>
             </li>
@@ -82,7 +83,7 @@ export default function StudyPageView({data}: IProps) {
                 <label className={style.good_label} htmlFor="good">
                   <div className={style.good}>
                     좋아요
-                    <img src="/Union.png" alt="" />
+                    <img src="/icons/icon_like.svg" alt="" />
                   </div>
                   <div className={style.box}></div>
                   <div className={style.box}></div>
@@ -97,7 +98,7 @@ export default function StudyPageView({data}: IProps) {
         {/*  */}
         <div className={style.area2}>
           <div className={style.study_title}>
-            <h3>{data.content}</h3>
+            <h3> <div dangerouslySetInnerHTML={{ __html: `<div>${data.content}<div>` }} /></h3>
           </div>
           <div className={style.comment_container}>
             <div>

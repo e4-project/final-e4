@@ -25,9 +25,9 @@ const FeedAlert = (props) => {
             <div onClick={(e) => e.stopPropagation()} className={style.alert}>
                 <p>스터디 참여 신청을 취소할까요?</p>
                 <div className={style.btns}>
-                    <p className={style.cancel_yes_btn}>네</p> 
+                    <button className={style.cancel_yes_btn}>네</button> 
                     {/* 네 -> onClick={applicants에서 내 정보 삭제} */}
-                    <p onClick={clickAlert} className={style.cancel_no_btn}>아니오</p>
+                    <button onClick={clickAlert} className={style.cancel_no_btn}>아니오</button>
                 </div>
                 
             </div> 
