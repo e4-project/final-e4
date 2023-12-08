@@ -5,7 +5,7 @@ import React, { use, useState } from "react";
 // import ImgSlider from "@/components/ImgSlider";
 // import Link from "next/link";
 import RecruitList from "@/components/RecruitList";
-import { IRequestRecruitPost } from "@/interfaces/recruit";
+import { IResponseRecruitPost } from "@/interfaces/recruit";
 
 /**
  * @name recruit
@@ -15,7 +15,7 @@ import { IRequestRecruitPost } from "@/interfaces/recruit";
  */
 
 interface IProps {
-  data: IRequestRecruitPost[];
+  data: IResponseRecruitPost[];
 }
 
 const RecruitView = (props: IProps) => {
