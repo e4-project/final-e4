@@ -30,7 +30,13 @@ const Pageview = () => {
                 <h4>함께 공부할 강의</h4>
                 <p>{data?.material}</p>
                 <div className={style.study_mini_info}>
-                    <p>스터디룸 <Button text="입장하기" /> </p>
+                    <p className={style.study_room}>스터디룸 
+                        <button className={style.Entrance}>
+                          <span>드과자</span>
+                          <span>입장하기</span>
+                        </button>
+                    </p>
+                    {/* <p>스터디룸 <Button text="입장하기" /> </p> */}
                     <p>스터디 기간 <span>{data?.duration}</span></p>
                     <p>스터디 멤버 <span>스터디멤버데이터가져오기</span></p>
                 </div>
