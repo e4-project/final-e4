@@ -154,13 +154,8 @@ const Header = () => {
                       )}
                     </span>
                     <li>
-                      <Link href="/Studypage">My Study</Link>
-                    </li>
-                    <li>
                       <Link href="/mypage">마이페이지</Link>
                     </li>
-                    <li>내 스터디</li>
-                    <li>설정</li>
                     <li onClick={() => {signOut();}}>로그아웃</li>
                   </ul>
                 </li>
