@@ -73,7 +73,7 @@ function MyRecruitPost(props) {
         {/* 해당 recruit post의 _id 로 구분된 applicants 페이지로*/}
         {/*  href={'/mystudy/applicants/' + myRecruitPost[i]._id.toString()}> */}
 
-        <p className={style.applicants_btn}>신청자 확인</p>
+        <button className={style.applicants_btn}>신청자 확인</button>
         {/* if close==true(신청 마감되면) -> 버튼 대신 '신청 마감' 표기 */}
       </Link>
     </div>
