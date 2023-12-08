@@ -11,17 +11,16 @@ const UserSchema = new Schema<IUser>(
   {
     name: {
       type: String,
-      require: true,
+      required: true, // 오타 수정
     },
     email: {
       type: String,
-      unique: true
+      unique: true,
     },
     emailVerified: {
       type: Boolean,
     },
     image: {
-      //신고받은 상태 신고됨: true
       type: String,
     },
   },
