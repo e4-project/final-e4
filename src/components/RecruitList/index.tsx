@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import ImgSlider from "../ImgSlider";
 import { TfiSearch } from "react-icons/tfi";
 import Link from "next/link";
-import style from "./recruitList.module.css";
 import { IResponseRecruitPost } from "@/interfaces/recruit";
+import Button from "../common/Button";
+import style from "./recruitList.module.css";
 
 /**
  * @name recruit
@@ -64,7 +65,7 @@ const RecruitList = ({ data }: IProps) => {
           </form>
 
           <div className={style.btn_wrap}>
-            <Link href="/write">
+            <Link href="/recruit/write">
               <Button className={style.registr_btn} text="스터디 등록" />
             </Link>
           </div>
@@ -73,7 +74,7 @@ const RecruitList = ({ data }: IProps) => {
         <ul className={style.card_wrap}>
           {search.length ? (
             <>
-            {search?.map((item: IRequestRecruitPost) => (
+            {search?.map((item: IResponseRecruitPost) => (
             // recruit 리스트 만들기 key는 부모한테만 줘야함
             <li key={item._id}>
               <Link
@@ -118,7 +119,7 @@ const RecruitList = ({ data }: IProps) => {
             </>
           ) : (
             <>
-             {data?.map((item: IRequestRecruitPost) => (
+             {data?.map((item: IResponseRecruitPost) => (
             // recruit 리스트 만들기 key는 부모한테만 줘야함
             <li key={item._id}>
               <Link
