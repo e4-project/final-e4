@@ -17,8 +17,11 @@
   height: 50px;
   border-radius: 5px;
   border: 1px solid #E2E2E2;
+  padding-left: 10px;
+  font-size: 18px;
 }
 .inputBox__S {
+  padding-left: 10px;
   width: 459px;
   height: 50px;
   border-radius: 5px;

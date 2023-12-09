@@ -4,7 +4,7 @@ import Link from "next/link";
 import style from "./Applicants.module.css";
 import { useState } from "react";
 
-export default function Reject(props) {
+export default function Reject(props: any) {
   const [showAlert, setShowAlert] = useState(false);
   const clickAlert = () => setShowAlert(!showAlert);
 
@@ -20,7 +20,7 @@ export default function Reject(props) {
   );
 }
 
-const FeedAlert = (props) => {
+const FeedAlert = (props: any) => {
   const { clickAlert } = props;
   return (
     <div onClick={clickAlert} className={style.alert_bg}>

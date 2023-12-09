@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import style from "./Applicants.module.css";
 import ApplyCancel from "@/components/MyStudy/ApplyCancel";
-import { IRequestRecruitPost } from "@/interfaces/recruit";
+import { IResponseRecruitPost } from "@/interfaces/recruit";
 // 불러올 데이타 인터페이스 다 임포트해야댐
 
 import Reject from "./Reject";
@@ -15,7 +15,7 @@ import Approve from "./Approve";
  */
 
 interface IProps {
-  data: IRequestRecruitPost[];
+  data: IResponseRecruitPost[];
 }
 
 const Applicants = ({ data }: IProps) => {
@@ -59,7 +59,7 @@ const Applicants = ({ data }: IProps) => {
 };
 //모집 공고글(신지수): 신청자 이름이
 
-function StudyInfo(props) {
+function StudyInfo(props: any) {
   return (
     <div className={style.study_info_item}>
       <div className={style.study_info_titles}>
@@ -75,7 +75,7 @@ function StudyInfo(props) {
   );
 }
 
-function Applicant(props) {
+function Applicant(props: any) {
   return (
     <div className={style.section_item}>
       <p className={style.applicant_name}>참여 신청자 applicant</p>

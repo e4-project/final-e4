@@ -1,12 +1,12 @@
 'use client';
 import React, { use, useState } from "react";
-import { IRequestRecruitPost } from "@/interfaces/recruit";
+import { IResponseRecruitPost } from "@/interfaces/recruit";
 import Applicants from '@/components/Applicants/Applicants';
 
 
 
 interface IProps {
-    data: IRequestRecruitPost[];
+    data: IResponseRecruitPost[];
   }
   
   const ApplicantsView = (props: IProps) => {

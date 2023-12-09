@@ -6,6 +6,7 @@ import { IResponseRecruitPost } from "@/interfaces/recruit";
 import CommentForm from "@/components/Comment/CommentForm";
 import SingleComment from "@/components/Comment/SingleComment";
 import style from "./recruit.module.css";
+import { RenderHtmlContext } from "@/components/common/Card";
 
 // const coment_data: any = [];
 interface IProps {
@@ -13,11 +14,15 @@ interface IProps {
 }
 export default function StudyPageView({ data }: IProps) {
   const [modalOpen, setModalOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   const showModal = () => {
     setModalOpen(true);
   };
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   // const [coment, setComent] = useState(coment_data);
   // const idRef = useRef(3);
   // const onCreate = (content: any) => {
@@ -109,10 +114,11 @@ export default function StudyPageView({ data }: IProps) {
           <div className={style.study_title}>
             <div>
               <div
-                dangerouslySetInnerHTML={{
-                  __html: `<div>${data.content}<div>`,
-                }}
+              // dangerouslySetInnerHTML={{
+              //   __html: `<div>${data.content}<div>`,
+              // }}
               />
+              {RenderHtmlContext(data.content)}
             </div>
           </div>
           <div className={style.comment_container}>

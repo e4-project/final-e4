@@ -1,8 +1,14 @@
-import { api } from "@/axios/api";
+// import { api } from "@/axios/api";
+
+import axios from "axios";
 
 export const loadRecruitApi = async () => {
-  const {data} = await api.get(
-    "/api/recruits"
-  );
-  return data;
+  try {
+    const {data} = await axios.get(
+      "/api/recruits"
+    );
+    return data;
+  } catch (err: any) {
+    console.error(err.response)
+  } 
 };

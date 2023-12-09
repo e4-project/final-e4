@@ -1,8 +1,10 @@
-import { api } from "@/axios/api";
+// import { api } from "@/axios/api";
+
+import axios from "axios";
 
 export const loadComment = async (id: string) => {
   try {
-    const { data } = await api.get(`/api/study/board/${id}/comment`);
+    const { data } = await axios.get(`/api/study/board/${id}/comment`);
     return data;
   } catch (err: any) {
     console.error(err);

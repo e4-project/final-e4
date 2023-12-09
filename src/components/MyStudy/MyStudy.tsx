@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import ApplyCancel from "@/components/MyStudy/ApplyCancel";
-import { IRequestRecruitPost } from "@/interfaces/recruit";
+import { IResponseRecruitPost } from "@/interfaces/recruit";
 import { useSession } from "next-auth/react";
 import style from "./MyStudy.module.css";
 // 불러올 데이타 인터페이스 다 임포트해야댐
@@ -13,7 +13,7 @@ import style from "./MyStudy.module.css";
  */
 
 interface IProps {
-  data: IRequestRecruitPost[];
+  data: IResponseRecruitPost[];
 }
 
 const MyStudy = ({ data }: IProps) => {
@@ -59,7 +59,7 @@ const MyStudy = ({ data }: IProps) => {
     </div>
   );
 };
-function MyRecruitPost(props) {
+function MyRecruitPost(props: any) {
   const { data: session } = useSession();
   const username = session?.user?.name;
   return (
@@ -80,7 +80,7 @@ function MyRecruitPost(props) {
   );
 }
 
-function Apply(props) {
+function Apply(props: any) {
   {
     /* const render = () => {
         if (recognition === '거절'){

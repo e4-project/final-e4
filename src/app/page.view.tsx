@@ -1,9 +1,4 @@
 "use client";
-import React, { use, useState } from "react";
-// import style from "./style.module.css";
-// import { TfiSearch } from "react-icons/tfi";
-// import ImgSlider from "@/components/ImgSlider";
-// import Link from "next/link";
 import RecruitList from "@/components/RecruitList";
 import { IResponseRecruitPost } from "@/interfaces/recruit";
 

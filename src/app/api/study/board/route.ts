@@ -1,4 +1,3 @@
-import connectDB from "@/config/db/connectDB";
 import StudyPost from "@/models/study_post";
 import User from "@/models/user";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";

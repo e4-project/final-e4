@@ -1,13 +1,13 @@
 import { authOptions } from "@/pages/api/auth/[...nextauth].js";
 import { getServerSession } from "next-auth";
-import type { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: NextRequest) {
   let session = await getServerSession(authOptions);
   if (session) {
     console.log(session);
-    res.status(200).json({ session });
+    NextResponse.json({ session });
   } else {
-    res.status(200).json({ session: "No session" });
+    NextResponse.json({ session: "No session" });
   }
 }

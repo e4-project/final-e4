@@ -5,7 +5,7 @@ import style from './MyStudy.module.css';
 import {useState} from 'react';
 
 
-export default function ApplyCancel(props) {
+export default function ApplyCancel(props: any) {
     const [showAlert, setShowAlert] = useState(false)
     const clickAlert = () => setShowAlert(!showAlert)
 
@@ -18,7 +18,7 @@ export default function ApplyCancel(props) {
 }
 
 
-const FeedAlert = (props) => {
+const FeedAlert = (props: any) => {
     const { clickAlert } = props
     return(
         <div onClick={clickAlert} className={style.alert_bg}>

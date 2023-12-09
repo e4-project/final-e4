@@ -37,7 +37,7 @@ const SingleComment = ({ postId, fetcher }: IProps) => {
             ▼
           </div>
         )}
-        <div>댓글 {comments?.length}</div>
+        <div>댓글 {comments?.length || 0}</div>
       </div>
       {commentToggle &&
         (comments?.length ? (

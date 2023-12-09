@@ -24,7 +24,7 @@ const Avatar = ({ src, alt = "", style, ...props }: IAvatar) => {
         style={style}
         {...props}
       /> */}
-      <img src={src} alt="profile" width={40} height={40} style={style} {...props}/>
+      <img src={src as string} alt="profile" width={40} height={40} style={style} {...props}/>
     </div>
   );
 };

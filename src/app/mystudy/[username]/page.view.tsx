@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
-import { IRequestRecruitPost } from "@/interfaces/recruit";
+import { IResponseRecruitPost } from "@/interfaces/recruit";
 import MyStudy from "@/components/MyStudy/MyStudy";
 
 interface IProps {
-  data: IRequestRecruitPost[];
+  data: IResponseRecruitPost[];
 }
 
 const MyStudyView = (props: IProps) => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./card.module.css";
 import Image from "next/image";
 import Avatar from "@/components/common/Avatar";
@@ -23,12 +23,31 @@ const StyledImg = {
  * @author 이동현
  * @desc 컨텐츠 Card 컴포넌트
  */
+
+export const RenderHtmlContext = (html: string) => {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  return (
+    <>
+      {mounted && (
+        <div dangerouslySetInnerHTML={{ __html: `<div>${html}<div>` }} />
+      )}
+    </>
+  );
+};
+
 const Card = ({ name, imagePath, actionEl, content, createdAt }: IProps) => {
   return (
     <div className={style.card_container}>
       <div className={style.cards_header}>
         <div className={style.card_header_left}>
-          <Avatar src={imagePath || "/img/pet.jpg"} alt="pimg" style={StyledImg} />
+          <Avatar
+            src={imagePath || "/img/pet.jpg"}
+            alt="pimg"
+            style={StyledImg}
+          />
           <div>
             <div className={style.name}>{name}</div>
             <div className={style.time}>{tiemBefore(createdAt as string)}</div>
@@ -37,7 +56,8 @@ const Card = ({ name, imagePath, actionEl, content, createdAt }: IProps) => {
         <div className={style.card_header_left}>{actionEl && actionEl}</div>
       </div>
       <div className={style.card_contents_wrap}>
-        <div dangerouslySetInnerHTML={{ __html: `<div>${content}<div>` }} />
+        {RenderHtmlContext(content)}
+        {/* <div dangerouslySetInnerHTML={{ __html: `<div>${content}<div>` }} /> */}
       </div>
     </div>
   );

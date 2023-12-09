@@ -6,7 +6,7 @@ import { routeWrapperWithError } from "@/utils/routeWrapperWithError";
 export const GET = routeWrapperWithError(
   async (req: NextRequest, { params }: { params: { studyname: string } }) => {
     const studyName = params.studyname;
-    const post = await RecruitPost.findOne({ studyName });
+    const post = await RecruitPost.findOne({ studyName }).sort({ createdAt: -1 });
     return NextResponse.json(post);
   }
 );

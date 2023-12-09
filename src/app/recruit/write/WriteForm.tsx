@@ -9,6 +9,7 @@ import {
   postRecruitApi,
 } from "@/axios/fetcher/recruit/postRecruitApi";
 import style from "./write.module.css";
+import { useSession } from "next-auth/react";
 
 const WriteForm = () => {
   // 선택된 날짜를 관리하는 상태 변수를 선언하고 초기값을 현재 날짜로 설정
@@ -19,7 +20,7 @@ const WriteForm = () => {
     studyKeyword: "",
     duration: "",
     studyName: "",
-    headCount: 0,
+    headCount: 2,
   });
 
   const {
@@ -32,14 +33,15 @@ const WriteForm = () => {
     headCount,
   } = inputs;
   const [content, setContent] = useState("");
-  const [deadLine, setDeadLine] = useState<string|Date>(new Date());
+  const [deadLine, setDeadLine] = useState<string | Date>(new Date());
+  const { data: session } = useSession();
   const router = useRouter();
 
   const onClose = () => {
     const con = window.confirm(
       "취소하면 작성한 내용이 사라집니다. 그래도 취소하실건가요?"
     );
-    con && router.back();
+    return con && router.back();
   };
 
   const onChangeInput = (
@@ -60,9 +62,18 @@ const WriteForm = () => {
       duration,
       deadLine: deadLine as string,
     };
-    console.log(insertData);
-    const result = await postRecruitApi(insertData);
-    console.log({ result });
+    if (Object.values(insertData).every((item) => !!item)) {
+      if (session) {
+        await postRecruitApi(insertData);
+        router.replace('/');
+      } else {
+        alert("인증이 필요합니다.");
+        return;
+      }
+    } else {
+      alert("항목을 다 작성해주세요!");
+      return;
+    }
   };
   return (
     <div className={style.wrapper}>
@@ -141,6 +152,7 @@ const WriteForm = () => {
             <div className={style.mt35}>
               <h4 className={style.text}>모집 인원</h4>
               <input
+                min={2}
                 type="number"
                 name="headCount"
                 value={headCount}
@@ -189,6 +201,7 @@ const WriteForm = () => {
           <Button
             className={style.btn_component}
             text="취소"
+            type="button"
             bgColor="#F8F8F8"
             onClick={onClose}
           />

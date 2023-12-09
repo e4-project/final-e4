@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import ImgSlider from "../ImgSlider";
 import { TfiSearch } from "react-icons/tfi";
 import Link from "next/link";
-import style from "./recruitList.module.css";
 import { IResponseRecruitPost } from "@/interfaces/recruit";
+import Button from "../common/Button";
+import style from "./recruitList.module.css";
+import dayjs from "dayjs";
 
 /**
  * @name recruit
@@ -17,6 +19,7 @@ interface IProps {
 }
 
 const RecruitList = ({ data }: IProps) => {
+  // console.log(dayjs(new Date(data[4].deadLine)).format('MM/DD/YYYY'))
   const [keyword, setKeyword] = useState<string>("");
   const [search, setSearch] = useState<IResponseRecruitPost[]>([]);
 
@@ -64,7 +67,7 @@ const RecruitList = ({ data }: IProps) => {
           </form>
 
           <div className={style.btn_wrap}>
-            <Link href="/write">
+            <Link href="/recruit/write">
               <Button className={style.registr_btn} text="스터디 등록" />
             </Link>
           </div>
@@ -73,7 +76,7 @@ const RecruitList = ({ data }: IProps) => {
         <ul className={style.card_wrap}>
           {search.length ? (
             <>
-            {search?.map((item: IRequestRecruitPost) => (
+            {search?.map((item: IResponseRecruitPost) => (
             // recruit 리스트 만들기 key는 부모한테만 줘야함
             <li key={item._id}>
               <Link
@@ -107,7 +110,7 @@ const RecruitList = ({ data }: IProps) => {
 
                     <div className={style.card_date}>
                       <p>
-                        ⏱ {item.duration} | {item.deadLine} 모집 마감
+                        ⏱ {item.duration} | {dayjs(new Date(item.deadLine)).format('MM/DD/YYYY')} 모집 마감
                       </p>
                     </div>
                   </div>
@@ -118,7 +121,7 @@ const RecruitList = ({ data }: IProps) => {
             </>
           ) : (
             <>
-             {data?.map((item: IRequestRecruitPost) => (
+             {data?.map((item: IResponseRecruitPost) => (
             // recruit 리스트 만들기 key는 부모한테만 줘야함
             <li key={item._id}>
               <Link
