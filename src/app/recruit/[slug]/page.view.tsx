@@ -1,17 +1,17 @@
 "use client";
 import Link from "next/link";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Modal from "@/components/common/modal/page";
-import { IRequestRecruitPost } from "@/interfaces/recruit";
+import { IResponseRecruitPost } from "@/interfaces/recruit";
 import CommentForm from "@/components/Comment/CommentForm";
 import SingleComment from "@/components/Comment/SingleComment";
 import style from "./recruit.module.css";
 
 // const coment_data: any = [];
 interface IProps {
-  data: IRequestRecruitPost
+  data: IResponseRecruitPost;
 }
-export default function StudyPageView({data}: IProps) {
+export default function StudyPageView({ data }: IProps) {
   const [modalOpen, setModalOpen] = useState(false);
 
   const showModal = () => {
@@ -41,7 +41,6 @@ export default function StudyPageView({data}: IProps) {
   // const onDelete = (id: any) => {
   //   setComent(coment.filter((coment: any) => coment.id !== id));
   // };
-
   return (
     <div className={style.sheet}>
       {modalOpen && <Modal setModalOpen={setModalOpen} />}
@@ -54,20 +53,22 @@ export default function StudyPageView({data}: IProps) {
                 <p key={idx}>{item}</p>
               ))}
             </li>
-            <li className={style.list}><span>{data.materialType}</span></li>
-            <li className={style.list}><h2>{data.material}</h2></li>
+            <li className={style.list}>
+              <span>{data.materialType}</span>
+            </li>
+            <li className={style.list}>
+              <h2>{data.material}</h2>
+            </li>
             <li className={style.list}>
               <button>
                 <Link href={data.materialUrl} target="_blank">
-                <span>정보보기</span>
-                <span>교재정보</span>
+                  <span>정보보기</span>
+                  <span>교재정보</span>
                 </Link>
               </button>
             </li>
             <li className={style.list}>
-              <span>
-                스터디 기간 {data.duration}
-              </span>
+              <span>스터디 기간 {data.duration}</span>
             </li>
             <li className={style.list}>
               <span>모집 인원 {data.headCount}명</span>
@@ -75,11 +76,19 @@ export default function StudyPageView({data}: IProps) {
             <li className={style.list}>
               <div className={style.buttonarea}>
                 <p>모집 마감</p>
-                <button className={style.application_button} onClick={showModal}>
+                <button
+                  className={style.application_button}
+                  onClick={showModal}
+                >
                   스터디 참여 신청
                 </button>
 
-                <input className={style.good_check} type="checkbox" name="" id="good" />
+                <input
+                  className={style.good_check}
+                  type="checkbox"
+                  name=""
+                  id="good"
+                />
                 <label className={style.good_label} htmlFor="good">
                   <div className={style.good}>
                     좋아요
@@ -98,14 +107,20 @@ export default function StudyPageView({data}: IProps) {
         {/*  */}
         <div className={style.area2}>
           <div className={style.study_title}>
-            <h3>{data.content}</h3>
+            <div>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: `<div>${data.content}<div>`,
+                }}
+              />
+            </div>
           </div>
           <div className={style.comment_container}>
             <div>
-              <CommentForm boardId="" />
+              <CommentForm postId="" />
             </div>
             <div>
-              <SingleComment boardPostId={''} />
+              <SingleComment postId={""} fetcher={async () => {}} />
             </div>
           </div>
 

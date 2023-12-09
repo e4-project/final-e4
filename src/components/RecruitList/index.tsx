@@ -3,8 +3,7 @@ import ImgSlider from "../ImgSlider";
 import { TfiSearch } from "react-icons/tfi";
 import Link from "next/link";
 import style from "./recruitList.module.css";
-import { IRequestRecruitPost } from "@/interfaces/recruit";
-import Button from "../common/Button";
+import { IResponseRecruitPost } from "@/interfaces/recruit";
 
 /**
  * @name recruit
@@ -14,12 +13,12 @@ import Button from "../common/Button";
  */
 
 interface IProps {
-  data: IRequestRecruitPost[];
+  data: IResponseRecruitPost[]
 }
 
 const RecruitList = ({ data }: IProps) => {
   const [keyword, setKeyword] = useState<string>("");
-  const [search, setSearch] = useState<IRequestRecruitPost[]>([]);
+  const [search, setSearch] = useState<IResponseRecruitPost[]>([]);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();

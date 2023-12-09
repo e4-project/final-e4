@@ -2,7 +2,7 @@ import mongoose, { Schema, Types } from "mongoose";
 
 interface IApplicant {
   leader: string;
-  applicant: string;
+  applicant: Types.ObjectId;
   recruitPostId: Types.ObjectId;
   message: string;
   isRecognition: boolean;
@@ -18,9 +18,9 @@ const ApplicantSchema = new Schema<IApplicant>(
     },
     applicant: {
       // 참여 유저
-      type: String,
+      type: Schema.Types.ObjectId,
       require: true,
-      // ref: "User",
+      ref: "User",
     },
     recruitPostId: {
       // 모집공고Id
