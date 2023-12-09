@@ -1,6 +1,6 @@
 import React from "react";
 import Mypageview from "./Mypageview";
-const page = () => {
+const Mypage = () => {
   return (
     <div>
       <Mypageview />
@@ -8,4 +8,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Mypage;
