@@ -6,6 +6,7 @@ import SingleComment from "@/components/Comment/SingleComment";
 import Button from "@/components/common/Button";
 import { IResponseBoard } from "@/interfaces/study_board";
 import style from "./boardPost.module.css";
+import { loadComment } from "@/axios/fetcher/comment/loadComment";
 
 interface Iprops {
   board: IResponseBoard;
@@ -46,10 +47,10 @@ const BoardPost = ({ board, onDelPost }: Iprops) => {
       </div>
       <div className={style.comment_container}>
         <div>
-          <CommentForm boardId="" />
+          <CommentForm postId="" />
         </div>
         <div>
-          <SingleComment boardPostId={_id} />
+          <SingleComment postId={_id} fetcher={loadComment}/>
         </div>
       </div>
     </div>

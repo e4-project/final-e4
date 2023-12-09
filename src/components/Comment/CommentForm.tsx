@@ -10,7 +10,7 @@ import Textarea from "../common/Textarea";
 import Button from "../common/Button";
 
 interface IPrpps {
-  boardId: string;
+  postId: string;
   commentId?: string;
   editMode?: boolean;
   onClose?: () => void;

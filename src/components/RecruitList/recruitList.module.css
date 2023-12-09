@@ -13,41 +13,32 @@
   margin: 100px auto;
 }
 
+.ctrl_wrap {
+  justify-content: space-between;
+    display: flex;
+    padding: 0px 60px;
+}
+
 .search {
-  padding: 60px;
   display: flex;
   flex-wrap: nowrap;
-  justify-content: space-between;
+  justify-content: left;
 }
 
 .serarch_input {
   display: flex;
-  width: 400px;
-	font-weight: 400;
+  width: 305px;
+  height: 55px;
+  font-weight: 400;
   font-size: 18px;
-  background-color: #FFFFFF;
   color: #878CA0;
   border: 1px #878CA0 solid;
   border-radius: 5px;
-  cursor:pointer;
-}
-
-.input_text {
-  width: 500px;
-  color: #878CA0;
-}
-
-.input_text::placeholder {
-  font-size: 17px;
 }
 
 .input_wrap {
-  width: auto;
-  height: auto;
-}
-
-.serarch_input:hover{
-  border: 1px solid #878CA0;
+ width:300px;
+ border-radius: 5px;
 }
 
 .serarch_icon {
@@ -58,34 +49,31 @@
   padding: 5px;
 }
 
-
-.serarch_input label {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-.serarch_input input {
+.input_wrap input {
   width: 100%;
   height: 100%;
   font-size: 18px;
   outline: none;
   border: none;
+  border-radius: 5px;
+}
+
+.serarch_input:hover{
+  border: 1px solid #77787e;
 }
 
 .serarch_input:focus-within {
   border: 1px solid #748ffc;
 }
 
-.write_btn { 
-  padding: 10px 18px;
+.registr_btn { 
 	font-weight: 400;
+  height: 53px;
   font-size: 18px;
   background-color: #748FFC;
   color: #FFFFFF;
   border: 1px #748FFC solid;
   border-radius: 5px;
-  cursor:pointer;
 }
 
 .card_wrap {
@@ -94,7 +82,7 @@
   grid-gap: 22px;
   gap: 30px;
   flex-wrap: wrap;
-  margin: 0 auto;
+  margin: 120px auto;
   padding: 0 60px;
 }
 
@@ -114,11 +102,10 @@
 }
 
 .card_container:hover {
-  transform: scale(1.08);
+  transform: scale(1.03);
   box-shadow: 0 14px 28px rgba(79, 79, 79, 0.116),
     0 10px 10px rgba(41, 36, 36, 0.265);
   border: 1px solid #748FFC;
-  /* border-radius: 8px; */
 }
 
 
@@ -162,13 +149,12 @@ bottom: 20px;
 
 .studyName p {
   margin-top: 5px;
-  /* overflow: hidden; */
-  /* display: -webkit-box; */
-  /* -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; */
-  /* letter-spacing: -0.05em; */
-  /* overflow: hidden; */
-  
+   overflow: hidden; 
+   display: -webkit-box; 
+   -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; 
+   letter-spacing: -0.05em; 
+  overflow: hidden; 
   font-size: 18px;
   color: #4E515B;
   font-weight: 400;
