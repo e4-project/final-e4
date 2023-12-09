@@ -15,7 +15,7 @@ interface IProps {
 export default function StudyPageView({ data }: IProps) {
   const [modalOpen, setModalOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-
+  console.log({StudyPageView: data})
   const showModal = () => {
     setModalOpen(true);
   };
@@ -54,29 +54,29 @@ export default function StudyPageView({ data }: IProps) {
         <div className={style.area1}>
           <ul className={style.area1_sheet}>
             <li className={style.list}>
-              {data.studyKeyword.split(", ").map((item, idx) => (
+              {data?.studyKeyword.split(", ").map((item, idx) => (
                 <p key={idx}>{item}</p>
               ))}
             </li>
             <li className={style.list}>
-              <span>{data.materialType}</span>
+              <span>{data?.materialType}</span>
             </li>
             <li className={style.list}>
-              <h2>{data.material}</h2>
+              <h2>{data?.material}</h2>
             </li>
             <li className={style.list}>
               <button>
-                <Link href={data.materialUrl} target="_blank">
+                <Link href={data?.materialUrl} target="_blank">
                   <span>정보보기</span>
                   <span>교재정보</span>
                 </Link>
               </button>
             </li>
             <li className={style.list}>
-              <span>스터디 기간 {data.duration}</span>
+              <span>스터디 기간 {data?.duration}</span>
             </li>
             <li className={style.list}>
-              <span>모집 인원 {data.headCount}명</span>
+              <span>모집 인원 {data?.headCount}명</span>
             </li>
             <li className={style.list}>
               <div className={style.buttonarea}>
@@ -118,7 +118,7 @@ export default function StudyPageView({ data }: IProps) {
               //   __html: `<div>${data.content}<div>`,
               // }}
               />
-              {RenderHtmlContext(data.content)}
+              {RenderHtmlContext(data?.content)}
             </div>
           </div>
           <div className={style.comment_container}>

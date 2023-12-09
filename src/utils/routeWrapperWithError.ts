@@ -13,7 +13,7 @@ export function routeWrapperWithError(
   return async (req: NextRequest, {...prop}) => {
     await connectDB();
     return await fn(req, prop).catch((error: any) =>
-      NextResponse.json({ message: error.message }, { status: 500 })
+      NextResponse.json({ message: error }, { status: 500 })
     );
   };
 }
