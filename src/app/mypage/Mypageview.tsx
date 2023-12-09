@@ -5,7 +5,6 @@ import style from "./Mypageview.module.css";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { uploadImg2 } from "@/utils/uploadImg2";
-import axios from "axios";
 
 const Mypageview = () => {
   const router = useRouter();
