@@ -77,7 +77,7 @@ const WriteForm = () => {
   };
   return (
     <div className={style.wrapper}>
-      <form onSubmit={handleSubmit} action="/api/post" method="POST">
+      <form onSubmit={handleSubmit} method="POST">
         <h1 className={style.title}>스터디에 사용될 교재 정보를 알려주세요!</h1>
         <div className={style.mb120}>
           <h4 className={style.text}>
