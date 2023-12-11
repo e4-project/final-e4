@@ -1,20 +1,31 @@
 .container {
   width: 100%;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
+.area{
+  max-width: 1280px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 .banner_slide_wrap{
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  border-radius: 10px;
 }
 .banner_slide_container {
   width: 100%;
-  max-width: 1800px;
+  max-width: 1280px;
 }
 .banner_slide_container img {
   object-fit: cover;
+  border-radius: 10px;
 }
 @media only screen and (max-width: 768px) {
   .banner_slide_container{
@@ -23,15 +34,19 @@
 }
 
 .recruit_wrap {
-  max-width: 100%;
-  width: 1300px;
-  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .ctrl_wrap {
+  margin-top: 120px;
+  margin-bottom: 40px;
+  width: 100%;
   justify-content: space-between;
-    display: flex;
-    padding: 0px 60px;
+  display: flex;
 }
 
 .search {
@@ -42,7 +57,7 @@
 
 .serarch_input {
   display: flex;
-  width: 305px;
+  width: 320px;
   height: 55px;
   font-weight: 400;
   font-size: 18px;
@@ -85,7 +100,7 @@
   width: 120px !important;
   height: 100% !important;
 	font-weight: 400;
-  font-size: 18px;
+  font-size: 20px !important;
   background-color: #748FFC !important;
   color: #FFFFFF !important;
   border: 1px #748FFC solid;
@@ -95,17 +110,24 @@
 .card_wrap {
   position: relative;
   display: flex;
-  grid-gap: 22px;
-  gap: 30px;
   flex-wrap: wrap;
-  margin: 120px auto;
-  padding: 0 60px;
+}
+
+.card {
+  margin-left: 26px;
+  margin-bottom: 40px;
+}
+.card:first-child {
+  margin-left: 0;
+}
+.card:nth-child(4n+1) {
+  margin-left: 0;
 }
 
 .card_container {
   padding: 30px 20px;
-  width: 272px;
-  height: 311px;
+  width: 300px;
+  height: 340px;
   border: 1px solid #748ffc;
   border-radius: 10px;
   position: relative;
@@ -114,7 +136,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 70px;
 }
 
 .card_container:hover {
@@ -133,7 +154,12 @@ bottom: 20px;
 .studyKeyword {
   margin-bottom: 20px;
   color: #748FFC;
-  font-size: 14px;
+  font-size: 16px;
+}
+.studyKeyword_back{
+  padding: 4px 8px;
+  background-color: #F5F7FF;
+  border-radius: 4px;
 }
 
 .studyKeyword ul {
@@ -148,13 +174,13 @@ bottom: 20px;
   color: #BAC8FF;
 }
 .materialType{
-  font-size: 14px;
+  font-size: 18px;
   color: #878CA0;
 }
 
 .material {
   height: 45px;
-  font-size: 18px;
+  font-size: 20px;
   color: #4E515B;
   font-weight: 600;
 }
@@ -165,18 +191,17 @@ bottom: 20px;
 
 .studyName p {
   margin-top: 5px;
-   overflow: hidden; 
-   display: -webkit-box; 
-   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; 
-   letter-spacing: -0.05em; 
   overflow: hidden; 
-  font-size: 18px;
+  display: -webkit-box; 
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; 
+  overflow: hidden; 
+  font-size: 20px;
   color: #4E515B;
   font-weight: 400;
 }
 
 .card_date p {
   color: #878CA0;
-  font-size: 14px;
+  font-size: 16px;
 }
