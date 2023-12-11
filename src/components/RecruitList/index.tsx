@@ -80,7 +80,7 @@ const RecruitList = ({ data }: IProps) => {
             // recruit 리스트 만들기 key는 부모한테만 줘야함
             <li key={item._id}>
               <Link
-                href={`/recruit/${item.studyName}`}
+                href={`/recruit/${item._id}`}
                 className={style.card_container}
               >
                 <div>
@@ -125,7 +125,7 @@ const RecruitList = ({ data }: IProps) => {
             // recruit 리스트 만들기 key는 부모한테만 줘야함
             <li key={item._id}>
               <Link
-                href={`/recruit/${item.studyName}`}
+                href={`/recruit/${item._id}`}
                 className={style.card_container}
               >
                 <div>
