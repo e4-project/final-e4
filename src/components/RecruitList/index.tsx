@@ -19,7 +19,6 @@ interface IProps {
 }
 
 const RecruitList = ({ data }: IProps) => {
-  // console.log(dayjs(new Date(data[4].deadLine)).format('MM/DD/YYYY'))
   const [keyword, setKeyword] = useState<string>("");
   const [search, setSearch] = useState<IResponseRecruitPost[]>([]);
 
@@ -109,8 +108,8 @@ const RecruitList = ({ data }: IProps) => {
                     </div>
 
                     <div className={style.card_date}>
-                      <p>
-                        ⏱ {item.duration} | {dayjs(new Date(item.deadLine)).format('MM/DD/YYYY')} 모집 마감
+                      <p>                      
+                        ⏱ {item.duration} | {dayjs(item.deadLine).format('MM/DD/YYYY')} 모집 마감
                       </p>
                     </div>
                   </div>
@@ -155,7 +154,7 @@ const RecruitList = ({ data }: IProps) => {
 
                     <div className={style.card_date}>
                       <p>
-                        ⏱ {item.duration} | {item.deadLine} 모집 마감
+                        ⏱ {item.duration} | {dayjs(item.deadLine).format('MM/DD/YYYY')} 모집 마감
                       </p>
                     </div>
                   </div>

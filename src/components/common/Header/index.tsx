@@ -4,6 +4,7 @@ import style from "./header.module.css";
 import { useRef, useEffect, useState } from "react";
 import LoginModal from "@/components/LoginModal/LoginModal";
 import { useSession, signOut } from "next-auth/react";
+import Image from "next/image";
 /**
  * @name header
  * @author 오동주
@@ -78,95 +79,105 @@ const Header = () => {
     <div className={style.bar}>
       <div className={style.sheet}>
         <Link href="/" className={style.logo}>
-          Logo
+          <Image src={"/img/logo.png"} alt="logo" width={40} height={40}/>
         </Link>
         <ul className={style.link}>
           <li>
-            <Link href="/study">Study Home</Link>
+            <Link href="/study">스터디 홈</Link>
           </li>
           <li>
-            <Link href={`/mystudy/${username}`}>My Study</Link>
+            <Link href={`/mystudy/${username}`}>내 스터디</Link>
           </li>
         </ul>
         {session ? (
-          <div style={{display: 'none'}}></div>
-          ) : (
-          <div className={style.login} onClick={openModal}>Login</div>
+          <div style={{ display: "none" }}></div>
+        ) : (
+          <div className={style.login} onClick={openModal}>
+            로그인
+          </div>
         )}
         {session ? (
-        <div>
-          <div className={style.profile_title}>
-            {/*  */}
-            <input
-              ref={bellRef}
-              type="checkbox"
-              name="bell"
-              id="bell"
-              className={style.bell_check}
-            />
-            <label htmlFor="bell" className={style.bell}>
-              {liCount === 0 ? (
-                <span className={style.bell_length} style={{ display: "none" }}>
-                  {liCount}
-                </span>
-              ) : (
-                <span className={style.bell_length}>{liCount}</span>
-              )}
-              <img src="/icons/icon_bell.svg" alt="" />
-              <ul className={style.bell_menu}>
-                <li className="push_list">알림내용</li>
-                <li className="push_list">알림내용</li>
-              </ul>
-            </label>
-            {/*  */}
-            <input
-              ref={searchRef}
-              type="checkbox"
-              name="profile"
-              id="profile"
-              className={style.profile_check}
-            ></input>
-            <label htmlFor="profile" className={style.profile}>
-              <div className={style.profile_img}>
-                {session && session.user && session.user.image && (
-                  <img
-                    src={session.user.image}
-                    alt="Profile"
-                    className={style.profile_image}
-                  />
+          <div>
+            <div className={style.profile_title}>
+              {/*  */}
+              <input
+                ref={bellRef}
+                type="checkbox"
+                name="bell"
+                id="bell"
+                className={style.bell_check}
+              />
+              <label htmlFor="bell" className={style.bell}>
+                {liCount === 0 ? (
+                  <span
+                    className={style.bell_length}
+                    style={{ display: "none" }}
+                  >
+                    {liCount}
+                  </span>
+                ) : (
+                  <span className={style.bell_length}>{liCount}</span>
                 )}
-              </div>
-              <ul className={style.profile_menu}>
-                <li className={style.profile_menu_frame}>
-                  <div className={style.profile_menu_img}>
-                    {session && session.user && session.user.image && (
-                      <img
-                        src={session.user.image}
-                        alt="Profile"
-                        className={style.profile_image}
-                      />
-                    )}
-                  </div>
-                  <ul className={style.profile_menu_sheet}>
-                    <span className={style.profile_menu_name}>
-                      {session && session.user && session.user.name && (
-                        <span>{session.user.name}</span>
+                <img src="/icons/icon_bell.svg" alt="" />
+                <ul className={style.bell_menu}>
+                  <li className="push_list">알림내용</li>
+                  <li className="push_list">알림내용</li>
+                </ul>
+              </label>
+              {/*  */}
+              <input
+                ref={searchRef}
+                type="checkbox"
+                name="profile"
+                id="profile"
+                className={style.profile_check}
+              ></input>
+              <label htmlFor="profile" className={style.profile}>
+                <div className={style.profile_img}>
+                  {session && session.user && session.user.image && (
+                    <img
+                      src={session.user.image}
+                      alt="Profile"
+                      className={style.profile_image}
+                    />
+                  )}
+                </div>
+                <ul className={style.profile_menu}>
+                  <li className={style.profile_menu_frame}>
+                    <div className={style.profile_menu_img}>
+                      {session && session.user && session.user.image && (
+                        <img
+                          src={session.user.image}
+                          alt="Profile"
+                          className={style.profile_image}
+                        />
                       )}
-                    </span>
-                    <li>
-                      <Link href="/mypage">마이페이지</Link>
-                    </li>
-                    <li onClick={() => {signOut();}}>로그아웃</li>
-                  </ul>
-                </li>
-              </ul>
-            </label>
+                    </div>
+                    <ul className={style.profile_menu_sheet}>
+                      <span className={style.profile_menu_name}>
+                        {session && session.user && session.user.name && (
+                          <span>{session.user.name}</span>
+                        )}
+                      </span>
+                      <li>
+                        <Link href="/mypage">마이페이지</Link>
+                      </li>
+                      <li
+                        onClick={() => {
+                          signOut();
+                        }}
+                      >
+                        로그아웃
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </label>
 
-            {/*  */}
+              {/*  */}
+            </div>
           </div>
-        </div>
-        ): null}
-        
+        ) : null}
       </div>
       {isModalOpen && <LoginModal onClose={closeModal} />}
     </div>

@@ -35,7 +35,7 @@ const Button: FC<customType & commonButtonProps> = ({
   };
   return (
     <button
-      className={`${className} ${style.button}`}
+      className={`${style.button} ${className}`}
       style={customStyle}
       {...rest}
     >
