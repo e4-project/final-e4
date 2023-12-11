@@ -61,33 +61,39 @@ export default function StudyPageView({ data }: IProps) {
             <li className={style.list}>
               <span>{data?.materialType}</span>
             </li>
-            <li className={style.list}>
-              <h2>{data?.material}</h2>
+            <li>
+              <h2 className={style.mtitle}>{data?.material}</h2>
             </li>
             <li className={style.list}>
               <button>
                 <Link href={data?.materialUrl} target="_blank">
-                  <span>정보보기</span>
-                  <span>교재정보</span>
+                  <span>보러 가기</span>
+                  <span>교재 정보</span>
                 </Link>
               </button>
             </li>
             <li className={style.list}>
-              <span>스터디 기간 {data?.duration}</span>
+              <img src="/icons/icon_calendar.svg" alt="" />
+              <span style={{whiteSpace: 'pre-wrap'}}>스터디 기간 </span>
+              <span>{data?.duration}</span>
             </li>
             <li className={style.list}>
-              <span>모집 인원 {data?.headCount}명</span>
+              <img src="/icons/icon_member.svg" alt="" />
+              <span style={{whiteSpace: 'pre-wrap'}}>모집 인원 </span>
+              <span>{data?.headCount}명</span>
             </li>
             <li className={style.list}>
               <div className={style.buttonarea}>
-                <p>모집 마감</p>
+                <li className={style.dead_line}>
+                  <span>{data?.deadLine}</span>
+                  <span> 모집 마감</span>
+                </li>
                 <button
                   className={style.application_button}
                   onClick={showModal}
                 >
                   스터디 참여 신청
                 </button>
-
                 <input
                   className={style.good_check}
                   type="checkbox"
@@ -111,17 +117,16 @@ export default function StudyPageView({ data }: IProps) {
         </div>
         {/*  */}
         <div className={style.area2}>
-          <div className={style.study_title}>
-            <div>
-              <div
-              // dangerouslySetInnerHTML={{
-              //   __html: `<div>${data.content}<div>`,
-              // }}
-              />
+          <div className={style.recruit_post}>
+            <h2>
+              {RenderHtmlContext(data?.studyName)}
+            </h2>
+            <p>
               {RenderHtmlContext(data?.content)}
-            </div>
+            </p>
           </div>
-          <div className={style.comment_container}>
+          <div className={style.comment}>
+            댓글
             <div>
               <CommentForm postId="" />
             </div>
