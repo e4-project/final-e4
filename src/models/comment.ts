@@ -1,6 +1,6 @@
 import mongoose, { Schema, Types } from "mongoose";
 
-interface IComment {
+interface ICommentEntity {
   author: Types.ObjectId;
   recruitPostId: Types.ObjectId;
   studyPostId: Types.ObjectId;
@@ -8,7 +8,7 @@ interface IComment {
   parentId: Types.ObjectId;
 }
 
-const CommentSchema = new Schema<IComment>(
+const CommentSchema = new Schema<ICommentEntity>(
   {
     author: {
       type: Schema.Types.ObjectId,
@@ -36,5 +36,5 @@ const CommentSchema = new Schema<IComment>(
 );
 
 const Comment =
-  mongoose.models.Comment || mongoose.model<IComment>("Comment", CommentSchema);
+  mongoose.models.Comment || mongoose.model<ICommentEntity>("Comment", CommentSchema);
 export default Comment;

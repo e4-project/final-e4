@@ -1,14 +1,14 @@
 import mongoose, { Schema, Types } from "mongoose";
 
-interface IApplicant {
+interface IApplicantEntity {
   leader: string;
-  applicant: Types.ObjectId;
+  applicant: [Types.ObjectId];
   recruitPostId: Types.ObjectId;
   message: string;
   isRecognition: boolean;
 }
 //applicant
-const ApplicantSchema = new Schema<IApplicant>(
+const ApplicantSchema = new Schema<IApplicantEntity>(
   {
     leader: {
       //모집 공고 유저
@@ -16,12 +16,7 @@ const ApplicantSchema = new Schema<IApplicant>(
       require: true,
       // ref: "User",
     },
-    applicant: {
-      // 참여 유저
-      type: Schema.Types.ObjectId,
-      require: true,
-      ref: "User",
-    },
+    applicant: [{ type: Schema.Types.ObjectId, require: true, ref: "User" }],
     recruitPostId: {
       // 모집공고Id
       type: Schema.Types.ObjectId,
@@ -47,5 +42,5 @@ const ApplicantSchema = new Schema<IApplicant>(
 
 const Applicant =
   mongoose.models.Applicant ||
-  mongoose.model<IApplicant>("Applicant", ApplicantSchema);
+  mongoose.model<IApplicantEntity>("Applicant", ApplicantSchema);
 export default Applicant;
