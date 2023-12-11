@@ -109,9 +109,9 @@ const WriteForm = () => {
                 className={style.inputBox__S}
                 onChange={onChangeInput}
               >
-                <option value="video">동영상 강의</option>
-                <option value="book">책</option>
-                <option value="online">온라인 문제집</option>
+                <option value="동영상 강의">동영상 강의</option>
+                <option value="책">책</option>
+                <option value="온라인 문제집">온라인 문제집</option>
               </select>
             </div>
           </div>

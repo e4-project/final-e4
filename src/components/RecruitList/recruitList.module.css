@@ -82,13 +82,14 @@
 }
 
 .registr_btn { 
+  width: 120px !important;
+  height: 100% !important;
 	font-weight: 400;
-  height: 53px;
   font-size: 18px;
-  background-color: #748FFC;
-  color: #FFFFFF;
+  background-color: #748FFC !important;
+  color: #FFFFFF !important;
   border: 1px #748FFC solid;
-  border-radius: 5px;
+  border-radius: 5px !important;
 }
 
 .card_wrap {
