@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 import style from "./LoginModal.module.css";
 import KaKaoLoginBtn from "./KaKaoLoginBtn";
 import GithubLoginBtn from "./GithubLoginBtn";
@@ -8,13 +9,8 @@ interface LoginModalProps {
 }
 
 const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
-  const [session, setSession] = useState(null);
-  useEffect(() => {
-    fetch("/api/session")
-      .then((response) => response.json())
-      .then((data) => setSession(data.session))
-      .catch((error) => console.error("Error:", error));
-  }, []);
+  const { data: session, status } = useSession();
+
   const handleOutsideClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -29,7 +25,9 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
           onClick={(e) => e.stopPropagation()}
         >
           <h1 className={style.h1}>간편하게 시작해보세요</h1>
-          {session && <p>Session: {JSON.stringify(session)}</p>}
+          {status === "authenticated" && (
+            <p>Session: {JSON.stringify(session)}</p>
+          )}
           <KaKaoLoginBtn />
           <GoogleLoginBtn />
           <GithubLoginBtn />
