@@ -3,8 +3,23 @@
   margin: 0 auto;
 }
 
+.banner_slide_wrap{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 .banner_slide_container {
   width: 100%;
+  max-width: 1800px;
+}
+.banner_slide_container img {
+  object-fit: cover;
+}
+@media only screen and (max-width: 768px) {
+  .banner_slide_container{
+    max-width: 720px;
+  }
 }
 
 .recruit_wrap {
