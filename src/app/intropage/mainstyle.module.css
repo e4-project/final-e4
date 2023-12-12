@@ -6,7 +6,10 @@
   width: 100%;
   height: auto;
 }
-.body{ background-color: #F8F8F8; flex-direction: column; }
+.body{
+  background-color: #F8F8F8;
+  flex-direction: column;
+}
 .area1, .area2, .area3{
   max-width: 1200px;
   transition-duration: 0.8s;

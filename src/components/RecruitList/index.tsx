@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ImgSlider from "../ImgSlider";
 import { TfiSearch } from "react-icons/tfi";
 import Link from "next/link";
@@ -6,9 +6,6 @@ import { IResponseRecruitPost } from "@/interfaces/recruit";
 import Button from "../common/Button";
 import style from "./recruitList.module.css";
 import dayjs from "dayjs";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 
 /**
  * @name recruit
@@ -21,7 +18,7 @@ interface IProps {
   data: IResponseRecruitPost[]
 }
 
-const RecruitList = (items:any,{ data }: IProps) => {
+const RecruitList = ({ data }: IProps) => {
   const [keyword, setKeyword] = useState<string>("");
   const [search, setSearch] = useState<IResponseRecruitPost[]>([]);
 
@@ -40,14 +37,6 @@ const RecruitList = (items:any,{ data }: IProps) => {
     setKeyword(e.target.value);
   };
 
-  // 태그 스와이프
-  const settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    slidesToshow: 3,
-    slidesToScroll: 1,
-  }
 
   return (
     <div className={style.container}>
@@ -96,7 +85,6 @@ const RecruitList = (items:any,{ data }: IProps) => {
                 >
                   <div>
                     <div className={style.card_top_container}>
-                      <Slider {...settings}>
                         <div className={style.studyKeyword}>
                           <div>
                             {item.studyKeyword.split(", ").map((item, idx) => (
@@ -104,7 +92,6 @@ const RecruitList = (items:any,{ data }: IProps) => {
                             ))}
                           </div>
                         </div>
-                      </Slider>
                       <div>
                         <div className={style.materialType}>
                           <p>📖 {item.materialType}</p>
@@ -142,7 +129,6 @@ const RecruitList = (items:any,{ data }: IProps) => {
                 >
                   <div>
                     <div className={style.card_top_container}>
-                      <Slider {...settings}>
                         <div className={style.studyKeyword}>
                           <div>
                             {item.studyKeyword.split(", ").map((item, idx) => (
@@ -150,8 +136,6 @@ const RecruitList = (items:any,{ data }: IProps) => {
                             ))}
                           </div>
                         </div>
-                      </Slider>
-
                       <div>
                         <div className={style.materialType}>
                           <p>📖 {item.materialType}</p>
