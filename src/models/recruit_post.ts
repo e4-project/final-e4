@@ -1,6 +1,7 @@
 import mongoose, { Schema, Types } from "mongoose";
 
-export interface IRecruitPostDTO { //reuest
+export interface IRecruitPostDTO {
+  //reuest
   /* 교재 정보 */
   material: string; // 강의|수업등의 교재 이름
   materialUrl: string; // 교재 정보 링크
@@ -15,6 +16,7 @@ export interface IRecruitPostDTO { //reuest
   deadLine: string; // 모집 마감일
   studyName: string; //스터디 모임 이름
   content: string; // 스터디 소개
+  weekGoal: Object; // 스터디 진행사항
 }
 
 const RecruitPostSchema = new Schema<IRecruitPostDTO>(
@@ -65,6 +67,13 @@ const RecruitPostSchema = new Schema<IRecruitPostDTO>(
       type: String,
       require: true,
     },
+    weekGoal: [
+      {
+        _id: false,
+        week: String,
+        content: String,
+      },
+    ],
   },
   {
     timestamps: true,
