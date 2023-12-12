@@ -23,12 +23,7 @@ const Page = () => {
   // 수정 상태
   const [inputs, setInputs] = useState([
     { week_input: "", study_content_input: "" },
-    { week_input: "", study_content_input: "" },
-    { week_input: "", study_content_input: "" },
-    { week_input: "", study_content_input: "" },
-    { week_input: "", study_content_input: "" },
   ]);
-  // 입력값 저장, 기본 5개 보여줌
 
   const [noteData, setNoteData] = useState<WeekGoal[]>([]);
   // 노트 데이터 상태
@@ -42,6 +37,13 @@ const Page = () => {
         const data = await response.json();
         console.log(data); // Add this line
         setNoteData(data.weekGoal);
+
+        // noteData를 기반으로 inputs 상태를 업데이트합니다.
+        const newInputs = data.weekGoal.map((weekGoal: any) => ({
+          week_input: weekGoal.week,
+          study_content_input: weekGoal.content,
+        }));
+        setInputs(newInputs);
       } catch (error) {
         console.error(
           "There has been a problem with your fetch operation:",
@@ -87,7 +89,6 @@ const Page = () => {
       );
     }
   };
-
   const onInputChange = (
     index: number,
     type: "week_input" | "study_content_input",
@@ -97,7 +98,6 @@ const Page = () => {
     newInputs[index][type] = value; // 새 배열에 변경 값 넣고
     setInputs(newInputs); // 상태 업데이트
   };
-
   const onAddClick = () => {
     setInputs([...inputs, { week_input: "", study_content_input: "" }]);
   };
@@ -144,7 +144,7 @@ const Page = () => {
               {isEdit && (
                 <input
                   type="text"
-                  value={note ? note.content : input.study_content_input}
+                  value={input.study_content_input}
                   onChange={(e) =>
                     onInputChange(index, "study_content_input", e.target.value)
                   }
