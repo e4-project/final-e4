@@ -13,8 +13,8 @@ export const GET = routeWrapperWithError(async (req: NextRequest) => {
 
 export const POST = routeWrapperWithError(async (req: NextRequest) => {
   let session = await getServerSession(authOptions);
-  const username = session?.user?.name;
-  console.log(username)
+  const userName = session?.user?.name;
+  console.log(userName)
   const data = await req.json();
   if (
     !data.content ||
@@ -33,8 +33,8 @@ export const POST = routeWrapperWithError(async (req: NextRequest) => {
     );
   }
   if (session) {
-    console.log(username)
-    const user = await User.findOne({ name: username });
+    console.log(userName)
+    const user = await User.findOne({ name: userName });
     const insertData = {
       ...data,
       leader: user._id,
