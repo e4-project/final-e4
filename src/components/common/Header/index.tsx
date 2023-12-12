@@ -85,9 +85,13 @@ const Header = () => {
           <li>
             <Link href="/study">스터디 홈</Link>
           </li>
-          <li>
-            <Link href={`/mystudy/${username}`}>내 스터디</Link>
-          </li>
+          {session ? (
+            <li>
+              <Link href={`/mystudy/${username}`}>내 스터디</Link>
+            </li>
+          ):( 
+            <li style={{display:"none"}}> </li>
+          )}
         </ul>
         {session ? (
           <div style={{ display: "none" }}></div>
