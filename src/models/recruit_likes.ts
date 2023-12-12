@@ -1,23 +1,23 @@
 import mongoose, { Schema, Types } from "mongoose";
 
-interface ILike {
-  author: Types.ObjectId;
-  contentsId: Types.ObjectId;
+interface ILikeEntity {
+  user: Types.ObjectId;
+  studyId: Types.ObjectId;
   commentsId: Types.ObjectId;
   contents: string;
-  LikesType: "Contents" | "Comment";
+  LikesType: "studyId" | "Comment";
 }
 
-const LikesSchema = new Schema<ILike>(
+const LikesSchema = new Schema<ILikeEntity>(
   {
-    author: {
+    user: {
       type: Schema.Types.ObjectId,
       require: true,
       ref: "User",
     },
-    contentsId: {
+    studyId: {
       type: Schema.Types.ObjectId,
-      ref: "Contents",
+      ref: "RecruitPost",
     },
     commentsId: {
       type: Schema.Types.ObjectId,
@@ -35,5 +35,5 @@ const LikesSchema = new Schema<ILike>(
 );
 
 const Likes =
-  mongoose.models.Likes || mongoose.model<ILike>("Likes", LikesSchema);
+  mongoose.models.Likes || mongoose.model<ILikeEntity>("Likes", LikesSchema);
 export default Likes;

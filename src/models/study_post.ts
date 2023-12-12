@@ -1,6 +1,6 @@
 import mongoose, { Schema, Types } from "mongoose";
 
-interface IStudyPost {
+interface IStudyPostEntity {
   user: Types.ObjectId;
   studyId: Types.ObjectId;
   likes: Types.ObjectId;
@@ -8,7 +8,7 @@ interface IStudyPost {
   content: string;
 }
 
-const StudyPostSchema = new Schema<IStudyPost>(
+const StudyPostSchema = new Schema<IStudyPostEntity>(
   {
     // < -- 아래 주석은 구현후 활성화 -->
     user: {
@@ -42,5 +42,5 @@ const StudyPostSchema = new Schema<IStudyPost>(
 
 const StudyPost =
   mongoose.models.StudyPost ||
-  mongoose.model<IStudyPost>("StudyPost", StudyPostSchema);
+  mongoose.model<IStudyPostEntity>("StudyPost", StudyPostSchema);
 export default StudyPost;

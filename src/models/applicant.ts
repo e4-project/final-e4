@@ -1,28 +1,21 @@
 import mongoose, { Schema, Types } from "mongoose";
 
-interface IApplicant {
-  leader: string;
+interface IApplicantEntity {
   applicant: Types.ObjectId;
-  recruitPostId: Types.ObjectId;
+  studyId: Types.ObjectId;
   message: string;
-  isRecognition: boolean;
+  recognition: "대기" | "승인" | "거절";
 }
 //applicant
-const ApplicantSchema = new Schema<IApplicant>(
+const ApplicantSchema = new Schema<IApplicantEntity>(
   {
-    leader: {
-      //모집 공고 유저
-      type: String,
-      require: true,
-      // ref: "User",
-    },
     applicant: {
-      // 참여 유저
       type: Schema.Types.ObjectId,
       require: true,
+      unique: true,
       ref: "User",
     },
-    recruitPostId: {
+    studyId: {
       // 모집공고Id
       type: Schema.Types.ObjectId,
       ref: "RecruitPost",
@@ -33,10 +26,10 @@ const ApplicantSchema = new Schema<IApplicant>(
       require: true,
       trim: true,
     },
-    // 승인 유무
-    isRecognition: {
-      type: Boolean,
-      default: false,
+    // 신청 상태: 대기: 승인 | 거절
+    recognition: {
+      type: String,
+      default: "대기",
     },
   },
   {
@@ -47,5 +40,5 @@ const ApplicantSchema = new Schema<IApplicant>(
 
 const Applicant =
   mongoose.models.Applicant ||
-  mongoose.model<IApplicant>("Applicant", ApplicantSchema);
+  mongoose.model<IApplicantEntity>("Applicant", ApplicantSchema);
 export default Applicant;
