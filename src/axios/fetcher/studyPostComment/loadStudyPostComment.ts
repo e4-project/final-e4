@@ -3,7 +3,7 @@
 import { baseUrl } from "@/constants/url";
 import axios from "axios";
 
-export const loadComment = async (id: string) => {
+export const loadStudyPostComment = async (id: string) => {
   try {
     const { data } = await axios.get(`${baseUrl}/api/study/board/${id}/comment`);
     return data;

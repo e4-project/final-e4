@@ -32,7 +32,7 @@ export const RenderHtmlContext = (html: string) => {
   return (
     <>
       {mounted && (
-        <div dangerouslySetInnerHTML={{ __html: `<div>${html}<div>` }} />
+        <div dangerouslySetInnerHTML={{ __html: html }} />
       )}
     </>
   );
