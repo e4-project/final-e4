@@ -78,7 +78,7 @@ const Header = () => {
   return (
     <div className={style.bar}>
       <div className={style.sheet}>
-        <Link href="/" className={style.logo}>
+        <Link href="/intropage" className={style.logo}>
           <Image src={"/img/logo.png"} alt="logo" width={40} height={40}/>
         </Link>
         <ul className={style.link}>

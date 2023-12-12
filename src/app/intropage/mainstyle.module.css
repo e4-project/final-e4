@@ -18,8 +18,8 @@
 }
 .sheet{
   margin: 40px 0;
-  position: sticky;
-  top: 70px;
+  /* position: sticky;
+  top: 70px; */
   align-items: center;
 }
 .sheet > li{
@@ -78,3 +78,5 @@
   width: 100%;
   height: 200px;
 }
+
+
