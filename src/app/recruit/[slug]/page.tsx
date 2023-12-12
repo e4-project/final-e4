@@ -4,7 +4,6 @@ import { IResponseRecruitPost } from "@/interfaces/recruit";
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const data: IResponseRecruitPost = await loadRecruitOneByIdApi(params.slug);
-  console.log({recruit: data})
   return (
     <div>
       <StudyPageView data={data}/>

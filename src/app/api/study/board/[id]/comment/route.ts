@@ -1,5 +1,5 @@
 import connectDB from "@/config/db/connectDB";
-import Comment from "@/models/comment";
+import Comment from "@/models/study_post_comment";
 import { NextRequest, NextResponse } from "next/server";
 
 // /api/study/board/:id/comment
