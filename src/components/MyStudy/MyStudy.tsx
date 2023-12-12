@@ -13,10 +13,11 @@ import style from "./MyStudy.module.css";
  */
 
 interface IProps {
-  data: IResponseRecruitPost[];
+  data: any;
 }
 
 const MyStudy = ({ data }: IProps) => {
+  const myStudy = data.myStudyList;
   return (
     <div className={style.bg}>
       <div className={style.container}>
@@ -41,9 +42,9 @@ const MyStudy = ({ data }: IProps) => {
           <div className={style.section}>
             <p className={style.section_title}>내가 만든 스터디(모집글)🖊</p>
             {/* 내가 작성한 recruit_post 개수 만큼 map */}
-            <MyRecruitPost />
-            <MyRecruitPost />
-            <MyRecruitPost />
+            {myStudy.map((study: any) => (
+              <MyRecruitPost key={study._id} data={study}/>
+            ))}
           </div>
           <div className={style.section}>
             <p className={style.section_title}>참여 중인 스터디</p>
@@ -60,16 +61,15 @@ const MyStudy = ({ data }: IProps) => {
   );
 };
 function MyRecruitPost(props: any) {
-  const { data: session } = useSession();
-  const username = session?.user?.name;
+  const { data } = props;
   return (
     <div className={style.section_item}>
       {/* key=[props.i] */}
-      <Link className={style.study_name} href={"/해당recruit post링크"}>
-        <p>recruit post 의 studyName</p>
+      <Link className={style.study_name} href={`/recruit/${data._id}`}>
+        <p>{data.studyName}</p>
       </Link>
       {/* /mystudy/홍길동/applicants/리액트스터디, studyname는 변경됨*/}
-      <Link href={`/mystudy/${username}/applicants/studyname`}>
+      <Link href={`/mystudy/${data.leader}/applicants/${data.studyName}`}>
         {/* 해당 recruit post의 _id 로 구분된 applicants 페이지로*/}
         {/*  href={'/mystudy/applicants/' + myRecruitPost[i]._id.toString()}> */}
 
@@ -98,7 +98,6 @@ function Apply(props: any) {
 
   return (
     <div className={style.section_item}>
-      {" "}
       {/* key=[props.i] */}
       <Link className={style.study_name} href={"/해당recruit post링크"}>
         <p>recruit post의 studyName</p>

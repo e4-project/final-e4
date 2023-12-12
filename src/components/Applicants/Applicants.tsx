@@ -7,6 +7,7 @@ import { IResponseRecruitPost } from "@/interfaces/recruit";
 
 import Reject from "./Reject";
 import Approve from "./Approve";
+import dayjs from "dayjs";
 
 /**
  * @name applicants
@@ -19,6 +20,7 @@ interface IProps {
 }
 
 const Applicants = ({ data }: IProps) => {
+  
   // let db = (await connectDB).db('e4');
   // let applicantData = await db.collection('applicant').findOne({applypostid: props.params.recruitId}); //유저 참여 신청
   // let mypost = await db.collection('posts').findOne({_id: new ObjectId(props.params.recruitId) }); //모집공고
@@ -32,7 +34,7 @@ const Applicants = ({ data }: IProps) => {
       <div className={style.container}>
         <div className={style.left_container}>
           <div className={style.study_info}>
-            <StudyInfo />
+            <StudyInfo data={data}/>
             {/* <StudyInfo studyName={내가작성한recrutPost.studyName} material={내가작성한recrutPost.material}/> */}
           </div>
           <button className={style.study_start}>스터디 시작하기</button>
@@ -50,7 +52,7 @@ const Applicants = ({ data }: IProps) => {
           <div className={style.applicant_list}>
             <Applicant />
             <Applicant />
-            {/* <Applicant username={applicantData.username} message={applicantData.message} /> */}
+            {/* <Applicant userName={applicantData.userName} message={applicantData.message} /> */}
           </div>
         </div>
       </div>
@@ -60,16 +62,18 @@ const Applicants = ({ data }: IProps) => {
 //모집 공고글(신지수): 신청자 이름이
 
 function StudyInfo(props: any) {
+  const {data} = props;
+  console.log({ss: data})
   return (
     <div className={style.study_info_item}>
       <div className={style.study_info_titles}>
-        <p>스터디 이름 studyName</p>
-        <p>함께 공부할 (교재) material</p>
+        <h2>{data.studyName}</h2>
+        <p>{data.material}</p>
       </div>
       <div className={style.study_info_contents}>
-        <p>duration 스터디 기간</p>
-        <p>headcount 모집인원수</p>
-        <p>deadline 모집 마감일</p>
+        <p>{data.duration}</p>
+        <p>{data.headCount}</p>
+        <p>{dayjs(data.deadLine).format('MM/DD/YYYY')}</p>
       </div>
     </div>
   );
