@@ -1,56 +1,79 @@
 "use client";
 import Link from "next/link";
-import { useState, useRef, useEffect } from "react";
-import Modal from "@/components/common/modal/page";
+import { useState, ChangeEvent, FormEvent } from "react";
 import { IResponseRecruitPost } from "@/interfaces/recruit";
 import CommentForm from "@/components/Comment/CommentForm";
 import SingleComment from "@/components/Comment/SingleComment";
-import style from "./recruit.module.css";
 import { RenderHtmlContext } from "@/components/common/Card";
+import CustomModal from "@/components/common/modal/Custom/page";
+import style from "./recruit.module.css";
+import modalStyle from "@/components/common/modal/modal.module.css";
+import { useSession } from "next-auth/react";
+import { postApplicantApi } from "@/axios/fetcher/applicant/postApplicantApi";
 
 // const coment_data: any = [];
 interface IProps {
   data: IResponseRecruitPost;
 }
 export default function StudyPageView({ data }: IProps) {
+  const [message, setMessage] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  console.log({StudyPageView: data})
+  const { data: session } = useSession();
   const showModal = () => {
     setModalOpen(true);
   };
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  // const [coment, setComent] = useState(coment_data);
-  // const idRef = useRef(3);
-  // const onCreate = (content: any) => {
-  //   const newComent = {
-  //     id: idRef.current,
-  //     isDone: false,
-  //     content,
-  //     createdDate: new Date().getTime(),
-  //   };
-  //   setComent([newComent, ...coment]);
-  //   idRef.current += 1;
-  //   console.log(coment);
-  // };
-  // const onUpdate = (id: any) => {
-  //   setComent(
-  //     coment.map((coment: any) =>
-  //       coment.id === id ? { ...coment, isDone: !coment.isDone } : coment
-  //     )
-  //   );
-  // };
-  // const onDelete = (id: any) => {
-  //   setComent(coment.filter((coment: any) => coment.id !== id));
-  // };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const onChangeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setMessage(e.target.value);
+  };
+
+  const onSubmitRecruit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (session) {
+      const insertData = {
+        userName: session?.user?.name as string,
+        message: message.trim(),
+        studyId: data?._id,
+      };
+      await postApplicantApi(insertData);
+    } else {
+      window.alert("인증이 필요합니다.");
+    }
+    closeModal();
+    setMessage('');
+  };
+  console.log(data?.materialUrl)
   return (
     <div className={style.sheet}>
-      {modalOpen && <Modal setModalOpen={setModalOpen} />}
+      {modalOpen && (
+        <CustomModal setModalOpen={setModalOpen}>
+          <form action="" onSubmit={onSubmitRecruit}>
+            <div className={modalStyle.modal_text}>
+              <h2>스터디 참여 신청하기</h2>
+              <p>
+                간단한 자기소개, 스터디를 하려는 이유 등 스터디 소개글을
+                참고하여 신청글을 작성해주세요
+              </p>
+            </div>
+            <div className={modalStyle.textarea}>
+              <textarea
+                name="message"
+                id="message"
+                value={message}
+                onChange={onChangeMessage}
+              />
+            </div>
+            <div className={modalStyle.application}>
+              <button>신청하기</button>
+            </div>
+          </form>
+        </CustomModal>
+      )}
       <div className={style.style}>
-        {/*  */}
         <div className={style.area1}>
           <ul className={style.area1_sheet}>
             <li className={style.list}>
@@ -66,7 +89,7 @@ export default function StudyPageView({ data }: IProps) {
             </li>
             <li className={style.list}>
               <button>
-                <Link href={data?.materialUrl} target="_blank">
+                <Link href={`${data?.materialUrl}`} target="_blank">
                   <span>보러 가기</span>
                   <span>교재 정보</span>
                 </Link>
@@ -74,12 +97,12 @@ export default function StudyPageView({ data }: IProps) {
             </li>
             <li className={style.list}>
               <img src="/icons/icon_calendar.svg" alt="" />
-              <span style={{whiteSpace: 'pre-wrap'}}>스터디 기간 </span>
+              <span style={{ whiteSpace: "pre-wrap" }}>스터디 기간 </span>
               <span>{data?.duration}</span>
             </li>
             <li className={style.list}>
               <img src="/icons/icon_member.svg" alt="" />
-              <span style={{whiteSpace: 'pre-wrap'}}>모집 인원 </span>
+              <span style={{ whiteSpace: "pre-wrap" }}>모집 인원 </span>
               <span>{data?.headCount}명</span>
             </li>
             <li className={style.list}>
@@ -118,12 +141,8 @@ export default function StudyPageView({ data }: IProps) {
         {/*  */}
         <div className={style.area2}>
           <div className={style.recruit_post}>
-            <h2>
-              {RenderHtmlContext(data?.studyName)}
-            </h2>
-            <p>
-              {RenderHtmlContext(data?.content)}
-            </p>
+            <h2>{RenderHtmlContext(data?.studyName)}</h2>
+            <p>{RenderHtmlContext(data?.content)}</p>
           </div>
           <div className={style.comment}>
             댓글

@@ -1,17 +1,23 @@
 import mongoose, { Schema, Types } from "mongoose";
 
-interface ICommentEntity {
+interface IRecruitCommentEntity {
   user: Types.ObjectId;
+  studyId: Types.ObjectId;
   studyPostId: Types.ObjectId;
   content: string;
+  parentId: Types.ObjectId;
 }
 
-const CommentSchema = new Schema<ICommentEntity>(
+const RecruitCommentSchema = new Schema<IRecruitCommentEntity>(
   {
     user: {
       type: Schema.Types.ObjectId,
       require: true,
       ref: "User",
+    },
+    studyId: {
+      type: Schema.Types.ObjectId,
+      ref: "RecruitPost",
     },
     studyPostId: {
       type: Schema.Types.ObjectId,
@@ -29,6 +35,6 @@ const CommentSchema = new Schema<ICommentEntity>(
   }
 );
 
-const Comment =
-  mongoose.models.Comment || mongoose.model<ICommentEntity>("Comment", CommentSchema);
-export default Comment;
+const RecruitComment =
+  mongoose.models.RecruitComment || mongoose.model<IRecruitCommentEntity>("RecruitComment", RecruitCommentSchema);
+export default RecruitComment;

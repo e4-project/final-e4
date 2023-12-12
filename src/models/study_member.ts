@@ -1,12 +1,12 @@
 import mongoose, { Schema, Types } from "mongoose";
 
-interface IStudyMember {
+interface IStudyMemberEntity {
   studyId: Types.ObjectId;
   userId: Types.ObjectId;
   rel: "팀원" | "팀장";
 }
 
-const StudyMemberSchema = new Schema<IStudyMember>({
+const StudyMemberSchema = new Schema<IStudyMemberEntity>({
   studyId: {
     type: Schema.Types.ObjectId,
     ref: "RecruitPost",
@@ -23,5 +23,5 @@ const StudyMemberSchema = new Schema<IStudyMember>({
 
 const StudyMember =
   mongoose.models.StudyMember ||
-  mongoose.model("StudyMember", StudyMemberSchema);
+  mongoose.model<IStudyMemberEntity>("StudyMember", StudyMemberSchema);
 export default StudyMember;
