@@ -5,7 +5,6 @@ import DatePicker from "react-datepicker";
 import Button from "@/components/common/Button";
 import WriteEditor from "@/components/common/Editor";
 import {
-  TRecruitOmitApplicants,
   postRecruitApi,
 } from "@/axios/fetcher/recruit/postRecruitApi";
 import style from "./write.module.css";
@@ -56,10 +55,14 @@ const WriteForm = () => {
   // 폼 제출 이벤트를 처리하는 함수
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+    const {material,materialUrl,studyKeyword,studyName, ...data} = inputs;
     const insertData = {
-      ...inputs,
-      content,
-      duration,
+      material: material.trim(),
+      materialUrl: materialUrl.trim(),
+      studyKeyword: studyKeyword.trim(),
+      studyName: studyName.trim(),
+      ...data,
+      content: content.trim(),
       deadLine: deadLine as string,
     };
     if (Object.values(insertData).every((item) => !!item)) {

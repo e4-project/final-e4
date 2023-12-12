@@ -7,7 +7,7 @@ export interface IRecruitPost {
 
   /* 스터디 모임 정보 */
   leader: string; //스터디장
-  applicants: [string]; //참여자 목록
+  applicants: Object; //참여자 목록
   studyKeyword: string; //스터디 주제
   duration: string; // 스터디 기간
   headCount: number; //모집 인원
@@ -26,7 +26,7 @@ export interface IResponseRecruitPost {
 
   /* 스터디 모임 정보 */
   leader: string; //스터디장
-  applicants: [string]; //참여자 목록
+  applicants: Object; //참여자 목록
   studyKeyword: string; //스터디 주제
   duration: string; // 스터디 기간
   headCount: number; //모집 인원

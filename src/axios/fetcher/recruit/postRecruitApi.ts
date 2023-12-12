@@ -1,6 +1,7 @@
 // import { api } from "@/axios/api";
 import { baseUrl } from "@/constants/url";
 import { IRecruitPost } from "@/interfaces/recruit";
+import { getBaseUrl } from "@/utils/getBaseUrl";
 import axios from "axios";
 
 export type TRecruitOmitApplicants = Omit<
@@ -9,6 +10,6 @@ export type TRecruitOmitApplicants = Omit<
 >;
 
 export const postRecruitApi = async (insertData: TRecruitOmitApplicants) => {
-  const { data } = await axios.post(`${baseUrl}/api/recruits`, insertData);
+  const { data } = await axios.post(getBaseUrl("/api/recruits"), insertData);
   return data;
 };

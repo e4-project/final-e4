@@ -1,13 +1,13 @@
 import mongoose, { Schema, Types } from "mongoose";
 
-interface IStudyNote {
+interface IStudyNoteEntity {
   author: Types.ObjectId;
   studyId: Types.ObjectId;
   week: "1주차" | "2주차" | "3주차" | "4주차" | "5주차";
   contents: string;
 }
 
-const StudyNoteSchema = new Schema<IStudyNote>({
+const StudyNoteSchema = new Schema<IStudyNoteEntity>({
   author: {
     type: Schema.Types.ObjectId,
     ref: "User",
@@ -29,5 +29,5 @@ const StudyNoteSchema = new Schema<IStudyNote>({
 
 const StudyNote =
   mongoose.models.StudyNote ||
-  mongoose.model<IStudyNote>("StudyNote", StudyNoteSchema);
+  mongoose.model<IStudyNoteEntity>("StudyNote", StudyNoteSchema);
 export default StudyNote;

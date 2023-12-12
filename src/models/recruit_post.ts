@@ -1,6 +1,6 @@
 import mongoose, { Schema, Types } from "mongoose";
 
-export interface IRecruitPostDTO {
+interface IRecruitPostEntity {
   //reuest
   /* 교재 정보 */
   material: string; // 강의|수업등의 교재 이름
@@ -19,7 +19,7 @@ export interface IRecruitPostDTO {
   weekGoal: Object; // 스터디 진행사항
 }
 
-const RecruitPostSchema = new Schema<IRecruitPostDTO>(
+const RecruitPostSchema = new Schema<IRecruitPostEntity>(
   {
     leader: {
       type: Schema.Types.ObjectId,
@@ -83,5 +83,5 @@ const RecruitPostSchema = new Schema<IRecruitPostDTO>(
 
 const RecruitPost =
   mongoose.models.RecruitPost ||
-  mongoose.model<IRecruitPostDTO>("RecruitPost", RecruitPostSchema);
+  mongoose.model<IRecruitPostEntity>("RecruitPost", RecruitPostSchema);
 export default RecruitPost;
