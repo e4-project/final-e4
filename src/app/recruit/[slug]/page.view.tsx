@@ -10,6 +10,7 @@ import style from "./recruit.module.css";
 import modalStyle from "@/components/common/modal/modal.module.css";
 import { useSession } from "next-auth/react";
 import { postApplicantApi } from "@/axios/fetcher/applicant/postApplicantApi";
+import dayjs from "dayjs";
 
 // const coment_data: any = [];
 interface IProps {
@@ -76,7 +77,7 @@ export default function StudyPageView({ data }: IProps) {
       <div className={style.style}>
         <div className={style.area1}>
           <ul className={style.area1_sheet}>
-            <li className={style.list}>
+            <li className={style.keyword}>
               {data?.studyKeyword.split(", ").map((item, idx) => (
                 <p key={idx}>{item}</p>
               ))}
@@ -97,18 +98,18 @@ export default function StudyPageView({ data }: IProps) {
             </li>
             <li className={style.list}>
               <img src="/icons/icon_calendar.svg" alt="" />
-              <span style={{ whiteSpace: "pre-wrap" }}>스터디 기간 </span>
-              <span>{data?.duration}</span>
+              <span>스터디 기간</span>
+              <span className={style.font_bold}>{data?.duration}</span>
             </li>
             <li className={style.list}>
               <img src="/icons/icon_member.svg" alt="" />
-              <span style={{ whiteSpace: "pre-wrap" }}>모집 인원 </span>
-              <span>{data?.headCount}명</span>
+              <span>모집 인원</span>
+              <span className={style.font_bold}>{data?.headCount}명</span>
             </li>
             <li className={style.list}>
               <div className={style.buttonarea}>
                 <li className={style.dead_line}>
-                  <span>{data?.deadLine}</span>
+                <span className={style.font_bold}>{dayjs(data?.deadLine).format('YY년 MM월 DD일')}</span>
                   <span> 모집 마감</span>
                 </li>
                 <button
@@ -145,7 +146,7 @@ export default function StudyPageView({ data }: IProps) {
             <p>{RenderHtmlContext(data?.content)}</p>
           </div>
           <div className={style.comment}>
-            댓글
+            <p>댓글</p>
             <div>
               <CommentForm postId="" />
             </div>
