@@ -152,6 +152,9 @@ bottom: 20px;
 }
 
 .studyKeyword {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
   margin-bottom: 20px;
   color: #748FFC;
   font-size: 16px;
