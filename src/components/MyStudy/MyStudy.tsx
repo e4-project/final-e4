@@ -15,17 +15,23 @@ interface IProps {
 }
 
 const MyStudy = ({ data }: IProps) => {
-  console.log({apply: data.myApplicants});
-  data?.myApplicants?.map((item: any) => console.log(item));
+  console.log({ data });
+  data?.myAppliedStudy?.map((item: any) => console.log(item));
   return (
     <div className={style.bg}>
       <div className={style.container}>
         <div className={style.top_container}>
           <div className={style.section}>
             <p className={style.section_title}>참여 신청한 스터디</p>
-            {data?.myApplicants?.map((item: any) => (
-              <Apply key={item._id} {...item} />
-            ))}
+            {data?.myAppliedStudy.length ? (
+              data?.myAppliedStudy?.map((item: any) => (
+                <Apply key={item._id} {...item} />
+              ))
+            ) : (
+              <div className={style.section_item}>
+                아직 신청한 스터디가 없습니다.
+              </div>
+            )}
           </div>
 
           <div className={style.section}>
@@ -40,8 +46,8 @@ const MyStudy = ({ data }: IProps) => {
         <div className={style.bottom_container}>
           <div className={style.section}>
             <p className={style.section_title}>내가 만든 스터디(모집글)🖊</p>
-            {data?.myStudy.length ? (
-              data?.myStudy.map((study: any) => (
+            {data?.myCreatedStudy.length ? (
+              data?.myCreatedStudy.map((study: any) => (
                 <MyRecruitPost key={study._id} data={study} />
               ))
             ) : (
@@ -53,6 +59,7 @@ const MyStudy = ({ data }: IProps) => {
           <div className={style.section}>
             <p className={style.section_title}>참여 중인 스터디</p>
             {/* 참여중인 스터디 개수 만큼 map*/}
+            {/* 이 링크를 통해 스터디페이지로 이동 */}
             <Link href={"/해당 스터디페이지 링크"}>
               <p className={style.section_item}>
                 내가 leader이거나 member가 된 study의 studyName
@@ -73,8 +80,8 @@ function MyRecruitPost(props: any) {
       </Link>
       <Link
         className={style.applicants_btn}
-        href={`/mystudy/${data.leader}/applicants/${data.studyName}`}
-        // /mystudy/6576feeeea262d2cf9fd9a8d/applicants/nextjstarcraft
+        // path: /mystudy/me/:userid(recruitPost leader)/applicants/:recruitid
+        href={`/mystudy/me/${data.leader}/applicants/${data._id}`}
       >
         신청자 확인
         {/* 해당 recruit post의 _id 로 구분된 applicants 페이지로*/}
