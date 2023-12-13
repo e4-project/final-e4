@@ -5,6 +5,7 @@ import { IResponseRecruitPost } from "@/interfaces/recruit";
 
 const Page = async () => {
   const data: IResponseRecruitPost[] = await loadRecruitApi();
+  console.log(data);
   return (
     <div>
       <RecruitView data={data} />
