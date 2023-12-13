@@ -4,24 +4,26 @@
   height: 5000px;
 }
 
-.banner_slide_wrap{
+.banner_slide_wrap {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  outline:none;
+  outline: none;
   border: none;
 }
+
 .banner_slide_container {
   width: 100%;
   max-width: 1800px;
 }
+
 .banner_slide_container img {
   object-fit: cover;
 }
 
 @media only screen and (max-width: 768px) {
-  .banner_slide_container{
+  .banner_slide_container {
     max-width: 720px;
   }
 }
@@ -34,8 +36,8 @@
 
 .ctrl_wrap {
   justify-content: space-between;
-    display: flex;
-    padding: 0px 60px;
+  display: flex;
+  padding: 0px 60px;
 }
 
 /* 검색창 */
@@ -58,8 +60,8 @@
 }
 
 .input_wrap {
- width:300px;
- border-radius: 5px;
+  width: 300px;
+  border-radius: 5px;
 }
 
 .serarch_icon {
@@ -79,7 +81,7 @@
   border-radius: 5px;
 }
 
-.serarch_input:hover{
+.serarch_input:hover {
   border: 1px solid #77787e;
 }
 
@@ -87,10 +89,10 @@
   border: 1px solid #748ffc;
 }
 
-.registr_btn { 
+.registr_btn {
   width: 120px !important;
   height: 100% !important;
-	font-weight: 400;
+  font-weight: 400;
   font-size: 18px;
   background-color: #748FFC !important;
   color: #FFFFFF !important;
@@ -160,11 +162,12 @@
 }
 
 
-.card_bottom_container{
-position: absolute;
-bottom: 20px;
+.card_bottom_container {
+  position: absolute;
+  bottom: 20px;
 }
 
+.studyKeyword {
   overflow: auto;
   display: flex;
   flex-wrap: nowrap;
@@ -174,7 +177,8 @@ bottom: 20px;
   font-size: 16px;
   height: 24px;
 }
-.studyKeyword_back{
+
+.studyKeyword_back {
   white-space: nowrap;
   padding: 4px 8px;
   background-color: #F5F7FF;
@@ -192,7 +196,8 @@ bottom: 20px;
   border-radius: 5px;
   color: #BAC8FF;
 }
-.materialType{
+
+.materialType {
   font-size: 14px;
   color: #878CA0;
 }
@@ -210,12 +215,12 @@ bottom: 20px;
 
 .studyName p {
   margin-top: 5px;
-   overflow: hidden; 
-   display: -webkit-box; 
-   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; 
-   letter-spacing: -0.05em; 
-  overflow: hidden; 
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  letter-spacing: -0.05em;
+  overflow: hidden;
   font-size: 18px;
   color: #4E515B;
   font-weight: 400;
@@ -228,21 +233,20 @@ bottom: 20px;
 
 /* 탑버튼 */
 .scroll {
-  position:fixed;
-  right:2%;
-  bottom:5%;  
+  position: fixed;
+  right: 2%;
+  bottom: 5%;
   z-index: 1;
 }
 
-.button{
-font-weight: bold;
-font-size: 10px;
-padding: 15px 10px;
-background-color: white;
-color: black;
-border: 1px solid rgb(210, 204, 193);
-border-radius: 50%;
-outline: none;
-cursor: pointer;
-}  
-
+.button {
+  font-weight: bold;
+  font-size: 10px;
+  padding: 15px 10px;
+  background-color: white;
+  color: black;
+  border: 1px solid rgb(210, 204, 193);
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+}
