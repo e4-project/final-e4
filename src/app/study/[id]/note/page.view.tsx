@@ -46,10 +46,11 @@ const Page = () => {
         setOnEditor(false);
     };
 
-    useEffect(() => {
+    /* useEffect(() => {
         const fetchData = async () => {
             try {
                 const data = await studyNoteApi();
+                console.log(data);
     
                 if (data && data.author) {
                     const authorName = data.author.name || '';
@@ -63,7 +64,7 @@ const Page = () => {
         };
     
         fetchData();
-    }, []);
+    }, []); */
 
     return (
         <div className={style.note_container}>
