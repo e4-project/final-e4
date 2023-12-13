@@ -7,12 +7,21 @@
 .editor_wrap {
   width: 100%;
   max-width: 100%;
+  white-space: pre-wrap;
 }
 
-.ql-toolbar,
-.ql-container {
-  border: 1px solid #cbcaca;
+.ql-toolbar {
+  border: 1px solid #878CA0;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
+.ql-container {
+  border: 1px solid #878CA0;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+
 
 
 .ql-editor {
