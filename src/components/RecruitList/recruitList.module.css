@@ -165,10 +165,20 @@ position: absolute;
 bottom: 20px;
 }
 
-.studyKeyword {
+  overflow: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 5px;
   margin-bottom: 20px;
   color: #748FFC;
-  font-size: 14px;
+  font-size: 16px;
+  height: 24px;
+}
+.studyKeyword_back{
+  white-space: nowrap;
+  padding: 4px 8px;
+  background-color: #F5F7FF;
+  border-radius: 4px;
 }
 
 .studyKeyword ul {

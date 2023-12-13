@@ -49,14 +49,6 @@ const RecruitList = ({ data }: IProps) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
   };
-
-  //카테고리 부분
-  const [colorButton, setColorButton] = useState(false);
-
-  const switchHanler = () => {
-    setColorButton(!colorButton);  
-  };
-
   return (
     <div className={style.container}>
       {/* 배너 만들기 */}
