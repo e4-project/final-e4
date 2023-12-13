@@ -89,7 +89,7 @@ const RecruitList = ({ data }: IProps) => {
           <ul>
             <Link href={"/"}>
               <div>
-                <Button className={style.Button} size={18} text="최신순" onClick={switchHanler} />
+                <Button className={style.Button} size={18} text="최신순" />
                 {/* <Button className={style.Button} size={18} 
                 text="인기순" onClick={switchHanler} style={{ border: colorButton ? " 1px solid #77787e;" : "1px solid #748ffc;" }}/>
                 <Button className={style.Button} size={18} text="관심순" onClick={switchHanler} style={{ border: colorButton ? " 1px solid #77787e;" : "1px solid #748ffc;" }}/>
