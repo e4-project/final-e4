@@ -1,8 +1,8 @@
-<svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="4" cy="4" r="2.5" fill="#F8F8F8" stroke="#878CA0"/>
-<circle cx="12" cy="3" r="2.5" fill="#F8F8F8" stroke="#878CA0"/>
-<path d="M7.5 10V14.5H0.5V10C0.5 8.067 2.067 6.5 4 6.5C5.933 6.5 7.5 8.067 7.5 10Z" fill="#F8F8F8" stroke="#878CA0"/>
-<path d="M15.5 9V13.5H8.5V9C8.5 7.067 10.067 5.5 12 5.5C13.933 5.5 15.5 7.067 15.5 9Z" fill="#F8F8F8" stroke="#878CA0"/>
-<circle cx="8" cy="7" r="2.5" fill="#F8F8F8" stroke="#878CA0"/>
-<path d="M11.5 13V17.5H4.5V13C4.5 11.067 6.067 9.5 8 9.5C9.933 9.5 11.5 11.067 11.5 13Z" fill="#F8F8F8" stroke="#878CA0"/>
+<svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="6" cy="4" r="2.5" fill="#F8F8F8" stroke="#878CA0"/>
+<circle cx="14" cy="3" r="2.5" fill="#F8F8F8" stroke="#878CA0"/>
+<path d="M9.5 10V14.5H2.5V10C2.5 8.067 4.067 6.5 6 6.5C7.933 6.5 9.5 8.067 9.5 10Z" fill="#F8F8F8" stroke="#878CA0"/>
+<path d="M17.5 9V13.5H10.5V9C10.5 7.067 12.067 5.5 14 5.5C15.933 5.5 17.5 7.067 17.5 9Z" fill="#F8F8F8" stroke="#878CA0"/>
+<circle cx="10" cy="7" r="2.5" fill="#F8F8F8" stroke="#878CA0"/>
+<path d="M13.5 13V17.5H6.5V13C6.5 11.067 8.067 9.5 10 9.5C11.933 9.5 13.5 11.067 13.5 13Z" fill="#F8F8F8" stroke="#878CA0"/>
 </svg>
