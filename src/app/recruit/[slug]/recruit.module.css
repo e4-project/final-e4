@@ -155,6 +155,7 @@ box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
   padding: 6px 10px;
   font-size: 14px;
   font-weight: 400;
+  margin-right: 6px;
 }
 
 .list > p:first-child {

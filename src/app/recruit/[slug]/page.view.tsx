@@ -115,8 +115,10 @@ export default function StudyPageView({ data }: IProps) {
             <li className={style.list}>
               <div className={style.buttonarea}>
                 <div className={style.dead_line}>
-                  <span>{data?.deadLine}</span>
-                  <span> 모집 마감</span>
+                  <li>
+                    <span className={style.font_bold}>{dayjs(data?.deadLine).format('MM월 DD일')}</span>
+                    <span> 모집 마감</span>
+                  </li>
                 </div>
                 <button
                   className={style.application_button}
@@ -152,6 +154,7 @@ export default function StudyPageView({ data }: IProps) {
             <p>{RenderHtmlContext(data?.content)}</p>
           </div>
           <div className={style.comment}>
+            <p>댓글</p>
             <div>
               <CommentForm
                 fetcher={postRecruitComment}
