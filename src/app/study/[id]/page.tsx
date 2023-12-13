@@ -3,9 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import style from "./study.module.css";
 import Button from "@/components/common/Button";
 import { useParams } from "next/navigation";
-
-import { set } from "mongoose";
-
+import { useSession } from "next-auth/react";
 // import TextareaAutosize from 'react-textarea-autosize';
 /**
  * @name note
@@ -20,13 +18,19 @@ interface WeekGoal {
   content: string;
 }
 const Page = () => {
+  const { data: session } = useSession();
+  // console.log(session?.user?.email);
+
   const [isEdit, setIsEdit] = useState<boolean>(false);
   // 수정 상태
   const [inputs, setInputs] = useState([
     { week_input: "", study_content_input: "" },
   ]);
-
   const [noteData, setNoteData] = useState<WeekGoal[]>([]);
+  const [data, setData] = useState<{
+    userId: string;
+    result: { leader: string };
+  } | null>(null);
   // 노트 데이터 상태
   useEffect(() => {
     const fetchData = async () => {
@@ -37,7 +41,10 @@ const Page = () => {
         }
         const data = await response.json();
         console.log(data); // Add this line
+        // console.log(data.userId);
+        // console.log(data.result.leader);
         setNoteData(data.weekGoal);
+        setData(data);
 
         // noteData를 기반으로 inputs 상태를 업데이트합니다.
         const newInputs = data.weekGoal.map((weekGoal: any) => ({
@@ -115,13 +122,15 @@ const Page = () => {
 
   return (
     <div className={style.progress_container}>
-      <div className={style.change_btn}>
-        <Button
-          text={isEdit ? "저장" : "수정"}
-          className={style.edit_save_btn}
-          onClick={isEdit ? onSaveClick : onEditClick}
-        />
-      </div>
+      {data && data.userId === data.result.leader && (
+        <div className={style.change_btn}>
+          <Button
+            text={isEdit ? "저장" : "수정"}
+            className={style.edit_save_btn}
+            onClick={isEdit ? onSaveClick : onEditClick}
+          />
+        </div>
+      )}
       <div className={style.input_container}>
         {inputs.map((input, index) => {
           const note = noteData.find(
