@@ -1,8 +1,14 @@
+.body{
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+
 .body, .area3, .sheet{
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  /* text-align: center; */
   width: 100%;
 }
 .frame{
@@ -11,8 +17,6 @@
   flex-direction: column;
   height: 100vh;
   background-color: #F8F8F8;
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
 }
 .area1, .area2, .area3{
   width: 100%;
@@ -21,11 +25,16 @@
   max-width: 1280px;
   transition-duration: 0.8s;
 }
-.left_area, .right_area{
+.left_area, .right_area, .text_area, .text_area2{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
+.left_area, .right_area{
+  position: relative;
+}
+
 .sheet{
   margin: 40px 0;
   align-items: center;
@@ -61,6 +70,8 @@
   align-items: center;
 }
 .area1 .text_anime{
+  position: absolute;
+  top: -300px;
   white-space: nowrap;
   overflow: hidden;
   z-index: 2;
@@ -99,28 +110,91 @@
   30%{ right: 0; width: 100%;  }
   100%{ width: 0; }
 }
+
 /*  */
-/* .area1 span {
-  width: 80%;
-  border: 1px solid #999;
-} */
 .area1 .left_area {
   width: 40%;
-  flex-direction: column;
 }
+.text_area{
+  position: absolute;
+  top: -240px;
+}
+.text_area > span {
+  margin-top: 200px;
+  width: 100%;
+  border: 1px solid #999;
+}
+.area1 .appear {
+  opacity: 0;
+  animation: appear1 2s forwards;
+  animation-delay: 1s;
+}
+@keyframes appear1 {
+  from {opacity: 0; left: -20px;}
+  to {opacity: 1; left: 70px;}
+}
+
+/*  */
+
 .area1 .right_area {
   width: 60%;
+}
+.img_sheet {
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: absolute;
+  top: -600px;
+  left: 80px;
+  animation: imgmove 2s forwards;
+  animation-delay: 2s;
+}
+@keyframes imgmove {
+  from{opacity: 0; top: -800px;}
+  to{opacity: 1; top: -600px;}
+}
+.img_sheet2{
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: absolute;
+  top: -550px;
+  left: 400px;
+  animation: imgmove2 2s forwards;
+  animation-delay: 2.5s;
+}
+@keyframes imgmove2 {
+  from{opacity: 0; top: 0px;}
+  to{opacity: 1; top: -550px;}
+}
+.img_sheet > li > img {
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid #748FFC;
+  width: 260px;
+  height: 300px;
+}
+.img_sheet2 > li > img {
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid #748FFC;
+  width: 260px;
+  height: 300px;
 }
 
 /* area2 */
 
 .area2{
-  background-color: #F8F8F8;
+  background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .area2 .text_anime2{
+  position: absolute;
+  top: -300px;
   white-space: nowrap;
   overflow: hidden;
   z-index: 2;
@@ -161,16 +235,61 @@
   100%{ width: 0; }
 }
 
+/*  */
 
 .area2 .left_area {
   width: 60%;
 }
+.study_img{
+  position: absolute;
+  top: -400px;
+  left: 20px;
+  opacity: 0;
+  width: 700px;
+  height: auto;
+  object-fit: cover;
+}
+.img_anime{
+  animation: imgmove3 2s forwards;
+  animation-delay: 2s;
+}
+@keyframes imgmove3 {
+  from{opacity: 0; left: -30px;}
+  to{opacity: 1; left: 20px;}
+}
+
+/*  */
+
 .area2 .right_area {
   width: 40%;
   flex-direction: column;
 }
+.text_area2{
+  position: absolute;
+  top: -240px;
+  align-items: flex-start;
+}
+.text_area2 > span {
+  margin-top: 200px;
+  width: 100%;
+  border: 1px solid #999;
+}
+.area2 .appear {
+  opacity: 0;
+  animation: appear2 2s forwards;
+  animation-delay: 1s;
+}
+@keyframes appear2 {
+  from {opacity: 0; right: 20px;}
+  to {opacity: 1; right: 100px;}
+}
 
+/*  */
+.button_container{
+  margin-left: auto;
+}
 .start_button {
+  margin-top: 40px;
   background-color: #fff;
   color: #999;
   width: 90px;
@@ -234,7 +353,7 @@
 }
 /* area3 */
 .area3 {
-  background-color: antiquewhite;
+  background-color: #fff;
 }
 /*  */
 .footer{
