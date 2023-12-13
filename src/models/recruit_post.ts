@@ -25,7 +25,7 @@ const RecruitPostSchema = new Schema<IRecruitPostEntity>(
       ref: "User",
     },
     applicants: {
-      type: [String],
+      type: Array<Schema.Types.ObjectId>,
       required: true,
       ref: "User",
       default: [],
