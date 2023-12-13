@@ -41,15 +41,23 @@ const Applicants = ({ data }: IProps) => {
           {/* 스터디 시작시 스터디페이지 생성, 모집글 목록에서 숨김, 신청 마감(모집글에서 신청하기 버튼 비활성 */}
 
           <div className={style.member}>
-            승인한 멤버들
+            <p className={style.font_bold}>스터디 멤버</p>
             <p>recognition = 승인 인 유저 이름</p>
             <p>recognition = 승인 인 유저 이름</p>
           </div>
         </div>
 
         <div className={style.right_container}>
-          <p className={style.section_title}>스터디 참여 신청자</p>
+          <h3 className={style.section_title}>스터디 참여 신청자</h3>
           <div className={style.applicant_list}>
+            <Applicant />
+            <Applicant />
+            <Applicant />
+            <Applicant />
+            <Applicant />
+            <Applicant />
+            <Applicant />
+            <Applicant />
             <Applicant />
             <Applicant />
             {/* <Applicant userName={applicantData.userName} message={applicantData.message} /> */}
@@ -67,13 +75,25 @@ function StudyInfo(props: any) {
   return (
     <div className={style.study_info_item}>
       <div className={style.study_info_titles}>
-        <h2>{data.studyName}</h2>
-        <p>{data.material}</p>
+        <h2 className={style.mtitle}>{data.studyName}</h2>
+        <p className={style.mtitle}>{data.material}</p>
       </div>
       <div className={style.study_info_contents}>
-        <p>{data.duration}</p>
-        <p>{data.headCount}</p>
-        <p>{dayjs(data.deadLine).format('MM/DD/YYYY')}</p>
+        <li className={style.list}>
+          <img src="/icons/icon_calendar.svg" alt="" />
+          <span>스터디 기간</span>
+          <span className={style.font_bold}>{data?.duration}</span>
+        </li>
+        <li className={style.list}>
+          <img src="/icons/icon_member.svg" alt="" />
+          <span>모집 인원</span>
+          <span className={style.font_bold}>{data?.headCount}명</span>
+        </li>
+        <li className={style.list}>
+          <img src="/icons/icon_time.svg" alt="" />
+          <span> 모집 마감</span>
+          <span className={style.font_bold}>{dayjs(data?.deadLine).format('MM월 DD일')}</span>
+        </li>
       </div>
     </div>
   );
