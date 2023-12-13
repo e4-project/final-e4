@@ -1,10 +1,9 @@
-// import { api } from "@/axios/api";
-import { baseUrl } from "@/constants/url";
+import { getBaseUrl } from "@/utils/getBaseUrl";
 import axios from "axios";
 
 export const loadUserApi = async () => {
   const {data} = await axios.get(
-    `${baseUrl}/api/user`
+    getBaseUrl("/api/user")
   );
   return data;
 };

@@ -16,7 +16,7 @@ import dayjs from "dayjs";
  */
 
 interface IProps {
-  data: IResponseRecruitPost[];
+  data?: IResponseRecruitPost[];
 }
 
 const Applicants = ({ data }: IProps) => {
@@ -63,17 +63,16 @@ const Applicants = ({ data }: IProps) => {
 
 function StudyInfo(props: any) {
   const {data} = props;
-  console.log({ss: data})
   return (
     <div className={style.study_info_item}>
       <div className={style.study_info_titles}>
-        <h2>{data.studyName}</h2>
-        <p>{data.material}</p>
+        <h2>{data?.studyName}</h2>
+        <p>{data?.material}</p>
       </div>
       <div className={style.study_info_contents}>
-        <p>{data.duration}</p>
-        <p>{data.headCount}</p>
-        <p>{dayjs(data.deadLine).format('MM/DD/YYYY')}</p>
+        <p>{data?.duration}</p>
+        <p>{data?.headCount}</p>
+        <p>{dayjs(data?.deadLine).format('MM/DD/YYYY')}</p>
       </div>
     </div>
   );

@@ -1,15 +1,11 @@
 import { getServerSession } from "next-auth";
 import React from "react";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { IResponseRecruitPost } from "@/interfaces/recruit";
 import MyStudyView from "./page.view";
 import { redirect } from "next/navigation";
 import { loadMystudyOneApi } from "@/axios/fetcher/mystudy/loadMystudyOneApi";
+import { loadMyApplicantApi } from "@/axios/fetcher/applicant/loadMyApplicantApi";
 // /mystudy/홍길동/applicants/리액트스터디
-
-interface IResponseMyStudy {
-  myStudyList: { _id: string; studyName: string }[];
-}
 
 const Page = async () => {
   //TODO: MyStudy 페이지에서 로그인한 유저인지를 판단
@@ -19,10 +15,16 @@ const Page = async () => {
     return redirect("/study");
   }
   const userName = session.user?.name;
-  const data: any = await loadMystudyOneApi(userName as string);
+  const myCreatedStudy: any = await loadMystudyOneApi(userName as string);
+  const myApplicants = await loadMyApplicantApi(myCreatedStudy.myStudyList[0]?.leader);
+
+  const data = {
+    myStudy: myCreatedStudy.myStudyList,
+    myApplicants: [...myApplicants]
+  }
   return (
     <div>
-      <MyStudyView data={data} />
+      <MyStudyView data={data}/>
     </div>
   );
 };

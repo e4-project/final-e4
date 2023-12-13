@@ -11,8 +11,7 @@ const ApplicantSchema = new Schema<IApplicantEntity>(
   {
     applicant: {
       type: Schema.Types.ObjectId,
-      require: true,
-      unique: true,
+      required: true,
       ref: "User",
     },
     studyId: {
