@@ -10,7 +10,12 @@
 }
 .title {
   color: #4e515b;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
+  font-size: 24px;
+}
+.text {
+  margin-bottom: 10px;
+  font-weight: 400;
 }
 .inputBox__L {
   width: 958px;
@@ -29,6 +34,14 @@
   font-size: 18px;
   border: 1px solid #E2E2E2;
 }
+.inputBox__S::placeholder{
+  font-size: 16px;
+  color: #878CA0;
+}
+.inputBox__L::placeholder{
+  font-size: 16px;
+  color: #878CA0;
+}
 .flex {
   display: flex;
   gap: 38px;
@@ -37,8 +50,8 @@
   justify-content: center;
 }
 .mt35 {
-  margin-top: 35px;
-  gap: 38px;
+  margin-top: 24px;
+  /* gap: 38px; */
 }
 .mb120 {
   margin-bottom: 120px;
@@ -47,8 +60,11 @@
   margin-bottom: 27px;
 }
 
-.study_introduction h4{
+/* .study_introduction h4{
   margin: 15px 0 15px 0px;
+} */
+.editor_wrap{
+  white-space: pre-wrap;
 }
 
 .btn_wrap {
@@ -59,9 +75,25 @@
 }
 
 .btn_component {
-  width: 100px;
-  height: 35px;
-  padding: 7px;
+  margin-top: 15px;
+  padding: 6px 18px;
+  font-weight: 400;
+  font-size: 16px;
+  background-color: #F8F8F8;
+  border: 1px #F8F8F8 solid;
+  border-radius: 5px;
+  cursor:pointer;
+}
+.save_btn{
+  margin-top: 15px;
+  padding: 6px 18px;
+  font-weight: 400;
+  font-size: 16px;
+  background-color: #748FFC;
+  color: #F5F7FF;
+  border: 1px #748FFC solid;
+  border-radius: 5px;
+  cursor:pointer;
 }
 
 .blue {

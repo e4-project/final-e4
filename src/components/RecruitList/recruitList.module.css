@@ -1,53 +1,46 @@
 .container {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 0 auto;
+  height: 5000px;
 }
-.area{
-  max-width: 1280px;
+
+.banner_slide_wrap {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  outline: none;
+  border: none;
 }
-.banner_slide_wrap{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  border-radius: 10px;
-}
+
 .banner_slide_container {
   width: 100%;
-  max-width: 1280px;
+  max-width: 1800px;
 }
+
 .banner_slide_container img {
   object-fit: cover;
-  border-radius: 10px;
 }
+
 @media only screen and (max-width: 768px) {
-  .banner_slide_container{
+  .banner_slide_container {
     max-width: 720px;
   }
 }
 
 .recruit_wrap {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
+  max-width: 100%;
+  width: 1300px;
+  margin: 120px auto;
 }
 
 .ctrl_wrap {
-  margin-top: 120px;
-  margin-bottom: 40px;
-  width: 100%;
   justify-content: space-between;
   display: flex;
+  padding: 0px 60px;
 }
+
+/* 검색창 */
 
 .search {
   display: flex;
@@ -57,7 +50,7 @@
 
 .serarch_input {
   display: flex;
-  width: 320px;
+  width: 296px;
   height: 55px;
   font-weight: 400;
   font-size: 18px;
@@ -67,8 +60,8 @@
 }
 
 .input_wrap {
- width:300px;
- border-radius: 5px;
+  width: 300px;
+  border-radius: 5px;
 }
 
 .serarch_icon {
@@ -88,7 +81,7 @@
   border-radius: 5px;
 }
 
-.serarch_input:hover{
+.serarch_input:hover {
   border: 1px solid #77787e;
 }
 
@@ -96,38 +89,59 @@
   border: 1px solid #748ffc;
 }
 
-.registr_btn { 
+.registr_btn {
   width: 120px !important;
   height: 100% !important;
-	font-weight: 400;
-  font-size: 20px !important;
+  font-weight: 400;
+  font-size: 18px;
   background-color: #748FFC !important;
   color: #FFFFFF !important;
   border: 1px #748FFC solid;
   border-radius: 5px !important;
 }
 
+/* 카테고리 */
+.Kategorie {
+  padding: 0 60px;
+}
+
+.Kategorie ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.Kategorie .Button {
+  width: 140px;
+  height: 40px;
+  border: 1px solid #77787e;
+  margin-right: 25px;
+  border-radius: 8px;
+}
+
+.Kategorie .Button {
+  width: 140px;
+  height: 40px;
+  border: 1px solid #77787e;
+  margin-right: 25px;
+  border-radius: 8px;
+}
+
 .card_wrap {
   position: relative;
   display: flex;
+  grid-gap: 22px;
+  gap: 30px;
   flex-wrap: wrap;
-}
-
-.card {
-  margin-left: 26px;
-  margin-bottom: 40px;
-}
-.card:first-child {
-  margin-left: 0;
-}
-.card:nth-child(4n+1) {
-  margin-left: 0;
+  margin: 70px auto;
+  padding: 0 60px;
 }
 
 .card_container {
   padding: 30px 20px;
-  width: 300px;
-  height: 340px;
+  width: 272px;
+  height: 311px;
   border: 1px solid #748ffc;
   border-radius: 10px;
   position: relative;
@@ -136,6 +150,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 70px;
 }
 
 .card_container:hover {
@@ -143,23 +158,28 @@
   box-shadow: 0 14px 28px rgba(79, 79, 79, 0.116),
     0 10px 10px rgba(41, 36, 36, 0.265);
   border: 1px solid #748FFC;
+  border-radius: 5px;
 }
 
 
-.card_bottom_container{
-position: absolute;
-bottom: 20px;
+.card_bottom_container {
+  position: absolute;
+  bottom: 20px;
 }
 
 .studyKeyword {
+  overflow: auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 5px;
   margin-bottom: 20px;
   color: #748FFC;
   font-size: 16px;
+  height: 24px;
 }
-.studyKeyword_back{
+
+.studyKeyword_back {
+  white-space: nowrap;
   padding: 4px 8px;
   background-color: #F5F7FF;
   border-radius: 4px;
@@ -176,14 +196,15 @@ bottom: 20px;
   border-radius: 5px;
   color: #BAC8FF;
 }
-.materialType{
-  font-size: 18px;
+
+.materialType {
+  font-size: 14px;
   color: #878CA0;
 }
 
 .material {
   height: 45px;
-  font-size: 20px;
+  font-size: 18px;
   color: #4E515B;
   font-weight: 600;
 }
@@ -194,17 +215,38 @@ bottom: 20px;
 
 .studyName p {
   margin-top: 5px;
-  overflow: hidden; 
-  display: -webkit-box; 
+  overflow: hidden;
+  display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2; 
-  overflow: hidden; 
-  font-size: 20px;
+  -webkit-line-clamp: 2;
+  letter-spacing: -0.05em;
+  overflow: hidden;
+  font-size: 18px;
   color: #4E515B;
   font-weight: 400;
 }
 
 .card_date p {
   color: #878CA0;
-  font-size: 16px;
+  font-size: 14px;
+}
+
+/* 탑버튼 */
+.scroll {
+  position: fixed;
+  right: 2%;
+  bottom: 5%;
+  z-index: 1;
+}
+
+.button {
+  font-weight: bold;
+  font-size: 10px;
+  padding: 15px 10px;
+  background-color: white;
+  color: black;
+  border: 1px solid rgb(210, 204, 193);
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
 }

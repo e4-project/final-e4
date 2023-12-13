@@ -9,8 +9,6 @@
   position: sticky;
   z-index: 10;
   top: 0;
-  margin: auto;
-  padding: 0 50px;
   box-shadow: 0 4px 20px -4px #e3e5eb;
 }
 

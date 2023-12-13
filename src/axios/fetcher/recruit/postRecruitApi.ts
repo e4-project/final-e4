@@ -6,7 +6,7 @@ import axios from "axios";
 
 export type TRecruitOmitApplicants = Omit<
   IRecruitPost,
-  "applicants" | "leader"
+  "applicants" | "leader" | "weekGoal"
 >;
 
 export const postRecruitApi = async (insertData: TRecruitOmitApplicants) => {

@@ -1,4 +1,5 @@
-export interface IRecruitPost { //reuest
+export interface IRecruitPost {
+  //reuest
   /* 교재 정보 */
   material: string; // 강의|수업등의 교재 이름
   materialUrl: string; // 교재 정보 링크
@@ -13,6 +14,7 @@ export interface IRecruitPost { //reuest
   deadLine: string; // 모집 마감일
   studyName: string; //스터디 모임 이름
   content: string; // 스터디 소개
+  weekGoal: [string]; // 스터디 주차별 목표
 }
 
 export interface IResponseRecruitPost {
@@ -34,4 +36,5 @@ export interface IResponseRecruitPost {
   deadLine: string; // 모집 마감일
   studyName: string; //스터디 모임 이름
   content: string; // 스터디 소개
+  weekGoal: [string]; // 스터디 주차별 목표
 }

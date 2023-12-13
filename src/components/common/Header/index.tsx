@@ -78,16 +78,20 @@ const Header = () => {
   return (
     <div className={style.bar}>
       <div className={style.sheet}>
-        <Link href="/" className={style.logo}>
-          <Image src={"/img/logo.png"} alt="logo" width={40} height={40}/>
+        <Link href="/intropage" className={style.logo}>
+          <Image src={"/img/logo.png"} alt="logo" width={55} height={55}/>
         </Link>
         <ul className={style.link}>
           <li>
             <Link href="/study">스터디 홈</Link>
           </li>
-          <li>
-            <Link href={`/mystudy/${userName}`}>내 스터디</Link>
-          </li>
+          {session ? (
+            <li>
+              <Link href={`/mystudy/${userName}`}>내 스터디</Link>
+            </li>
+          ):( 
+            <li style={{display:"none"}}> </li>
+          )}
         </ul>
         {session ? (
           <div style={{ display: "none" }}></div>

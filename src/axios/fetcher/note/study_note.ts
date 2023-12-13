@@ -1,10 +1,8 @@
-// import { api } from "@/axios/api";
-import { baseUrl } from "@/constants/url";
-import axios from "axios";
+import { api } from "@/axios/api";
 
 export const studyNoteApi = async () => {
   try {
-    const { data } = await axios.get(`${baseUrl}/study/note`);
+    const { data } = await api.get("/study/note");
     return data;
   } catch (err: any) {
     console.error(err);
