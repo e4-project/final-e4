@@ -67,6 +67,17 @@ const Mypageview = () => {
             )}
           </div>
 
+          <label className={style.img_edit_btn} htmlFor="inputFile">
+            프로필 사진 변경
+          </label>
+          <input
+            style={{display:"none"}}
+            id="inputFile"
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange} // 이미지 선택 필드에서 이미지 업데이트
+          />
+
           <input
             className={style.input_text}
             type="text"
@@ -74,14 +85,10 @@ const Mypageview = () => {
             onChange={onChangeName}
           />
 
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange} // 이미지 선택 필드에서 이미지 업데이트
-          />
+          
 
           <button className={style.save_btn} type="submit">
-            수정 사항 저장
+            저장
           </button>
         </div>
       </div>

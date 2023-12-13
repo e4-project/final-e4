@@ -8,9 +8,27 @@
   height: 30px;
 }
 
+.comment_container {
+  margin-top: 5px;
+}
+
+.no_comment {
+  margin: 11px 8px;
+  font-size: 18px;
+}
+
+.comment_display {
+  padding: 0 10px;
+  display: flex;
+  gap: 8px;
+  font-size: 18px;
+  color: #748ffc;
+  ;
+}
+
 .comment_ctrl {
   width: fit-content;
-  padding: 3px;
+  padding: 0;
   display: flex;
   align-items: center;
   gap: 10px;
