@@ -29,7 +29,7 @@ export interface IResponseRecruitPost {
     _id: string;
     name: string;
   }; //스터디장
-  applicants: [{_id: string, name: string}]; //참여자 목록
+  applicants: Array<string>; //참여자 목록
   studyKeyword: string; //스터디 주제
   duration: string; // 스터디 기간
   headCount: number; //모집 인원
