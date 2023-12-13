@@ -1,18 +1,25 @@
 "use client";
 import Link from "next/link";
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { IResponseRecruitPost } from "@/interfaces/recruit";
 import CommentForm from "@/components/Comment/CommentForm";
-import SingleComment from "@/components/Comment/SingleComment";
 import { RenderHtmlContext } from "@/components/common/Card";
 import CustomModal from "@/components/common/modal/Custom/page";
 import style from "./recruit.module.css";
 import modalStyle from "@/components/common/modal/modal.module.css";
 import { useSession } from "next-auth/react";
 import { postApplicantApi } from "@/axios/fetcher/applicant/postApplicantApi";
+import { postRecruitComment } from "@/axios/fetcher/recruitComment/postRecruitComment";
+import SingleComment from "@/components/Comment/SingleComment";
+import { loadRecruitComment } from "@/axios/fetcher/recruitComment/loadRecruitComment";
+import { deleteRecruitComment } from "@/axios/fetcher/recruitComment/deleteRecruitComment";
 import dayjs from "dayjs";
 
-// const coment_data: any = [];
+interface IUser {
+  name: string;
+  email: string;
+  image: string;
+}
 interface IProps {
   data: IResponseRecruitPost;
 }
@@ -20,6 +27,7 @@ export default function StudyPageView({ data }: IProps) {
   const [message, setMessage] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const { data: session } = useSession();
+  const user = session?.user as IUser;
   const showModal = () => {
     setModalOpen(true);
   };
@@ -31,12 +39,11 @@ export default function StudyPageView({ data }: IProps) {
   const onChangeMessage = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(e.target.value);
   };
-
   const onSubmitRecruit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (session) {
       const insertData = {
-        userName: session?.user?.name as string,
+        userName: user?.name as string,
         message: message.trim(),
         studyId: data?._id,
       };
@@ -45,9 +52,8 @@ export default function StudyPageView({ data }: IProps) {
       window.alert("인증이 필요합니다.");
     }
     closeModal();
-    setMessage('');
+    setMessage("");
   };
-  console.log(data?.materialUrl)
   return (
     <div className={style.sheet}>
       {modalOpen && (
@@ -111,7 +117,7 @@ export default function StudyPageView({ data }: IProps) {
                 <li className={style.dead_line}>
                 <span className={style.font_bold}>{dayjs(data?.deadLine).format('YY년 MM월 DD일')}</span>
                   <span> 모집 마감</span>
-                </li>
+                </div>
                 <button
                   className={style.application_button}
                   onClick={showModal}
@@ -146,23 +152,23 @@ export default function StudyPageView({ data }: IProps) {
             <p>{RenderHtmlContext(data?.content)}</p>
           </div>
           <div className={style.comment}>
-            <p>댓글</p>
             <div>
-              <CommentForm postId="" />
+              <CommentForm
+                fetcher={postRecruitComment}
+                user={{ name: user?.name, image: user?.image }}
+                postId={data._id}
+              />
             </div>
             <div>
-              <SingleComment postId={""} fetcher={async () => {}} />
+              <SingleComment
+                isToggleCtrl={false}
+                postId={data._id}
+                loadFetcher={loadRecruitComment}
+                delFetcher={deleteRecruitComment}
+                updateFetcher={async () => {}}
+              />
             </div>
           </div>
-
-          {/* <div className={style.comment}>
-            <Coment onCreate={onCreate} />
-            <ComentList
-              coment={coment}
-              onUpdate={onUpdate}
-              onDelete={onDelete}
-            />
-          </div> */}
         </div>
       </div>
     </div>
