@@ -129,13 +129,14 @@ const RecruitList = ({ data }: IProps) => {
                 >
                   <div>
                     <div className={style.card_top_container}>
-                        <div className={style.studyKeyword}>
-                          <div>
-                            {item.studyKeyword.split(", ").map((item, idx) => (
-                              <span className={style.studyKeyword_back} key={idx}>{item}</span>
-                            ))}
-                          </div>
-                        </div>
+                      <div className={style.studyKeyword}>
+                        <>
+                          {item.studyKeyword.split(", ").map((item, idx) => (
+                            <span className={style.studyKeyword_back} key={idx}>{item}</span>
+                          ))}
+                        </>
+                      </div>
+
                       <div>
                         <div className={style.materialType}>
                           <p>📖 {item.materialType}</p>
