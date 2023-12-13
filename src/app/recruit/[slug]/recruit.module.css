@@ -144,10 +144,12 @@ box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
   display: flex;
   align-items: center;
   text-align: center;
-  overflow: hidden;
+  overflow-x: hidden;
+  gap: 10px;
+  white-space: nowrap;
 }
 .keyword > p {
-  width: auto;
+  white-space: nowrap;
   height: 100%;
   border-radius: 5px;
   background-color: #f5f7ff;
@@ -264,7 +266,7 @@ box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
   }
   .box{
     top: 18px;
-    left: 166px;
+    left: 160px;
     position: absolute;
     animation: soda 3s forwards ease;
   }
