@@ -37,7 +37,6 @@ const RecruitList = ({ data }: IProps) => {
     setKeyword(e.target.value);
   };
 
-
   return (
     <div className={style.container}>
       <div className={style.area}>
