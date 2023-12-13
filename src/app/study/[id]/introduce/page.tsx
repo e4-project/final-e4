@@ -1,12 +1,18 @@
-import React from 'react';
-import style from './introduce.module.css';
+import React from "react";
+import style from "./introduce.module.css";
+import RecruitPost from "@/models/recruit_post";
 
-const page = () => {
-  return (
-    <div className={style.intro_container}>
-      <div>스터디 소개글 받아오기</div>
-    </div>
-  )
-}
+const page = async (props: any) => {
+  const post = await RecruitPost.findOne(
+    { _id: props.params.id },
+    { _id: 0, content: 1 }
+  );
+  if (post) {
+    const result = JSON.parse(JSON.stringify(post.toObject()));
+    return <div dangerouslySetInnerHTML={{ __html: result.content }} />;
+  } else {
+    return <div>Post not found</div>;
+  }
+};
 
 export default page;

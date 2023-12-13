@@ -1,12 +1,10 @@
 import mongoose, { Schema } from "mongoose";
-
 interface IUser {
   name: string;
   email: string;
   emailVerified: boolean;
   image: string;
 }
-
 const UserSchema = new Schema<IUser>(
   {
     name: {
@@ -30,6 +28,5 @@ const UserSchema = new Schema<IUser>(
     versionKey: false,
   }
 );
-
 const User = mongoose.models.User || mongoose.model<IUser>("User", UserSchema);
 export default User;
