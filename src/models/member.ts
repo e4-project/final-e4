@@ -4,6 +4,7 @@ interface IMemberEntity {
   member: Types.ObjectId;
   studyId: Types.ObjectId;
   rel: "leader" | "common";
+  start: boolean;
 }
 //applicant
 const MemberSchema = new Schema<IMemberEntity>(
@@ -19,10 +20,15 @@ const MemberSchema = new Schema<IMemberEntity>(
       default: "common",
     },
     studyId: {
-      // 모집공고Id
+      // 스터디Id(모집공고Id)
       type: Schema.Types.ObjectId,
       ref: "RecruitPost",
     },
+    start: {
+      // 모집 맴버가 다 모이면 true, 이걸로 스터디 페이지 활성화
+      type: Boolean,
+      default: false,
+    }
   },
   {
     timestamps: true,
