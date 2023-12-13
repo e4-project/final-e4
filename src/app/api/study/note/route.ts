@@ -7,9 +7,11 @@ import RecruitPost from "@/models/recruit_post";
 export const GET = async (req: NextRequest) => {
   try {
     await connectDB();
-    await RecruitPost.find({})
-    await User.find({})
-    const data = await StudyNote.find({}).populate('author', '_id name image').populate('studyId', '_id leader studyKeyword')
+    await RecruitPost.find({});
+    await User.find({});
+    const data = await StudyNote.find({})
+      .populate("author", "_id name image")
+      .populate("studyId", "_id leader studyKeyword");
     // console.log({user, studyId})
 
     // console.log({data})
@@ -23,7 +25,7 @@ export const GET = async (req: NextRequest) => {
 export const POST = async (req: NextRequest) => {
   try {
     await connectDB();
-    const { author, studyId, week, contents} = await req.json();
+    const { author, studyId, week, contents } = await req.json();
 
     if (!author || !studyId || !week || !contents) {
       return NextResponse.json(
@@ -33,8 +35,13 @@ export const POST = async (req: NextRequest) => {
     }
 
     // console.log(user);
-    const saveData = await StudyNote.create({ author, studyId, week, contents });
-    console.log(saveData);
+    const saveData = await StudyNote.create({
+      author,
+      studyId,
+      week,
+      contents,
+    });
+    // console.log(saveData);
     return NextResponse.json(saveData);
   } catch (error) {
     return NextResponse.json(error, { status: 500 });
