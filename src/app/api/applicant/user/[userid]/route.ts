@@ -1,35 +1,36 @@
 import Applicant from "@/models/applicant";
 import User from "@/models/user";
 import { routeWrapperWithError } from "@/utils/routeWrapperWithError";
-import { getServerSession } from "next-auth";
-import { getSession } from "next-auth/react";
 import { NextRequest, NextResponse } from "next/server";
-import mongoose from "mongoose";
 import Member from "@/models/member";
+import RecruitPost from "@/models/recruit_post";
 
 /* 
-  path: /api/applicant/user/:username */
+  path: /api/applicant/user/:id */
 
 // 모집글 참여 신청
 export const POST = routeWrapperWithError(
-  async (req: NextRequest, { params }: { params: { username: string } }) => {
+  async (req: NextRequest, { params }: { params: { userid: string } }) => {
     console.log("applicant");
     const { studyId, message } = await req.json();
-    const userName = params.username;
+    const userId = params.userid;
+    console.log({ userId });
     if (!studyId || !message) {
       return NextResponse.json(
         { isOk: false, message: "데이터가 비어있습니다." },
         { status: 404 }
       );
     }
-    const user = await User.findOne({ name: userName });
-    const savedData = await Applicant.create({
-      applicant: user._id,
+    console.log('신청 목록', { applicant: userId, studyId, message });
+    const savedApplicant = await Applicant.create({
+      applicant: userId,
       studyId,
       message,
     });
-    console.log({ savedData });
-    return NextResponse.json(savedData);
+    const savedRecruitPost = await RecruitPost.findByIdAndUpdate(studyId, {
+      $push: {applicants: userId}
+    })
+    return NextResponse.json({...savedApplicant, savedRecruitPost});
   }
 );
 
@@ -52,7 +53,7 @@ export const PATCH = routeWrapperWithError(
         studyId: applicants.studyId,
       };
       const result = await Member.create(insertData);
-      console.log({member: result});
+      console.log({ member: result });
     }
   }
 );

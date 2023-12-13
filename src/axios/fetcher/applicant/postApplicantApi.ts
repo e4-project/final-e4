@@ -2,16 +2,16 @@ import { getBaseUrl } from "@/utils/getBaseUrl";
 import axios from "axios";
 
 interface IApplicantRequest {
-  userName: string;
+  userId: string;
   message: string;
   studyId: string;
 }
 
 export const postApplicantApi = async (reqData: IApplicantRequest) => {
-  const {userName, ...insertData} = reqData;
-  console.log({axios: insertData})
+  console.log({reqData})
+  const {userId, ...insertData} = reqData;
   try {
-    const { data } = await axios.post(getBaseUrl(`/api/applicant/user/${userName}`), insertData);
+    const { data } = await axios.post(getBaseUrl(`/api/applicant/user/${userId}`), insertData);
     return data;
   } catch (err: any) {
     console.error(err);

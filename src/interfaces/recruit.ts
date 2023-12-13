@@ -25,8 +25,11 @@ export interface IResponseRecruitPost {
   materialType: string; // 교재 유형
 
   /* 스터디 모임 정보 */
-  leader: string; //스터디장
-  applicants: Object; //참여자 목록
+  leader: {
+    _id: string;
+    name: string;
+  }; //스터디장
+  applicants: [{_id: string, name: string}]; //참여자 목록
   studyKeyword: string; //스터디 주제
   duration: string; // 스터디 기간
   headCount: number; //모집 인원

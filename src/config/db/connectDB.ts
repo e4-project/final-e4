@@ -14,7 +14,7 @@ async function connectDB() {
     cached.promise = mongoose
       .set("debug", true)
       .set("strictQuery", false) // mongoose 버전 다운으로 인한 변경 .set이 객체를 인수로 못받음
-      .connect(`${DB_URI}`, { dbName: "e4" })
+      .connect(`${DB_URI}`, { dbName: "e4", maxPoolSize: 10 }) //최대 pool을 10개로 제한<connect pool>
       .then((mongoose) => mongoose)
       .catch((error) => {
         throw "Error connecting to Database" + error.message;

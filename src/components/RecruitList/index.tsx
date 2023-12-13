@@ -6,6 +6,7 @@ import { IResponseRecruitPost } from "@/interfaces/recruit";
 import Button from "../common/Button";
 import style from "./recruitList.module.css";
 import dayjs from "dayjs";
+import { isDeadLine } from "@/utils/isDeadLine";
 import { useInView } from "react-intersection-observer";
 
 /**
@@ -135,7 +136,7 @@ const RecruitList = ({ data }: IProps) => {
 
                       <div className={style.card_date}>
                         <p>                      
-                          ⏱ {item.duration} | {dayjs(item.deadLine).format('MM/DD/YYYY')} 모집 마감
+                          ⏱ {item.duration} | {dayjs(item?.deadLine).format("MM/DD/YYYY")} {isDeadLine(new Date(item?.deadLine).getTime()) ? "모집 마감" : "모집중"}
                         </p>
                       </div>
                     </div>
@@ -180,7 +181,7 @@ const RecruitList = ({ data }: IProps) => {
 
                       <div className={style.card_date}>
                         <p>
-                          ⏱ {item.duration} | {dayjs(item.deadLine).format('MM/DD/YYYY')} 모집 마감
+                        ⏱ {item.duration} | {dayjs(item?.deadLine).format("MM/DD/YYYY")} {isDeadLine(new Date(item?.deadLine).getTime()) ? "모집 마감" : "모집중"}
                         </p>
                       </div>
                     </div>

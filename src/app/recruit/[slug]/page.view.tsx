@@ -1,33 +1,41 @@
 "use client";
 import Link from "next/link";
 import { useState, ChangeEvent, FormEvent, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { IResponseRecruitPost } from "@/interfaces/recruit";
 import CommentForm from "@/components/Comment/CommentForm";
 import { RenderHtmlContext } from "@/components/common/Card";
 import CustomModal from "@/components/common/modal/Custom/page";
-import style from "./recruit.module.css";
 import modalStyle from "@/components/common/modal/modal.module.css";
-import { useSession } from "next-auth/react";
-import { postApplicantApi } from "@/axios/fetcher/applicant/postApplicantApi";
-import { postRecruitComment } from "@/axios/fetcher/recruitComment/postRecruitComment";
 import SingleComment from "@/components/Comment/SingleComment";
-import { loadRecruitComment } from "@/axios/fetcher/recruitComment/loadRecruitComment";
-import { deleteRecruitComment } from "@/axios/fetcher/recruitComment/deleteRecruitComment";
+import { IResponseUser } from "@/interfaces/user";
+import { loadUserApi } from "@/axios/fetcher/user/loadUserApi";
+import {
+  loadRecruitComment,
+  deleteRecruitComment,
+  postRecruitComment,
+} from "@/axios/fetcher/recruitComment";
+import style from "./recruit.module.css";
+import { postApplicantApi } from "@/axios/fetcher/applicant/postApplicantApi";
 import dayjs from "dayjs";
+import { isDeadLine } from "@/utils/isDeadLine";
 
-interface IUser {
-  name: string;
-  email: string;
-  image: string;
-}
 interface IProps {
   data: IResponseRecruitPost;
 }
 export default function StudyPageView({ data }: IProps) {
   const [message, setMessage] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
-  const { data: session } = useSession();
-  const user = session?.user as IUser;
+  const [currentUser, setCurrentUser] = useState<IResponseUser | null>(null);
+  const deadLine = new Date(data?.deadLine).getTime();
+  const router = useRouter();
+  useEffect(() => {
+    (async () => {
+      const data = await loadUserApi();
+      setCurrentUser(data);
+    })();
+  }, []);
+
   const showModal = () => {
     setModalOpen(true);
   };
@@ -41,9 +49,9 @@ export default function StudyPageView({ data }: IProps) {
   };
   const onSubmitRecruit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (session) {
+    if (currentUser) {
       const insertData = {
-        userName: user?.name as string,
+        userId: currentUser._id,
         message: message.trim(),
         studyId: data?._id,
       };
@@ -60,7 +68,7 @@ export default function StudyPageView({ data }: IProps) {
         <CustomModal setModalOpen={setModalOpen}>
           <form action="" onSubmit={onSubmitRecruit}>
             <div className={modalStyle.modal_text}>
-              <h2>스터디 참여 신청하기</h2>
+              <h2>스터디 참여 신청</h2>
               <p>
                 간단한 자기소개, 스터디를 하려는 이유 등 스터디 소개글을
                 참고하여 신청글을 작성해주세요
@@ -115,15 +123,30 @@ export default function StudyPageView({ data }: IProps) {
             <li className={style.list}>
               <div className={style.buttonarea}>
                 <div className={style.dead_line}>
-                  <span>{data?.deadLine}</span>
-                  <span> 모집 마감</span>
+                  <span>{dayjs(data?.deadLine).format("MM/DD/YYYY")}</span>
+                  <span>
+                    {isDeadLine(deadLine) ? "모집 마감" : "모집중"}
+                  </span>
                 </div>
-                <button
-                  className={style.application_button}
-                  onClick={showModal}
-                >
-                  스터디 참여 신청
-                </button>
+                {currentUser && data?.leader?._id === currentUser?._id ? (
+                  <button
+                    className={style.application_button}
+                    onClick={() => {
+                      router.push(
+                        `/mystudy/${data.leader?._id}/applicants/${data.studyName}`
+                      );
+                    }}
+                  >
+                    스터디 신청 현황
+                  </button>
+                ) : (
+                  <button
+                    className={style.application_button}
+                    onClick={showModal}
+                  >
+                    스터디 참여 신청
+                  </button>
+                )}
                 <input
                   className={style.good_check}
                   type="checkbox"
@@ -155,14 +178,17 @@ export default function StudyPageView({ data }: IProps) {
             <div>
               <CommentForm
                 fetcher={postRecruitComment}
-                user={{ name: user?.name, image: user?.image }}
-                postId={data._id}
+                user={{
+                  name: currentUser?.name as string,
+                  image: currentUser?.image as string,
+                }}
+                postId={data?._id}
               />
             </div>
             <div>
               <SingleComment
                 isToggleCtrl={false}
-                postId={data._id}
+                postId={data?._id}
                 loadFetcher={loadRecruitComment}
                 delFetcher={deleteRecruitComment}
                 updateFetcher={async () => {}}

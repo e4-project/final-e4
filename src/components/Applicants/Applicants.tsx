@@ -16,7 +16,7 @@ import dayjs from "dayjs";
  */
 
 interface IProps {
-  data: IResponseRecruitPost[];
+  data?: IResponseRecruitPost[];
 }
 
 const Applicants = ({ data }: IProps) => {
@@ -71,12 +71,11 @@ const Applicants = ({ data }: IProps) => {
 
 function StudyInfo(props: any) {
   const {data} = props;
-  console.log({ss: data})
   return (
     <div className={style.study_info_item}>
       <div className={style.study_info_titles}>
-        <h2 className={style.mtitle}>{data.studyName}</h2>
-        <p className={style.mtitle}>{data.material}</p>
+        <h2 className={style.mtitle}>{data?.studyName}</h2>
+        <p className={style.mtitle}>{data?.material}</p>
       </div>
       <div className={style.study_info_contents}>
         <li className={style.list}>
