@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ImgSlider from "../ImgSlider";
 import { TfiSearch } from "react-icons/tfi";
 import Link from "next/link";
@@ -84,14 +84,13 @@ const RecruitList = ({ data }: IProps) => {
                 >
                   <div>
                     <div className={style.card_top_container}>
-                      <div className={style.studyKeyword}>
-                        <div>
-                          {item.studyKeyword.split(", ").map((item, idx) => (
-                            <span className={style.studyKeyword_back} key={idx}>{item}</span>
-                          ))}
+                        <div className={style.studyKeyword}>
+                          <div>
+                            {item.studyKeyword.split(", ").map((item, idx) => (
+                              <span className={style.studyKeyword_back} key={idx}>{item}</span>
+                            ))}
+                          </div>
                         </div>
-                      </div>
-
                       <div>
                         <div className={style.materialType}>
                           <p>📖 {item.materialType}</p>

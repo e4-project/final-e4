@@ -111,17 +111,8 @@
   position: relative;
   display: flex;
   flex-wrap: wrap;
-}
-
-.card {
-  margin-left: 26px;
-  margin-bottom: 40px;
-}
-.card:first-child {
-  margin-left: 0;
-}
-.card:nth-child(4n+1) {
-  margin-left: 0;
+  gap: 26px;
+  row-gap: 40px;
 }
 
 .card_container {
@@ -152,14 +143,17 @@ bottom: 20px;
 }
 
 .studyKeyword {
+  overflow: auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 5px;
   margin-bottom: 20px;
   color: #748FFC;
   font-size: 16px;
+  height: 24px;
 }
 .studyKeyword_back{
+  white-space: nowrap;
   padding: 4px 8px;
   background-color: #F5F7FF;
   border-radius: 4px;
