@@ -114,8 +114,8 @@ export default function StudyPageView({ data }: IProps) {
             </li>
             <li className={style.list}>
               <div className={style.buttonarea}>
-                <li className={style.dead_line}>
-                <span className={style.font_bold}>{dayjs(data?.deadLine).format('YY년 MM월 DD일')}</span>
+                <div className={style.dead_line}>
+                  <span>{data?.deadLine}</span>
                   <span> 모집 마감</span>
                 </div>
                 <button
