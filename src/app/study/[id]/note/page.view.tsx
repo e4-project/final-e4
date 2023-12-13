@@ -46,27 +46,25 @@ const Page = () => {
     setOnEditor(false);
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await studyNoteApi();
-
-        if (data && data.author) {
-          const authorName = data.author.name || "";
-          setStudyNote({
-            ...data,
-            author: { ...data.author, name: authorName },
-          });
-        } else {
-          setStudyNote(null);
-        }
-      } catch (error) {
-        console.error("스터디 노트를 불러올 수 없습니다.", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  /* useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await studyNoteApi();
+                console.log(data);
+    
+                if (data && data.author) {
+                    const authorName = data.author.name || '';
+                    setStudyNote({ ...data, author: { ...data.author, name: authorName } });
+                } else {
+                    setStudyNote(null);
+                }
+            } catch (error) {
+                console.error('스터디 노트를 불러올 수 없습니다.', error);
+            }
+        };
+    
+        fetchData();
+    }, []); */
 
   return (
     <div className={style.note_container}>
