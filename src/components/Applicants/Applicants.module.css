@@ -144,7 +144,7 @@
 .applicant_btns{
     width: 100%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .approve_btn{
@@ -209,7 +209,7 @@
     margin-top: 30px;
     width: 100%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 }
 
 .cancel_yes_btn{
