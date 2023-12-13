@@ -3,7 +3,6 @@ import mongoose, { Schema, Types } from "mongoose";
 interface IRecruitCommentEntity {
   user: Types.ObjectId;
   studyId: Types.ObjectId;
-  studyPostId: Types.ObjectId;
   content: string;
   parentId: Types.ObjectId;
 }
@@ -18,10 +17,6 @@ const RecruitCommentSchema = new Schema<IRecruitCommentEntity>(
     studyId: {
       type: Schema.Types.ObjectId,
       ref: "RecruitPost",
-    },
-    studyPostId: {
-      type: Schema.Types.ObjectId,
-      ref: "StudyPost",
     },
     content: {
       type: String,

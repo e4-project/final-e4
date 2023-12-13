@@ -28,7 +28,7 @@ export const POST = routeWrapperWithError(async (req: NextRequest) => {
     !data.studyName
   ) {
     return NextResponse.json(
-      { isOk: false, message: "데이터가 비어있습니다." },
+      { message: "데이터가 비어있습니다." },
       { status: 404 }
     );
   }

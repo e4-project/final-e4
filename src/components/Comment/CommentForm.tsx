@@ -1,3 +1,5 @@
+"use client";
+
 import React, {
   ChangeEvent,
   FormEvent,
@@ -5,21 +7,19 @@ import React, {
   useRef,
   useState,
 } from "react";
+import Textarea from "@/components/common/Textarea";
+import Button from "@/components/common/Button";
 import style from "./comment.module.css";
-import Textarea from "../common/Textarea";
-import Button from "../common/Button";
 
 interface IPrpps {
   postId: string;
-  commentId?: string;
-  editMode?: boolean;
-  onClose?: () => void;
+  user: { name: string; image: string };
+  fetcher: (data: any) => Promise<any>;
 }
 
-const CommentForm = ({ editMode, onClose }: IPrpps) => {
+const CommentForm = ({ user, postId, fetcher }: IPrpps) => {
   const [content, setContent] = useState("");
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-
   const onChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
   }, []);
@@ -32,13 +32,24 @@ const CommentForm = ({ editMode, onClose }: IPrpps) => {
   }, []);
 
   const onSubmit = useCallback(
-    (event: FormEvent<HTMLButtonElement>) => {
+    async (event: FormEvent<HTMLButtonElement>) => {
       event.preventDefault();
-      const insert = content
-        .replaceAll("<br>", "\r\n");
-      console.log(insert);
+      if (content) {
+        content.replaceAll("\n", "&#10;");
+        const insertData = {
+          postId,
+          user,
+          content,
+        };
+        const data = await fetcher(insertData);
+        data && location.reload();
+        if (textAreaRef.current) {
+          textAreaRef.current.value = "";
+          setContent("");
+        }
+      }
     },
-    [content]
+    [content, fetcher, postId, user]
   );
 
   return (
@@ -51,15 +62,12 @@ const CommentForm = ({ editMode, onClose }: IPrpps) => {
         placeholder="댓글을 입력해주세요."
       />
       <div className={style.button_wrap}>
-        {editMode ? (
-          <Button onClick={onClose} text="수정 취소" type="button" />
-        ) : (
-          content !== "" && (
-            <Button onClick={onReset} text="초기화" type="button" />
-          )
+        {content !== "" && (
+          <Button onClick={onReset} text="초기화" type="button" />
         )}
+
         <Button
-          text={editMode ? "수정" : "등록"}
+          text="등록"
           color="#748ffc"
           bgColor="#f5f7ff"
           type="submit"

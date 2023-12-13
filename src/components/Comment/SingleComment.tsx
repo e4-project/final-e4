@@ -5,17 +5,26 @@ import style from "./comment.module.css";
 
 interface IProps {
   postId: string;
-  fetcher: (prop: string) => Promise<any>;
+  isToggleCtrl: boolean;
+  loadFetcher: (prop: string) => Promise<any>;
+  delFetcher: (pId: string, cID: string) => Promise<any>;
+  updateFetcher: (prop: any) => Promise<any>;
 }
 
-const SingleComment = ({ postId, fetcher }: IProps) => {
-  const [commentToggle, setCommentToggle] = useState(false);
+const SingleComment = ({
+  postId,
+  isToggleCtrl,
+  loadFetcher,
+  delFetcher,
+  updateFetcher,
+}: IProps) => {
+  const [commentToggle, setCommentToggle] = useState(true); //토글은 밖에서 하도록 처리
   const [comments, setComments] = useState([]);
-
   const fetchComment = useCallback(async () => {
-    await fetcher(postId).then((comments) => {
-      setComments(comments)});
-  }, [fetcher, postId]);
+    await loadFetcher(postId).then((comments) => {
+      setComments(comments);
+    });
+  }, [loadFetcher, postId]);
 
   useEffect(() => {
     fetchComment();
@@ -26,26 +35,38 @@ const SingleComment = ({ postId, fetcher }: IProps) => {
   }, []);
 
   return (
-    <div className={style.commentWrap}>
-      <div className={style.comment_ctrl}>
-        {commentToggle ? (
-          <div className={style.show_ctrl} onClick={onShowComment}>
-            ▲
-          </div>
-        ) : (
-          <div className={style.show_ctrl} onClick={onShowComment}>
-            ▼
+    <div className={style.comment_wrap}>
+      <div className={style.comment_display}>
+        {isToggleCtrl && (
+          <div className={style.comment_ctrl}>
+            {commentToggle ? (
+              <div className={style.show_ctrl} onClick={onShowComment}>
+                ▲
+              </div>
+            ) : (
+              <div className={style.show_ctrl} onClick={onShowComment}>
+                ▼
+              </div>
+            )}
           </div>
         )}
-        <div>댓글 {comments?.length || 0}</div>
+        <div>{comments?.length || 0}개의 댓글</div>
       </div>
       {commentToggle &&
         (comments?.length ? (
           comments?.map((comment, idx) => (
-            <ReadComment key={idx} comment={comment} />
+            <ReadComment
+              postId={postId}
+              key={idx}
+              comment={comment}
+              onUpdate={updateFetcher}
+              onDelFetch={delFetcher}
+            />
           ))
         ) : (
-          <div></div>
+          <div className={style.comment_container}>
+            <p className={style.no_comment}>아직 작성된 댓글이 없습니다.</p>
+          </div>
         ))}
     </div>
   );
