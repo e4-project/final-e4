@@ -5,7 +5,6 @@ import DatePicker from "react-datepicker";
 import Button from "@/components/common/Button";
 import WriteEditor from "@/components/common/Editor";
 import {
-  TRecruitOmitApplicants,
   postRecruitApi,
 } from "@/axios/fetcher/recruit/postRecruitApi";
 import style from "./write.module.css";
@@ -56,10 +55,14 @@ const WriteForm = () => {
   // 폼 제출 이벤트를 처리하는 함수
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
+    const {material,materialUrl,studyKeyword,studyName, ...data} = inputs;
     const insertData = {
-      ...inputs,
-      content,
-      duration,
+      material: material.trim(),
+      materialUrl: materialUrl.trim(),
+      studyKeyword: studyKeyword.trim(),
+      studyName: studyName.trim(),
+      ...data,
+      content: content.trim(),
       deadLine: deadLine as string,
     };
     if (Object.values(insertData).every((item) => !!item)) {
@@ -78,24 +81,26 @@ const WriteForm = () => {
   return (
     <div className={style.wrapper}>
       <form onSubmit={handleSubmit} method="POST">
-        <h1 className={style.title}>스터디에 사용될 교재 정보를 알려주세요!</h1>
+        <h1 className={style.title}>스터디에 사용될 교재 정보를 알려주세요! 📖</h1>
         <div className={style.mb120}>
           <h4 className={style.text}>
-            함께 공부할 강의/수업/책 등 교재의 이름
+            교재 이름
           </h4>
           <input
             type="text"
             name="material"
+            placeholder="함께 공부할 강의/책/웹 사이트 등의 이름을 적어주세요."
             value={material}
             className={style.inputBox__L}
             onChange={onChangeInput}
           />
           <div className={style.flex}>
             <div className={style.mt35}>
-              <h4 className={style.text}>교재 정보를 알 수 있는 페이지 링크</h4>
+              <h4 className={style.text}>교재 정보 링크</h4>
               <input
                 type="text"
                 name="materialUrl"
+                placeholder="교재 정보를 알 수 있는 페이지 링크를 붙여넣어주세요."
                 value={materialUrl}
                 className={style.inputBox__S}
                 onChange={onChangeInput}
@@ -117,13 +122,14 @@ const WriteForm = () => {
           </div>
         </div>
         <div>
-          <h1 className={style.title}>스터디 모임의 정보를 알려주세요!</h1>
+          <h1 className={style.title}>스터디 모임의 정보를 알려주세요! 👨‍👩‍👧‍👦</h1>
           <div className={style.flex}>
             <div>
               <h4 className={style.text}>스터디 주제</h4>
               <input
                 type="text"
                 name="studyKeyword"
+                placeholder="키워드는 ,(쉼표)로 구분해주세요."
                 value={studyKeyword}
                 className={style.inputBox__S}
                 onChange={onChangeInput}
@@ -181,36 +187,31 @@ const WriteForm = () => {
               type="text"
               className={style.inputBox__L}
               name="studyName"
+              placeholder="모집글 제목이자 스터디 모임명이 될 이름을 적어주세요."
               value={studyName}
               onChange={onChangeInput}
             />
             <div className={style.editor}></div>
           </div>
-          <div className={style.study_introduction}>
-            <h4>스터디 소개</h4>
+          <div className={style.mt35}>
+            <h4 className={style.text}>스터디 소개</h4>
             <div className={style.editor_wrap}>
               <WriteEditor
                 content={content}
                 setContent={setContent}
-                placeholder="스터디 소개글을 작성해주세요"
+                placeholder="스터디 목표, 스터디 진행 방식, 희망하는 스터디 멤버 유형 등 구체적으로 작성해주시면 좋습니다!"
               />
             </div>
           </div>
         </div>
         <div className={style.btn_wrap}>
-          <Button
+          <button
             className={style.btn_component}
-            text="취소"
-            type="button"
-            bgColor="#F8F8F8"
             onClick={onClose}
-          />
-          <Button
-            className={style.btn_component}
-            text="모집글 등록"
-            bgColor="#748ffc"
-            color="white"
-          />
+          >취소</button>
+          <button
+            className={style.save_btn}
+          >모집글 등록</button>
         </div>
       </form>
     </div>
