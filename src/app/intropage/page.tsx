@@ -27,7 +27,6 @@ export default function Mainpage (){
         const observer = new window.IntersectionObserver((entries, observer) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
-              console.log('Element is intersecting:', entry.target);
               startAnimation(entry.target);
               observer.unobserve(entry.target);
             }
@@ -36,11 +35,9 @@ export default function Mainpage (){
       
         if (area1) {
           observer.observe(area1);
-          console.log('Observer registered for area1');
         }
         if (area2) {
           observer.observe(area2);
-          console.log('Observer registered for area2');
         }
         function startAnimation(element:any) { element.classList.add(`${mainstyle.animating}`); }
       }, []);
@@ -52,7 +49,6 @@ export default function Mainpage (){
         const observer = new window.IntersectionObserver((entries, observer) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
-              console.log('Element is intersecting:', entry.target);
               startAnimation(entry.target);
               observer.unobserve(entry.target);
             }
@@ -61,11 +57,9 @@ export default function Mainpage (){
     
         if (text_area1) {
           observer.observe(text_area1);
-          console.log('Observer registered for area1');
         }
         if (text_area2) {
           observer.observe(text_area2);
-          console.log('Observer registered for area2');
         }
         function startAnimation(element:any) { element.classList.add(`${mainstyle.appear}`); }
       }, []);
@@ -76,7 +70,6 @@ export default function Mainpage (){
         const observer = new window.IntersectionObserver((entries, observer) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
-              console.log('Element is intersecting:', entry.target);
               startAnimation(entry.target);
               observer.unobserve(entry.target);
             }
@@ -85,7 +78,6 @@ export default function Mainpage (){
 
         if (text_area1) {
           observer.observe(text_area1);
-          console.log('Observer registered for area1');
         }
         function startAnimation(element:any) { element.classList.add(`${mainstyle.img_anime}`); }
       }, []);
@@ -105,7 +97,7 @@ export default function Mainpage (){
                                     스터디 모임을 찾고 있다구요?
                                 </h1>
                                 <div className={mainstyle.text_area}>
-                                    <h2>e4에서 새로운 스터디 그룹을 찾아보세요</h2>
+                                    <h2>e4에서 새로운 스터디그룹을 찾아보세요</h2>
                                     <span> </span>
                                     <p>스터디와 사이드프로젝트를 찾는 곳</p>
                                 </div>
@@ -132,14 +124,18 @@ export default function Mainpage (){
                                 </div>
                             </div>
                             <div className={mainstyle.right_area}>
-                                <h1 className={mainstyle.text_anime2} data-text="하고싶은 스터디가 있는데 없다구요?">
-                                    하고싶은 스터디가 있는데 없다구요?
+                                <h1 className={mainstyle.text_anime2} data-text="하고싶은 스터디가 없다구요?">
+                                    하고싶은 스터디가 없다구요?
                                 </h1>
                                 <div className={mainstyle.text_area2}>
-                                    <h2>e4에서 새로운 스터디원을 모집해 보세요</h2>
+                                    <h2>e4에서
+                                      <br />
+                                      새로운 스터디원을 모집해 보세요</h2>
                                     <p>당신이 
                                         <strong> 생각하는, 하고싶은</strong>
-                                        스터디가 없다면 사람들을 모집해 
+                                        스터디가 없다면
+                                        <br />
+                                        사람들을 모집해 
                                         <br />
                                         <strong>직접 스터디 그룹을 만들어 보세요</strong>
                                     </p>
