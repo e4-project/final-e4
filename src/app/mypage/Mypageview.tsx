@@ -9,7 +9,7 @@ import { uploadImg2 } from "@/utils/uploadImg2";
 const Mypageview = () => {
   const router = useRouter();
   const { data: session, status, update } = useSession();
-  const [name, setName] = useState<string>("");
+  const [name, setName] = useState<string>(session?.user?.name || "");
   const [file, setFile] = useState<File | null>(null);
   const [ImgSrc, setImgSrc] = useState("");
 
@@ -71,7 +71,7 @@ const Mypageview = () => {
             프로필 사진 변경
           </label>
           <input
-            style={{display:"none"}}
+            style={{ display: "none" }}
             id="inputFile"
             type="file"
             accept="image/*"
@@ -84,8 +84,6 @@ const Mypageview = () => {
             defaultValue={session?.user?.name || ""}
             onChange={onChangeName}
           />
-
-          
 
           <button className={style.save_btn} type="submit">
             저장
