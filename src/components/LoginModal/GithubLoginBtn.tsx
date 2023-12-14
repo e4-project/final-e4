@@ -5,7 +5,7 @@ export default function LoginBtn() {
   return (
     <button
       onClick={() => {
-        signIn();
+        signIn("github");
       }}
       className={`${style.login_wrapper} ${style.github_bg}`}
     >
