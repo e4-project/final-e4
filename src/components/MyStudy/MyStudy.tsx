@@ -1,8 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import ApplyCancel from "@/components/MyStudy/ApplyCancel";
-import { IResponseRecruitPost } from "@/interfaces/recruit";
-import { useSession } from "next-auth/react";
 import style from "./MyStudy.module.css";
 // 불러올 데이타 인터페이스 다 임포트해야댐
 
@@ -17,16 +15,23 @@ interface IProps {
 }
 
 const MyStudy = ({ data }: IProps) => {
-  const myStudy = data.myStudyList;
+  console.log({ data });
+  data?.myAppliedStudy?.map((item: any) => console.log(item));
   return (
     <div className={style.bg}>
       <div className={style.container}>
         <div className={style.top_container}>
           <div className={style.section}>
             <p className={style.section_title}>참여 신청한 스터디</p>
-            {/* 참여 신청한 recruit post 개수 만큼 map */}
-            <Apply />
-            <Apply />
+            {data?.myAppliedStudy.length ? (
+              data?.myAppliedStudy?.map((item: any) => (
+                <Apply key={item._id} {...item} />
+              ))
+            ) : (
+              <div className={style.section_item}>
+                아직 신청한 스터디가 없습니다.
+              </div>
+            )}
           </div>
 
           <div className={style.section}>
@@ -41,14 +46,20 @@ const MyStudy = ({ data }: IProps) => {
         <div className={style.bottom_container}>
           <div className={style.section}>
             <p className={style.section_title}>내가 만든 스터디(모집글)🖊</p>
-            {/* 내가 작성한 recruit_post 개수 만큼 map */}
-            {myStudy.map((study: any) => (
-              <MyRecruitPost key={study._id} data={study}/>
-            ))}
+            {data?.myCreatedStudy.length ? (
+              data?.myCreatedStudy.map((study: any) => (
+                <MyRecruitPost key={study._id} data={study} />
+              ))
+            ) : (
+              <div className={style.section_item}>
+                아직 등록한 스터디가 없습니다.
+              </div>
+            )}
           </div>
           <div className={style.section}>
             <p className={style.section_title}>참여 중인 스터디</p>
             {/* 참여중인 스터디 개수 만큼 map*/}
+            {/* 이 링크를 통해 스터디페이지로 이동 */}
             <Link href={"/해당 스터디페이지 링크"}>
               <p className={style.section_item}>
                 내가 leader이거나 member가 된 study의 studyName
@@ -64,16 +75,16 @@ function MyRecruitPost(props: any) {
   const { data } = props;
   return (
     <div className={style.section_item}>
-      {/* key=[props.i] */}
       <Link className={style.study_name} href={`/recruit/${data._id}`}>
         <p>{data.studyName}</p>
       </Link>
-      {/* /mystudy/홍길동/applicants/리액트스터디, studyname는 변경됨*/}
-      <Link href={`/mystudy/${data.leader}/applicants/${data.studyName}`}>
+      <Link
+        className={style.applicants_btn}
+        // path: /mystudy/me/:userid(recruitPost leader)/applicants/:recruitid
+        href={`/mystudy/me/${data.leader}/applicants/${data._id}`}
+      >
+        신청자 확인
         {/* 해당 recruit post의 _id 로 구분된 applicants 페이지로*/}
-        {/*  href={'/mystudy/applicants/' + myRecruitPost[i]._id.toString()}> */}
-
-        <button className={style.applicants_btn}>신청자 확인</button>
         {/* if close==true(신청 마감되면) -> 버튼 대신 '신청 마감' 표기 */}
       </Link>
     </div>
@@ -81,29 +92,13 @@ function MyRecruitPost(props: any) {
 }
 
 function Apply(props: any) {
-  {
-    /* const render = () => {
-        if (recognition === '거절'){
-            return <div>거절됨</div>
-        } else if (recognition === '승인'){
-            return <div>승인됨</div>
-        } else (recognition === '대기'){
-            return (
-                <ApplyCancel/>
-            )
-            
-        }
-    } */
-  }
-
+  const { studyId: study } = props;
   return (
     <div className={style.section_item}>
-      {/* key=[props.i] */}
-      <Link className={style.study_name} href={"/해당recruit post링크"}>
-        <p>recruit post의 studyName</p>
+      <Link className={style.study_name} href={`/recruit/${study._id}`}>
+        {study.studyName}
       </Link>
-      {/* {render()} */}
-      <ApplyCancel />
+      <ApplyCancel {...props} />
     </div>
   );
 }

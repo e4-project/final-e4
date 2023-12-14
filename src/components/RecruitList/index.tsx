@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import ImgSlider from "../ImgSlider";
 import { TfiSearch } from "react-icons/tfi";
 import Link from "next/link";
@@ -6,6 +6,8 @@ import { IResponseRecruitPost } from "@/interfaces/recruit";
 import Button from "../common/Button";
 import style from "./recruitList.module.css";
 import dayjs from "dayjs";
+import { isDeadLine } from "@/utils/isDeadLine";
+import { useInView } from "react-intersection-observer";
 
 /**
  * @name recruit
@@ -21,6 +23,18 @@ interface IProps {
 const RecruitList = ({ data }: IProps) => {
   const [keyword, setKeyword] = useState<string>("");
   const [search, setSearch] = useState<IResponseRecruitPost[]>([]);
+  const [ref, isView] = useInView({
+    threshold: 0.5,
+    initialInView: true,
+  });
+
+  //TOP 버튼
+  const onScrollTop = useCallback(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,11 +50,11 @@ const RecruitList = ({ data }: IProps) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
   };
-
   return (
     <div className={style.container}>
+      {/* 배너 만들기 */}
       <div className={style.area}>
-        <div className={style.banner_slide_wrap}>
+        <div className={style.banner_slide_wrap} ref={ref}>
           <div className={style.banner_slide_container}>
             <ImgSlider />
           </div>
@@ -71,6 +85,20 @@ const RecruitList = ({ data }: IProps) => {
               </Link>
             </div>
           </div>
+
+          <div className={style.Kategorie}>
+          <ul>
+            <Link href={"/"}>
+              <div>
+                <Button className={style.Button} size={18} text="최신순" />
+                {/* <Button className={style.Button} size={18} 
+                text="인기순" onClick={switchHanler} style={{ border: colorButton ? " 1px solid #77787e;" : "1px solid #748ffc;" }}/>
+                <Button className={style.Button} size={18} text="관심순" onClick={switchHanler} style={{ border: colorButton ? " 1px solid #77787e;" : "1px solid #748ffc;" }}/>
+                <Button className={style.Button} size={18} text="마감 임박순" onClick={switchHanler} style={{ border: colorButton ? " 1px solid #77787e;" : "1px solid #748ffc;" }}/> */}
+              </div>
+            </Link>
+          </ul>
+        </div>
 
           <ul className={style.card_wrap}>
             {search.length ? (
@@ -108,7 +136,7 @@ const RecruitList = ({ data }: IProps) => {
 
                       <div className={style.card_date}>
                         <p>                      
-                          ⏱ {item.duration} | {dayjs(item.deadLine).format('MM/DD/YYYY')} 모집 마감
+                          ⏱ {item.duration} | {dayjs(item?.deadLine).format("MM/DD/YYYY")} {isDeadLine(new Date(item?.deadLine).getTime()) ? "모집 마감" : "모집중"}
                         </p>
                       </div>
                     </div>
@@ -153,7 +181,7 @@ const RecruitList = ({ data }: IProps) => {
 
                       <div className={style.card_date}>
                         <p>
-                          ⏱ {item.duration} | {dayjs(item.deadLine).format('MM/DD/YYYY')} 모집 마감
+                        ⏱ {item.duration} | {dayjs(item?.deadLine).format("MM/DD/YYYY")} {isDeadLine(new Date(item?.deadLine).getTime()) ? "모집 마감" : "모집중"}
                         </p>
                       </div>
                     </div>
@@ -166,7 +194,10 @@ const RecruitList = ({ data }: IProps) => {
           </ul>
         </div>
       </div>
-      {/* 배너 만들기 */}
+      {/* TOP 버튼 */}
+      <div className={style.scroll}>
+        {!isView && <button onClick={onScrollTop}>Top</button>}
+      </div>
     </div>
   );
 };

@@ -14,12 +14,16 @@ export const GET = routeWrapperWithError(
       const studyId = params.slug[1];
       const ObjectId = mongoose.Types.ObjectId;
       const recuitsId = new ObjectId(studyId);
-      const recuitsPost = await RecruitPost.findById(recuitsId).sort({ createdAt: -1 });
+      const recuitsPost = await RecruitPost.findById(recuitsId)
+        .populate("leader", "name")
+      console.log({recuitsPost})
       return NextResponse.json(recuitsPost);
     } else {
       //slug === studyname인경우
       const studyName = params.slug[1];
-      const recuitsPost = await RecruitPost.findOne({studyName}).sort({ createdAt: -1 });
+      const recuitsPost = await RecruitPost.findOne({ studyName }).sort({
+        createdAt: -1,
+      });
       return NextResponse.json(recuitsPost);
     }
   }

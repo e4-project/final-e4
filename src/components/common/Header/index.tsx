@@ -5,6 +5,8 @@ import { useRef, useEffect, useState } from "react";
 import LoginModal from "@/components/LoginModal/LoginModal";
 import { useSession, signOut } from "next-auth/react";
 import Image from "next/image";
+import { IResponseUser } from "@/interfaces/user";
+import { loadUserApi } from "@/axios/fetcher/user/loadUserApi";
 /**
  * @name header
  * @author 오동주
@@ -16,9 +18,17 @@ const Header = () => {
   // 외부 영역 클릭시 드롭다운창 닫기
   const bellRef = useRef<HTMLInputElement | null>(null);
   const searchRef = useRef<HTMLInputElement | null>(null);
+  const [currentUser, setCurrentUser] = useState<IResponseUser | null>(null);
   const { data: session } = useSession();
-  const userName = session?.user?.name;
 
+  useEffect(() => {
+    (async () => {
+      if (session) {
+        const data = await loadUserApi();
+        setCurrentUser(data);
+      }
+    })();
+  }, [session]);
   useEffect(() => {
     function handleFocus(e: any) {
       const bell = document.getElementById("bell") as HTMLInputElement;
@@ -50,9 +60,11 @@ const Header = () => {
     };
   }, [searchRef]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   useEffect(() => {
     setIsModalOpen(false);
   }, [session]);
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -79,7 +91,7 @@ const Header = () => {
     <div className={style.bar}>
       <div className={style.sheet}>
         <Link href="/intropage" className={style.logo}>
-          <Image src={"/img/logo.png"} alt="logo" width={40} height={40}/>
+          <Image src={"/img/logo.png"} alt="logo" width={55} height={55} />
         </Link>
         <ul className={style.link}>
           <li>
@@ -87,10 +99,10 @@ const Header = () => {
           </li>
           {session ? (
             <li>
-              <Link href={`/mystudy/${userName}`}>내 스터디</Link>
+              <Link href={`/mystudy/me/${currentUser?._id}`}>내 스터디</Link>
             </li>
-          ):( 
-            <li style={{display:"none"}}> </li>
+          ) : (
+            <li style={{ display: "none" }}> </li>
           )}
         </ul>
         {session ? (
