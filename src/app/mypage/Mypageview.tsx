@@ -11,7 +11,7 @@ const Mypageview = () => {
   const { data: session, status, update } = useSession();
   const [name, setName] = useState<string>(session?.user?.name || "");
   const [file, setFile] = useState<File | null>(null);
-  const [ImgSrc, setImgSrc] = useState("");
+  const [ImgSrc, setImgSrc] = useState<string | { secure_url: string }>("");
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -58,6 +58,13 @@ const Mypageview = () => {
       <div className={style.wrapper}>
         <div className={style.profile_container}>
           <div className={style.profile_img}>
+            {ImgSrc && (
+              <img
+                src={typeof ImgSrc === "string" ? ImgSrc : ImgSrc.secure_url}
+                alt="프로필 미리보기"
+                className={style.profile_image}
+              />
+            )}
             {session && session.user && session.user.image && (
               <img
                 src={session.user.image}
