@@ -193,10 +193,13 @@ const RecruitList = ({ data }: IProps) => {
             )}
           </ul>
         </div>
-      </div>
-      {/* TOP 버튼 */}
-      <div className={style.scroll}>
-        {!isView && <button onClick={onScrollTop}>Top</button>}
+        {/* TOP 버튼 */}
+        <div className={style.scroll}>
+          {!isView && <button className={style.top_button} onClick={onScrollTop}>
+              <span></span>
+              <span></span>
+            </button>}
+        </div>
       </div>
     </div>
   );
