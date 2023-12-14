@@ -1,7 +1,9 @@
 .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  margin: 0 auto;
-  height: 5000px;
+  height: auto;
 }
 
 .banner_slide_wrap {
@@ -11,33 +13,41 @@
   align-items: center;
   outline: none;
   border: none;
+  margin-top: 40px;
 }
 
 .banner_slide_container {
   width: 100%;
-  max-width: 1800px;
+  max-width: 1280px;
+  margin-bottom: 80px;
 }
 
 .banner_slide_container img {
   object-fit: cover;
+  border-radius: 10px;
 }
 
-@media only screen and (max-width: 768px) {
-  .banner_slide_container {
-    max-width: 720px;
-  }
+.area {
+  max-width: 1280px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  flex-direction: column;
+  position: relative;
 }
-
 .recruit_wrap {
-  max-width: 100%;
-  width: 1300px;
-  margin: 120px auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .ctrl_wrap {
+  width: 100%;
   justify-content: space-between;
   display: flex;
-  padding: 0px 60px;
 }
 
 /* 검색창 */
@@ -50,7 +60,7 @@
 
 .serarch_input {
   display: flex;
-  width: 296px;
+  width: 360px;
   height: 55px;
   font-weight: 400;
   font-size: 18px;
@@ -58,6 +68,7 @@
   border: 1px #878CA0 solid;
   border-radius: 5px;
 }
+
 
 .input_wrap {
   width: 300px;
@@ -93,7 +104,7 @@
   width: 120px !important;
   height: 100% !important;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 20px !important;
   background-color: #748FFC !important;
   color: #FFFFFF !important;
   border: 1px #748FFC solid;
@@ -102,7 +113,8 @@
 
 /* 카테고리 */
 .Kategorie {
-  padding: 0 60px;
+  display: flex;
+  width: 100%;
 }
 
 .Kategorie ul {
@@ -129,19 +141,19 @@
 }
 
 .card_wrap {
+  width: 100%;
   position: relative;
   display: flex;
-  grid-gap: 22px;
-  gap: 30px;
+  gap: 26px;
+  row-gap: 40px;
   flex-wrap: wrap;
-  margin: 70px auto;
-  padding: 0 60px;
+  margin: 70px 0;
 }
 
 .card_container {
-  padding: 30px 20px;
-  width: 272px;
-  height: 311px;
+  padding: 20px 20px;
+  width: 300px;
+  height: 340px;
   border: 1px solid #748ffc;
   border-radius: 10px;
   position: relative;
@@ -150,7 +162,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 70px;
 }
 
 .card_container:hover {
@@ -163,8 +174,11 @@
 
 
 .card_bottom_container {
+  width: 250px;
   position: absolute;
   bottom: 20px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .studyKeyword {
@@ -179,8 +193,13 @@
 }
 
 .studyKeyword_back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   white-space: nowrap;
-  padding: 4px 8px;
+  padding: 6px 10px;
+  font-size: 14px;
   background-color: #F5F7FF;
   border-radius: 4px;
 }
@@ -210,17 +229,15 @@
 }
 
 .studyName {
+  max-width: 300px;
+  display: flex;
   height: 35px;
 }
 
 .studyName p {
   margin-top: 5px;
   overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  letter-spacing: -0.05em;
-  overflow: hidden;
+  text-overflow: ellipsis;
   font-size: 18px;
   color: #4E515B;
   font-weight: 400;
@@ -229,24 +246,91 @@
 .card_date p {
   color: #878CA0;
   font-size: 14px;
+  text-overflow: ellipsis;
 }
 
 /* 탑버튼 */
 .scroll {
   position: fixed;
-  right: 2%;
-  bottom: 5%;
   z-index: 1;
 }
+@media only screen and (max-width:1920px) {
+  .scroll{
+    bottom: 60px;
+    right: 20px;
+  }
+}
+@media only screen and (min-width:1920px) {
+  .scroll{
+    bottom: 60px;
+    right: 10%;
+  }
+}
 
-.button {
-  font-weight: bold;
-  font-size: 10px;
-  padding: 15px 10px;
-  background-color: white;
-  color: black;
-  border: 1px solid rgb(210, 204, 193);
+@media only screen and (max-width:1024px) {
+  .scroll{
+    bottom: 0;
+    right: 0;
+  }
+  .Kategorie{
+    padding: 0 20px;
+  }
+  .card_container{
+    margin-left: 18px;
+  }
+  .ctrl_wrap{
+    padding: 0 20px;
+  }
+}
+@media only screen and (max-width:768px) {
+  .scroll{
+    bottom: 10px;
+    right: 10px;
+  }
+  .serarch_input{
+    width: 200px;
+  }
+  .banner_slide_container {
+    max-width: 720px;
+  }
+  .card_container{
+    margin-left: 40px;
+  }
+  .card_wrap{
+    max-width: 390px;
+    width: auto;
+  }
+  .Kategorie{
+    padding: 0 20px;
+  }
+}
+
+.top_button {
+  display: block;
+  position: relative;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  outline: none;
+  background-color: rgba(116, 143, 252, 0.3);
   cursor: pointer;
+  border: none;
+}
+
+.scroll > .top_button > span{
+  position: absolute;
+  display: block;
+  width: 20px;
+  height: 4px;
+  border-radius: 50px;
+  background-color: #4E515B;
+}
+.scroll > .top_button > span:nth-child(1){
+  transform: translate(0, 50%) rotate(-45deg);
+  left: 14px;
+  top: 26px;
+}
+.scroll > .top_button > span:nth-child(2){
+  transform: translate(0, 50%) rotate(45deg);
+  right: 14px;
+  top: 26px;
 }
