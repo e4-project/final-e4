@@ -16,7 +16,7 @@ export const GET = routeWrapperWithError(
       const recuitsId = new ObjectId(studyId);
       const recuitsPost = await RecruitPost.findById(recuitsId)
         .populate("leader", "name")
-        .populate("applicants", "name");
+      console.log({recuitsPost})
       return NextResponse.json(recuitsPost);
     } else {
       //slug === studyname인경우

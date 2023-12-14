@@ -6,12 +6,10 @@ import Member from "@/models/member";
 import RecruitPost from "@/models/recruit_post";
 
 /* 
-  path: /api/applicant/user/:id */
-
+  path: /api/applicant/user/:userId */
 // 모집글 참여 신청
 export const POST = routeWrapperWithError(
   async (req: NextRequest, { params }: { params: { userid: string } }) => {
-    console.log("applicant");
     const { studyId, message } = await req.json();
     const userId = params.userid;
     console.log({ userId });
@@ -21,16 +19,15 @@ export const POST = routeWrapperWithError(
         { status: 404 }
       );
     }
-    console.log('신청 목록', { applicant: userId, studyId, message });
     const savedApplicant = await Applicant.create({
       applicant: userId,
       studyId,
       message,
     });
     const savedRecruitPost = await RecruitPost.findByIdAndUpdate(studyId, {
-      $push: {applicants: userId}
-    })
-    return NextResponse.json({...savedApplicant, savedRecruitPost});
+      $push: { applicants: userId },
+    });
+    return NextResponse.json({ ...savedApplicant, savedRecruitPost });
   }
 );
 

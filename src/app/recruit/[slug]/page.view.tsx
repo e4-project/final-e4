@@ -24,8 +24,10 @@ interface IProps {
   data: IResponseRecruitPost;
 }
 export default function StudyPageView({ data }: IProps) {
+  console.log({ data });
   const [message, setMessage] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
+  const [isApplicant, setIsApplicant] = useState<null | boolean>(null);
   const [currentUser, setCurrentUser] = useState<IResponseUser | null>(null);
   const deadLine = new Date(data?.deadLine).getTime();
   const router = useRouter();
@@ -35,6 +37,13 @@ export default function StudyPageView({ data }: IProps) {
       setCurrentUser(data);
     })();
   }, []);
+
+  useEffect(() => {
+    if (data && currentUser) {
+      const isApplicant = data?.applicants.includes(currentUser?._id as string);
+      setIsApplicant(isApplicant);
+    }
+  }, [currentUser, data]);
 
   const showModal = () => {
     setModalOpen(true);
@@ -56,6 +65,7 @@ export default function StudyPageView({ data }: IProps) {
         studyId: data?._id,
       };
       await postApplicantApi(insertData);
+      router.refresh(); //refresh는 이벤트 처리가 있는 컴포넌트 전체(페이지 단위)에서 적용됨
     } else {
       window.alert("인증이 필요합니다.");
     }
@@ -124,13 +134,12 @@ export default function StudyPageView({ data }: IProps) {
               <div className={style.buttonarea}>
                 <div className={style.dead_line}>
                   <span>{dayjs(data?.deadLine).format("MM/DD/YYYY")}</span>
-                  <span>
-                    {isDeadLine(deadLine) ? "모집 마감" : "모집중"}
-                  </span>
+                  <span>{isDeadLine(deadLine) ? "모집 마감" : "모집중"}</span>
                 </div>
                 {currentUser && data?.leader?._id === currentUser?._id ? (
                   <button
                     className={style.application_button}
+                    type="button"
                     onClick={() => {
                       router.push(
                         `/mystudy/${data.leader?._id}/applicants/${data.studyName}`
@@ -142,9 +151,16 @@ export default function StudyPageView({ data }: IProps) {
                 ) : (
                   <button
                     className={style.application_button}
+                    type="submit"
                     onClick={showModal}
+                    // 현재 유저가 해당 모집글 참여 신청자가 아닌경우만 신청
+                    disabled={isApplicant as boolean}
                   >
-                    스터디 참여 신청
+                    {isApplicant === null
+                      ? "로딩중..."
+                      : (isApplicant as boolean)
+                      ? "이미 신청한 스터디"
+                      : "스터디 참여 신청"}
                   </button>
                 )}
                 <input
