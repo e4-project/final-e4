@@ -278,6 +278,10 @@ box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
    .box:nth-child(1){
     --size: 1.6;
   }
+  .good > img {
+    transition: all 3s;
+    filter: opacity(0.2) drop-shadow(0 0 0 red);
+  }
   /*
   .box:nth-child(2){
     --size: 1.7;
