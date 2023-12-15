@@ -4,9 +4,7 @@ import { useRouter } from "next/navigation";
 import DatePicker from "react-datepicker";
 import Button from "@/components/common/Button";
 import WriteEditor from "@/components/common/Editor";
-import {
-  postRecruitApi,
-} from "@/axios/fetcher/recruit/postRecruitApi";
+import { postRecruitApi } from "@/axios/fetcher/recruit/postRecruitApi";
 import style from "./write.module.css";
 import { useSession } from "next-auth/react";
 
@@ -15,9 +13,9 @@ const WriteForm = () => {
   const [inputs, setInputs] = useState({
     material: "",
     materialUrl: "",
-    materialType: "",
+    materialType: "책",
     studyKeyword: "",
-    duration: "",
+    duration: "미정",
     studyName: "",
     headCount: 2,
   });
@@ -55,7 +53,7 @@ const WriteForm = () => {
   // 폼 제출 이벤트를 처리하는 함수
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
-    const {material,materialUrl,studyKeyword,studyName, ...data} = inputs;
+    const { material, materialUrl, studyKeyword, studyName, ...data } = inputs;
     const insertData = {
       material: material.trim(),
       materialUrl: materialUrl.trim(),
@@ -65,12 +63,14 @@ const WriteForm = () => {
       content: content.trim(),
       deadLine: deadLine as string,
     };
+    console.log(Object.values(insertData));
     if (Object.values(insertData).every((item) => !!item)) {
       if (session) {
         await postRecruitApi(insertData);
-        router.replace('/');
+        router.replace('/study');
       } else {
-        alert("인증이 필요합니다.");
+        console.log(Object.values(insertData));
+        // alert("인증이 필요합니다.");
         return;
       }
     } else {
@@ -81,11 +81,11 @@ const WriteForm = () => {
   return (
     <div className={style.wrapper}>
       <form onSubmit={handleSubmit} method="POST">
-        <h1 className={style.title}>스터디에 사용될 교재 정보를 알려주세요! 📖</h1>
+        <h1 className={style.title}>
+          스터디에 사용될 교재 정보를 알려주세요! 📖
+        </h1>
         <div className={style.mb120}>
-          <h4 className={style.text}>
-            교재 이름
-          </h4>
+          <h4 className={style.text}>교재 이름</h4>
           <input
             type="text"
             name="material"
@@ -114,9 +114,9 @@ const WriteForm = () => {
                 className={style.inputBox__S}
                 onChange={onChangeInput}
               >
-                <option value="동영상 강의">동영상 강의</option>
                 <option value="책">책</option>
                 <option value="온라인 문제집">온라인 문제집</option>
+                <option value="동영상 강의">동영상 강의</option>
               </select>
             </div>
           </div>
@@ -205,13 +205,10 @@ const WriteForm = () => {
           </div>
         </div>
         <div className={style.btn_wrap}>
-          <button
-            className={style.btn_component}
-            onClick={onClose}
-          >취소</button>
-          <button
-            className={style.save_btn}
-          >모집글 등록</button>
+          <button className={style.btn_component} onClick={onClose}>
+            취소
+          </button>
+          <button className={style.save_btn}>모집글 등록</button>
         </div>
       </form>
     </div>
