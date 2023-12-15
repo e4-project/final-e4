@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import mainstyle from "./mainstyle.module.css"
-import "@/styles/global.css";
+// import "@/styles/global.css";
 import { useEffect } from "react";
 
 /**
