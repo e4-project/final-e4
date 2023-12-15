@@ -7,6 +7,7 @@ import Button from "@/components/common/Button";
 import { IResponseBoard } from "@/interfaces/study_board";
 import style from "./boardPost.module.css";
 import { loadStudyPostComment } from "@/axios/fetcher/studyPostComment/loadStudyPostComment";
+import LikeButton from "./like_button/LikeButton";
 
 interface Iprops {
   board: IResponseBoard;
@@ -39,11 +40,7 @@ const BoardPost = ({ board, onDelPost }: Iprops) => {
             />
           }
         </div>
-        <div className={style.post_reaction}>
-          <div>
-            <span>좋아요 icon {0}</span>
-          </div>
-        </div>
+        <LikeButton _id = {_id}/>
       </div>
       <div className={style.comment_container}>
         <div>
