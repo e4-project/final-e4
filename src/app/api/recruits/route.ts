@@ -43,13 +43,6 @@ export const POST = routeWrapperWithError(async (req: NextRequest) => {
     console.log(insertData);
     const recruitPost = await RecruitPost.create(insertData);
 
-    const memeber = await Member.find({ memember: user._id }).where({
-      studyId: recruitPost._id,
-    });
-    console.log({memeber})
-    //이미 존재하는 경우 409 status
-    if (memeber.length)
-      return NextResponse.json("이미 등록된 멤버입니다.", { status: 409 });
     const memeberInsertData = {
       member: user._id,
       studyId: recruitPost._id as string,
