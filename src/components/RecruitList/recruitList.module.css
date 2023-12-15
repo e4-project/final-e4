@@ -111,10 +111,17 @@
   border-radius: 5px !important;
 }
 
-/* 카테고리 */
+/* 카테고리(정렬) */
+
 .Kategorie {
   display: flex;
   width: 100%;
+}
+
+.selected {
+  background-color: #748FFC;
+  color: #fff;
+  outline: none;
 }
 
 .Kategorie ul {
@@ -129,15 +136,7 @@
   height: 40px;
   border: 1px solid #77787e;
   margin-right: 25px;
-  border-radius: 8px;
-}
-
-.Kategorie .Button {
-  width: 140px;
-  height: 40px;
-  border: 1px solid #77787e;
-  margin-right: 25px;
-  border-radius: 8px;
+  border-radius: 7px;
 }
 
 .card_wrap {

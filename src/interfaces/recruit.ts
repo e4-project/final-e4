@@ -37,4 +37,5 @@ export interface IResponseRecruitPost {
   studyName: string; //스터디 모임 이름
   content: string; // 스터디 소개
   weekGoal: [string]; // 스터디 주차별 목표
+  createdAt: string;
 }

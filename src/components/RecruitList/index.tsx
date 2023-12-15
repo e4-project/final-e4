@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { use, useCallback, useMemo, useState } from "react";
 import ImgSlider from "../ImgSlider";
 import { TfiSearch } from "react-icons/tfi";
 import Link from "next/link";
@@ -8,6 +8,7 @@ import style from "./recruitList.module.css";
 import dayjs from "dayjs";
 import { isDeadLine } from "@/utils/isDeadLine";
 import { useInView } from "react-intersection-observer";
+import FilteringBtnItem from "./FilteringBtnItem";
 
 /**
  * @name recruit
@@ -17,12 +18,13 @@ import { useInView } from "react-intersection-observer";
  */
 
 interface IProps {
-  data: IResponseRecruitPost[]
+  data: IResponseRecruitPost[];
 }
 
 const RecruitList = ({ data }: IProps) => {
-  const [keyword, setKeyword] = useState<string>("");
+  const [keyword, setKeyword] = useState<string>("");  
   const [search, setSearch] = useState<IResponseRecruitPost[]>([]);
+  
   const [ref, isView] = useInView({
     threshold: 0.5,
     initialInView: true,
@@ -44,12 +46,34 @@ const RecruitList = ({ data }: IProps) => {
         data.studyName.toLowerCase().includes(inputValue) ||
         data.materialType.toLowerCase().includes(inputValue) ||
         data.material.toLowerCase().includes(inputValue)
-      );
-      setSearch(filteredResults);
+    );
+    setSearch(filteredResults);
   };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
   };
+
+  //정렬 - 최신순
+  const onLatestKeyword = useCallback((active: boolean) => {
+    console.log({active})
+    const sortedData = data
+      .slice()
+      .sort(
+        (a, b) =>
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+      );
+      setSearch(sortedData);  
+    console.log("최신순", sortedData);
+    active ? setSearch(sortedData) : setSearch(data)
+  }, [data]);
+
+  const btnTextItem = useMemo(
+    () => [
+      { id: 1, text: "최신순", onHandler: onLatestKeyword},
+    ],
+    [onLatestKeyword]
+  );
+
   return (
     <div className={style.container}>
       {/* 배너 만들기 */}
@@ -87,118 +111,139 @@ const RecruitList = ({ data }: IProps) => {
           </div>
 
           <div className={style.Kategorie}>
-          <ul>
-            <Link href={"/"}>
-              <div>
-                <Button className={style.Button} size={18} text="최신순" />
-                {/* <Button className={style.Button} size={18} 
-                text="인기순" onClick={switchHanler} style={{ border: colorButton ? " 1px solid #77787e;" : "1px solid #748ffc;" }}/>
-                <Button className={style.Button} size={18} text="관심순" onClick={switchHanler} style={{ border: colorButton ? " 1px solid #77787e;" : "1px solid #748ffc;" }}/>
-                <Button className={style.Button} size={18} text="마감 임박순" onClick={switchHanler} style={{ border: colorButton ? " 1px solid #77787e;" : "1px solid #748ffc;" }}/> */}
-              </div>
-            </Link>
-          </ul>
-        </div>
+            <ul>
+              {btnTextItem.map((btn) => (
+                <FilteringBtnItem
+                  key={btn.id}
+                  {...btn}
+                />
+              ))}
+            </ul>
+          </div>
 
           <ul className={style.card_wrap}>
             {search.length ? (
               <>
-              {search?.map((item: IResponseRecruitPost) => (
-              // recruit 리스트 만들기 key는 부모한테만 줘야함
-              <li className={style.card} key={item._id}>
-                <Link
-                  href={`/recruit/${item._id}`}
-                  className={style.card_container}
-                >
-                  <div>
-                    <div className={style.card_top_container}>
-                        <div className={style.studyKeyword}>
+                {search?.map((item: IResponseRecruitPost) => (
+                  // recruit 리스트 만들기 key는 부모한테만 줘야함
+                  <li className={style.card} key={item._id}>
+                    <Link
+                      href={`/recruit/${item._id}`}
+                      className={style.card_container}
+                    >
+                      <div>
+                        <div className={style.card_top_container}>
+                          <div className={style.studyKeyword}>
+                            <div>
+                              {item.studyKeyword
+                                .split(", ")
+                                .map((item, idx) => (
+                                  <span
+                                    className={style.studyKeyword_back}
+                                    key={idx}
+                                  >
+                                    {item}
+                                  </span>
+                                ))}
+                            </div>
+                          </div>
                           <div>
-                            {item.studyKeyword.split(", ").map((item, idx) => (
-                              <span className={style.studyKeyword_back} key={idx}>{item}</span>
-                            ))}
+                            <div className={style.materialType}>
+                              <p>📖 {item.materialType}</p>
+                            </div>
+                          </div>
+
+                          <div className={style.material}>
+                            <p>{item.material}</p>
                           </div>
                         </div>
-                      <div>
-                        <div className={style.materialType}>
-                          <p>📖 {item.materialType}</p>
+                        <div className={style.card_bottom_container}>
+                          <div className={style.studyName}>
+                            <p>{item.studyName}</p>
+                          </div>
+
+                          <div className={style.card_date}>
+                            <p>
+                              ⏱ {item.duration} |{" "}
+                              {dayjs(item?.deadLine).format("MM/DD/YYYY")}{" "}
+                              {isDeadLine(new Date(item?.deadLine).getTime())
+                                ? "모집 마감"
+                                : "모집중"}
+                            </p>
+                          </div>
                         </div>
                       </div>
-
-                      <div className={style.material}>
-                        <p>{item.material}</p>
-                      </div>
-                    </div>
-                    <div className={style.card_bottom_container}>
-                      <div className={style.studyName}>
-                        <p>{item.studyName}</p>
-                      </div>
-
-                      <div className={style.card_date}>
-                        <p>                      
-                          ⏱ {item.duration} | {dayjs(item?.deadLine).format("MM/DD/YYYY")} {isDeadLine(new Date(item?.deadLine).getTime()) ? "모집 마감" : "모집중"}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </li>
-            ))}
+                    </Link>
+                  </li>
+                ))}
               </>
             ) : (
               <>
-              {data?.map((item: IResponseRecruitPost) => (
-              // recruit 리스트 만들기 key는 부모한테만 줘야함
-              <li className={style.card} key={item._id}>
-                <Link
-                  href={`/recruit/${item._id}`}
-                  className={style.card_container}
-                >
-                  <div>
-                    <div className={style.card_top_container}>
-                      <div className={style.studyKeyword}>
-                        <>
-                          {item.studyKeyword.split(", ").map((item, idx) => (
-                            <span className={style.studyKeyword_back} key={idx}>{item}</span>
-                          ))}
-                        </>
-                      </div>
-
+                {data?.map((item: IResponseRecruitPost) => (
+                  // recruit 리스트 만들기 key는 부모한테만 줘야함
+                  <li className={style.card} key={item._id}>
+                    <Link
+                      href={`/recruit/${item._id}`}
+                      className={style.card_container}
+                    >
                       <div>
-                        <div className={style.materialType}>
-                          <p>📖 {item.materialType}</p>
+                        <div className={style.card_top_container}>
+                          <div className={style.studyKeyword}>
+                            <>
+                              {item.studyKeyword
+                                .split(", ")
+                                .map((item, idx) => (
+                                  <span
+                                    className={style.studyKeyword_back}
+                                    key={idx}
+                                  >
+                                    {item}
+                                  </span>
+                                ))}
+                            </>
+                          </div>
+
+                          <div>
+                            <div className={style.materialType}>
+                              <p>📖 {item.materialType}</p>
+                            </div>
+                          </div>
+
+                          <div className={style.material}>
+                            <p>{item.material}</p>
+                          </div>
+                        </div>
+                        <div className={style.card_bottom_container}>
+                          <div className={style.studyName}>
+                            <p>{item.studyName}</p>
+                          </div>
+
+                          <div className={style.card_date}>
+                            <p>
+                              ⏱ {item.duration} |{" "}
+                              {dayjs(item?.deadLine).format("MM/DD/YYYY")}{" "}
+                              {isDeadLine(new Date(item?.deadLine).getTime())
+                                ? "모집 마감"
+                                : "모집중"}
+                            </p>
+                          </div>
                         </div>
                       </div>
-
-                      <div className={style.material}>
-                        <p>{item.material}</p>
-                      </div>
-                    </div>
-                    <div className={style.card_bottom_container}>
-                      <div className={style.studyName}>
-                        <p>{item.studyName}</p>
-                      </div>
-
-                      <div className={style.card_date}>
-                        <p>
-                        ⏱ {item.duration} | {dayjs(item?.deadLine).format("MM/DD/YYYY")} {isDeadLine(new Date(item?.deadLine).getTime()) ? "모집 마감" : "모집중"}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </li>
-            ))}
+                    </Link>
+                  </li>
+                ))}
               </>
             )}
           </ul>
         </div>
         {/* TOP 버튼 */}
         <div className={style.scroll}>
-          {!isView && <button className={style.top_button} onClick={onScrollTop}>
+          {!isView && (
+            <button className={style.top_button} onClick={onScrollTop}>
               <span></span>
               <span></span>
-            </button>}
+            </button>
+          )}
         </div>
       </div>
     </div>
