@@ -22,7 +22,6 @@
   ;
 }
 
-
 @media screen and (min-width: 992px) {
   .container {
     max-width: 100%;
@@ -39,7 +38,6 @@
     ;
   }
 }
-
 
 .a{
   grid-area: a;
@@ -64,16 +62,6 @@
 }
 
 /*  */
-.section_L {
-  background-color: white;
-  margin: 10px;
-  width: auto;
-  border-radius: 10px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  min-height: 200px;
-}
 
 .section {
   background-color: white;
@@ -86,15 +74,22 @@
   min-height: 200px;
   min-width: 300px;
 }
+
 .section_title {
   font-weight: 600;
   padding-bottom: 15px;
 }
 
-.section_item > p {
-  font-weight: 400;
-  width: 10px;
-  font-size: 18px;
+.section > a {
+  width: fit-content;
+}
+
+.section > p {
+  width: fit-content;
+}
+
+.section_item > a {
+  width: fit-content;
 }
 
 .section_item {
@@ -107,10 +102,15 @@
 }
 
 .study_name{
+  padding: 7px 0;
+}
+
+.wrap{
   flex-grow: 1;
-  margin-bottom: 5px;
-  font-size: 18px;
-  overflow: auto;
+}
+
+.wrap > a {
+  width: fit-content;
 }
 
 .applicants_btn{
