@@ -83,3 +83,15 @@
     border-radius: 5px;
     cursor:pointer;
 }
+
+.apply_approved_btn {
+    width: 70.5px;
+    text-align: center;
+    margin: 5px;
+    padding: 4px 12px;
+	font-weight: 400;
+    font-size: 12px;
+    background-color: #f3f3f3;
+    color: #bfbfbf;
+    border: 1px #fff4f4 solid;
+}

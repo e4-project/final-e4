@@ -15,15 +15,17 @@ interface IProps {
 }
 
 const MyStudy = ({ data }: IProps) => {
-  console.log({ data });
-  data?.myAppliedStudy?.map((item: any) => console.log(item));
+  const myAppliedstudy = data?.myAppliedStudy?.map((info: any )=> {const {studyId: {_id, studyName}} = info; return {_id, studyName}})
+  const myCreatedStudy = data?.myCreatedStudy?.map((info: any)=> {const {_id, studyName} = info; return {_id, studyName}})
+
+  const studyRoomInfo = [...myAppliedstudy, ...myCreatedStudy];
   return (
     <div className={style.bg}>
       <div className={style.container}>
         <div className={style.top_container}>
           <div className={style.section}>
             <p className={style.section_title}>참여 신청한 스터디</p>
-            {data?.myAppliedStudy.length ? (
+            {data?.myAppliedStudy?.length ? (
               data?.myAppliedStudy?.map((item: any) => (
                 <Apply key={item._id} {...item} />
               ))
@@ -37,17 +39,18 @@ const MyStudy = ({ data }: IProps) => {
           <div className={style.section}>
             <p className={style.section_title}>좋아요한 모집글❤</p>
             {/* 좋아요한 recruit post 개수 만큼 map */}
-            <Link href={"/해당recruit post링크"}>
-              <p className={style.section_item}>recruit post의 studyName</p>
-            </Link>
+            {/* <Link href={"/해당recruit post링크"}>
+              <span></span>
+            </Link> */}
+              <p className={style.section_item}>아직 좋아요한 스터디가 없습니다.</p>
           </div>
         </div>
 
         <div className={style.bottom_container}>
           <div className={style.section}>
             <p className={style.section_title}>내가 만든 스터디(모집글)🖊</p>
-            {data?.myCreatedStudy.length ? (
-              data?.myCreatedStudy.map((study: any) => (
+            {data?.myCreatedStudy?.length ? (
+              data?.myCreatedStudy?.map((study: any) => (
                 <MyRecruitPost key={study._id} data={study} />
               ))
             ) : (
@@ -57,14 +60,16 @@ const MyStudy = ({ data }: IProps) => {
             )}
           </div>
           <div className={style.section}>
-            <p className={style.section_title}>참여 중인 스터디</p>
-            {/* 참여중인 스터디 개수 만큼 map*/}
-            {/* 이 링크를 통해 스터디페이지로 이동 */}
-            <Link href={"/해당 스터디페이지 링크"}>
-              <p className={style.section_item}>
-                내가 leader이거나 member가 된 study의 studyName
-              </p>
-            </Link>
+            <p className={style.section_title}>진행 중인 스터디</p>
+            {/* 이 링크를 통해 스터디페이지(/study/study_id)로 이동 */}
+            {/*  */}
+            {studyRoomInfo.map((study) => (
+              <Link key={study?._id} href={`/study/${study?._id}`}>
+                <span className={style.section_item}>
+                  {study?.studyName}
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
       </div>
@@ -92,13 +97,17 @@ function MyRecruitPost(props: any) {
 }
 
 function Apply(props: any) {
-  const { studyId: study } = props;
+  console.log({props})
+  const { studyId: study, recognition } = props;
+  
   return (
     <div className={style.section_item}>
       <Link className={style.study_name} href={`/recruit/${study._id}`}>
         {study.studyName}
       </Link>
-      <ApplyCancel {...props} />
+      {
+        recognition !== '승인' ? <ApplyCancel {...props} /> : <p className={style.apply_approved_btn}>승인 완료</p>
+      }
     </div>
   );
 }
