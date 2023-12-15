@@ -7,7 +7,7 @@ export default function ApplyCancel(props: any) {
   const [showAlert, setShowAlert] = useState(false);
   const clickAlert = () => setShowAlert(!showAlert);
   const onApplicant = async () => {
-    alert('신청 취소됨')
+    clickAlert()
   }
   return (
     <div>
