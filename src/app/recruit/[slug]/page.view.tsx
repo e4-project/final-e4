@@ -147,7 +147,7 @@ export default function StudyPageView({ data }: IProps) {
                     type="button"
                     onClick={() => {
                       router.push(
-                        `/mystudy/${data.leader?._id}/applicants/${data.studyName}`
+                        `/mystudy/me/${data.leader?._id}/applicants/${data.studyName}`
                       );
                     }}
                   >
