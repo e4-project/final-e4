@@ -39,7 +39,9 @@ const MyStudy = ({ data }: IProps) => {
           <h2 className={style.section_title}>좋아요</h2>
           {/* 좋아요한 recruit post 개수 만큼 map */}
           {/* <Link href={"/해당recruit post링크"}>
-            <span></span>
+            <span className={`${style.section_item} ${style.study_name}`}>
+              {study?.studyName}
+            </span>
           </Link> */}
             <p className={style.section_item}>아직 좋아요한 스터디가 없습니다.</p>
         </div>
@@ -61,7 +63,7 @@ const MyStudy = ({ data }: IProps) => {
           {/*  */}
           {studyRoomInfo.map((study) => (
             <Link key={study?._id} href={`/study/${study?._id}`}>
-              <span className={style.section_item}>
+              <span className={`${style.section_item} ${style.study_name}`}>
                 {study?.studyName}
               </span>
             </Link>
@@ -75,9 +77,11 @@ function MyRecruitPost(props: any) {
   const { data } = props;
   return (
     <div className={style.section_item}>
-      <Link className={style.study_name} href={`/recruit/${data._id}`}>
-        <p>{data.studyName}</p>
-      </Link>
+      <div className={style.wrap}>
+        <Link href={`/recruit/${data._id}`}>
+          {data.studyName}
+        </Link>
+      </div>
       <Link
         className={style.applicants_btn}
         // path: /mystudy/me/:userid(recruitPost leader)/applicants/:recruitid
@@ -97,9 +101,11 @@ function Apply(props: any) {
   
   return (
     <div className={style.section_item}>
-      <Link className={style.study_name} href={`/recruit/${study._id}`}>
-        {study.studyName}
-      </Link>
+      <div className={style.wrap}>
+        <Link href={`/recruit/${study._id}`}>
+          {study.studyName}
+        </Link>
+      </div>
       {
         recognition !== '승인' ? <ApplyCancel {...props} /> : <p className={style.apply_approved_btn}>승인 완료</p>
       }

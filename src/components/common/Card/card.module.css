@@ -1,5 +1,6 @@
 .card_container {
-  padding: 15px 10px;
+  padding: 15px 0;
+  border-bottom: 1px solid #E3E5EF;
 }
 
 .cards_header {
@@ -16,15 +17,18 @@
 
 .card_header_left .name {
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .card_header_left .time {
   font-size: 13px;
+  font-weight: 400;
 }
 
 
 .card_contents_wrap {
   padding: 5px 0;
   margin-top: 15px;
+  font-weight: 400;
+  font-size: 18px;
 }
