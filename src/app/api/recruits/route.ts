@@ -4,6 +4,7 @@ import { routeWrapperWithError } from "@/utils/routeWrapperWithError";
 import User from "@/models/user";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import Member from "@/models/member";
 
 /* 모집글 모아보기 */
 export const GET = routeWrapperWithError(async (req: NextRequest) => {
@@ -14,7 +15,7 @@ export const GET = routeWrapperWithError(async (req: NextRequest) => {
 export const POST = routeWrapperWithError(async (req: NextRequest) => {
   let session = await getServerSession(authOptions);
   const userName = session?.user?.name;
-  console.log(userName)
+  console.log(userName);
   const data = await req.json();
   if (
     !data.content ||
@@ -33,14 +34,23 @@ export const POST = routeWrapperWithError(async (req: NextRequest) => {
     );
   }
   if (session) {
-    console.log(userName)
+    console.log(userName);
     const user = await User.findOne({ name: userName });
     const insertData = {
       ...data,
       leader: user._id,
-    }
+    };
     console.log(insertData);
-    const result = await RecruitPost.create(insertData);
+    const recruitPost = await RecruitPost.create(insertData);
+
+    const memeberInsertData = {
+      member: user._id,
+      studyId: recruitPost._id as string,
+      rel: "leader",
+    };
+    const result = await Member.create(memeberInsertData);
+    console.log({ member: result });
+
     return NextResponse.json(result);
   }
 });

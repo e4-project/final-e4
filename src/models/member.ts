@@ -11,13 +11,16 @@ const MemberSchema = new Schema<IMemberEntity>(
     member: {
       type: Schema.Types.ObjectId,
       require: true,
-      unique: true,
       ref: "User",
     },
     rel: {
       type: String,
       default: "common",
-    }
+    },
+    studyId: {
+      type: Schema.Types.ObjectId,
+      ref: "RecruitPost",
+    },
   },
   {
     timestamps: true,

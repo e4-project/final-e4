@@ -1,5 +1,4 @@
 import Applicant from "@/models/applicant";
-import User from "@/models/user";
 import { routeWrapperWithError } from "@/utils/routeWrapperWithError";
 import { NextRequest, NextResponse } from "next/server";
 import Member from "@/models/member";
@@ -12,7 +11,6 @@ export const POST = routeWrapperWithError(
   async (req: NextRequest, { params }: { params: { userid: string } }) => {
     const { studyId, message } = await req.json();
     const userId = params.userid;
-    console.log({ userId });
     if (!studyId || !message) {
       return NextResponse.json(
         { isOk: false, message: "데이터가 비어있습니다." },
@@ -24,7 +22,7 @@ export const POST = routeWrapperWithError(
       studyId,
       message,
     });
-    console.log(savedApplicant._id)
+    console.log(savedApplicant._id);
     const savedRecruitPost = await RecruitPost.findByIdAndUpdate(studyId, {
       $push: { applicants: userId },
     });
@@ -36,26 +34,33 @@ export const POST = routeWrapperWithError(
 //  모집글 참여 신청 승인 상태: "승인" | "거절"
 export const PATCH = routeWrapperWithError(
   async (req: NextRequest, { params }: { params: { userid: string } }) => {
-    const { recognition } = await req.json(); // "승인" 또는 "거절"
+    const { studyId, recognition } = await req.json(); // "승인" 또는 "거절"
     const userId = params.userid;
-    console.log({recognition, userId})
-  
-    // const user = await User.findOne({ name: userName });
-    const applicants = await Applicant.findOne({ applicant: userId });
-    applicants.updateOne({
+    // 신청자(userId), studyId로 신청 정보 불러와서 recognition수정
+    const applicants = await Applicant.findOne({ applicant: userId }).where({
+      studyId,
+    });
+    await applicants.updateOne({
       $set: {
         recognition,
       },
     });
+
     /* member:UserId, studyId */
+    const member = await Member.findOne({ memember: userId }).where(studyId);
+    //이미 존재하는 경우 409 status
+
+    if (member.length) {
+      return NextResponse.json("이미 등록된 멤버입니다.", { status: 409 });
+    }
     if (recognition === "승인") {
       const insertData = {
-        member: applicants.applicant,
-        studyId: applicants.studyId,
+        member: userId,
+        studyId: studyId as string,
       };
       const result = await Member.create(insertData);
       console.log({ member: result });
     }
-    return NextResponse.json("승인되었을까??");
+    return NextResponse.json("승인 완료");
   }
 );
