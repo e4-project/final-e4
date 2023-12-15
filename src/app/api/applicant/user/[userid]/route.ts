@@ -24,20 +24,24 @@ export const POST = routeWrapperWithError(
       studyId,
       message,
     });
+    console.log(savedApplicant._id)
     const savedRecruitPost = await RecruitPost.findByIdAndUpdate(studyId, {
       $push: { applicants: userId },
     });
+
     return NextResponse.json({ ...savedApplicant, savedRecruitPost });
   }
 );
 
 //  모집글 참여 신청 승인 상태: "승인" | "거절"
 export const PATCH = routeWrapperWithError(
-  async (req: NextRequest, { params }: { params: { username: string } }) => {
+  async (req: NextRequest, { params }: { params: { userid: string } }) => {
     const { recognition } = await req.json(); // "승인" 또는 "거절"
-    const userName = params.username;
-    const user = await User.findOne({ name: userName });
-    const applicants = await Applicant.findOne({ applicant: user._id });
+    const userId = params.userid;
+    console.log({recognition, userId})
+  
+    // const user = await User.findOne({ name: userName });
+    const applicants = await Applicant.findOne({ applicant: userId });
     applicants.updateOne({
       $set: {
         recognition,
@@ -52,5 +56,6 @@ export const PATCH = routeWrapperWithError(
       const result = await Member.create(insertData);
       console.log({ member: result });
     }
+    return NextResponse.json("승인되었을까??");
   }
 );

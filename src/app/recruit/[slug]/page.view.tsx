@@ -24,7 +24,6 @@ interface IProps {
   data: IResponseRecruitPost;
 }
 export default function StudyPageView({ data }: IProps) {
-  console.log({ data });
   const [message, setMessage] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [isApplicant, setIsApplicant] = useState<null | boolean>(null);
