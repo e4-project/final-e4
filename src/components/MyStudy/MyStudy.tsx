@@ -22,55 +22,50 @@ const MyStudy = ({ data }: IProps) => {
   return (
     <div className={style.bg}>
       <div className={style.container}>
-        <div className={style.top_container}>
-          <div className={style.section}>
-            <p className={style.section_title}>참여 신청한 스터디</p>
-            {data?.myAppliedStudy?.length ? (
-              data?.myAppliedStudy?.map((item: any) => (
-                <Apply key={item._id} {...item} />
-              ))
-            ) : (
-              <div className={style.section_item}>
-                아직 신청한 스터디가 없습니다.
-              </div>
-            )}
-          </div>
-
-          <div className={style.section}>
-            <p className={style.section_title}>좋아요한 모집글❤</p>
-            {/* 좋아요한 recruit post 개수 만큼 map */}
-            {/* <Link href={"/해당recruit post링크"}>
-              <span></span>
-            </Link> */}
-              <p className={style.section_item}>아직 좋아요한 스터디가 없습니다.</p>
-          </div>
+        <h1 className={style.e}>스터디 관리</h1>
+        <div className={`${style.section} ${style.d}`}>
+          <h2 className={style.section_title}>참여 신청 내역</h2>
+          {data?.myAppliedStudy?.length ? (
+            data?.myAppliedStudy?.map((item: any) => (
+              <Apply key={item._id} {...item} />
+            ))
+          ) : (
+            <div className={style.section_item}>
+              아직 신청한 스터디가 없습니다.
+            </div>
+          )}
         </div>
-
-        <div className={style.bottom_container}>
-          <div className={style.section}>
-            <p className={style.section_title}>내가 만든 스터디(모집글)🖊</p>
-            {data?.myCreatedStudy?.length ? (
-              data?.myCreatedStudy?.map((study: any) => (
-                <MyRecruitPost key={study._id} data={study} />
-              ))
-            ) : (
-              <div className={style.section_item}>
-                아직 등록한 스터디가 없습니다.
-              </div>
-            )}
-          </div>
-          <div className={style.section}>
-            <p className={style.section_title}>진행 중인 스터디</p>
-            {/* 이 링크를 통해 스터디페이지(/study/study_id)로 이동 */}
-            {/*  */}
-            {studyRoomInfo.map((study) => (
-              <Link key={study?._id} href={`/study/${study?._id}`}>
-                <span className={style.section_item}>
-                  {study?.studyName}
-                </span>
-              </Link>
-            ))}
-          </div>
+        <div className={`${style.section} ${style.b}`}>
+          <h2 className={style.section_title}>좋아요</h2>
+          {/* 좋아요한 recruit post 개수 만큼 map */}
+          {/* <Link href={"/해당recruit post링크"}>
+            <span></span>
+          </Link> */}
+            <p className={style.section_item}>아직 좋아요한 스터디가 없습니다.</p>
+        </div>
+        <div className={`${style.section} ${style.c}`}>
+          <h2 className={style.section_title}>작성한 모집글</h2>
+          {data?.myCreatedStudy?.length ? (
+            data?.myCreatedStudy?.map((study: any) => (
+              <MyRecruitPost key={study._id} data={study} />
+            ))
+          ) : (
+            <div className={style.section_item}>
+              아직 등록한 스터디가 없습니다.
+            </div>
+          )}
+        </div>
+        <div className={`${style.section} ${style.a}`}>
+          <h1 className={style.section_title}>공부하러 가기 👇</h1>
+          {/* 이 링크를 통해 스터디페이지(/study/study_id)로 이동 */}
+          {/*  */}
+          {studyRoomInfo.map((study) => (
+            <Link key={study?._id} href={`/study/${study?._id}`}>
+              <span className={style.section_item}>
+                {study?.studyName}
+              </span>
+            </Link>
+          ))}
         </div>
       </div>
     </div>
