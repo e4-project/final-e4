@@ -13,16 +13,18 @@
 }
 
 .no_comment {
-  margin: 11px 8px;
+  /* margin: 11px 8px; */
   font-size: 18px;
+  font-weight: 400;
 }
 
 .comment_display {
-  padding: 0 10px;
+  padding-bottom: 10px;
   display: flex;
   gap: 8px;
   font-size: 18px;
   color: #748ffc;
+  font-weight: 400
   ;
 }
 
