@@ -17,6 +17,7 @@ export const GET = routeWrapperWithError(
   async (req: NextRequest, { params }: { params: { userid: string } }) => {
     console.log("실행")
     const userId = params.userid;
+    console.log(userId)
     const user = await User.findById(userId);
     const createdMyStudy = await RecruitPost.find({ leader: user._id }, {studyName: 1, leader:1}); //내가 만든 스터디
     // const myJoinedStudy = await Member.find({leader: userId}) // 참여중인 스터디

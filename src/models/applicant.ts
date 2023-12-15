@@ -4,7 +4,7 @@ interface IApplicantEntity {
   applicant: Types.ObjectId;
   studyId: Types.ObjectId;
   message: string;
-  recognition: "대기" | "승인" | "거절";
+  recognition: "대기" | "승인";
 }
 //applicant
 const ApplicantSchema = new Schema<IApplicantEntity>(
@@ -25,7 +25,8 @@ const ApplicantSchema = new Schema<IApplicantEntity>(
       require: true,
       trim: true,
     },
-    // 신청 상태: 대기: 승인 | 거절
+    // 신청 상태: 대기: 승인
+    // 거절은 삭제하기로 함
     recognition: {
       type: String,
       default: "대기",

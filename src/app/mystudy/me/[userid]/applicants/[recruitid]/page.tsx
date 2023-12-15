@@ -1,17 +1,19 @@
 import React from "react";
 import ApplicantsView from "./page.view";
+import { loadApplicantOfMyStudyApi } from "@/axios/fetcher/applicant/loadMyApplicantApi";
 
 /* 
    path: /mystudy/me/:userid/applicants/:recruitid
-   ex) /mystudy/me/657968bdd2d684ad75a2a616/applicants/6576feeeea262d2cf9fd9a8d
 */
 const Page = async ({ params }: { params: { userid: string, recruitid: string } }) => {
-  console.log({u: params.userid, ri: params.recruitid})
+  const userId = params.userid;
+  const recruitId = params.recruitid
   // 스터디 참여 신청자
-
+  console.log("스터디 참여 신청자")
+  const data = await loadApplicantOfMyStudyApi(userId, recruitId)
   return (
     <div>
-      <ApplicantsView />
+      <ApplicantsView data={data}/>
     </div>
   );
 };

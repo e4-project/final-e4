@@ -14,7 +14,7 @@ export const GET = routeWrapperWithError(
     const appliedStudy = await Applicant.find({ applicant: userId }).populate(
       "studyId",
       "studyName"
-    );
+    )
     return NextResponse.json(appliedStudy);
   }
 );

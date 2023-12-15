@@ -51,7 +51,7 @@ const Applicants = ({ data }: IProps) => {
             <p className={style.font_bold} style={{ marginBottom: 20 }}>
               승인된 스터디 멤버
             </p>
-            {(data.applicants.length &&
+            {data.applicants.length ? (
               data.applicants.map(
                 (user) =>
                   user.recognition === "승인" && (
@@ -72,10 +72,9 @@ const Applicants = ({ data }: IProps) => {
                       <p key={user.applicant._id}>{user.applicant.name}</p>
                     </div>
                   )
-              )) || (
-              <div className={style.section_item}>
-                아직 승인된 신청자가 없습니다.
-              </div>
+              )
+            ) : (
+              <p>아직 승인된 유저가 없습니다.</p>
             )}
           </div>
         </div>
@@ -84,17 +83,19 @@ const Applicants = ({ data }: IProps) => {
           <h3 className={style.section_title}>스터디 참여 신청자</h3>
           <div className={style.applicant_list}>
             {/* 대기 */}
-            {(data.applicants.length &&
+            {data.applicants.length ? (
               data.applicants.map(
                 (applicant) =>
-                  applicant.recognition === "대기" && (
+                  applicant.recognition === "대기" ? (
                     <Applicant key={applicant._id} data={applicant} />
-                  )
-              )) || (
+                  ) : <div key={applicant._id}>대기아님</div>
+              )
+            ) : (
               <div className={style.section_item}>
                 아직 스터디에 참여한 신청자가 없습니다.
               </div>
             )}
+            {/* <Applicant userName={applicantData.userName} message={applicantData.message} /> */}
           </div>
         </div>
       </div>
