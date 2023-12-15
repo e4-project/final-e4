@@ -17,6 +17,7 @@ interface IRecruitPostEntity {
   studyName: string; //스터디 모임 이름
   content: string; // 스터디 소개
   weekGoal: Object; // 스터디 진행사항
+  start: boolean;
 }
 
 const RecruitPostSchema = new Schema<IRecruitPostEntity>(
@@ -74,6 +75,11 @@ const RecruitPostSchema = new Schema<IRecruitPostEntity>(
         content: String,
       },
     ],
+    start: {
+      // 모집 맴버가 다 모이면 true, 이걸로 스터디 페이지 활성화
+      type: Boolean,
+      default: false,
+    }
   },
   {
     timestamps: true,
