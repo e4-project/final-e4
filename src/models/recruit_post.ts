@@ -17,6 +17,7 @@ interface IRecruitPostEntity {
   studyName: string; //스터디 모임 이름
   content: string; // 스터디 소개
   weekGoal: Object; // 스터디 진행사항
+  studyNoteContents: Object; // 스터디 노트 정보
 }
 
 const RecruitPostSchema = new Schema<IRecruitPostEntity>(
@@ -72,6 +73,13 @@ const RecruitPostSchema = new Schema<IRecruitPostEntity>(
         _id: false,
         week: String,
         content: String,
+      },
+    ],
+    studyNoteContents: [
+      {
+        _id: false,
+        week: String,
+        contents: String,
       },
     ],
   },

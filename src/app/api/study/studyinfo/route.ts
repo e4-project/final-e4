@@ -1,35 +1,30 @@
 import { NextResponse, NextRequest } from "next/server";
 import connectDB from "@/config/db/connectDB";
-import studyInfo from "@/models/recruit_post";
+import RecruitPost from "@/models/recruit_post";
+import { routeWrapperWithError } from "@/utils/routeWrapperWithError";
+import User from "@/models/user";
 
-export const GET = async (req: NextRequest) => {
-    try {
-        await connectDB();
-        const data = await studyInfo.find();;
-        console.log(data)
-        return NextResponse.json({data});
-    } catch (error) {
-        console.error(error);
-        return NextResponse.json(error, { status: 500 });
-    }
-    };
+export const POST = routeWrapperWithError(async (req: NextRequest, { params }: { params: { id: string } }) => {
+    const data = await req.json();
+    console.log({params});
+    const { week, contents } = data;
 
-    export const POST = async (req: NextRequest) => {
-    try {
-        await connectDB();
-        const { duration, material} = await req.json();
+        try {
 
-        if (!duration || !material) {
-        return NextResponse.json(
-            { isOk: false, message: "데이터가 비어있습니다." },
-            { status: 404 }
+        const studyNote = await RecruitPost.findOneAndUpdate(
+            { _id: params.id, "studyNoteContents.week": week },
+            { $set: { "studyNoteContents.$.contents": contents } },
+            { new: true }
         );
-        }
 
-        // console.log(user);
-        const saveData = await studyInfo.create({ duration, material });
-        return NextResponse.json(saveData);
-    } catch (error) {
-        return NextResponse.json(error, { status: 500 });
+        if (studyNote) {
+            console.log("업데이트했습니다:", studyNote);
+            return NextResponse.json(studyNote);
+        } else {
+            console.log("찾지 못했습니다.");
+        }
+        } catch (error) {
+        console.error("데이터 업데이트 중 에러", error);
+        return NextResponse.json({ isOk: false, message: "데이터 업데이트 중 에러" }, { status: 500 });
     }
-};
+});

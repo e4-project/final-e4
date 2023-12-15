@@ -45,6 +45,7 @@ const Page = () => {
           study_content_input: weekGoal.content,
         }));
         setInputs(newInputs);
+
       } catch (error) {
         console.error(
           "There has been a problem with your fetch operation:",
@@ -67,7 +68,7 @@ const Page = () => {
       [`${index + 1}주차`]: input.study_content_input,
     }));
 
-    // 데이터베이스에 저장하는 로직
+    // 학습노트 작성하는 데이터베이스에 저장하는 로직
     try {
       const response = await fetch("/api/studynote", {
         method: "POST",

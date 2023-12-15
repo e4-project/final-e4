@@ -1,13 +1,11 @@
 "use client";
 import React, {useState, useEffect} from 'react';
 import style from './study.module.css';
-import { studyInfoApi } from '@/axios/fetcher/studyhome/studyInfoApi';
 import { useRouter, usePathname } from 'next/navigation';
 import { useParams } from 'next/navigation';
-import Button from '@/components/common/Button';
 
 const LeftContainer = () => {
-    const pathname = usePathname();
+    const pathname = usePathname(); // useRouter 쓰면 에러가 됨 그래서 usePathname 사용
     const [data, setData] = useState<any>(null);
     const {id} = useParams<{id: string}>()||{};
 
@@ -15,12 +13,14 @@ const LeftContainer = () => {
         if (pathname) {
             const fetchData = async () => {
             try {
+                // 데이터 가져옴
                 const result = await fetch(`/api/study/studyinfo/${id}`);
                 console.log(result);
 
                 const data = await result.json();
                 console.log(data);
 
+                // 상태 업데이트
                 if (data) {
                     setData({
                         material: data.material,
@@ -37,6 +37,13 @@ const LeftContainer = () => {
             fetchData();
         }
     }, [pathname, id]);
+    
+    // 멤버 돌려서 뿌리기
+    const renderApplicants = () => {
+        return data?.applicants.map((member: { name: string }, index: number) => (
+            <span key={index}>{member.name}</span>
+        ));
+    };
 
     return (
         <div className={style.left_container}>
@@ -53,7 +60,7 @@ const LeftContainer = () => {
                         </a>
                     </p>
                     <p>스터디 기간 <span>{data?.duration}</span></p>
-                    <p>스터디 멤버 <span>{data?.applicants}</span></p>
+                    <p>스터디 멤버{renderApplicants()}</p>
                 </div>
             </div>
         </div>
