@@ -1,14 +1,15 @@
 .textarea_interface {
   width: 100%;
-  padding: 5px;
+  padding: 10px;
   outline: none;
   font-size: 16px;
   border-radius: 8px;
-  border: solid 1px #c4c4c4;
+  border: solid 1px #E3E5EF;
+  background-color: #FAFBFF;
   resize: none;
   overflow-y: hidden;
 }
 
 .textarea_interface:focus {
-  border: solid 1px #8b8888;
+  border: solid 1px #E3E5EF;
 }
