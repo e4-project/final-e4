@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import style from "./note.module.css";
 import MyEditorComponent from "./page.write";
 import Button from "@/components/common/Button";
-import { studyNoteApi } from "@/axios/fetcher/note/study_note";
+import { useParams } from 'next/navigation';
 
 /**
  * @name note
@@ -13,27 +13,14 @@ import { studyNoteApi } from "@/axios/fetcher/note/study_note";
  * @returns number
  */
 
-interface StudyNote {
-  _id: string;
-  author: {
-    _id: string;
-    name: string;
-    image: string;
-  };
-  studyId: {
-    _id: string;
-    leader: string;
-    studyKeyword: string;
-  };
-  week: string;
-  contents: string;
-}
-
 const Page = () => {
   const [selectWeek, setSelectWeek] = useState<string>("1"); // 현재 선택된 주차 상태
   const [onEditor, setOnEditor] = useState(false);
-  const [studyNote, setStudyNote] = useState<StudyNote | null>(null);
   const [weekCount, setWeekCount] = useState(5); // 주차의 수를 상태로 관리
+  const [studyMembers, setStudyMembers] = useState<string[]>([]);
+  const {id} = useParams<{id: string}>()||{};
+  const [editorContent, setEditorContent] = useState("");
+
   const onWeekChange = (event: any) => {
     setSelectWeek(event.target.value);
   };
@@ -46,25 +33,37 @@ const Page = () => {
     setOnEditor(false);
   };
 
-  /* useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await studyNoteApi();
-                console.log(data);
-    
-                if (data && data.author) {
-                    const authorName = data.author.name || '';
-                    setStudyNote({ ...data, author: { ...data.author, name: authorName } });
-                } else {
-                    setStudyNote(null);
-                }
-            } catch (error) {
-                console.error('스터디 노트를 불러올 수 없습니다.', error);
-            }
-        };
-    
-        fetchData();
-    }, []); */
+  const onSaveEditorContent = async (content : any) => {
+    setEditorContent(content);
+    setOnEditor(false);
+  };
+
+  useEffect(() => {
+    const fetchStudyMembers = async () => {
+      try {
+        const result = await fetch(`/api/study/studyinfo/${id}`);
+        const data = await result.json();
+        console.log(data);
+
+        if (data && data.weekCount) {
+          setWeekCount(data.weekCount);
+        }
+
+        if (data && data.applicants) {
+          setStudyMembers(data.applicants.map((applicants: any) => applicants.name));
+        }
+
+        if (data && data.weekGoal) {
+          setWeekCount(data.weekGoal.length);
+          setSelectWeek(`${data.weekGoal.length}주차`);
+        }
+      } catch (error) {
+        console.error('스터디 멤버 정보를 가져오는 중 에러 발생', error);
+      }
+    };
+
+    fetchStudyMembers();
+  }, [id]);
 
   return (
     <div className={style.note_container}>
@@ -104,15 +103,20 @@ const Page = () => {
       </div>
       <div className={style.view_note}>
         {onEditor ? (
-          <MyEditorComponent />
+          <MyEditorComponent onSave={onSaveEditorContent}/>
         ) : (
           <div className={style.member_note}>
-            <p className={style.member_list}>
-              <span style={{ color: "#748ffc" }}>
-                {studyNote?.author?.name}
-              </span>
-              의 공부 노트
-            </p>
+            {studyMembers.map((member, index) => (
+              <div key={index}>
+                <p className={style.member_list}>
+                  <span style={{ color: "#748ffc" }}>
+                    {member}
+                  </span>
+                  의 공부 노트
+                </p>
+                <p>{editorContent}</p>
+              </div>
+            ))}
           </div>
         )}
       </div>
