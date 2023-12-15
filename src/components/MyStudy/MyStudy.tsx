@@ -20,7 +20,7 @@ const MyStudy = ({ data }: IProps) => {
   return (
     <div className={style.bg}>
       <div className={style.container}>
-        <h1 className={style.e}>마이 스터디</h1>
+        <h1 className={style.e}>스터디 관리</h1>
           
           <div className={`${style.section} ${style.a}`}>
             <h1 className={style.section_title}>공부하러 가기 👇</h1>
