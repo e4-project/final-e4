@@ -1,8 +1,8 @@
-.intro_container{
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    height: 100%;
-    margin-left: 56px;
-    margin-top: 30px;
+.container {
+  display: flex;
+  justify-content: center;
+}
+.intro_container {
+  margin-top: 2rem;
+  width: 86%;
 }

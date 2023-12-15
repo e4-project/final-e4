@@ -9,7 +9,16 @@ const page = async (props: any) => {
   );
   if (post) {
     const result = JSON.parse(JSON.stringify(post.toObject()));
-    return <div dangerouslySetInnerHTML={{ __html: result.content }} />;
+    return (
+      <>
+        <div className={style.container}>
+          <div
+            className={style.intro_container}
+            dangerouslySetInnerHTML={{ __html: result.content }}
+          />
+        </div>
+      </>
+    );
   } else {
     return <div>Post not found</div>;
   }
