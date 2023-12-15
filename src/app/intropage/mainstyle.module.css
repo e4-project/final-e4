@@ -151,8 +151,8 @@
   animation-delay: 2s;
 }
 @keyframes imgmove {
-  from{opacity: 0; top: -800px;}
-  to{opacity: 1; top: -600px;}
+  from{opacity: 0; top: -600px;}
+  to{opacity: 1; top: -400px;}
 }
 .img_sheet2{
   opacity: 0;
@@ -167,7 +167,7 @@
 }
 @keyframes imgmove2 {
   from{opacity: 0; top: 0px;}
-  to{opacity: 1; top: -550px;}
+  to{opacity: 1; top: -350px;}
 }
 .img_sheet > li > img {
   border-radius: 10px;
@@ -405,4 +405,87 @@
   0% { width: 0; background-color: #fff; left: 0; display: grid;}
   90% { width: 200px; display: grid;}
   100% { width: 0; display: none; left: auto; right: 0; background-color: black;}
+}
+
+/* 모바일 */
+
+@media only screen and (max-width:767px) {
+  /* area1 */
+  .text_anime {
+    top: 0px;
+    left: 120px;
+    scale: 90%;
+  }
+  
+  .text_area > span {
+    margin-top: 440px;
+  }
+  .text_area{
+    width: 380px;
+    scale: 94%;
+  }
+  @keyframes appear1 {
+    from {opacity: 0; top: -240px; left: -200px;}
+    to {opacity: 1; top: -240px; left: 2%;}
+  }
+  .img_sheet{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 50px;
+  }
+  .img_sheet2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 50px;
+  }
+  .img_sheet > li > img{
+    width: 140px;
+    height: 180px;
+  }
+  .img_sheet2 > li > img{
+    width: 140px;
+    height: 180px;
+  }
+  @keyframes imgmove {
+    from{opacity: 0; top: -200px; right: -100px;}
+    to{opacity: 1; top: -200px; left: -120px;}
+  }
+  @keyframes imgmove2 {
+    from{opacity: 0; top: 0px; left: -400px;}
+    to{opacity: 1; top: 0px; left: -120px;}
+  }
+  /* area2 */
+  .text_anime2{
+    top: 0;
+    left: -110px;
+  }
+  .text_area2{
+    width: 320px;
+  }
+  .text_area2 > span {
+    margin-top: 320px;
+  }
+  @keyframes appear2 {
+    from {opacity: 0; right: 0px;}
+    to {opacity: 1; right: 40px;}
+  }
+  .study_img{
+    width: 360px;
+  }
+
+  @keyframes imgmove3 {
+    from{opacity: 0; left: 10px; top: -40px; }
+    to{opacity: 1; left: 10px; top: -40px; }
+  }
+  /* area3 */
+  .area3 > .sheet {
+    transform: rotate(90deg);
+  }
+  .sheet > li {
+    height: 380px;
+  }
 }

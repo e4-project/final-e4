@@ -5,7 +5,6 @@
   height: 100vh;
   background-color: #f8f8f8;
   justify-content: center;
-
 }
 
 .profile_container {
@@ -21,26 +20,27 @@
   border-radius: 10px;
 }
 .profile_img {
-  width: 70px;
-  height: 70px;
+  width: 100px;
+  height: 100px;
   border-radius: 8px;
   overflow: hidden;
+  object-fit: cover;
 }
-.profile_img img {
+.profile_image {
   object-fit: cover;
   width: 100%;
-  height: auto;
+  height: 100%;
 }
-.img_edit_btn{
+.img_edit_btn {
   margin-top: 15px;
   padding: 6px 18px;
   font-weight: 400;
   font-size: 16px;
-  background-color: #F5F7FF;
-  color: #748FFC;
-  border: 1px #F5F7FF solid;
+  background-color: #f5f7ff;
+  color: #748ffc;
+  border: 1px #f5f7ff solid;
   border-radius: 5px;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .input_text {
@@ -48,13 +48,13 @@
   width: 315px;
   height: 50px;
   border-radius: 8px;
-  border: 1px solid #878CA0;
+  border: 1px solid #878ca0;
   padding: 10px;
   font-size: 16px;
 }
 .input_text:focus {
   outline: none;
-  border: 2px solid #748FFC;
+  border: 2px solid #748ffc;
 }
 
 .save_btn {
@@ -62,9 +62,9 @@
   padding: 8px 20px;
   font-weight: 400;
   font-size: 18px;
-  background-color: #748FFC;
-  color: #F5F7FF;
-  border: 1px #748FFC solid;
+  background-color: #748ffc;
+  color: #f5f7ff;
+  border: 1px #748ffc solid;
   border-radius: 5px;
-  cursor:pointer;
+  cursor: pointer;
 }

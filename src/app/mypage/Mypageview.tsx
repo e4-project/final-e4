@@ -9,9 +9,9 @@ import { uploadImg2 } from "@/utils/uploadImg2";
 const Mypageview = () => {
   const router = useRouter();
   const { data: session, status, update } = useSession();
-  const [name, setName] = useState<string>("");
+  const [name, setName] = useState<string>(session?.user?.name || "");
   const [file, setFile] = useState<File | null>(null);
-  const [ImgSrc, setImgSrc] = useState("");
+  const [ImgSrc, setImgSrc] = useState<string | { secure_url: string }>("");
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -58,6 +58,13 @@ const Mypageview = () => {
       <div className={style.wrapper}>
         <div className={style.profile_container}>
           <div className={style.profile_img}>
+            {ImgSrc && (
+              <img
+                src={typeof ImgSrc === "string" ? ImgSrc : ImgSrc.secure_url}
+                alt="프로필 미리보기"
+                className={style.profile_image}
+              />
+            )}
             {session && session.user && session.user.image && (
               <img
                 src={session.user.image}
@@ -71,7 +78,7 @@ const Mypageview = () => {
             프로필 사진 변경
           </label>
           <input
-            style={{display:"none"}}
+            style={{ display: "none" }}
             id="inputFile"
             type="file"
             accept="image/*"
@@ -84,8 +91,6 @@ const Mypageview = () => {
             defaultValue={session?.user?.name || ""}
             onChange={onChangeName}
           />
-
-          
 
           <button className={style.save_btn} type="submit">
             저장
