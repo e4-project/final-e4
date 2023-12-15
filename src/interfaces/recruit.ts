@@ -18,6 +18,7 @@ export interface IRecruitPost {
 }
 
 export interface IResponseRecruitPost {
+  item: any;
   /* 교재 정보 */
   _id: string;
   material: string; // 강의|수업등의 교재 이름
@@ -33,9 +34,10 @@ export interface IResponseRecruitPost {
   studyKeyword: string; //스터디 주제
   duration: string; // 스터디 기간
   headCount: number; //모집 인원
-  deadLine: string; // 모집 마감일
   studyName: string; //스터디 모임 이름
   content: string; // 스터디 소개
   weekGoal: [string]; // 스터디 주차별 목표
-  createdAt: string;
+  deadLine: string; // 모집 마감일
+  createdAt: string;  //스터디 마감
+  
 }

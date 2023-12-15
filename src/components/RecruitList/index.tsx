@@ -64,14 +64,31 @@ const RecruitList = ({ data }: IProps) => {
       );
       setSearch(sortedData);  
     console.log("최신순", sortedData);
-    active ? setSearch(sortedData) : setSearch(data)
   }, [data]);
 
+  //정렬 - 관심순
+
+  //정렬 - 마감 임박순
+  const onDeadlineKeyword = useCallback((active: boolean) => {
+    console.log({active})
+    const sortedData = data
+      .slice()
+      .sort((c, d) => {
+        const cTime = isDeadLine(new Date(c.deadLine).getTime()) ? 0 : new Date(c.createdAt).getTime();
+        const dTime = isDeadLine(new Date(d.deadLine).getTime()) ? 0 : new Date(d.createdAt).getTime();
+        return dTime - cTime;
+      })
+      setSearch(sortedData);  
+    console.log("마감 임박순", sortedData);
+    active ? setSearch(sortedData) : setSearch(data)
+  }, [data]);
   const btnTextItem = useMemo(
     () => [
       { id: 1, text: "최신순", onHandler: onLatestKeyword},
+      { id: 2, text: "관심순", onHandler: null},
+      { id: 3, text: "마감 임박순", onHandler: onDeadlineKeyword },
     ],
-    [onLatestKeyword]
+    [onDeadlineKeyword]
   );
 
   return (
