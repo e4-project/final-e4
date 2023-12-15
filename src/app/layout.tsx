@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "@/styles/global.css";
+import "./global.css";
 import Header from "@/components/common/Header";
 import AuthSession from "@/components/AuthSession.tsx/AuthSession";
 
