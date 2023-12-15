@@ -61,24 +61,27 @@ const Hellopageview = () => {
     <form onSubmit={handleSubmit} action="/api/upload" method="POST">
       <div className={style.wrapper}>
         <div className={style.profile_container}>
-          <h3>안녕하세요</h3>
-          <h3>이름과 프로필 사진을 설정해주세요</h3>
-
-          <div className={style.profile_img}>
-            {ImgSrc && (
-              <img
-                src={typeof ImgSrc === "string" ? ImgSrc : ImgSrc.secure_url}
-                alt="프로필 미리보기"
-                className={style.profile_image}
-              />
-            )}
-            {session && session.user && session.user.image && (
-              <img
-                src={session.user.image}
-                alt="Profile"
-                className={style.profile_image}
-              />
-            )}
+          <div className={style.h3}>
+            <h3>안녕하세요!</h3>
+            <h3>이름과 프로필 사진을 설정해주세요.</h3>
+          </div>
+          <div>
+            <div className={style.profile_img}>
+              {ImgSrc && (
+                <img
+                  src={typeof ImgSrc === "string" ? ImgSrc : ImgSrc.secure_url}
+                  alt="프로필 미리보기"
+                  className={style.profile_image}
+                />
+              )}
+              {session && session.user && session.user.image && (
+                <img
+                  src={session.user.image}
+                  alt="Profile"
+                  className={style.profile_image}
+                />
+              )}
+            </div>
           </div>
 
           <label className={style.img_edit_btn} htmlFor="inputFile">
