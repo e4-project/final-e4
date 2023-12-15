@@ -3,7 +3,9 @@ import React, { useState, useEffect, useRef } from "react";
 import style from "./study.module.css";
 import Button from "@/components/common/Button";
 import { useParams } from "next/navigation";
-import { useSession } from "next-auth/react";
+
+import { set } from "mongoose";
+
 // import TextareaAutosize from 'react-textarea-autosize';
 /**
  * @name note
@@ -18,19 +20,13 @@ interface WeekGoal {
   content: string;
 }
 const Page = () => {
-  const { data: session } = useSession();
-  // console.log(session?.user?.email);
-
   const [isEdit, setIsEdit] = useState<boolean>(false);
   // 수정 상태
   const [inputs, setInputs] = useState([
     { week_input: "", study_content_input: "" },
   ]);
+
   const [noteData, setNoteData] = useState<WeekGoal[]>([]);
-  const [data, setData] = useState<{
-    userId: string;
-    result: { leader: string };
-  } | null>(null);
   // 노트 데이터 상태
   useEffect(() => {
     const fetchData = async () => {
@@ -41,10 +37,7 @@ const Page = () => {
         }
         const data = await response.json();
         console.log(data); // Add this line
-        // console.log(data.userId);
-        // console.log(data.result.leader);
         setNoteData(data.weekGoal);
-        setData(data);
 
         // noteData를 기반으로 inputs 상태를 업데이트합니다.
         const newInputs = data.weekGoal.map((weekGoal: any) => ({
@@ -52,6 +45,7 @@ const Page = () => {
           study_content_input: weekGoal.content,
         }));
         setInputs(newInputs);
+
       } catch (error) {
         console.error(
           "There has been a problem with your fetch operation:",
@@ -74,7 +68,7 @@ const Page = () => {
       [`${index + 1}주차`]: input.study_content_input,
     }));
 
-    // 데이터베이스에 저장하는 로직
+    // 학습노트 작성하는 데이터베이스에 저장하는 로직
     try {
       const response = await fetch("/api/studynote", {
         method: "POST",
@@ -122,15 +116,13 @@ const Page = () => {
 
   return (
     <div className={style.progress_container}>
-      {data && data.userId === data.result.leader && (
-        <div className={style.change_btn}>
-          <Button
-            text={isEdit ? "저장" : "수정"}
-            className={style.edit_save_btn}
-            onClick={isEdit ? onSaveClick : onEditClick}
-          />
-        </div>
-      )}
+      <div className={style.change_btn}>
+        <Button
+          text={isEdit ? "저장" : "수정"}
+          className={style.edit_save_btn}
+          onClick={isEdit ? onSaveClick : onEditClick}
+        />
+      </div>
       <div className={style.input_container}>
         {inputs.map((input, index) => {
           const note = noteData.find(
