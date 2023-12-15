@@ -106,7 +106,7 @@ export default function StudyPageView({ data }: IProps) {
               ))}
             </li>
             <li className={style.list}>
-              <span>{data?.materialType}</span>
+              <p className={style.size14}>{data?.materialType}</p>
             </li>
             <li>
               <h2 className={style.mtitle}>{data?.material}</h2>
@@ -130,9 +130,15 @@ export default function StudyPageView({ data }: IProps) {
               <span className={style.font_bold}>{data?.headCount}명</span>
             </li>
             <li className={style.list}>
+              <img src="/icons/icon_time.svg" alt="" />
+              <span> 모집 마감</span>
+              <span className={style.font_bold}>
+              {dayjs(data?.deadLine).format("MM월 DD일")}
+              </span>
+            </li>
+            <li className={style.list}>
               <div className={style.buttonarea}>
                 <div className={style.dead_line}>
-                  <span>{dayjs(data?.deadLine).format("MM/DD/YYYY")}</span>
                   <span>{isDeadLine(deadLine) ? "모집 마감" : "모집중"}</span>
                 </div>
                 {currentUser && data?.leader?._id === currentUser?._id ? (
@@ -190,6 +196,7 @@ export default function StudyPageView({ data }: IProps) {
             <p>{RenderHtmlContext(data?.content)}</p>
           </div>
           <div className={style.comment}>
+            <p>댓글</p>
             <div>
               <CommentForm
                 fetcher={postRecruitComment}
