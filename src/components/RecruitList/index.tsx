@@ -64,6 +64,7 @@ const RecruitList = ({ data }: IProps) => {
       );
       setSearch(sortedData);  
     console.log("최신순", sortedData);
+    active ? setSearch(sortedData) : setSearch(data)
   }, [data]);
 
   //정렬 - 관심순
