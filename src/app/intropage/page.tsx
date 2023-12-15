@@ -152,9 +152,7 @@ export default function Mainpage() {
                   <li>
                     <img src="/img/test_img.png" alt="" />
                   </li>
-                  <li>
-                    <img src="/img/test_img.png" alt="" />
-                  </li>
+                  {/* <li><img src="/img/test_img.png" alt="" /></li> */}
                 </ul>
                 <ul className={mainstyle.img_sheet2}>
                   <li>
@@ -163,9 +161,7 @@ export default function Mainpage() {
                   <li>
                     <img src="/img/test_img.png" alt="" />
                   </li>
-                  <li>
-                    <img src="/img/test_img.png" alt="" />
-                  </li>
+                  {/* <li><img src="/img/test_img.png" alt="" /></li> */}
                 </ul>
               </div>
             </div>
@@ -217,29 +213,23 @@ export default function Mainpage() {
               </div>
             </div>
           </div>
-          <div className={mainstyle.area3}>
-            <ul className={mainstyle.sheet}>
-              <li>
-                <p>영역</p>
-              </li>
-              <li>
-                <p>영역</p>
-              </li>
-              <li>
-                <p>영역</p>
-              </li>
-            </ul>
-          </div>
-          <div className={mainstyle.footer}>
-            <div></div>
-            <div>
-              <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-              </ul>
-            </div>
-          </div>
+          {/* <div className={mainstyle.area3}>
+                        <ul className={mainstyle.sheet}>
+                            <li><p>영역</p></li>
+                            <li><p>영역</p></li>
+                            <li><p>영역</p></li> 
+                        </ul>
+                    </div>
+                    <div className={mainstyle.footer}>
+                        <div></div>
+                        <div>
+                            <ul>
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div> */}
         </div>
       </div>
     </>
