@@ -20,7 +20,7 @@ const BoardPost = ({ board, onDelPost }: Iprops) => {
   return (
     <div className={style.board_post_wrap}>
       <div className={style.board_post_container}>
-        <div className="post_wrap">
+        <div className={style.post_wrap}>
           {
             <Card
               name={user?.name as string}

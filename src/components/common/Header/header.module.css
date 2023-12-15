@@ -169,12 +169,13 @@
 }
 
 .bell_menu > li {
-  display: flex;
+  display: inline-block;
   margin: 10px;
   padding: 10px;
   transition: all 0.3s;
   border-radius: 10px;
   cursor: pointer;
+  text-align: left;
 }
 .bell_menu > li:hover {
   background-color: #bac8ff;
