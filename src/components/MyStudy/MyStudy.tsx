@@ -20,32 +20,22 @@ const MyStudy = ({ data }: IProps) => {
   return (
     <div className={style.bg}>
       <div className={style.container}>
-        <div className={style.top_container}>
-          <div className={style.section}>
-            <p className={style.section_title}>참여 신청한 스터디</p>
-            {data?.myAppliedStudy.length ? (
-              data?.myAppliedStudy?.map((item: any) => (
-                <Apply key={item._id} {...item} />
-              ))
-            ) : (
-              <div className={style.section_item}>
-                아직 신청한 스터디가 없습니다.
-              </div>
-            )}
-          </div>
-
-          <div className={style.section}>
-            <p className={style.section_title}>좋아요한 모집글❤</p>
-            {/* 좋아요한 recruit post 개수 만큼 map */}
-            <Link href={"/해당recruit post링크"}>
-              <p className={style.section_item}>recruit post의 studyName</p>
+        <h1 className={style.e}>마이 스터디</h1>
+          
+          <div className={`${style.section} ${style.a}`}>
+            <h1 className={style.section_title}>공부하러 가기 👇</h1>
+            {/* 참여중인 스터디 개수 만큼 map*/}
+            {/* 이 링크를 통해 스터디페이지로 이동 */}
+            <Link href={"/해당 스터디페이지 링크"}>
+              <p className={style.section_item}>
+                내가 leader이거나 member가 된 study의 studyName
+              </p>
             </Link>
           </div>
-        </div>
 
-        <div className={style.bottom_container}>
-          <div className={style.section}>
-            <p className={style.section_title}>내가 만든 스터디(모집글)🖊</p>
+
+          <div className={`${style.section} ${style.c}`}>
+            <h2 className={style.section_title}>작성한 모집글</h2>
             {data?.myCreatedStudy.length ? (
               data?.myCreatedStudy.map((study: any) => (
                 <MyRecruitPost key={study._id} data={study} />
@@ -56,21 +46,31 @@ const MyStudy = ({ data }: IProps) => {
               </div>
             )}
           </div>
-          <div className={style.section}>
-            <p className={style.section_title}>참여 중인 스터디</p>
-            {/* 참여중인 스터디 개수 만큼 map*/}
-            {/* 이 링크를 통해 스터디페이지로 이동 */}
-            <Link href={"/해당 스터디페이지 링크"}>
-              <p className={style.section_item}>
-                내가 leader이거나 member가 된 study의 studyName
-              </p>
+          <div className={`${style.section} ${style.d}`}>
+            <h2 className={style.section_title}>참여 신청 내역</h2>
+            {data?.myAppliedStudy.length ? (
+              data?.myAppliedStudy?.map((item: any) => (
+                <Apply key={item._id} {...item} />
+              ))
+            ) : (
+              <div className={style.section_item}>
+                아직 신청한 스터디가 없습니다.
+              </div>
+            )}
+          </div>
+          <div className={`${style.section} ${style.b}`}>
+            <h2 className={style.section_title}>좋아요</h2>
+            {/* 좋아요한 recruit post 개수 만큼 map */}
+            <Link href={"/해당recruit post링크"}>
+              <p className={style.section_item}>recruit post의 studyName</p>
             </Link>
           </div>
-        </div>
+
       </div>
     </div>
   );
 };
+
 function MyRecruitPost(props: any) {
   const { data } = props;
   return (

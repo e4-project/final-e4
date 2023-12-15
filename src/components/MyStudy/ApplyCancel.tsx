@@ -10,7 +10,7 @@ export default function ApplyCancel(props: any) {
     alert('신청 취소됨')
   }
   return (
-    <div className={style.section_item}>
+    <div>
       {/* key=[props.i] */}
       <p onClick={clickAlert} className={style.apply_cancel_btn}>
         신청 취소
