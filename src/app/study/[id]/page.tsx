@@ -45,7 +45,6 @@ const Page = () => {
           study_content_input: weekGoal.content,
         }));
         setInputs(newInputs);
-
       } catch (error) {
         console.error(
           "There has been a problem with your fetch operation:",
@@ -144,15 +143,17 @@ const Page = () => {
               />
 
               {isEdit && (
-                <input
-                  type="text"
+                <textarea
+                  className={style.isEdit_input}
                   value={input.study_content_input}
                   onChange={(e) =>
                     onInputChange(index, "study_content_input", e.target.value)
                   }
                 />
               )}
-              {!isEdit && note && <p>{note.content}</p>}
+              {!isEdit && note && (
+                <p className={style.contents_p}>{note.content}</p>
+              )}
               {isEdit && (
                 <Button
                   text="삭제"

@@ -4,6 +4,7 @@ interface IUser {
   email: string;
   emailVerified: boolean;
   image: string;
+  changename: boolean;
 }
 const UserSchema = new Schema<IUser>(
   {
@@ -13,7 +14,7 @@ const UserSchema = new Schema<IUser>(
     },
     email: {
       type: String,
-      unique: true
+      unique: true,
     },
     emailVerified: {
       type: Boolean,
@@ -21,6 +22,9 @@ const UserSchema = new Schema<IUser>(
     image: {
       //신고받은 상태 신고됨: true
       type: String,
+    },
+    changename: {
+      type: Boolean,
     },
   },
   {
