@@ -57,8 +57,8 @@ const RecruitList = ({ data }: IProps) => {
   const onLatestKeyword = useCallback((active: boolean) => {
     console.log({active})
     const sortedData = data
-      .slice()
-      .sort(
+      ?.slice()
+      ?.sort(
         (a, b) =>
           new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
       );
@@ -73,8 +73,8 @@ const RecruitList = ({ data }: IProps) => {
   const onDeadlineKeyword = useCallback((active: boolean) => {
     console.log({active})
     const sortedData = data
-      .slice()
-      .sort((c, d) => {
+      ?.slice()
+      ?.sort((c, d) => {
         const cTime = isDeadLine(new Date(c.deadLine).getTime()) ? 0 : new Date(c.createdAt).getTime();
         const dTime = isDeadLine(new Date(d.deadLine).getTime()) ? 0 : new Date(d.createdAt).getTime();
         return dTime - cTime;
