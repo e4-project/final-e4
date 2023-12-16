@@ -124,7 +124,7 @@
   outline: none;
 }
 
-.Kategorie ul {
+.Kategorie_list_box {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -190,12 +190,11 @@
   font-size: 16px;
   height: 24px;
 }
-
+.studyKeyword_list_box{
+  display: flex;
+}
 .studyKeyword_back {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
   white-space: nowrap;
   padding: 6px 10px;
   font-size: 14px;
