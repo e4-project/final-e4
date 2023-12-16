@@ -129,7 +129,7 @@ const RecruitList = ({ data }: IProps) => {
           </div>
 
           <div className={style.Kategorie}>
-            <ul>
+            <ul className={style.Kategorie_list_box}>
               {btnTextItem.map((btn) => (
                 <FilteringBtnItem
                   key={btn.id}
@@ -152,7 +152,7 @@ const RecruitList = ({ data }: IProps) => {
                       <div>
                         <div className={style.card_top_container}>
                           <div className={style.studyKeyword}>
-                            <div>
+                            <div className={style.studyKeyword_list_box}>
                               {item.studyKeyword
                                 .split(", ")
                                 .map((item, idx) => (
