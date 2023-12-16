@@ -68,3 +68,14 @@
   border-radius: 5px;
   cursor: pointer;
 }
+.withdrawal_btn {
+  margin-top: 20px;
+  padding: 8px 20px;
+  font-weight: 400;
+  font-size: 18px;
+  background-color: #ff5eb7;
+  color: #f5f7ff;
+  border: 1px #ff5eb7 solid;
+  border-radius: 5px;
+  cursor: pointer;
+}

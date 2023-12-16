@@ -2,7 +2,7 @@
 
 import React, { useState, FormEvent } from "react";
 import style from "./Mypageview.module.css";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { uploadImg2 } from "@/utils/uploadImg2";
 
@@ -53,6 +53,28 @@ const Mypageview = () => {
     window.alert("변경되었습니다.");
     router.push("/");
   };
+
+  const handleWithdrawal = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const confirmation = window.confirm("정말로 탈퇴하시겠습니까?");
+    if (confirmation) {
+      const res = await fetch("/api/upload/withdrawal", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: session?.user?.email }), // userEmail은 사용자의 이메일을 담고 있는 변수입니다.
+      });
+      if (res.ok) {
+        // 로그아웃 처리
+        window.alert("탈퇴 처리되었습니다. 이용해 주셔서 감사합니다.");
+        signOut({ callbackUrl: "/intropage" });
+      } else {
+        window.alert("탈퇴 처리에 실패했습니다. 다시 시도해 주세요.");
+      }
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit} action="/api/upload" method="POST">
       <div className={style.wrapper}>
@@ -94,6 +116,13 @@ const Mypageview = () => {
 
           <button className={style.save_btn} type="submit">
             저장
+          </button>
+          <button
+            className={style.withdrawal_btn}
+            onClick={handleWithdrawal}
+            type="submit"
+          >
+            회원탈퇴
           </button>
         </div>
       </div>
