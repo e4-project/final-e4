@@ -96,3 +96,46 @@
   0%{left: 62px; top: 8px; opacity: 1;}
   100%{left: 62px; top: -12px; opacity: 0; }
 }
+
+
+/*  */
+
+
+.check{
+  display: none;
+}
+.check_label{
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  width: 30px;
+  height: 30px;
+}
+.check:checked + .check_label > .expansion_box{
+  display: flex;
+  top: 30px;
+  left: -30px;
+}
+.check_label > span{
+  display: block;
+  width: 3px;
+  height: 3px;
+  background-color: #4E515B;
+  border-radius: 50%;
+  margin-left: 6px;
+}
+
+
+.expansion_box{
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  position: absolute;
+  width: 60px;
+  height: auto;
+}
+
+.expansion_box > button {
+  margin-top: 10px;
+}
