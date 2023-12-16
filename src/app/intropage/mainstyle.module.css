@@ -87,7 +87,7 @@
   width: 0;
   overflow: hidden;
   white-space: nowrap;
-  animation: area1_text_anime 1s forwards;
+  animation: area1_text_anime 0.5s forwards;
 }
 @keyframes area1_text_anime {
   0%{ width: 0; }
@@ -103,7 +103,7 @@
   top: 0;
   right: 0;
   background-color: #000;
-  animation: area1_anime 1s forwards;
+  animation: area1_anime 0.5s forwards;
 }
 @keyframes area1_anime {
   0%{ left: 0; width: 0;}
@@ -126,8 +126,8 @@
 }
 .area1 .appear {
   opacity: 0;
-  animation: appear1 2s forwards;
-  animation-delay: 1s;
+  animation: appear1 1s forwards;
+  animation-delay: 0.5s;
 }
 @keyframes appear1 {
   from {opacity: 0; left: -20px;}
@@ -147,8 +147,8 @@
   position: absolute;
   top: -600px;
   left: 80px;
-  animation: imgmove 2s forwards;
-  animation-delay: 2s;
+  animation: imgmove 1s forwards;
+  animation-delay: 1s;
 }
 @keyframes imgmove {
   from{opacity: 0; top: -600px;}
@@ -162,8 +162,8 @@
   position: absolute;
   top: -550px;
   left: 400px;
-  animation: imgmove2 2s forwards;
-  animation-delay: 2.5s;
+  animation: imgmove2 1s forwards;
+  animation-delay: 1.2s;
 }
 @keyframes imgmove2 {
   from{opacity: 0; top: 0px;}
@@ -211,7 +211,7 @@
   width: 0;
   overflow: hidden;
   white-space: nowrap;
-  animation: area2_text_anime 1s forwards;
+  animation: area2_text_anime 0.5s forwards;
 }
 @keyframes area2_text_anime {
   0%{ width: 0; }
@@ -227,7 +227,7 @@
   top: 0;
   right: 0;
   background-color: #000;
-  animation: area2_anime 1s forwards;
+  animation: area2_anime 0.5s forwards;
 }
 @keyframes area2_anime {
   0%{ left: 0; width: 0;}
@@ -250,8 +250,8 @@
   object-fit: cover;
 }
 .img_anime{
-  animation: imgmove3 2s forwards;
-  animation-delay: 2s;
+  animation: imgmove3 1s forwards;
+  animation-delay: 1s;
 }
 @keyframes imgmove3 {
   from{opacity: 0; left: -30px;}
@@ -276,8 +276,8 @@
 }
 .area2 .appear {
   opacity: 0;
-  animation: appear2 2s forwards;
-  animation-delay: 1s;
+  animation: appear2 1s forwards;
+  animation-delay: 0.5s;
 }
 @keyframes appear2 {
   from {opacity: 0; right: 20px;}
