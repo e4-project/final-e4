@@ -196,10 +196,14 @@
 .studyKeyword_back {
   display: flex;
   white-space: nowrap;
-  padding: 6px 10px;
+  padding: 2px 10px;
   font-size: 14px;
   background-color: #F5F7FF;
   border-radius: 4px;
+  margin-left: 6px;
+}
+.studyKeyword_back:first-child{
+  margin-left: 0;
 }
 
 .studyKeyword ul {
