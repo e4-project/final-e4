@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation';
 
 const LeftContainer = () => {
     const pathname = usePathname(); // useRouter 쓰면 에러가 됨 그래서 usePathname 사용
-    const [data, setData] = useState<any>(null);
+    const [data, setData] = useState<any>();
     const {id} = useParams<{id: string}>()||{};
 
     useEffect(() => {
@@ -27,6 +27,7 @@ const LeftContainer = () => {
                         duration: data.duration,
                         applicants: data.applicants,
                         materialUrl: data.materialUrl,
+                        studyMembers: data.studyMembers,
                     });
                 }
             } catch (error) {
@@ -39,8 +40,8 @@ const LeftContainer = () => {
     }, [pathname, id]);
     
     // 멤버 돌려서 뿌리기
-    const renderApplicants = () => {
-        return data?.applicants.map((member: { name: string }, index: number) => (
+    const renderMembers = () => {
+        return data?.studyMembers.map((member: { name: string }, index: number) => (
             <span key={index}>{member.name}</span>
         ));
     };
@@ -60,7 +61,7 @@ const LeftContainer = () => {
                         </a>
                     </p>
                     <p>스터디 기간 <span>{data?.duration}</span></p>
-                    <p>스터디 멤버{renderApplicants()}</p>
+                    <p>스터디 멤버{renderMembers()}</p>
                 </div>
             </div>
         </div>

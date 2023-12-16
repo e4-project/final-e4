@@ -49,8 +49,8 @@ const Page = () => {
           setWeekCount(data.weekCount);
         }
 
-        if (data && data.applicants) {
-          setStudyMembers(data.applicants.map((applicants: any) => applicants.name));
+        if (data && data.studyMembers) {
+          setStudyMembers(data.studyMembers.map((studyMembers: any) => studyMembers.name));
         }
 
         if (data && data.weekGoal) {
