@@ -44,7 +44,7 @@ const RecruitList = ({ data }: IProps) => {
     const filteredResults = data.filter(
       (data) =>
         data.studyName.toLowerCase().includes(inputValue) ||
-        data.materialType.toLowerCase().includes(inputValue) ||
+        data.studyKeyword.toLowerCase().includes(inputValue) ||
         data.material.toLowerCase().includes(inputValue)
     );
     setSearch(filteredResults);
