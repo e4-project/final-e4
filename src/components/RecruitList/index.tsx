@@ -105,8 +105,8 @@ const RecruitList = ({ data }: IProps) => {
           <div className={style.ctrl_wrap}>
             {/* form 만들기*/}
             <form className={style.search} onSubmit={handleSearch}>
-              <div className={style.serarch_input}>
-                <div className={style.serarch_icon}>
+              <div className={style.search_input}>
+                <div className={style.search_icon}>
                   <TfiSearch size={21} />
                 </div>
                 <div className={style.input_wrap}>
@@ -154,7 +154,7 @@ const RecruitList = ({ data }: IProps) => {
                           <div className={style.studyKeyword}>
                             <div className={style.studyKeyword_list_box}>
                               {item.studyKeyword
-                                .split(", ")
+                                .split(",")
                                 .map((item, idx) => (
                                   <span
                                     className={style.studyKeyword_back}
@@ -209,7 +209,7 @@ const RecruitList = ({ data }: IProps) => {
                           <div className={style.studyKeyword}>
                             <>
                               {item.studyKeyword
-                                .split(", ")
+                                .split(",")
                                 .map((item, idx) => (
                                   <span
                                     className={style.studyKeyword_back}
