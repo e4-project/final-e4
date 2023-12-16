@@ -1,12 +1,11 @@
 "use client";
-
 import React, { useState, FormEvent } from "react";
-import style from "./Mypageview.module.css";
+import style from "./Hellopageview.module.css";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { uploadImg2 } from "@/utils/uploadImg2";
 
-const Mypageview = () => {
+const Hellopageview = () => {
   const router = useRouter();
   const { data: session, status, update } = useSession();
   const [name, setName] = useState<string>(session?.user?.name || "");
@@ -41,42 +40,48 @@ const Mypageview = () => {
       })
     );
 
-    const res = await fetch("/api/upload", {
+    const res = await fetch("/api/duplicatename/haschangedname", {
       method: "POST",
       body: formData,
     });
     if (!res.ok) {
-      const errorData = await res.json();
       window.alert("중복된 닉네임 입니다."); // 서버에서 전달받은 에러 메시지를 사용자에게 표시
       return;
     }
+
     const { fileUrl } = await res.json();
 
     if (status === "authenticated") {
       update({ user: { ...session.user, image: fileUrl } });
     }
-    window.alert("변경되었습니다.");
+    window.alert("환영합니다.");
     router.push("/");
   };
   return (
     <form onSubmit={handleSubmit} action="/api/upload" method="POST">
       <div className={style.wrapper}>
         <div className={style.profile_container}>
-          <div className={style.profile_img}>
-            {ImgSrc && (
-              <img
-                src={typeof ImgSrc === "string" ? ImgSrc : ImgSrc.secure_url}
-                alt="프로필 미리보기"
-                className={style.profile_image}
-              />
-            )}
-            {session && session.user && session.user.image && (
-              <img
-                src={session.user.image}
-                alt="Profile"
-                className={style.profile_image}
-              />
-            )}
+          <div className={style.h3}>
+            <h3>안녕하세요!</h3>
+            <h3>이름과 프로필 사진을 설정해주세요.</h3>
+          </div>
+          <div>
+            <div className={style.profile_img}>
+              {ImgSrc && (
+                <img
+                  src={typeof ImgSrc === "string" ? ImgSrc : ImgSrc.secure_url}
+                  alt="프로필 미리보기"
+                  className={style.profile_image}
+                />
+              )}
+              {session && session.user && session.user.image && (
+                <img
+                  src={session.user.image}
+                  alt="Profile"
+                  className={style.profile_image}
+                />
+              )}
+            </div>
           </div>
 
           <label className={style.img_edit_btn} htmlFor="inputFile">
@@ -106,4 +111,4 @@ const Mypageview = () => {
   );
 };
 
-export default Mypageview;
+export default Hellopageview;
