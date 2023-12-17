@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 
 // 수정, 삭제시 유저 인증 검증
 export const PATCH = routeWrapperWithError(
+  // 구현중
   async (req: NextRequest, { params }: { params: { slug: string } }) => {
     const commentId = params.slug;
     const comment = await RecruitComment.updateOne({_id: commentId});

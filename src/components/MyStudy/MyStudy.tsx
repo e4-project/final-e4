@@ -1,8 +1,11 @@
 "use client";
 import React from "react";
+import { useRouter } from 'next/navigation';
 import Link from "next/link";
 import style from "./MyStudy.module.css";
-import ApplyAlert from "@/components/MyStudy/ApplyCancel";
+import CancelApplicant from "@/components/MyStudy/CancelApplicant";
+import { useSession } from "next-auth/react";
+import { deleteCancelApplicantApi } from "@/axios/fetcher/applicant";
 // 불러올 데이타 인터페이스 다 임포트해야댐
 
 /**
@@ -104,10 +107,16 @@ function MyRecruitPost(props: any) {
 
 function Apply(props: any) {
   console.log({ props });
-  const { studyId: study, recognition } = props;
+  const { applicant, studyId: study, recognition } = props;
+  const router = useRouter();
+  const session = useSession();
 
-  const render = (recognition: string) => {
-    return <div></div>;
+  const onCancel = async (userId: string, recruitid: string) => {
+    if (session) {
+      await deleteCancelApplicantApi(userId, recruitid);
+      router.refresh();
+      console.log("신청 취소");
+    }
   };
   return (
     <div className={style.section_item}>
@@ -115,15 +124,18 @@ function Apply(props: any) {
         {recognition !== "승인" ? (
           recognition === "거절" ? (
             <div>
-              <p style={{ opacity: 0.5 }}>{study?.studyName}</p>
+              <p style={{ opacity: 0.5, textDecoration: "line-through" }}>
+                {study?.studyName}
+              </p>
             </div>
           ) : (
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <p>{study?.studyName} </p>
-              <p>
-                <ApplyAlert
-                  alertText="신청 취소"
-                  context="스터디 참여 신청을 취소할까요?"
+            <div style={{ display: "flex" }}>
+              <p style={{ width: "80%" }}>
+                <span style={{opacity: 0.5}}>{study?.studyName}</span>
+                <CancelApplicant
+                  recruitId={study?._id}
+                  userId={applicant}
+                  onCancel={onCancel}
                 />
               </p>
             </div>

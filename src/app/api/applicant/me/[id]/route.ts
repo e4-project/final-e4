@@ -18,13 +18,3 @@ export const GET = routeWrapperWithError(
     return NextResponse.json(appliedStudy);
   }
 );
-
-// 내가 신청한 스터디 삭제
-export const DELETE = routeWrapperWithError(
-  async (req: NextRequest, { params }: { params: { id: string, recruitid: string } }) => {
-    const userId = params.id;
-    const recruitId = params.recruitid;
-    
-    return NextResponse.json('');
-  }
-);

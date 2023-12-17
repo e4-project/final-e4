@@ -67,10 +67,12 @@ export const patchApproveOrRejectApplicantApi = async (
 };
 
 /* 신청 취소 */
-export const deleteRejectApplicantApi = async (userId: string) => {
+export const deleteCancelApplicantApi = async (userId: string, recruitid: string) => {
+  console.log('cancel',{ userId, recruitid})
   try {
     const { data } = await axios.delete(
-      getBaseUrl(`/api/applicant/user/${userId}`)
+      ///api/applicant/me/userId/studyname/recruitId
+      getBaseUrl(`/api/applicant/me/${userId}/studyname/${recruitid}`)
     );
     return data;
   } catch (err: any) {
