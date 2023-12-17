@@ -1,6 +1,6 @@
 import React from "react";
 import ApplicantsView from "./page.view";
-import { loadApplicantOfMyStudyApi } from "@/axios/fetcher/applicant/loadMyApplicantApi";
+import { loadApplicantOfMyStudyApi } from "@/axios/fetcher/applicant";
 
 /* 
    path: /mystudy/me/:userid/applicants/:recruitid

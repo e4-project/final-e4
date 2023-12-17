@@ -16,9 +16,9 @@ import {
   postRecruitComment,
 } from "@/axios/fetcher/recruitComment";
 import style from "./recruit.module.css";
-import { postApplicantApi } from "@/axios/fetcher/applicant/postApplicantApi";
 import dayjs from "dayjs";
 import { isDeadLine } from "@/utils/isDeadLine";
+import { postApplicantApi } from "@/axios/fetcher/applicant";
 
 interface IProps {
   data: IResponseRecruitPost;
