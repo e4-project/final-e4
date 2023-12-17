@@ -22,7 +22,6 @@ const Page = async ({ params }: { params: { userid: string } }) => {
   const userId = params.userid;
   const myStudyInfo = await loadMystudyOneApi(userId);
   const myAppliedStudy = await loadMyApplicantApi(userId);
-  console.log({myStudyInfo, myAppliedStudy})
   const data = {
     myCreatedStudy: myStudyInfo?.createdMyStudy,
     myAppliedStudy,

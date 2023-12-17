@@ -3,7 +3,12 @@ import Alert from "../common/Alert/Alert";
 import style from "./MyStudy.module.css";
 import { useState } from "react";
 
-export default function ApplyCancel(props: any) {
+interface Iprop {
+  context: string;
+  alertText: string;
+}
+
+export default function ApplyAlert({context, alertText}: Iprop) {
   const [showAlert, setShowAlert] = useState(false);
   const clickAlert = () => setShowAlert(!showAlert);
   const onApplicant = async () => {
@@ -13,10 +18,10 @@ export default function ApplyCancel(props: any) {
     <div>
       {/* key=[props.i] */}
       <p onClick={clickAlert} className={style.apply_cancel_btn}>
-        신청 취소
+        {alertText}
       </p>
       {showAlert && (
-        <Alert clickAlert={clickAlert} onCtrl={onApplicant} context="스터디 참여 신청을 취소할까요?"/>
+        <Alert clickAlert={clickAlert} onCtrl={onApplicant} context={context}/>
       )}
     </div>
   );

@@ -1,7 +1,8 @@
+"use client";
 import React from "react";
 import Link from "next/link";
-import ApplyCancel from "@/components/MyStudy/ApplyCancel";
 import style from "./MyStudy.module.css";
+import ApplyAlert from "@/components/MyStudy/ApplyCancel";
 // 불러올 데이타 인터페이스 다 임포트해야댐
 
 /**
@@ -15,10 +16,18 @@ interface IProps {
 }
 
 const MyStudy = ({ data }: IProps) => {
-  const myAppliedstudy = data?.myAppliedStudy?.map((info: any )=> ({_id: info?.studyId?._id, studyName: info?.studyId?.studyName}))
-  const myCreatedStudy = data?.myCreatedStudy?.map((info: any)=> ({_id: info?._id, studyName: info?.studyName}))
+  const myAppliedstudy = data?.myAppliedStudy?.map((info: any) => ({
+    _id: info?.studyId?._id,
+    studyName: info?.studyId?.studyName,
+  }));
+  const myCreatedStudy = data?.myCreatedStudy?.map((info: any) => ({
+    _id: info?._id,
+    studyName: info?.studyName,
+  }));
 
-  const studyRoomInfo = [...myAppliedstudy, ...myCreatedStudy];
+  data?.myAppliedStudy?.map((info: any) => console.log(info));
+  const studyRoomInfo = myAppliedstudy.concat(myCreatedStudy);
+
   return (
     <div className={style.bg}>
       <div className={style.container}>
@@ -43,7 +52,7 @@ const MyStudy = ({ data }: IProps) => {
               {study?.studyName}
             </span>
           </Link> */}
-            <p className={style.section_item}>아직 좋아요한 스터디가 없습니다.</p>
+          <p className={style.section_item}>아직 좋아요한 스터디가 없습니다.</p>
         </div>
         <div className={`${style.section} ${style.c}`}>
           <h2 className={style.section_title}>작성한 모집글</h2>
@@ -61,7 +70,7 @@ const MyStudy = ({ data }: IProps) => {
           <h1 className={style.section_title}>공부하러 가기 👇</h1>
           {/* 이 링크를 통해 스터디페이지(/study/study_id)로 이동 */}
           {/*  */}
-          {studyRoomInfo.map((study) => (
+          {studyRoomInfo.map((study: any) => (
             <Link key={study?._id} href={`/study/${study?._id}`}>
               <span className={`${style.section_item} ${style.study_name}`}>
                 {study?.studyName}
@@ -78,9 +87,7 @@ function MyRecruitPost(props: any) {
   return (
     <div className={style.section_item}>
       <div className={style.wrap}>
-        <Link href={`/recruit/${data._id}`}>
-          {data.studyName}
-        </Link>
+        <Link href={`/recruit/${data._id}`}>{data.studyName}</Link>
       </div>
       <Link
         className={style.applicants_btn}
@@ -96,19 +103,48 @@ function MyRecruitPost(props: any) {
 }
 
 function Apply(props: any) {
-  console.log({props})
+  console.log({ props });
   const { studyId: study, recognition } = props;
-  
+
+  const render = (recognition: string) => {
+    return <div></div>;
+  };
   return (
     <div className={style.section_item}>
       <div className={style.wrap}>
-        <Link href={`/recruit/${study?._id}`}>
-          {study?.studyName}
-        </Link>
+        {recognition !== "승인" ? (
+          recognition === "거절" ? (
+            <div>
+              <p style={{ opacity: 0.5 }}>{study?.studyName}</p>
+            </div>
+          ) : (
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <p>{study?.studyName} </p>
+              <p>
+                <ApplyAlert
+                  alertText="신청 취소"
+                  context="스터디 참여 신청을 취소할까요?"
+                />
+              </p>
+            </div>
+          )
+        ) : (
+          <Link href={`/recruit/${study?._id}`}>
+            <p>{study?.studyName}</p>
+          </Link>
+        )}
       </div>
-      {
-        recognition !== '승인' ? <ApplyCancel {...props} /> : <p className={style.apply_approved_btn}>승인 완료</p>
-      }
+      <div>
+        {recognition !== "승인" ? (
+          recognition !== "거절" ? (
+            <p>승인 대기 😀</p>
+          ) : (
+            <p style={{ opacity: 0.5 }}>승인 거절 😂</p>
+          )
+        ) : (
+          <p>승인 완료 😊</p>
+        )}
+      </div>
     </div>
   );
 }
