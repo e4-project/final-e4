@@ -15,8 +15,8 @@ interface IProps {
 }
 
 const MyStudy = ({ data }: IProps) => {
-  const myAppliedstudy = data?.myAppliedStudy?.map((info: any )=> {const {studyId: {_id, studyName}} = info; return {_id, studyName}})
-  const myCreatedStudy = data?.myCreatedStudy?.map((info: any)=> {const {_id, studyName} = info; return {_id, studyName}})
+  const myAppliedstudy = data?.myAppliedStudy?.map((info: any )=> ({_id: info?.studyId?._id, studyName: info?.studyId?.studyName}))
+  const myCreatedStudy = data?.myCreatedStudy?.map((info: any)=> ({_id: info?._id, studyName: info?.studyName}))
 
   const studyRoomInfo = [...myAppliedstudy, ...myCreatedStudy];
   return (
@@ -102,8 +102,8 @@ function Apply(props: any) {
   return (
     <div className={style.section_item}>
       <div className={style.wrap}>
-        <Link href={`/recruit/${study._id}`}>
-          {study.studyName}
+        <Link href={`/recruit/${study?._id}`}>
+          {study?.studyName}
         </Link>
       </div>
       {
