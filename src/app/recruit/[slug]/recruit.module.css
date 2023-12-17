@@ -216,6 +216,10 @@ box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
 
 }
 
+.loading {
+  cursor: default;
+}
+
 .application_button:disabled {
   cursor: not-allowed;
 }
@@ -522,4 +526,24 @@ box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
 }
 .delete:hover {
   background-color: #eee;
+}
+
+.loading_spinner {
+    display: inline-block;
+    border: 3px solid #f3f3f3; /* Light grey */
+    border-top: 3px solid #64859a; /* Blue */
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    animation: spin 1s linear infinite;
+    margin: 13px 10px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
