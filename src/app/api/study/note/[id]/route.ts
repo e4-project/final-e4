@@ -8,12 +8,53 @@ import User from "@/models/user";
 export const GET = routeWrapperWithError(async (req:NextRequest, {params}: {params: {id: string}}) => {
     await connectDB();
 
-    const userId = await User.find();
-    const studyId = params.id;
+  // User 정보를 찾습니다.
+    const user = await User.findOne();
+
+    try {
+        // id와 관련된 노트 찾고
+        const studyNote = await StudyNote.findOne({ author: user._id, studyId: params.id });
+
+        console.log(studyNote);
+
+        if (studyNote) {
+        // 찾은 노트의 contents 가져옴
+        return NextResponse.json({ contents: studyNote.contents });
+        } else {
+        return NextResponse.json({ error: '해당 노트 내용 없음' }, { status: 404 });
+        }
+    } catch (error) {
+        console.error('조회 오류', error);
+        return NextResponse.json({ error: '서버 오류' }, { status: 500 });
+    }
 });
 
 export const POST = routeWrapperWithError(async (req:NextRequest, {params}: {params: {id: string}}) => {
     const data = await req.json();
 
-    const noteData = await StudyNote.findOneAndUpdate();
+    try {
+        await connectDB();
+
+        const user = await User.findOne();
+
+        const { week, contents } = data;
+
+        const studyId = params.id;
+
+        const newNote = new StudyNote({
+            author: user._id,
+            studyId: studyId,
+            week: week,
+            contents: contents,
+        });
+
+        const savedNote = await newNote.save();
+
+        return NextResponse.json({ success: true, note: savedNote });
+    } catch (error) {
+        console.error('저장 오류', error);
+
+        return NextResponse.json({ success: false, error: '서버 오류' }, { status: 500 });
+    }
+
 });

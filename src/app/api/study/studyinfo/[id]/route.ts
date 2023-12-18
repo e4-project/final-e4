@@ -15,13 +15,13 @@ export const GET = routeWrapperWithError(async (req: NextRequest, { params }: { 
             return NextResponse.json({ isOk: false, message: '유저 데이터 없음.' }, { status: 404 });
         }
 
-        const { material, duration, applicants, leader, materialUrl, weekGoal } = userRecruitPost;
+        const { material, duration, leader, materialUrl, weekGoal } = userRecruitPost;
         console.log(userRecruitPost);
 
         // applicants에 있는 id값이 string 이니까 그걸로 User에서 같은 걸 찾게한 다음 name을 가져오게함.
-        const applicantObjectIds = applicants.map((id: any) => new Object(id));
+        // const applicantObjectIds = applicants.map((id: any) => new Object(id));
 
-        // memeber 모델에 member의 name을 가져와야함.
+        // member 모델에 member의 name을 가져와야함.
         const studyMembers = await Member.find({ studyId: params.id }).populate('member', 'name');
         console.log(studyMembers);
 

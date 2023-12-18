@@ -38,13 +38,15 @@ const LeftContainer = () => {
             fetchData();
         }
     }, [pathname, id]);
-    
-    // 멤버 돌려서 뿌리기
+
+    // 멤버 나오게
     const renderMembers = () => {
-        return data?.studyMembers.map((member: { name: string }, index: number) => (
-            <span key={index}>{member.name}</span>
+        return data?.studyMembers?.map((StudyMember: any, index: number) => (
+            <span key={index}>{StudyMember?.member?.name}</span>
         ));
     };
+
+    console.log(data);
 
     return (
         <div className={style.left_container}>
@@ -61,7 +63,7 @@ const LeftContainer = () => {
                         </a>
                     </p>
                     <p>스터디 기간 <span>{data?.duration}</span></p>
-                    <p>스터디 멤버{renderMembers()}</p>
+                    <p>스터디 멤버 {renderMembers()}</p>
                 </div>
             </div>
         </div>
