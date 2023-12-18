@@ -28,6 +28,7 @@ export interface IResponseRecruitPost {
   leader: {
     _id: string;
     name: string;
+    image: string;
   }; //스터디장
   applicants: Array<string>; //참여자 목록
   studyKeyword: string; //스터디 주제

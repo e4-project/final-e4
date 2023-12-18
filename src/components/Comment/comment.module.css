@@ -14,6 +14,7 @@
 
 .no_comment {
   /* margin: 11px 8px; */
+  padding-left: 4px;
   font-size: 18px;
   font-weight: 400;
 }
@@ -24,8 +25,8 @@
   gap: 8px;
   font-size: 18px;
   color: #748ffc;
-  font-weight: 400
-  ;
+  font-weight: 400;
+  padding-left: 4px;
 }
 
 .comment_ctrl {
