@@ -71,12 +71,12 @@ export default function StudyPageView({ data, likesData }: IProps) {
 
   const fetchLike = useCallback(async () => {
     if (!isLikedRecruit) {
-      await postRecruitLikes(data._id, currentUser?._id as string);
+      await postRecruitLikes(data?._id, currentUser?._id as string);
       setLoadingLikedRecruit(false);
       router.refresh();
       return;
     } else {
-      await deleteRecruitLike(data._id);
+      await deleteRecruitLike(data?._id);
       setLoadingLikedRecruit(false);
       setIsLikedRecruit(false);
       router.refresh();
@@ -84,7 +84,7 @@ export default function StudyPageView({ data, likesData }: IProps) {
     if (isLoadingLikedRecruit) return;
   }, [
     currentUser?._id,
-    data._id,
+    data?._id,
     isLikedRecruit,
     isLoadingLikedRecruit,
     router,
@@ -110,7 +110,8 @@ export default function StudyPageView({ data, likesData }: IProps) {
         message: message.trim(),
         studyId: data?._id,
       };
-      await postApplicantApi(insertData);
+      const result = await postApplicantApi(insertData);
+      console.log(result)
       router.refresh(); //refresh는 이벤트 처리가 있는 컴포넌트 전체(페이지 단위)에서 적용됨
     } else {
       window.alert("인증이 필요합니다.");
@@ -129,17 +130,12 @@ export default function StudyPageView({ data, likesData }: IProps) {
         "스터디 참여 신청"
       );
     } else {
-      return isLoadingAppliCant ? (
-        <span className={style.loading_spinner}></span>
-      ) : (
-        "스터디 참여 신청"
-      );
+      return <span className={style.loading_spinner}></span>;
     }
   })();
 
   const isRecruitUserTheCurrentUser =
     currentUser && data?.leader?._id === currentUser?._id;
-  console.log(isLikedRecruit);
   return (
     <div className={style.sheet}>
       {modalOpen && (
@@ -212,11 +208,13 @@ export default function StudyPageView({ data, likesData }: IProps) {
                 </div>
                 {isRecruitUserTheCurrentUser ? (
                   <button
-                    className={`${style.application_button} ${isLoadingAppliCant && style.loading}`}
+                    className={`${style.application_button} ${
+                      isLoadingAppliCant && style.loading
+                    }`}
                     type="button"
                     onClick={() => {
                       router.push(
-                        `/mystudy/me/${data.leader?._id}/applicants/${data._id}`
+                        `/mystudy/me/${data.leader?._id}/applicants/${data?._id}`
                       );
                     }}
                   >
@@ -224,7 +222,9 @@ export default function StudyPageView({ data, likesData }: IProps) {
                   </button>
                 ) : (
                   <button
-                    className={`${style.application_button} ${isLoadingAppliCant && style.loading}`}
+                    className={`${style.application_button} ${
+                      isLoadingAppliCant && style.loading
+                    }`}
                     type="submit"
                     onClick={showModal}
                     // 현재 유저가 해당 모집글 참여 신청자가 아닌경우만 신청
