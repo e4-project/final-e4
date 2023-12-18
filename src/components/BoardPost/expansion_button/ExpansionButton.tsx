@@ -9,8 +9,8 @@ interface Iprops {
 export default function ExpansionButton ({_id, onDelPost}:Iprops){
     return(
         <>
-        <input className={style.check} type="checkbox" name={_id} id={_id} />
-            <label className={style.check_label} htmlFor={_id}>
+        <input className={style.check} type="checkbox" name={_id +1} id={_id +1} />
+            <label className={style.check_label} htmlFor={_id +1}>
               <img src="/icons/icon_dot3.svg" alt="" />
               <div className={style.expansion_box}>
                 <Button text="수정" className={style.post_btn} />
