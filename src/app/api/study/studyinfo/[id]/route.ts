@@ -31,28 +31,3 @@ export const GET = routeWrapperWithError(async (req: NextRequest, { params }: { 
         return NextResponse.json({ isOk: false, message: '데이터 로딩 중 에러' }, { status: 500 });
     }
 });
-
-/* export const POST = routeWrapperWithError(async (req: NextRequest, { params }: { params: { id: string } }) => {
-    const data = await req.json();
-    console.log({data});
-    const { week, contents } = data;
-
-        try {
-        const studyNote = await RecruitPost.findOneAndUpdate(
-            { _id: params.id},
-            { studyNoteContents: { contents: {contents}} },
-            { new: true }
-        );
-
-        console.log({studyNote});
-        if (studyNote) {
-            console.log("업데이트했습니다:", studyNote);
-            return NextResponse.json(studyNote);
-        } else {
-            console.log("찾지 못했습니다.");
-        }
-        } catch (error) {
-        console.error("데이터 업데이트 중 에러", error);
-        return NextResponse.json({ isOk: false, message: "데이터 업데이트 중 에러" }, { status: 500 });
-    }
-}); */

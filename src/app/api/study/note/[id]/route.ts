@@ -8,7 +8,7 @@ import User from "@/models/user";
 export const GET = routeWrapperWithError(async (req:NextRequest, {params}: {params: {id: string}}) => {
     await connectDB();
 
-  // User 정보를 찾습니다.
+    // 유저 정보 가져오기
     const user = await User.findOne();
 
     try {
@@ -19,7 +19,7 @@ export const GET = routeWrapperWithError(async (req:NextRequest, {params}: {para
 
         if (studyNote) {
         // 찾은 노트의 contents 가져옴
-        return NextResponse.json({ contents: studyNote.contents });
+        return NextResponse.json({ contents: studyNote.contents, week: studyNote.week });
         } else {
         return NextResponse.json({ error: '해당 노트 내용 없음' }, { status: 404 });
         }

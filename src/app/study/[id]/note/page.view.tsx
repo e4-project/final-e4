@@ -36,6 +36,7 @@ const Page = ({contents}: any) => {
     setOnEditor(false);
 
     try {
+      await memberNotes(selectWeek);
       const response = await fetch(`/api/study/note/${id}`, {
         method: 'POST',
         headers: {
@@ -56,10 +57,12 @@ const Page = ({contents}: any) => {
     setEditorContent(content);
   };
 
-  const memberNotes = async (memberId: string) => {
+  // 멤버 노트 데이터 받아옴
+  const memberNotes = async (week: string) => {
     try {
       const result = await fetch(`/api/study/note/${id}`);
       const data = await result.json();
+      console.log(data);
       setMemberNoteContents(data.contents);
     } catch (error) {
       console.error('멤버 노트를 가져오는 중 에러 발생', error);
