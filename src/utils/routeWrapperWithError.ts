@@ -12,8 +12,13 @@ export function routeWrapperWithError(
 ) {
   return async (req: NextRequest, {...prop}) => {
     await connectDB();
-    return await fn(req, prop).catch((error: any) =>
-      NextResponse.json({ message: error }, { status: 500 })
+    return await fn(req, prop).catch((error: any) => {
+      console.log({errorCode: error.code === 11000})
+      if(error.code === 11000) {
+        return NextResponse.json({ message: "값이 중복되었습니다." }, { status: 409 })
+      }
+      return NextResponse.json({ message: error }, { status: 500 })
+    }
     );
   };
 }
