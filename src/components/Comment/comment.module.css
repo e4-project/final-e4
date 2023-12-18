@@ -14,6 +14,7 @@
 
 .no_comment {
   /* margin: 11px 8px; */
+  padding-left: 4px;
   font-size: 18px;
   font-weight: 400;
 }
@@ -24,8 +25,8 @@
   gap: 8px;
   font-size: 18px;
   color: #748ffc;
-  font-weight: 400
-  ;
+  font-weight: 400;
+  padding-left: 4px;
 }
 
 .comment_ctrl {
@@ -46,4 +47,35 @@
 .show_ctrl {
   color: rgb(116, 143, 252);
   cursor: pointer;
+}
+
+/*  */
+.check{
+  display: none;
+}
+.check_label{
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  width: 30px;
+  height: 30px;
+}
+.check:checked + .check_label > .expansion_box{
+  display: flex;
+  top: 30px;
+  left: -30px;
+}
+
+.expansion_box{
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  position: absolute;
+  width: 60px;
+  height: auto;
+}
+
+.expansion_box > button {
+  margin-top: 10px;
 }

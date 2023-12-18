@@ -36,27 +36,33 @@ const ReadComment = ({ comment, postId, onUpdate, onDelFetch }: IProps) => {
           <div className={style.button_wrap}>
             {currentUserId === comment?.user?._id && (
               <>
-                <Button
-                  text="수정"
-                  onClick={async () => {
-                    console.log("수정 기능");
-                  }}
-                />
-                <Button
-                  text="삭제"
-                  style={{
-                    background: "#fd9494",
-                    color: "#fdfdfd",
-                    border: "none",
-                  }}
-                  onClick={async () => {
-                    const con = confirm("정말로 삭제하시겠습니까?");
-                    if (con) {
-                      const data = await onDelFetch(postId, comment._id);
-                      data && location.reload();
-                    }
-                  }}
-                />
+                <input className={style.check} type="checkbox" name={comment._id} id={comment._id} />
+                <label className={style.check_label} htmlFor={comment._id}>
+                  <img src="/icons/icon_dot3.svg" alt="" />
+                  <div className={style.expansion_box}>
+                    <Button
+                    text="수정"
+                    onClick={async () => {
+                      console.log("수정 기능");
+                    }}
+                    />
+                    <Button
+                      text="삭제"
+                      style={{
+                        background: "#fd9494",
+                        color: "#fdfdfd",
+                        border: "none",
+                      }}
+                      onClick={async () => {
+                        const con = confirm("정말로 삭제하시겠습니까?");
+                        if (con) {
+                          const data = await onDelFetch(postId, comment._id);
+                          data && location.reload();
+                        }
+                      }}
+                    />
+                  </div>
+                </label>
               </>
             )}
           </div>
