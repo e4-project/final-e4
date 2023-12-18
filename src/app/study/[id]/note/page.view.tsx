@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import style from "./note.module.css";
 import MyEditorComponent from "./page.write";
 import Button from "@/components/common/Button";
-import { useParams } from 'next/navigation';
+import { useParams } from "next/navigation";
 
 /**
  * @name note
@@ -13,18 +13,20 @@ import { useParams } from 'next/navigation';
  * @returns number
  */
 
-const Page = ({contents}: any) => {
+const Page = ({ contents }: any) => {
   const [selectWeek, setSelectWeek] = useState<string>("1"); // 현재 선택된 주차 상태
-  const [onEditor, setOnEditor] = useState(false);  // 에디터 나오는 상태
+  const [onEditor, setOnEditor] = useState(false); // 에디터 나오는 상태
   const [weekCount, setWeekCount] = useState(5); // 주차의 수를 상태로 관리
-  const [studyMembers, setStudyMembers] = useState<string[]>([]);  // 공부 노트 나오게 하는 멤버
-  const {id} = useParams<{id: string}>()||{};
-  const [editorContent, setEditorContent] = useState("");  // 에디터에서 작성한 내용
-  const [data, setData] = useState<any>(); 
+  const [studyMembers, setStudyMembers] = useState<string[]>([]); // 공부 노트 나오게 하는 멤버
+  const { id } = useParams<{ id: string }>() || {};
+  const [editorContent, setEditorContent] = useState(""); // 에디터에서 작성한 내용
+  const [data, setData] = useState<any>();
   const [memberNoteContents, setMemberNoteContents] = useState(""); // 멤버 노트 데이터 저장 상태
 
   const onWeekChange = (event: any) => {
-    setSelectWeek(event.target.value);
+    const weekNumber = event.target.value.match(/\d+/)[0]; // "4주차"에서 숫자를 추출
+    setSelectWeek(weekNumber);
+    console.log(weekNumber);
   };
 
   const onWriteButtonClick = () => {
@@ -38,37 +40,36 @@ const Page = ({contents}: any) => {
     try {
       await memberNotes(selectWeek);
       const response = await fetch(`/api/study/note/${id}`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           week: selectWeek,
           contents: editorContent,
         }),
       });
-
     } catch (error) {
-      console.error('에러', error);
+      console.error("에러", error);
     }
   };
 
   const onSaveEditorContent = (content: string) => {
     setEditorContent(content);
   };
-
   // 멤버 노트 데이터 받아옴
-  const memberNotes = async (week: string) => {
+  const memberNotes = async (memberId: string) => {
     try {
-      const result = await fetch(`/api/study/note/${id}`);
+      const url = `/api/study/note/${id}/?week=${selectWeek}`;
+      console.log(url);
+      const result = await fetch(`/api/study/note/${id}?week=${selectWeek}`);
       const data = await result.json();
       console.log(data);
       setMemberNoteContents(data.contents);
     } catch (error) {
-      console.error('멤버 노트를 가져오는 중 에러 발생', error);
+      console.error("멤버 노트를 가져오는 중 에러 발생", error);
     }
   };
-
   useEffect(() => {
     const fetchStudyMembers = async () => {
       try {
@@ -91,7 +92,7 @@ const Page = ({contents}: any) => {
 
         setData(data);
       } catch (error) {
-        console.error('스터디 멤버 정보를 가져오는 중 에러 발생', error);
+        console.error("스터디 멤버 정보를 가져오는 중 에러 발생", error);
       }
     };
 
@@ -136,11 +137,14 @@ const Page = ({contents}: any) => {
       </div>
       <div className={style.view_note}>
         {onEditor ? (
-          <MyEditorComponent onSave={onSaveEditorContent}/>
+          <MyEditorComponent onSave={onSaveEditorContent} />
         ) : (
           <div className={style.member_note}>
             {studyMembers.map((studyMember: any, index: number) => (
-              <div key={index} onClick={() => memberNotes(studyMember.member.id)}>
+              <div
+                key={index}
+                onClick={() => memberNotes(studyMember.member.id)}
+              >
                 <p className={style.member_list}>
                   <span style={{ color: "#748ffc" }}>
                     {studyMember.member.name}
