@@ -106,6 +106,7 @@
 }
 
 .wrap{
+  width: 352px;
   flex-grow: 1;
 }
 
@@ -134,6 +135,7 @@
   font-weight: 400;
   font-size: 14px;
   align-items: center;
+  width: fit-content;
   min-width: 80px;
 
   background-color: #fff4f4;

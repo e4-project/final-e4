@@ -4,7 +4,7 @@ interface IApplicantEntity {
   applicant: Types.ObjectId;
   studyId: Types.ObjectId;
   message: string;
-  recognition: "대기" | "승인";
+  recognition: "대기" | "승인" | "거절";
 }
 //applicant
 const ApplicantSchema = new Schema<IApplicantEntity>(

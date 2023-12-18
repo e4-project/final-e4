@@ -21,6 +21,7 @@ import {
   deleteRecruitComment,
   postRecruitComment,
 } from "@/axios/fetcher/recruitComment";
+import dayjs from "dayjs";
 import { loadUserApi } from "@/axios/fetcher/user/loadUserApi";
 import { postApplicantApi } from "@/axios/fetcher/applicant/postApplicantApi";
 import {

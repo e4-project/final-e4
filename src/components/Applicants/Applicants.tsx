@@ -2,12 +2,11 @@ import React, { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import dayjs from "dayjs";
 import { IApplicant, IResponseApplicantStatus } from "@/interfaces/applicants";
-import { patchApproveApplicantApi } from "@/axios/fetcher/applicant/patchApproveApplicantApi";
-import { deleteRejectApplicantApi } from "@/axios/fetcher/applicant/deleteRejectApplicantApi";
 import Avatar from "@/components/common/Avatar";
 import Reject from "./Reject";
 import Approve from "./Approve";
 import style from "./Applicants.module.css";
+import { patchApproveOrRejectApplicantApi } from "@/axios/fetcher/applicant";
 /**
  * @name applicants
  * @author 강이경
@@ -32,17 +31,19 @@ const Applicants = ({ data }: IProps) => {
   const onApprove = useCallback(
     async (applicantId: string, studyId: string) => {
       console.log('요청전', applicantId);
-      const result = await patchApproveApplicantApi(applicantId, studyId, "승인");
+      const result = await patchApproveOrRejectApplicantApi(applicantId, studyId, "승인");
       console.log("승인됨", result);
       router.refresh();
     },
     [router]
   );
 
-  const onReject = useCallback(async (applicantId: string) => {
-    console.log("거절됨");
-    // deleteRejectApplicantApi(data.applicant._id);
-  }, []);
+  const onReject = useCallback(async (applicantId: string, studyId: string) => {
+    console.log('요청전', applicantId);
+    const result = await patchApproveOrRejectApplicantApi(applicantId, studyId, "거절");
+    console.log("승인됨", result);
+    router.refresh();
+  }, [router]);
 
   return (
     <div className={style.bg}>
