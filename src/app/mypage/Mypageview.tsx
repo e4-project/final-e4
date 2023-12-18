@@ -5,6 +5,7 @@ import style from "./Mypageview.module.css";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { uploadImg2 } from "@/utils/uploadImg2";
+import Goal from "./Goal";
 
 const Mypageview = () => {
   const router = useRouter();
@@ -81,57 +82,60 @@ const Mypageview = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} action="/api/upload" method="POST">
-      <div className={style.wrapper}>
-        <div className={style.profile_container}>
-          <div className={style.profile_img}>
-            {ImgSrc && (
-              <img
-                src={typeof ImgSrc === "string" ? ImgSrc : ImgSrc.secure_url}
-                alt="프로필 미리보기"
-                className={style.profile_image}
-              />
-            )}
-            {session && session.user && session.user.image && (
-              <img
-                src={session.user.image}
-                alt="Profile"
-                className={style.profile_image}
-              />
-            )}
+    <div>
+      <form onSubmit={handleSubmit} action="/api/upload" method="POST">
+        <div className={style.wrapper}>
+          <div className={style.profile_container}>
+            <div className={style.profile_img}>
+              {ImgSrc && (
+                <img
+                  src={typeof ImgSrc === "string" ? ImgSrc : ImgSrc.secure_url}
+                  alt="프로필 미리보기"
+                  className={style.profile_image}
+                />
+              )}
+              {session && session.user && session.user.image && (
+                <img
+                  src={session.user.image}
+                  alt="Profile"
+                  className={style.profile_image}
+                />
+              )}
+            </div>
+
+            <label className={style.img_edit_btn} htmlFor="inputFile">
+              프로필 사진 변경
+            </label>
+            <input
+              style={{ display: "none" }}
+              id="inputFile"
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange} // 이미지 선택 필드에서 이미지 업데이트
+            />
+
+            <input
+              className={style.input_text}
+              type="text"
+              defaultValue={session?.user?.name || ""}
+              onChange={onChangeName}
+            />
+
+            <button className={style.save_btn} type="submit">
+              저장
+            </button>
+            <button
+              className={style.withdrawal_btn}
+              onClick={handleWithdrawal}
+              type="submit"
+            >
+              회원탈퇴
+            </button>
           </div>
-
-          <label className={style.img_edit_btn} htmlFor="inputFile">
-            프로필 사진 변경
-          </label>
-          <input
-            style={{ display: "none" }}
-            id="inputFile"
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange} // 이미지 선택 필드에서 이미지 업데이트
-          />
-
-          <input
-            className={style.input_text}
-            type="text"
-            defaultValue={session?.user?.name || ""}
-            onChange={onChangeName}
-          />
-
-          <button className={style.save_btn} type="submit">
-            저장
-          </button>
-          <button
-            className={style.withdrawal_btn}
-            onClick={handleWithdrawal}
-            type="submit"
-          >
-            회원탈퇴
-          </button>
         </div>
-      </div>
-    </form>
+      </form>
+      <Goal></Goal>
+    </div>
   );
 };
 

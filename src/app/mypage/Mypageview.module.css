@@ -2,7 +2,7 @@
   display: flex;
   /* align-items: center; 부모 요소를 상단으로 정렬 */
   width: 100vw;
-  height: 100vh;
+  height: 45vh;
   background-color: #f8f8f8;
   justify-content: center;
 }

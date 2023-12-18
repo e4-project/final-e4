@@ -3,7 +3,6 @@ import NextAuth from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import KakaoProvider from "next-auth/providers/kakao";
 import GoogleProvider from "next-auth/providers/google";
-
 export const authOptions = {
   providers: [
     GithubProvider({

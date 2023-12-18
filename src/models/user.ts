@@ -5,6 +5,7 @@ interface IUser {
   emailVerified: boolean;
   image: string;
   changename: boolean;
+  lastCheckInDate: Date;
 }
 const UserSchema = new Schema<IUser>(
   {
@@ -26,6 +27,7 @@ const UserSchema = new Schema<IUser>(
     changename: {
       type: Boolean,
     },
+    lastCheckInDate: { type: Date },
   },
   {
     timestamps: true,

@@ -1,11 +1,8 @@
 import React from "react";
 import Mypageview from "./Mypageview";
+
 const Mypage = () => {
-  return (
-    <div>
-      <Mypageview />
-    </div>
-  );
+  return <Mypageview />;
 };
 
 export default Mypage;
