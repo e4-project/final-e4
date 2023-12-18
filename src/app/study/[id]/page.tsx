@@ -23,7 +23,7 @@ const Page = () => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   // 수정 상태
   const [inputs, setInputs] = useState([
-    { week_input: "", study_content_input: "" },
+    { week_input: "1주차", study_content_input: "" },
   ]);
 
   const [noteData, setNoteData] = useState<WeekGoal[]>([]);
