@@ -21,15 +21,14 @@ import {
   deleteRecruitComment,
   postRecruitComment,
 } from "@/axios/fetcher/recruitComment";
-import dayjs from "dayjs";
 import { loadUserApi } from "@/axios/fetcher/user/loadUserApi";
-import { postApplicantApi } from "@/axios/fetcher/applicant/postApplicantApi";
 import {
   deleteRecruitLike,
   postRecruitLikes,
 } from "@/axios/fetcher/recruitLikes";
 import { isDeadLine } from "@/utils/isDeadLine";
 import style from "./recruit.module.css";
+import { postApplicantApi } from "@/axios/fetcher/applicant";
 
 interface IProps {
   data: IResponseRecruitPost;
