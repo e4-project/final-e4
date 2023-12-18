@@ -316,6 +316,7 @@ box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
 }
 .like_count {
   padding: 2px 0 0 4px;
+  position: relative;
 }
 .good_check:checked ~ .like_count  {
   font-size: 15px;
@@ -572,4 +573,23 @@ box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
     100% {
         transform: rotate(360deg);
     }
+}
+
+/* 좋아요 추가 */
+
+.animate::before{
+  animation: addition 1.5s forwards;
+  content: '❤';
+  color: pink;
+  font-size: 18px;
+  line-height: 1;
+  position: absolute;
+  top: 4px;
+  left: 9px;
+}
+@keyframes addition {
+  0%{ opacity: 0; }
+  50%{ opacity: 0; }
+  70%{ top: 4px; opacity: 1;}
+  100% { top: -4px; opacity: 0; }
 }

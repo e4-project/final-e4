@@ -52,6 +52,10 @@ export default function StudyPageView({ data, likesData }: IProps) {
   const [isLoadingLikedRecruit, setLoadingLikedRecruit] = useState(true);
   const deadLine = new Date(data?.deadLine).getTime();
   const router = useRouter();
+  // 좋아용
+  const [likesCount, setLikesCount] = useState(likesData.count);
+  const [animate, setAnimate] = useState(false);
+
   useEffect(() => {
     (async () => {
       const data = await loadUserApi();
@@ -148,6 +152,21 @@ export default function StudyPageView({ data, likesData }: IProps) {
   const isRecruitUserTheCurrentUser =
     currentUser && data?.leader?._id === currentUser?._id;
   console.log(isLikedRecruit);
+
+  // 좋아용
+  useEffect(() => {
+    if (likesData.count !== likesCount) {
+      setLikesCount(likesData.count);
+      setAnimate(true);
+  
+      const animationDuration = 1500; 
+      setTimeout(() => {
+        setAnimate(false);
+      }, animationDuration);
+    }
+  }, [likesData.count, likesCount]);
+
+
   return (
     <div className={style.sheet}>
       {modalOpen && (
@@ -284,6 +303,7 @@ export default function StudyPageView({ data, likesData }: IProps) {
               <div className={style.like_count}>
                 <img src="/icons/icon_like.svg" alt=""/>
                  {likesData.count}개
+                 <div className={`${animate && style.animate}`}></div>
               </div>
             </div>
             
