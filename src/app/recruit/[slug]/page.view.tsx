@@ -29,11 +29,19 @@ import {
 import { isDeadLine } from "@/utils/isDeadLine";
 import style from "./recruit.module.css";
 import { postApplicantApi } from "@/axios/fetcher/applicant";
+import Avatar from "@/components/common/Avatar";
 
 interface IProps {
   data: IResponseRecruitPost;
   likesData: any;
 }
+
+const StyledImg = {
+  borderRadius: "3px",
+  height: "25px",
+  width: "25px",
+};
+
 export default function StudyPageView({ data, likesData }: IProps) {
   const [message, setMessage] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
@@ -255,9 +263,7 @@ export default function StudyPageView({ data, likesData }: IProps) {
                   <div className={style.box}></div>
                   <div className={style.box}></div>
                 </label>
-                <div className={style.like_count}>
-                  <span>좋아요 {likesData.count}개</span>
-                </div>
+                
               </div>
             </li>
           </ul>
@@ -266,7 +272,24 @@ export default function StudyPageView({ data, likesData }: IProps) {
         <div className={style.area2}>
           <div className={style.recruit_post}>
             <h2>{RenderHtmlContext(data?.studyName)}</h2>
+            <div className={style.writer_like}>
+              <div key={data.leader._id} className={style.writer}>
+                <Avatar
+                  src={data.leader.image}
+                  alt="pimg"
+                  style={StyledImg}
+                />
+                <p key={data.leader._id}>{data.leader.name}</p>
+              </div>
+              <div className={style.like_count}>
+                <img src="/icons/icon_like.svg" alt=""/>
+                 {likesData.count}개
+              </div>
+            </div>
+            
             <p>{RenderHtmlContext(data?.content)}</p>
+
+            
           </div>
           <div className={style.comment}>
             <p>댓글</p>
