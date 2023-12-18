@@ -7,6 +7,10 @@ import { routeWrapperWithError } from "@/utils/routeWrapperWithError";
   모집글 상세 정보
   params: id | studyname
 */
+
+/* 
+  path: /api/recruit/id/:id 
+*/
 export const GET = routeWrapperWithError(
   async (req: NextRequest, { params }: { params: { slug: string } }) => {
     if (params.slug[0] === "id") {
@@ -14,9 +18,10 @@ export const GET = routeWrapperWithError(
       const studyId = params.slug[1];
       const ObjectId = mongoose.Types.ObjectId;
       const recuitsId = new ObjectId(studyId);
-      const recuitsPost = await RecruitPost.findById(recuitsId)
-        .populate("leader", "name")
-      console.log({recuitsPost})
+      const recuitsPost = await RecruitPost.findById(recuitsId).populate(
+        "leader",
+        "name"
+      );
       return NextResponse.json(recuitsPost);
     } else {
       //slug === studyname인경우
