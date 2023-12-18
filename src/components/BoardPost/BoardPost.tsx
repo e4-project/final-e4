@@ -3,11 +3,11 @@ import { useSession } from "next-auth/react";
 import Card from "@/components/common/Card";
 import CommentForm from "@/components/Comment/CommentForm";
 import SingleComment from "@/components/Comment/SingleComment";
-import Button from "@/components/common/Button";
 import { IResponseBoard } from "@/interfaces/study_board";
 import style from "./boardPost.module.css";
 import { loadStudyPostComment } from "@/axios/fetcher/studyPostComment/loadStudyPostComment";
 import LikeButton from "./like_button/LikeButton";
+import ExpansionButton from "./expansion_button/ExpansionButton"
 
 interface Iprops {
   board: IResponseBoard;
@@ -28,12 +28,7 @@ const BoardPost = ({ board, onDelPost }: Iprops) => {
               createdAt={createdAt}
               actionEl={
                 <div className={style.post_btn_wrap}>
-                  <Button
-                    text="삭제"
-                    className={`${style.post_btn} ${style.btn_del}`}
-                    onClick={() => onDelPost(_id)}
-                  />
-                  <Button text="수정" className={style.post_btn} />
+                  <ExpansionButton onDelPost={onDelPost} _id = {_id}/>
                 </div>
               }
               content={content}
