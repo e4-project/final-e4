@@ -105,6 +105,7 @@ const Applicants = ({ data }: IProps) => {
                         key={user._id}
                         data={user}
                         onApprove={onApprove}
+                        onReject={onReject}
                       />
                     );
                   }
@@ -156,9 +157,11 @@ function StudyInfo(props: any) {
 function Applicant({
   data,
   onApprove,
+  onReject
 }: {
   data: IApplicant;
   onApprove: (applicantId: string, studyId: string) => void;
+  onReject: (applicantId: string, studyId: string) => void;
 }) {
   // console.log({ apply: data });
 
@@ -181,7 +184,7 @@ function Applicant({
       <p className={style.applicant_message}>{data.message}</p>
       <div className={style.applicant_btns}>
         <Approve userId={data.applicant?._id} studyId={data.studyId} onApprove={onApprove} />
-        <Reject />
+        <Reject  userId={data.applicant?._id} studyId={data.studyId} onReject={onReject}/>
         {/* <Reject onReject={onReject} /> */}
       </div>
     </div>
