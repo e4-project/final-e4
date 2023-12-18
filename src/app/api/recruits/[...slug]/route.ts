@@ -20,7 +20,8 @@ export const GET = routeWrapperWithError(
       const recuitsId = new ObjectId(studyId);
       const recuitsPost = await RecruitPost.findById(recuitsId).populate(
         "leader",
-        "name"
+        "name image"
+        
       );
       return NextResponse.json(recuitsPost);
     } else {
