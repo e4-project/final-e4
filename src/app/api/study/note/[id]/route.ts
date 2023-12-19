@@ -23,21 +23,22 @@ export const GET = routeWrapperWithError(
     const url = new URL(req.url);
     const searchParams = new URLSearchParams(url.search);
     const week = searchParams.get("week");
-    // console.log(week);
+    console.log(week);
 
     console.log(params.id);
       // 유저 정보 가져오기
     const user = await User.findOne();
-    // console.log(user);
-
+    console.log({user});
+    
     try {
       // id와 주차 정보와 관련된 노트 찾고
       const studyNote = await StudyNote.findOne({
-        author: user._id,
-        studyId: params.id,
+        author: params.id,
         week: week,
       });
-      console.log(studyNote);
+      console.log({studyNote});
+
+      
 
       if (studyNote) {
         // 찾은 노트의 contents 가져옴
@@ -58,14 +59,12 @@ export const POST = routeWrapperWithError(
     try {
       await connectDB();
 
-      const user = await User.findOne();
-
       const { week, contents } = data;
 
       const studyId = params.id;
 
       const newNote = new StudyNote({
-        author: user._id,
+        /* author: user._id, */
         studyId: studyId,
         week: week,
         contents: contents,

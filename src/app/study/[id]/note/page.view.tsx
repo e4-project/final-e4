@@ -4,6 +4,7 @@ import style from "./note.module.css";
 import MyEditorComponent from "./page.write";
 import Button from "@/components/common/Button";
 import { useParams } from "next/navigation";
+import StudyNoteItem from "./study.note.item";
 
 /**
  * @name note
@@ -45,6 +46,7 @@ const Page = ({ contents }: any) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          /* author: memberId, */
           week: selectWeek,
           contents: editorContent,
         }),
@@ -59,10 +61,11 @@ const Page = ({ contents }: any) => {
   };
   // 멤버 노트 데이터 받아옴
   const memberNotes = async (memberId: string) => {
+    console.log(memberId);
     try {
       const url = `/api/study/note/${id}/?week=${selectWeek}`;
       console.log(url);
-      const result = await fetch(`/api/study/note/${id}?week=${selectWeek}`);
+      const result = await fetch(`/api/study/note/${memberId}?week=${selectWeek}`);
       const data = await result.json();
       console.log(data);
       setMemberNoteContents(data.contents);
@@ -141,19 +144,7 @@ const Page = ({ contents }: any) => {
         ) : (
           <div className={style.member_note}>
             {studyMembers.map((studyMember: any, index: number) => (
-              <div
-                key={index}
-                onClick={() => memberNotes(studyMember.member.id)}
-              >
-                <p className={style.member_list}>
-                  <span style={{ color: "#748ffc" }}>
-                    {studyMember.member.name}
-                  </span>
-                  의 공부 노트
-                </p>
-                <div dangerouslySetInnerHTML={{ __html: memberNoteContents }} />
-              </div>
-            ))}
+              <StudyNoteItem key={studyMember.id} studyMember={studyMember} memberNotes={memberNotes} id={id} /> ))}
           </div>
         )}
       </div>
