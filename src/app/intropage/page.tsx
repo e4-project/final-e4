@@ -122,6 +122,14 @@ export default function Mainpage() {
     }
   }, []);
 
+  // area1영역 클릭시 area2영역으로 이동
+  const section1 = document.querySelector(`.${mainstyle.area1}`);
+  const section2 = document.querySelector(`.${mainstyle.area2}`);
+  
+  section1?.addEventListener('click', ()=>{
+    section2?.scrollIntoView({behavior:'smooth'});
+  });
+
   return (
     <>
       {/* <div className={mainstyle.page_start}>
