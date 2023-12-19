@@ -136,11 +136,21 @@ const Header = () => {
                 )}
                 <img src="/icons/icon_bell.svg" alt="" />
                 <ul className={style.bell_menu}>
-                  <li className="push_list">동훈님이 게시글에 좋아요 했습니다</li>
-                  <li className="push_list">신지수님이 스터디에 참여 신청했습니다</li>
-                  <li className="push_list">yiky000님이 스터디모집에 좋아요 했습니다</li>
-                  <li className="push_list">오동님이 스터디 참여 신청을 수락 했습니다</li>
-                  <li className="push_list">태랑님이 스터디 참여 신청을 거절 했습니다</li>
+                  <li className="push_list">
+                    동훈님이 게시글에 좋아요 했습니다
+                  </li>
+                  <li className="push_list">
+                    신지수님이 스터디에 참여 신청했습니다
+                  </li>
+                  <li className="push_list">
+                    yiky000님이 스터디모집에 좋아요 했습니다
+                  </li>
+                  <li className="push_list">
+                    오동님이 스터디 참여 신청을 수락 했습니다
+                  </li>
+                  <li className="push_list">
+                    태랑님이 스터디 참여 신청을 거절 했습니다
+                  </li>
                 </ul>
               </label>
               {/*  */}
@@ -183,7 +193,7 @@ const Header = () => {
                       </li>
                       <li
                         onClick={() => {
-                          signOut();
+                          signOut({ callbackUrl: "/intropage" });
                         }}
                       >
                         로그아웃
