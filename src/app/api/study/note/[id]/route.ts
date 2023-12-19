@@ -41,7 +41,7 @@ export const GET = routeWrapperWithError(
 
       if (studyNote) {
         // 찾은 노트의 contents 가져옴
-        return NextResponse.json({ contents: studyNote.contents, week: studyNote.week });
+        return NextResponse.json({ memberId: studyNote.author, contents: studyNote.contents, week: studyNote.week });
         } else {
         return NextResponse.json({ error: '해당 노트 내용 없음' }, { status: 404 });
         }

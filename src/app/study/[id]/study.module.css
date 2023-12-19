@@ -187,6 +187,7 @@
   border: 1px solid #ced4da;
   border-radius: 8px;
   background-color: #f8f8f8;
+  cursor: pointer;
 }
 
 .study_content_input {
