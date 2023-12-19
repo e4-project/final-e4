@@ -10,6 +10,7 @@ interface IRecruitPostEntity {
   /* 스터디 모임 정보 */
   leader: Types.ObjectId; //스터디장
   applicants: Object; //참여자 목록
+  rejectedApplications: Object; // 거절된 참여자 목록
   studyKeyword: string; //스터디 주제
   duration: string; // 스터디 기간
   headCount: number; //모집 인원
@@ -30,6 +31,11 @@ const RecruitPostSchema = new Schema<IRecruitPostEntity>(
     applicants: {
       type: Array<Schema.Types.ObjectId>,
       required: true,
+      ref: "User",
+      default: [],
+    },
+    rejectedApplications: {
+      type: Array<Schema.Types.ObjectId>,
       ref: "User",
       default: [],
     },

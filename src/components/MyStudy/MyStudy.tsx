@@ -1,11 +1,8 @@
 "use client";
-import React from "react";
-import { useRouter } from 'next/navigation';
+import React, { useEffect } from "react";
 import Link from "next/link";
 import style from "./MyStudy.module.css";
-import CancelApplicant from "@/components/MyStudy/CancelApplicant";
-import { useSession } from "next-auth/react";
-import { deleteCancelApplicantApi } from "@/axios/fetcher/applicant";
+import Apply from "./Apply";
 // 불러올 데이타 인터페이스 다 임포트해야댐
 
 /**
@@ -19,17 +16,21 @@ interface IProps {
 }
 
 const MyStudy = ({ data }: IProps) => {
+  console.log(data?.myCreatedStudy)
   const myAppliedstudy = data?.myAppliedStudy?.map((info: any) => ({
     _id: info?.studyId?._id,
     studyName: info?.studyId?.studyName,
+    start: info?.studyId?.start
   }));
   const myCreatedStudy = data?.myCreatedStudy?.map((info: any) => ({
     _id: info?._id,
     studyName: info?.studyName,
+    start: info?.start
   }));
 
   data?.myAppliedStudy?.map((info: any) => console.log(info));
   const studyRoomInfo = myAppliedstudy.concat(myCreatedStudy);
+  studyRoomInfo.map((item: any )=> console.log({item}))
 
   return (
     <div className={style.bg}>
@@ -74,11 +75,13 @@ const MyStudy = ({ data }: IProps) => {
           {/* 이 링크를 통해 스터디페이지(/study/study_id)로 이동 */}
           {/*  */}
           {studyRoomInfo.map((study: any) => (
+            study.start && (
             <Link key={study?._id} href={`/study/${study?._id}`}>
               <span className={`${style.section_item} ${style.study_name}`}>
                 {study?.studyName}
               </span>
             </Link>
+            )
           ))}
         </div>
       </div>
@@ -101,62 +104,6 @@ function MyRecruitPost(props: any) {
         {/* 해당 recruit post의 _id 로 구분된 applicants 페이지로*/}
         {/* if close==true(신청 마감되면) -> 버튼 대신 '신청 마감' 표기 */}
       </Link>
-    </div>
-  );
-}
-
-function Apply(props: any) {
-  console.log({ props });
-  const { applicant, studyId: study, recognition } = props;
-  const router = useRouter();
-  const session = useSession();
-
-  const onCancel = async (userId: string, recruitid: string) => {
-    if (session) {
-      await deleteCancelApplicantApi(userId, recruitid);
-      router.refresh();
-      console.log("신청 취소");
-    }
-  };
-  return (
-    <div className={style.section_item}>
-      <div className={style.wrap}>
-        {recognition !== "승인" ? (
-          recognition === "거절" ? (
-            <div>
-              <p style={{ opacity: 0.5, textDecoration: "line-through" }}>
-                {study?.studyName}
-              </p>
-            </div>
-          ) : (
-            <div style={{ display: "flex" }}>
-              <p style={{ width: "80%" }}>
-                <span style={{opacity: 0.5}}>{study?.studyName}</span>
-                <CancelApplicant
-                  recruitId={study?._id}
-                  userId={applicant}
-                  onCancel={onCancel}
-                />
-              </p>
-            </div>
-          )
-        ) : (
-          <Link href={`/recruit/${study?._id}`}>
-            <p>{study?.studyName}</p>
-          </Link>
-        )}
-      </div>
-      <div>
-        {recognition !== "승인" ? (
-          recognition !== "거절" ? (
-            <p>승인 대기 😀</p>
-          ) : (
-            <p style={{ opacity: 0.5 }}>승인 거절 😂</p>
-          )
-        ) : (
-          <p>승인 완료 😊</p>
-        )}
-      </div>
     </div>
   );
 }

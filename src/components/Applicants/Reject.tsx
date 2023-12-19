@@ -4,10 +4,12 @@ import style from "./Applicants.module.css";
 import { useState } from "react";
 
 interface IProps {
-  onReject?: () => void;
+  userId: string;
+  studyId: string;
+  onReject?: (applicantId: string, studyId: string) => void;
 }
 
-export default function Reject({ onReject }: IProps) {
+export default function Reject({ userId, studyId, onReject }: IProps) {
   const [showAlert, setShowAlert] = useState(false);
   const clickAlert = () => setShowAlert(!showAlert);
 
@@ -16,13 +18,20 @@ export default function Reject({ onReject }: IProps) {
       <p onClick={clickAlert} className={style.reject_btn}>
         거절
       </p>
-      {showAlert && <FeedAlert clickAlert={clickAlert} onReject={onReject} />}
+      {showAlert && (
+        <FeedAlert
+          userId={userId}
+          studyId={studyId}
+          clickAlert={clickAlert}
+          onReject={onReject}
+        />
+      )}
     </div>
   );
 }
 
 const FeedAlert = (props: any) => {
-  const { clickAlert, onReject } = props;
+  const { userId, studyId, clickAlert, onReject } = props;
 
   return (
     <div onClick={clickAlert} className={style.alert_bg}>
@@ -31,7 +40,7 @@ const FeedAlert = (props: any) => {
         <div className={style.btns}>
           <p
             onClick={() => {
-              onReject();
+              onReject(userId, studyId);
               clickAlert();
             }}
             className={style.cancel_yes_btn}
