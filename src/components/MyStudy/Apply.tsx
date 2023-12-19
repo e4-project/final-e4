@@ -8,7 +8,7 @@ import { deleteCancelApplicantApi } from "@/axios/fetcher/applicant";
 function Apply(props: any) {
   // console.log({ props });
   const { applicant, studyId: study, recognition } = props;
-  // console.log({ study, recognition });
+  console.log({ study });
   const router = useRouter();
   const session = useSession();
 
@@ -19,47 +19,51 @@ function Apply(props: any) {
       console.log("신청 취소");
     }
   };
+  console.log({ recognition, study });
   return (
     <div className={style.section_item}>
-      <div className={style.wrap}>
-        {recognition !== "승인" ? (
-          recognition === "거절" ? (
-            <div>
-              <p style={{ opacity: 0.5, textDecoration: "line-through" }}>
-                {study?.studyName}
-              </p>
-              <p style={{ opacity: 0.5 }}>승인 거절 😂</p>
-            </div>
-          ) : (
-            /* 신청 취소 */
-            <div style={{ display: "flex" }}>
-              <p style={{ width: "80%" }}>
-                <span style={{ opacity: 0.5 }}>{study?.studyName}</span>
-                <CancelApplicant
-                  recruitId={study?._id}
-                  userId={applicant}
-                  onCancel={onCancel}
-                />
-              </p>
-            </div>
-          )
-        ) : (
-          <Link href={`/recruit/${study?._id}`}>
-            <p>{study?.studyName}</p>
-          </Link>
-        )}
-      </div>
-      <div>
-        {recognition !== "승인" ? (
-          recognition !== "거절" ? (
-            <p>승인 대기 😀</p>
-          ) : (
-            <p style={{ opacity: 0.5 }}>승인 거절 😂</p>
-          )
-        ) : (
-          <p>승인 완료 😊</p>
-        )}
-      </div>
+      {study && (
+        <>
+          <div className={style.wrap}>
+            {recognition !== "승인" ? (
+              recognition === "거절" ? (
+                <div>
+                  <p style={{ opacity: 0.5, textDecoration: "line-through" }}>
+                    {study?.studyName}
+                  </p>
+                </div>
+              ) : (
+                /* 신청 취소 */
+                <div style={{ display: "flex" }}>
+                  <p style={{ width: "80%" }}>
+                    <span style={{ opacity: 0.5 }}>{study?.studyName}</span>
+                    <CancelApplicant
+                      recruitId={study?._id}
+                      userId={applicant}
+                      onCancel={onCancel}
+                    />
+                  </p>
+                </div>
+              )
+            ) : (
+              <Link href={`/recruit/${study?._id}`}>
+                <p>{study?.studyName}</p>
+              </Link>
+            )}
+          </div>
+          <div>
+            {recognition !== "승인" ? (
+              recognition !== "거절" ? (
+                <p>승인 대기 😀</p>
+              ) : (
+                <p style={{ opacity: 0.5 }}>승인 거절 😂</p>
+              )
+            ) : (
+              <p>승인 완료 😊</p>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 }
