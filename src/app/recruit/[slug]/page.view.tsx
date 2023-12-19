@@ -36,6 +36,7 @@ import style from "./recruit.module.css";
 interface IProps {
   data: IResponseRecruitPost;
   likesData: any;
+  members: any;
 }
 
 const StyledImg = {
@@ -44,7 +45,8 @@ const StyledImg = {
   width: "25px",
 };
 
-export default function StudyPageView({ data, likesData }: IProps) {
+export default function StudyPageView({ data, likesData, members }: IProps) {
+  console.log(members)
   const [message, setMessage] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [isApplicant, setIsApplicant] = useState<boolean | null>(null);
@@ -53,15 +55,15 @@ export default function StudyPageView({ data, likesData }: IProps) {
   const [isLikedRecruit, setIsLikedRecruit] = useState(false);
   const [isLoadingLikedRecruit, setLoadingLikedRecruit] = useState(true);
   const { data: session } = useSession();
-  const deadLine = new Date(data?.deadLine).getTime();
   const router = useRouter();
   // 좋아용
   const [likesCount, setLikesCount] = useState(likesData.count);
   const [animate, setAnimate] = useState(false);
-
   const isCompletedRecruit = useMemo(() => {
-    return data?.applicants.length === data.headCount;
-  }, [data?.applicants.length, data.headCount]);
+    // return data?.applicants.length === data.headCount;
+    return members?.memberCommon?.length === data?.headCount;
+  }, [data.headCount, members.memberCommon.length]);
+  const isRejected = data?.rejectedApplications.includes(currentUser?._id as string);
 
   useEffect(() => {
     (async () => {
@@ -129,8 +131,9 @@ export default function StudyPageView({ data, likesData }: IProps) {
 
   const showModal = () => {
     if (isLoadingAppliCant) return; //로딩시 신청 모달창 안나오게
+    if (isRejected) return ;
     if (!currentUser) {
-      return alert("인증 필요");
+      return alert("로그인후 신청 가능합니다.");
     }
     setModalOpen(true);
   };
@@ -155,7 +158,7 @@ export default function StudyPageView({ data, likesData }: IProps) {
       console.log(result);
       router.refresh(); //refresh는 이벤트 처리가 있는 컴포넌트 전체(페이지 단위)에서 적용됨
     } else {
-      alert("인증이 필요합니다.");
+      alert("로그인후 신청 가능합니다.");
     }
     closeModal();
     setMessage("");
@@ -163,6 +166,7 @@ export default function StudyPageView({ data, likesData }: IProps) {
 
   const btnActionCommonUser = useCallback(() => {
     if (session !== null && currentUser) {
+      if (isRejected) return "모집 완료된 스터디";
       if (session === undefined && isLoadingAppliCant && !isApplicant)
         return <span className={style.loading_spinner}></span>;
       if (isCompletedRecruit) return "모집 완료된 스터디";
@@ -175,16 +179,10 @@ export default function StudyPageView({ data, likesData }: IProps) {
       return isCompletedRecruit ? (
         <span>모집 완료된 스터디</span>
       ) : (
-        session === null && <span>인증이 필요</span>
+        session === null && <span>로그인 해주세요.</span>
       );
     }
-  }, [
-    currentUser,
-    isApplicant,
-    isCompletedRecruit,
-    isLoadingAppliCant,
-    session,
-  ])();
+  }, [currentUser, isApplicant, isCompletedRecruit, isLoadingAppliCant, isRejected, session])();
 
   const isRecruitUserTheCurrentUser =
     currentUser && data?.leader?._id === currentUser?._id;
@@ -279,7 +277,7 @@ export default function StudyPageView({ data, likesData }: IProps) {
                     type="submit"
                     onClick={showModal}
                     // 현재 유저가 해당 모집글 참여 신청자가 아닌경우만 신청
-                    disabled={isCompletedRecruit || (isApplicant as boolean)}
+                    disabled={isRejected || isCompletedRecruit || (isApplicant as boolean)}
                   >
                     {btnActionCommonUser}
                   </button>

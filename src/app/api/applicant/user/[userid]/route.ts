@@ -10,6 +10,10 @@ import RecruitPost from "@/models/recruit_post";
 export const POST = routeWrapperWithError(
   async (req: NextRequest, { params }: { params: { userid: string } }) => {
     const { studyId, message } = await req.json();
+    const memberAll = (
+      await Member.find({ studyId }).where({ rel: "common" })
+    ).length;
+
     const userId = params.userid;
     if (!studyId || !message) {
       return NextResponse.json(
@@ -22,7 +26,7 @@ export const POST = routeWrapperWithError(
       모집인원: Number(recruitpost.headCount),
       총인원: recruitpost.applicants.length + 1,
     });
-    if (Number(recruitpost.headCount) >= recruitpost.applicants.length + 1) {
+    if (Number(recruitpost.headCount) >= memberAll + 1) {
       // 모집 완료
       const savedApplicant = await Applicant.create({
         applicant: userId,
@@ -97,10 +101,19 @@ export const PATCH = routeWrapperWithError(
       // 멤버 크기랑 모집글 headCount
       return NextResponse.json({ isOk: true, msg: "승인 완료 및 멤버 등록" });
     } else {
+      //거절된 경우
+      console.log({state: recognition})
       await applicants.updateOne({
         $set: {
           recognition,
         },
+      });
+      await recruitpost.updateOne({
+        $pull: { applicants: userId },
+      });
+
+      await recruitpost.updateOne({
+        $push: { rejectedApplications: userId },
       });
       return NextResponse.json("거절 되었습니다.");
     }
