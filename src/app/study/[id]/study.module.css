@@ -5,7 +5,13 @@
   padding: 10px 20px;
   margin: 0 auto;
 }
-
+.area {
+  display: flex;
+  max-width: 1280px;
+  width: 100%;
+  height: auto;
+  position: relative;
+}
 .left_container {
   display: flex;
   flex-direction: column;
@@ -17,6 +23,17 @@
   border: 1px solid lightgrey;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  animation: study 1s forwards;
+  top: 0;
+  left: -20px;
+  opacity: 0;
+}
+@keyframes study {
+  0%{ top: -100px; opacity: 0;}
+  40%{ top: 10px;}
+  60%{ top: -10px;}
+  100%{top: 0; opacity: 1;}
 }
 
 .left_info {
@@ -137,6 +154,19 @@
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow-x: hidden;
+  position: absolute;
+  top: 0;
+  /* left: 412px; */
+  right: -40px;
+  animation: board 1s forwards;
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+@keyframes board {
+  0%{right: -100px; opacity: 0;}
+  40%{right: -30px;}
+  60%{right: -45px;}
+  100%{ right: -40px; opacity: 1;}
 }
 
 .right_container .progress_container {

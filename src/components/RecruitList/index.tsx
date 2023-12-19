@@ -140,7 +140,7 @@ const RecruitList = ({ data }: IProps) => {
           </div>
 
           <ul className={style.card_wrap}>
-            {search.length ? (
+            {(search ?? []).length ? (
               <>
                 {search?.map((item: IResponseRecruitPost) => (
                   // recruit 리스트 만들기 key는 부모한테만 줘야함

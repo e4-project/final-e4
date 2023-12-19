@@ -7,6 +7,7 @@ export const loadRecruitOneByIdApi = async (id: string) => {
     const {data} = await axios.get(
       getBaseUrl(`/api/recruits/id/${id}`)
     );
+    console.log({res: data})
     return data;
   } catch(error: any) {
     console.error(error.response)

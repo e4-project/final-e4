@@ -17,5 +17,6 @@ export interface IResponseApplicantStatus {
   studyName: string;
   material: string;
   createdAt: string;
+  start: boolean;
   applicants: Array<IApplicant>;
 }

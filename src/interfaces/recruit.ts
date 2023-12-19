@@ -28,8 +28,10 @@ export interface IResponseRecruitPost {
   leader: {
     _id: string;
     name: string;
+    image: string;
   }; //스터디장
   applicants: Array<string>; //참여자 목록
+  rejectedApplications: Array<string>;
   studyKeyword: string; //스터디 주제
   duration: string; // 스터디 기간
   headCount: number; //모집 인원
