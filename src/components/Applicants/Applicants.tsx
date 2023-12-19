@@ -64,7 +64,7 @@ const Applicants = ({ data, members }: IProps) => {
           <div className={style.study_info}>
             <StudyInfo data={data} />
           </div>
-          <button title="모집 인원이 완료되어야 스터디 관리 페이지가 활성화됩니다." disabled={!data?.start} className={`${style.study_start} ${!data?.start ? style.btn_disabled : ""}`} onClick={() => {
+          <button title={!data?.start ? "모집 인원이 완료되어야 스터디 관리 페이지가 활성화됩니다." : ""} disabled={!data?.start} className={`${style.study_start} ${!data?.start ? style.btn_disabled : ""}`} onClick={() => {
             router.push(`/study/${data?._id}`)
           }}>스터디 시작하기</button>
           <div className={style.bg}>
@@ -91,7 +91,7 @@ const Applicants = ({ data, members }: IProps) => {
                           style={StyledImg}
                         />
                         <p key={user.member._id}>
-                          {user.member.name} ({user.rel})
+                          {user.member.name}
                         </p>
                       </div>
                     </>

@@ -20,15 +20,10 @@ export const POST = routeWrapperWithError(
     const recruitpost = await RecruitPost.findByIdAndUpdate(studyId);
     console.log({
       모집인원: Number(recruitpost.headCount),
-      총인원: recruitpost.applicants.length,
+      총인원: recruitpost.applicants.length + 1,
     });
-    if (Number(recruitpost.headCount) === recruitpost.applicants.length) {
+    if (Number(recruitpost.headCount) >= recruitpost.applicants.length + 1) {
       // 모집 완료
-      return NextResponse.json({
-        isOk: false,
-        msg: "모집 인원 완료, 더이상 참여 신청 받지 않음",
-      });
-    } else {
       const savedApplicant = await Applicant.create({
         applicant: userId,
         studyId,
@@ -39,7 +34,15 @@ export const POST = routeWrapperWithError(
         $push: { applicants: userId },
       });
 
-      return NextResponse.json({ isOk: true, msg: "모집 신청 완료" });
+      return NextResponse.json({
+        isOk: true,
+        msg: "모집 신청 완료",
+      });
+    } else {
+      return NextResponse.json({
+        isOk: false,
+        msg: "모집 인원 완료, 더이상 참여 신청 받지 않음",
+      });
     }
   }
 );
@@ -67,27 +70,29 @@ export const PATCH = routeWrapperWithError(
       const member = await Member.findOne({ member: userId }).where({
         studyId,
       });
-      const memberAll = await Member.find({}).where({ studyId });
-
+      const memberAll = (
+        await Member.find({ studyId }).where({ rel: "common" })
+      ).length;
       if (member) {
         //이미 존재하는 경우 409 status
         return NextResponse.json("이미 등록된 멤버입니다.", { status: 409 });
       }
       // 존재하지 않으면 멤버로 저장.
-      console.log({
-        모집인원_리더: Number(recruitpost.headCount + 1),
-        맴버수: Number(memberAll.length),
-      });
-      if (Number(recruitpost.headCount + 1) === memberAll.length) {
-        await recruitpost.updateOne({ $set: { start: true } });
-        return NextResponse.json("모집 인원 마감, 스터디 시작!!");
-      } else {
+      // 프론트에서 체크, 버튼 활성화는 프론트에서 진행
+      console.log("멤버 체크", Number(recruitpost.headCount), memberAll + 1);
+      console.log("멤버 체크", Number(recruitpost.headCount) >= memberAll + 1);
+      if (Number(recruitpost.headCount) >= memberAll + 1) {
+        // 마지막 인원은 한 번 요청이 되어야 체크됨
         await applicants.updateOne({
           $set: {
             recognition,
           },
         });
         await Member.create(insertData);
+      }
+      if (Number(recruitpost.headCount) === memberAll + 1) {
+        await recruitpost.updateOne({ $set: { start: true } });
+        return NextResponse.json("모집 인원 마감, 스터디 시작!!");
       }
       // 멤버 크기랑 모집글 headCount
       return NextResponse.json({ isOk: true, msg: "승인 완료 및 멤버 등록" });

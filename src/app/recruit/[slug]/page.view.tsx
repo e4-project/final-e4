@@ -1,20 +1,22 @@
 "use client";
-import Link from "next/link";
 import {
   useState,
   ChangeEvent,
   FormEvent,
   useEffect,
   useCallback,
+  useMemo,
 } from "react";
-import dayjs from "dayjs";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { IResponseRecruitPost } from "@/interfaces/recruit";
+import { useSession } from "next-auth/react";
+import dayjs from "dayjs";
+import Avatar from "@/components/common/Avatar";
+import CustomModal from "@/components/common/modal/Custom/page";
 import CommentForm from "@/components/Comment/CommentForm";
 import { RenderHtmlContext } from "@/components/common/Card";
-import CustomModal from "@/components/common/modal/Custom/page";
-import modalStyle from "@/components/common/modal/modal.module.css";
 import SingleComment from "@/components/Comment/SingleComment";
+import { IResponseRecruitPost } from "@/interfaces/recruit";
 import { IResponseUser } from "@/interfaces/user";
 import {
   loadRecruitComment,
@@ -26,10 +28,10 @@ import {
   deleteRecruitLike,
   postRecruitLikes,
 } from "@/axios/fetcher/recruitLikes";
-import { isDeadLine } from "@/utils/isDeadLine";
-import style from "./recruit.module.css";
 import { postApplicantApi } from "@/axios/fetcher/applicant";
-import Avatar from "@/components/common/Avatar";
+import { isDeadLine } from "@/utils/isDeadLine";
+import modalStyle from "@/components/common/modal/modal.module.css";
+import style from "./recruit.module.css";
 
 interface IProps {
   data: IResponseRecruitPost;
@@ -45,23 +47,31 @@ const StyledImg = {
 export default function StudyPageView({ data, likesData }: IProps) {
   const [message, setMessage] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
-  const [isApplicant, setIsApplicant] = useState<null | boolean>(null);
+  const [isApplicant, setIsApplicant] = useState<boolean | null>(null);
   const [isLoadingAppliCant, setIsLoadingAppliCant] = useState(true);
   const [currentUser, setCurrentUser] = useState<IResponseUser | null>(null);
   const [isLikedRecruit, setIsLikedRecruit] = useState(false);
   const [isLoadingLikedRecruit, setLoadingLikedRecruit] = useState(true);
+  const { data: session } = useSession();
   const deadLine = new Date(data?.deadLine).getTime();
   const router = useRouter();
   // 좋아용
   const [likesCount, setLikesCount] = useState(likesData.count);
   const [animate, setAnimate] = useState(false);
 
+  const isCompletedRecruit = useMemo(() => {
+    return data?.applicants.length === data.headCount;
+  }, [data?.applicants.length, data.headCount]);
+
   useEffect(() => {
     (async () => {
       const data = await loadUserApi();
-      setCurrentUser(data);
+      if (session && data) {
+        setCurrentUser(data);
+      } else {
+      }
     })();
-  }, []);
+  }, [session]);
 
   useEffect(() => {
     if (data && currentUser) {
@@ -69,9 +79,24 @@ export default function StudyPageView({ data, likesData }: IProps) {
         currentUser?._id as string
       );
       setIsApplicant(isApplicantData);
+    }
+    if (data) {
       setIsLoadingAppliCant(false);
     }
   }, [currentUser, data]);
+
+  // 좋아용
+  useEffect(() => {
+    if (likesData.count !== likesCount) {
+      setLikesCount(likesData.count);
+      setAnimate(true);
+
+      const animationDuration = 1500;
+      setTimeout(() => {
+        setAnimate(false);
+      }, animationDuration);
+    }
+  }, [likesData.count, likesCount]);
 
   useEffect(() => {
     likesData?.likes?.map((like: any) => {
@@ -104,6 +129,9 @@ export default function StudyPageView({ data, likesData }: IProps) {
 
   const showModal = () => {
     if (isLoadingAppliCant) return; //로딩시 신청 모달창 안나오게
+    if (!currentUser) {
+      return alert("인증 필요");
+    }
     setModalOpen(true);
   };
 
@@ -116,6 +144,7 @@ export default function StudyPageView({ data, likesData }: IProps) {
   };
   const onSubmitRecruit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("클릭");
     if (currentUser) {
       const insertData = {
         userId: currentUser._id,
@@ -123,46 +152,43 @@ export default function StudyPageView({ data, likesData }: IProps) {
         studyId: data?._id,
       };
       const result = await postApplicantApi(insertData);
-      console.log(result)
+      console.log(result);
       router.refresh(); //refresh는 이벤트 처리가 있는 컴포넌트 전체(페이지 단위)에서 적용됨
     } else {
-      window.alert("인증이 필요합니다.");
+      alert("인증이 필요합니다.");
     }
     closeModal();
     setMessage("");
   };
 
-  const btnActionCommonUser = (() => {
-    if (currentUser) {
-      return isLoadingAppliCant ? (
-        <span className={style.loading_spinner}></span>
-      ) : (isApplicant as boolean) ? (
-        "이미 신청한 스터디"
-      ) : (
-        "스터디 참여 신청"
-      );
+  const btnActionCommonUser = useCallback(() => {
+    if (session !== null && currentUser) {
+      if (session === undefined && isLoadingAppliCant && !isApplicant)
+        return <span className={style.loading_spinner}></span>;
+      if (isCompletedRecruit) return "모집 완료된 스터디";
+      return (isApplicant as boolean)
+        ? "이미 신청한 스터디"
+        : "스터디 참여 신청";
     } else {
-      return <span className={style.loading_spinner}></span>;
+      if (isLoadingAppliCant)
+        return <span className={style.loading_spinner}></span>;
+      return isCompletedRecruit ? (
+        <span>모집 완료된 스터디</span>
+      ) : (
+        session === null && <span>인증이 필요</span>
+      );
     }
-  })();
+  }, [
+    currentUser,
+    isApplicant,
+    isCompletedRecruit,
+    isLoadingAppliCant,
+    session,
+  ])();
 
   const isRecruitUserTheCurrentUser =
     currentUser && data?.leader?._id === currentUser?._id;
   console.log(isLikedRecruit);
-
-  // 좋아용
-  useEffect(() => {
-    if (likesData.count !== likesCount) {
-      setLikesCount(likesData.count);
-      setAnimate(true);
-  
-      const animationDuration = 1500; 
-      setTimeout(() => {
-        setAnimate(false);
-      }, animationDuration);
-    }
-  }, [likesData.count, likesCount]);
-
 
   return (
     <div className={style.sheet}>
@@ -231,9 +257,6 @@ export default function StudyPageView({ data, likesData }: IProps) {
             </li>
             <li className={style.list}>
               <div className={style.buttonarea}>
-                <div className={style.dead_line}>
-                  <span>{isDeadLine(deadLine) ? "모집 마감" : "모집중"}</span>
-                </div>
                 {isRecruitUserTheCurrentUser ? (
                   <button
                     className={`${style.application_button} ${
@@ -256,7 +279,7 @@ export default function StudyPageView({ data, likesData }: IProps) {
                     type="submit"
                     onClick={showModal}
                     // 현재 유저가 해당 모집글 참여 신청자가 아닌경우만 신청
-                    disabled={isApplicant as boolean}
+                    disabled={isCompletedRecruit || (isApplicant as boolean)}
                   >
                     {btnActionCommonUser}
                   </button>
@@ -283,7 +306,6 @@ export default function StudyPageView({ data, likesData }: IProps) {
                   <div className={style.box}></div>
                   <div className={style.box}></div>
                 </label>
-                
               </div>
             </li>
           </ul>
@@ -294,23 +316,17 @@ export default function StudyPageView({ data, likesData }: IProps) {
             <h2>{RenderHtmlContext(data?.studyName)}</h2>
             <div className={style.writer_like}>
               <div key={data.leader._id} className={style.writer}>
-                <Avatar
-                  src={data.leader.image}
-                  alt="pimg"
-                  style={StyledImg}
-                />
+                <Avatar src={data.leader.image} alt="pimg" style={StyledImg} />
                 <p key={data.leader._id}>{data.leader.name}</p>
               </div>
               <div className={style.like_count}>
-                <img src="/icons/icon_like.svg" alt=""/>
-                 {likesData.count}개
-                 <div className={`${animate && style.animate}`}></div>
+                <img src="/icons/icon_like.svg" alt="" />
+                {likesData.count}개
+                <div className={`${animate && style.animate}`}></div>
               </div>
             </div>
-            
-            <p>{RenderHtmlContext(data?.content)}</p>
 
-            
+            <p>{RenderHtmlContext(data?.content)}</p>
           </div>
           <div className={style.comment}>
             <p>댓글</p>
