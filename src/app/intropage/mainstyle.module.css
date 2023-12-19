@@ -15,7 +15,7 @@
   max-width: 1280px;
   width: 100%;
   flex-direction: column;
-  height: 100vh;
+  height: 90vh;
   background-color: #F8F8F8;
 }
 .area1, .area2, .area3{
@@ -411,6 +411,12 @@
 
 @media only screen and (max-width:767px) {
   /* area1 */
+  .frame{
+    height: 95vh;
+  }
+  .start_button{
+    margin-top: 0;
+  }
   .text_anime {
     top: 0px;
     left: 120px;
