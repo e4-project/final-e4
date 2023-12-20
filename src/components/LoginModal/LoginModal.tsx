@@ -24,7 +24,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
           className={style.modalContent}
           onClick={(e) => e.stopPropagation()}
         >
-          <h1 className={style.h1}>간편하게 시작해보세요</h1>
+          <h1 className={style.h1}>스튜에 오신 걸 환영합니다! 🙌</h1>
           {status === "authenticated" && (
             <p>Session: {JSON.stringify(session)}</p>
           )}
