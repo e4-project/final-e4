@@ -38,7 +38,8 @@ const WriteForm = () => {
     const con = window.confirm(
       "취소하면 작성한 내용이 사라집니다. 그래도 취소하실건가요?"
     );
-    return con && router.back();
+    con && router.back();
+    return;
   };
 
   const onChangeInput = (
@@ -70,8 +71,7 @@ const WriteForm = () => {
         router.refresh();
         router.replace('/study');
       } else {
-        console.log(Object.values(insertData));
-        // alert("인증이 필요합니다.");
+        alert("로그인후 등록 가능합니다.");
         return;
       }
     } else {
@@ -206,7 +206,7 @@ const WriteForm = () => {
           </div>
         </div>
         <div className={style.btn_wrap}>
-          <button className={style.btn_component} onClick={onClose}>
+          <button className={style.btn_component} type="button" onClick={onClose}>
             취소
           </button>
           <button className={style.save_btn}>모집글 등록</button>
