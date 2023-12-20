@@ -63,9 +63,15 @@
   width: 570px;
   height: 135px;
   resize: none;
-  border: 2px solid #eee;
+  border: 1px solid #E3E5EF;
   margin: 0 auto;
   font-size: 16px;
+  border-radius: 10px;
+  padding: 8px;
+}
+.textarea > textarea:focus {
+  outline: none;
+  border: 1px solid #748ffc;
 }
 
 .application {
@@ -78,12 +84,13 @@
   width: 96px;
   height: 36px;
   border-radius: 5px;
-  background-color: #BAC8FF;
+  background-color: #748ffc;
   margin-top: 30px;
   border: none;
-  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
   transition: all 0.3s;
+  font-size: 16px;
+  color: #fff;
 }
 .application > button:hover{
-  background-color: #748ffc;
+  scale: 110%;
 }
