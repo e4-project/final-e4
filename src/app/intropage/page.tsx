@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import mainstyle from "./mainstyle.module.css";
-// import "@/styles/global.css";
 import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -132,9 +131,6 @@ export default function Mainpage() {
 
   return (
     <>
-      {/* <div className={mainstyle.page_start}>
-              <div className={mainstyle.page_start_text}></div>
-            </div> */}
       <div className={mainstyle.body}>
         <div className={mainstyle.frame}>
           <div className={mainstyle.area1}>
@@ -160,7 +156,6 @@ export default function Mainpage() {
                   <li>
                     <img src="/img/test_img.png" alt="" />
                   </li>
-                  {/* <li><img src="/img/test_img.png" alt="" /></li> */}
                 </ul>
                 <ul className={mainstyle.img_sheet2}>
                   <li>
@@ -169,7 +164,6 @@ export default function Mainpage() {
                   <li>
                     <img src="/img/test_img.png" alt="" />
                   </li>
-                  {/* <li><img src="/img/test_img.png" alt="" /></li> */}
                 </ul>
               </div>
             </div>
@@ -221,23 +215,6 @@ export default function Mainpage() {
               </div>
             </div>
           </div>
-          {/* <div className={mainstyle.area3}>
-                        <ul className={mainstyle.sheet}>
-                            <li><p>영역</p></li>
-                            <li><p>영역</p></li>
-                            <li><p>영역</p></li> 
-                        </ul>
-                    </div>
-                    <div className={mainstyle.footer}>
-                        <div></div>
-                        <div>
-                            <ul>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                        </div>
-                    </div> */}
         </div>
       </div>
     </>
