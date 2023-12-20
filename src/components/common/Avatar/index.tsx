@@ -15,7 +15,7 @@ interface IAvatar {
  */
 const Avatar = ({ src, alt = "", style, ...props }: IAvatar) => {
   return (
-    <div className="avatar">
+    <div className="avatar" style={{height:'40px'}}>
       {/* <Image
         src={src}
         alt={alt}
