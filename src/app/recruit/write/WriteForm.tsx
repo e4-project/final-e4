@@ -67,6 +67,7 @@ const WriteForm = () => {
     if (Object.values(insertData).every((item) => !!item)) {
       if (session) {
         await postRecruitApi(insertData);
+        router.refresh();
         router.replace('/study');
       } else {
         console.log(Object.values(insertData));

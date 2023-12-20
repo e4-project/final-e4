@@ -244,7 +244,7 @@ export default function StudyPageView({ data, likesData, members }: IProps) {
             <li className={style.list}>
               <img src="/icons/icon_member.svg" alt="" />
               <span>모집 인원</span>
-              <span className={style.font_bold}>{data?.headCount}명</span>
+              <span className={style.font_bold}>{members?.memberCommon?.length}&#47;{data?.headCount}명</span>
             </li>
             <li className={style.list}>
               <img src="/icons/icon_time.svg" alt="" />

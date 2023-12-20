@@ -62,7 +62,7 @@ const Applicants = ({ data, members }: IProps) => {
       <div className={style.container}>
         <div className={style.left_container}>
           <div className={style.study_info}>
-            <StudyInfo data={data} />
+            <StudyInfo data={data} members={members}/>
           </div>
           <button title={!data?.start ? "모집 인원이 완료되어야 스터디 관리 페이지가 활성화됩니다." : ""} disabled={!data?.start} className={`${style.study_start} ${!data?.start ? style.btn_disabled : ""}`} onClick={() => {
             router.push(`/study/${data?._id}`)
@@ -135,7 +135,7 @@ const Applicants = ({ data, members }: IProps) => {
 };
 
 function StudyInfo(props: any) {
-  const { data } = props;
+  const { data, members } = props;
   return (
     <div className={style.study_info_item}>
       <div className={style.study_info_titles}>
@@ -151,7 +151,7 @@ function StudyInfo(props: any) {
         <li className={style.list}>
           <img src="/icons/icon_member.svg" alt="" />
           <span>모집 인원</span>
-          <span className={style.font_bold}>{data?.headCount}명</span>
+          <span className={style.font_bold}>{members?.length}&#47;{data?.headCount}명</span>
         </li>
         <li className={style.list}>
           <img src="/icons/icon_time.svg" alt="" />
