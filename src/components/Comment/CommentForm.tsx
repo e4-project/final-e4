@@ -70,10 +70,13 @@ const CommentForm = ({ user, studyId, postId, fetcher }: IPrpps) => {
 
         <Button
           text="등록"
-          color="#748ffc"
-          bgColor="#f5f7ff"
           type="submit"
           onClick={onSubmit}
+          style={{
+            border: "none",
+            backgroundColor: "#748ffc",
+            color: "white"
+            }}
         />
       </div>
     </div>
