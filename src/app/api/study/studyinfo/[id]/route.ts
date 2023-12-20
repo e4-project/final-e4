@@ -8,7 +8,7 @@ export const GET = routeWrapperWithError(async (req: NextRequest, { params }: { 
     await connectDB();
 
     try {
-        const userRecruitPost = await RecruitPost.findOne({ _id: params.id }).populate("applicants", "name image");;
+        const userRecruitPost = await RecruitPost.findOne({ _id: params.id }).populate("applicants", "name image").populate("leader", "name image");
 
         if (!userRecruitPost) {
             return NextResponse.json({ isOk: false, message: '유저 데이터 없음.' }, { status: 404 });

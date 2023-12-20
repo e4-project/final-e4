@@ -15,15 +15,15 @@ export const PATCH = routeWrapperWithError(
 
 export const DELETE = routeWrapperWithError(
   async (req: NextRequest, { params }: { params: { id: string, slug: string } }) => {
-    const {id: pId, slug: cId} = params;
-    if (!pId || !cId) {
+    const {id: postId, slug: commentId} = params;
+    if (!postId || !commentId) {
       return NextResponse.json(
         { message: "경로가 올바르지 않습니다." },
         { status: 404 }
       );
     }
     
-    await RecruitComment.deleteOne({_id: cId});
+    await RecruitComment.deleteOne({_id: commentId});
     return NextResponse.json("삭제되었습니다.");
   }
 );

@@ -32,6 +32,7 @@ const LeftContainer = () => {
               material: data.material,
               duration: data.duration,
               applicants: data.applicants,
+              leader: data.leader,
               materialUrl: data.materialUrl,
             });
           }
@@ -44,27 +45,24 @@ const LeftContainer = () => {
     }
   }, [pathname, id]);
 
-  // 멤버 돌려서 뿌리기
-  const renderApplicants = () => {
-    return data?.applicants?.map((user: any) => (
-      <div
-        key={user?._id}
-        style={{
-          display: "flex",
-          gap: 9,
-          alignItems: "center",
-          fontWeight: "bold",
-        }}
-      >
-        <Avatar src={user.image} alt="pimg" style={StyledImg} />
-        <p key={user?._id}>{user?.name}</p>
-      </div>
-    ));
-  };
-  // return data?.applicants.map((member: { name: string }, index: number) => (
-  //     <span key={index}>{member.name}</span>
-  // ));
-
+  const MemberList = ({
+    user,
+  }: {
+    user: { _id: string; image: string; name: string };
+  }) => (
+    <div
+      key={user?._id}
+      style={{
+        display: "flex",
+        gap: 9,
+        alignItems: "center",
+        fontWeight: "bold",
+      }}
+    >
+      <Avatar src={user?.image} alt="pimg" style={StyledImg} />
+      <p key={user?._id}>{user?.name}</p>
+    </div>
+  );
   return (
     <div className={style.left_container}>
       <div className={style.left_info}>
@@ -83,8 +81,31 @@ const LeftContainer = () => {
           <p>
             스터디 기간 <span>{data?.duration}</span>
           </p>
-          <p style={{marginBottom: 20}}>스터디 멤버</p>
-          <div>{renderApplicants()}</div>
+          <p style={{ marginBottom: 20 }}>스터디 멤버</p>
+          {data && (
+            <>
+              <div className={style.study_leader}>
+                <MemberList user={data.leader} />
+                <div
+                  style={{
+                    color: "#748ffc",
+                    background:
+                      "linear-gradient(0deg, #f5f7ff 0%, #f5f7ff 100%)",
+                    width: "fit-content",
+                    borderRadius: 4,
+                    padding: 5,
+                  }}
+                >
+                  <span>리더</span>
+                </div>
+              </div>
+              <div>
+                {data?.applicants?.map((member: any) => (
+                  <MemberList key={member._id} user={member} />
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
