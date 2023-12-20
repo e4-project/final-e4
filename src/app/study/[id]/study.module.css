@@ -225,7 +225,7 @@
   font-size: 1rem;
 }
 
-.link_list a:focus {
+.active_link {
   color: #748ffc;
   border-bottom: 2px solid #748ffc;
 }

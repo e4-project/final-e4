@@ -52,7 +52,7 @@ const StudyNoteItem = (props: any) => {
           <div dangerouslySetInnerHTML={{ __html: memberNoteContents }} />
         </div>
       )}
-      <div dangerouslySetInnerHTML={{ __html: memberNoteContents }}></div>
+      <div dangerouslySetInnerHTML={{ __html: memberNoteContents }} />
     </div>
   );
 };
