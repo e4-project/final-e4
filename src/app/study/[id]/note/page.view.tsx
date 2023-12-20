@@ -25,8 +25,7 @@ const Page = ({ contents }: any) => {
   const [memberNoteContents, setMemberNoteContents] = useState(""); // 멤버 노트 데이터 저장 상태
   const [selectedMemberNote, setSelectedMemberNote] = useState<string | null>(
     null
-  );  // 멤버 노트 나왔다 안나왔다
-
+  ); // 멤버 노트 나왔다 안나왔다
   const onWeekChange = (event: any) => {
     const weekNumber = event.target.value.match(/\d+/)[0]; // "4주차"에서 숫자를 추출
     setSelectWeek(weekNumber);
@@ -167,7 +166,7 @@ const Page = ({ contents }: any) => {
         </div>
       </div>
       <div className={style.view_note}>
-      {onEditor ? (
+        {onEditor ? (
           <MyEditorComponent onSave={onSaveEditorContent} />
         ) : selectedMemberNote === null ? (
           <div className={style.member_note}>
@@ -205,4 +204,3 @@ const Page = ({ contents }: any) => {
 };
 
 export default Page;
-

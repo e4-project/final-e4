@@ -5,7 +5,6 @@ import { routeWrapperWithError } from "@/utils/routeWrapperWithError";
 import StudyNote from "@/models/study_note";
 import User from "@/models/user";
 import { useSearchParams } from "next/navigation";
-
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 interface NextRequest {
@@ -30,7 +29,6 @@ export const GET = routeWrapperWithError(
     console.log(params.id);
     // 유저 정보 가져오기
     const user = await User.findOne();
-    
     console.log({ user });
 
     try {
@@ -70,7 +68,6 @@ export const POST = routeWrapperWithError(
       const user = await User.findOne({ email: session?.user?.email });
 
       const { week, contents } = data;
-
       const studyId = params.id;
 
       const newNote = new StudyNote({
@@ -79,7 +76,6 @@ export const POST = routeWrapperWithError(
         week: week,
         contents: contents,
       });
-
       // console.log({ newNote });
       const savedNote = await newNote.save();
 
