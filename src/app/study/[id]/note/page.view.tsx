@@ -26,12 +26,17 @@ const Page = ({ contents }: any) => {
   const [selectedMemberNote, setSelectedMemberNote] = useState<string | null>(
     null
   ); // 멤버 노트 나왔다 안나왔다
+  useEffect(() => {
+    if (selectedMemberNote) {
+      memberNotes(selectedMemberNote);
+    }
+  }, [selectWeek, selectedMemberNote]);
+
   const onWeekChange = (event: any) => {
     const weekNumber = event.target.value.match(/\d+/)[0]; // "4주차"에서 숫자를 추출
     setSelectWeek(weekNumber);
     setOnEditor(false);
   };
-
   const onWriteButtonClick = () => {
     setOnEditor(true);
   };
@@ -77,12 +82,12 @@ const Page = ({ contents }: any) => {
     console.log(memberId);
     try {
       const url = `/api/study/note/${id}/?week=${selectWeek}`;
-      console.log(url);
+      // console.log(url);
       const result = await fetch(
         `/api/study/note/${memberId}?week=${selectWeek}`
       );
       const data = await result.json();
-      console.log(data);
+      // console.log(data);
       setMemberNoteContents(data.contents);
     } catch (error) {
       console.error("멤버 노트를 가져오는 중 에러 발생", error);
