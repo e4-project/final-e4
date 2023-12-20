@@ -23,11 +23,12 @@ const Page = ({ contents }: any) => {
   const [editorContent, setEditorContent] = useState(""); // 에디터에서 작성한 내용
   const [data, setData] = useState<any>();
   const [memberNoteContents, setMemberNoteContents] = useState(""); // 멤버 노트 데이터 저장 상태
+  const [selectedMemberNote, setSelectedMemberNote] = useState<string | null>(null); // 멤버 노트 나왔다 안나왔다
 
   const onWeekChange = (event: any) => {
     const weekNumber = event.target.value.match(/\d+/)[0]; // "4주차"에서 숫자를 추출
     setSelectWeek(weekNumber);
-    console.log(weekNumber);
+    setOnEditor(false);
   };
 
   const onWriteButtonClick = () => {
@@ -59,6 +60,16 @@ const Page = ({ contents }: any) => {
   const onSaveEditorContent = (content: string) => {
     setEditorContent(content);
   };
+
+  const onSelectMemberNote = (memberId: string) => {
+    setSelectedMemberNote(memberId);
+    setOnEditor(false); // 멤버 노트를 선택하면 에디터 닫음
+  };
+
+  const onListButtonClick = () => {
+    setSelectedMemberNote(null); // 목록으로 버튼을 클릭하면 선택된 멤버를 초기화합니다.
+  };
+
   // 멤버 노트 데이터 받아옴
   const memberNotes = async (memberId: string) => {
     console.log(memberId);
@@ -73,6 +84,7 @@ const Page = ({ contents }: any) => {
       console.error("멤버 노트를 가져오는 중 에러 발생", error);
     }
   };
+
   useEffect(() => {
     const fetchStudyMembers = async () => {
       try {
@@ -129,22 +141,52 @@ const Page = ({ contents }: any) => {
               className={style.write_btn}
               onClick={onSaveButtonClick}
             />
+          ) : selectedMemberNote !== null ? (
+            // 멤버 노트를 클릭했을 때 표시되는 상태
+            <>
+              <Button
+                text="목록으로"
+                className={style.write_btn}
+                onClick={onListButtonClick}
+              />
+            </>
           ) : (
-            <Button
-              text="학습노트 작성하기"
-              className={style.write_btn}
-              onClick={onWriteButtonClick}
-            />
+            <>
+              <Button
+                text="학습노트 작성하기"
+                className={style.write_btn}
+                onClick={onWriteButtonClick}
+              />
+            </>
           )}
         </div>
       </div>
       <div className={style.view_note}>
-        {onEditor ? (
+      {onEditor ? (
           <MyEditorComponent onSave={onSaveEditorContent} />
-        ) : (
+        ) : selectedMemberNote === null ? (
           <div className={style.member_note}>
             {studyMembers.map((studyMember: any, index: number) => (
-              <StudyNoteItem key={studyMember.id} studyMember={studyMember} memberNotes={memberNotes} id={id} /> ))}
+              <StudyNoteItem
+                key={studyMember.id}
+                studyMember={studyMember}
+                onSelectMemberNote={onSelectMemberNote}
+                selectWeek={selectWeek}
+                memberNoteContents={memberNoteContents}
+              />
+            ))}
+          </div>
+        ) : (
+          // 선택된 멤버의 공부노트를 표시하는 상태
+          <div className={style.member_note}>
+            <StudyNoteItem
+              studyMember={studyMembers.find(
+                (member: any) => member.member._id === selectedMemberNote
+              )}
+              onSelectMemberNote={onSelectMemberNote}
+              selectWeek={selectWeek}
+              memberNoteContents={memberNoteContents}
+            />
           </div>
         )}
       </div>
@@ -153,3 +195,4 @@ const Page = ({ contents }: any) => {
 };
 
 export default Page;
+
