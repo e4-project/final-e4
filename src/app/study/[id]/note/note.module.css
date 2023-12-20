@@ -1,10 +1,8 @@
 .note_container {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 100%;
     height: 100%;
-    margin-left: 56px;
-    margin-top: 30px;
 }
 
 .note_header {
@@ -15,38 +13,86 @@
 
 .view_note {
     display: flex;
-    margin-top: 20px;
+    margin-top: 40px;
+    width: 100%;
+}
+.note_write_wrap {
+    width: 732px;
+    margin: 0 auto;
+  }
+
+.edit_btn {
+width: 115px;
+height: 40px;
+font-size: 18px;
+text-align: center;
+border-radius: 5px;
+font-weight: 400;
+cursor: pointer;
+border: 1px solid #f5f7ff;
+background-color: #f5f7ff;
+color: #748ffc;
 }
 
-.write_btn {
-    width: 150px;
-    height: 30px;
-    background-color: #f5f7ff;
-    border: 1px solid #ced4da;
-    color: #748ffc;
-    border-radius: 5px;
-    text-align: center;
-    cursor: pointer;
+.save_btn {
+width: 115px;
+height: 40px;
+font-size: 18px;
+text-align: center;
+border-radius: 5px;
+font-weight: 400;
+cursor: pointer;
+border: 1px solid #748ffc;
+background-color: #748ffc;
+color: #f5f7ff;
 }
 
-.member_list {
+.week_menu {
+    /* border-radius: 5px;
+    padding: 0 12px;
     display: flex;
     margin-bottom: 20px;
-    background-color: #f5f7ff;
-    border: 1px solid lightgrey;
-    width: 150px;
+    border: 1px solid #748ffc;
+    color: #748ffc;
+    font-size: 18px;
+    width: 100%;
     height: 40px;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-}
-
-.week_menu {
-    width: 80px;
-    height: 30px;
+    position: relative; */
+    width: 100px;
+    height: 36px;
+    padding-right: 20px;
     background-color: #f5f7ff;
     color: #748ffc;
     border: 1px solid #748ffc;
     border-radius: 5px;
     text-align: center;
+    font-size: 18px;
+    -webkit-appearance:none; /* for chrome */
+    -moz-appearance:none; /*for firefox*/
+    appearance:none;
+    background:url('/icons/icon_arrow.svg') no-repeat right 6% center;
+    outline:none;
+
+}
+
+.member_list {
+    border-radius: 5px;
+    display: flex;
+    margin-bottom: 30px;
+    border: 1px solid #878CA0;
+    width: 100%;
+    height: 42px;
+    padding: 0 25px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.name_color{
+    color: #748ffc;
+    font-weight: 600;
 }

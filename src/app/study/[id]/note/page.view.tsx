@@ -145,27 +145,29 @@ const Page = ({ contents }: any) => {
         </div>
         <div>
           {onEditor ? (
-            <Button
-              text="학습노트 저장하기"
-              className={style.write_btn}
-              onClick={onSaveButtonClick}
-            />
+            <button
+            onClick={onSaveButtonClick}
+            className={style.save_btn}>
+            노트 저장</button>
           ) : selectedMemberNote !== null ? (
             // 멤버 노트를 클릭했을 때 표시되는 상태
             <>
-              <Button
+              <button
+              onClick={onListButtonClick}
+              className={style.edit_btn}>
+              목록으로</button>
+              {/* <Button
                 text="목록으로"
                 className={style.write_btn}
                 onClick={onListButtonClick}
-              />
+              /> */}
             </>
           ) : (
             <>
-              <Button
-                text="학습노트 작성하기"
-                className={style.write_btn}
-                onClick={onWriteButtonClick}
-              />
+              <button
+              onClick={onWriteButtonClick}
+              className={style.edit_btn}>
+              노트 작성</button>
             </>
           )}
         </div>

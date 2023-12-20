@@ -11,7 +11,7 @@ const MyEditorComponent = ({ onSave }: { onSave: (content: string) => void }) =>
   }, [editorData, onSave]);
 
   return (
-    <div>
+    <div className={style.note_write_wrap}>
       <Editor content={editorData} placeholder="" setContent={setEditorData} />
     </div>
   );

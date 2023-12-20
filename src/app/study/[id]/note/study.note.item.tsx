@@ -44,8 +44,10 @@ const StudyNoteItem = (props: any) => {
   return (
     <div onClick={handleClick}>
       <p className={style.member_list}>
-        <span style={{ color: "#748ffc" }}>{studyMember?.member?.name}</span>의
-        공부 노트
+        <span className={style.name_color}>
+          {studyMember?.member?.name}
+        </span>
+          의 공부 노트
       </p>
       {studyMember?.member?._id === selectedMemberNote && (
         <div>
