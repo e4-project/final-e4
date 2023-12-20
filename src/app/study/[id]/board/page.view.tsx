@@ -66,19 +66,15 @@ const BoardView = ({ data, studyId }: IProps) => {
     <div className={style.board_view_wrap}>
       <div className={style.top_button}>
         {isEdit && (
-          <Button
-            text="취소"
-            style={{ width: 80 }}
-            bgColor="#f5f7ff"
-            onClick={onClose}
-          />
+          <button className={style.cancel_btn} onClick={onClose}>
+            취소
+          </button>
         )}
-        <Button
-          text={isEdit ? "게시글 저장" : "게시글 작성"}
-          color="#748ffc"
-          bgColor="#f5f7ff"
+        <button
           onClick={onEditPost}
-        />
+          className={`${style.edit_save_btn} ${isEdit ? style.save_btn : style.edit_btn}`}>
+          {isEdit ? "게시글 저장" : "게시글 작성"}
+        </button>
       </div>
       <div className={style.board_view_container}>
         {isEdit ? (
