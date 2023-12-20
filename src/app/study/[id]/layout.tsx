@@ -5,7 +5,7 @@ import LeftContainer from "./page.view";
 import RightContainer from "./right.page";
 
 export const metadata: Metadata = {
-  title: "e4 | 스터디방",
+  title: "스튜 | 스터디방",
 };
 
 export default function StudyLayout({
