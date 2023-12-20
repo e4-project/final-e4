@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import mainstyle from "./mainstyle.module.css";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 /**
@@ -121,13 +121,15 @@ export default function Mainpage() {
     }
   }, []);
 
-  // area1영역 클릭시 area2영역으로 이동
-  const section1 = document.querySelector(`.${mainstyle.area1}`);
-  const section2 = document.querySelector(`.${mainstyle.area2}`);
-  
-  section1?.addEventListener('click', ()=>{
-    section2?.scrollIntoView({behavior:'smooth'});
-  });
+  useLayoutEffect(() => {
+    // area1영역 클릭시 area2영역으로 이동
+    const section1 = document.querySelector(`.${mainstyle.area1}`);
+    const section2 = document.querySelector(`.${mainstyle.area2}`);
+
+    section1?.addEventListener('click', ()=>{
+      section2?.scrollIntoView({behavior:'smooth'});
+    });
+  }, [])
 
   return (
     <>
