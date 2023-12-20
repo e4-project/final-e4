@@ -76,7 +76,7 @@ const Applicants = ({ data, members }: IProps) => {
                 (user: any) =>
                   user.rel !== "leader" && (
                     <>
-                      <div
+                      <div className={style.member_list}
                         key={user.member._id}
                         style={{
                           display: "flex",
@@ -126,7 +126,7 @@ const Applicants = ({ data, members }: IProps) => {
             ) : (
               <></>
             )}
-            {!isWaitUser && <div>아직 스터디에 참여한 신청자가 없습니다.</div>}
+            {!isWaitUser && <div style={{ fontWeight: '400' }}>스터디에 참여한 신청자가 없습니다.</div>}
           </div>
         </div>
       </div>
