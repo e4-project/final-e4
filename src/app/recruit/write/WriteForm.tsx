@@ -99,7 +99,7 @@ const WriteForm = () => {
             <div className={style.mt35}>
               <h4 className={style.text}>교재 정보 링크</h4>
               <input
-                type="text"
+                type="url"
                 name="materialUrl"
                 placeholder="교재 정보를 알 수 있는 페이지 링크를 붙여넣어주세요."
                 value={materialUrl}
