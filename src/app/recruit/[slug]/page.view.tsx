@@ -309,13 +309,13 @@ export default function StudyPageView({ data, likesData, members }: IProps) {
           <div className={style.recruit_post}>
             <h2>{RenderHtmlContext(data?.studyName)}</h2>
             <div className={style.writer_like}>
-              <div key={data.leader._id} className={style.writer}>
-                <Avatar src={data.leader.image} alt="pimg" style={StyledImg} />
-                <p key={data.leader._id}>{data.leader.name}</p>
+              <div key={data?.leader._id} className={style.writer}>
+                <Avatar src={data?.leader?.image} alt="pimg" style={StyledImg} />
+                <p key={data?.leader._id}>{data?.leader.name}</p>
               </div>
               <div className={style.like_count}>
                 <img src="/icons/icon_like.svg" alt="" />
-                {likesData.count}개
+                {likesData?.count}개
                 <div className={`${animate && style.animate}`}></div>
               </div>
             </div>
@@ -326,6 +326,7 @@ export default function StudyPageView({ data, likesData, members }: IProps) {
             <p>댓글</p>
             <div>
               <CommentForm
+                studyId={data?._id}
                 fetcher={postRecruitComment}
                 user={{
                   name: currentUser?.name as string,
