@@ -342,6 +342,7 @@ export default function StudyPageView({ data, likesData, members }: IProps) {
               <SingleComment
                 isToggleCtrl={false}
                 postId={data?._id}
+                boardId=""
                 loadFetcher={loadRecruitComment}
                 delFetcher={deleteRecruitComment}
                 updateFetcher={async () => {}}

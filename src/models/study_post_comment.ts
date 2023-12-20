@@ -1,12 +1,12 @@
 import mongoose, { Schema, Types } from "mongoose";
 
-interface ICommentEntity {
+interface IStudyPostCommentEntity {
   user: Types.ObjectId;
   studyPostId: Types.ObjectId;
   content: string;
 }
 
-const CommentSchema = new Schema<ICommentEntity>(
+const StudyPostCommentSchema = new Schema<IStudyPostCommentEntity>(
   {
     user: {
       type: Schema.Types.ObjectId,
@@ -29,6 +29,10 @@ const CommentSchema = new Schema<ICommentEntity>(
   }
 );
 
-const Comment =
-  mongoose.models.Comment || mongoose.model<ICommentEntity>("Comment", CommentSchema);
-export default Comment;
+const StudyPostComment =
+  mongoose.models.StudyPostComment ||
+  mongoose.model<IStudyPostCommentEntity>(
+    "StudyPostComment",
+    StudyPostCommentSchema
+  );
+export default StudyPostComment;
