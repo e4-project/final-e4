@@ -38,7 +38,8 @@ const WriteForm = () => {
     const con = window.confirm(
       "취소하면 작성한 내용이 사라집니다. 그래도 취소하실건가요?"
     );
-    return con && router.back();
+    con && router.back();
+    return;
   };
 
   const onChangeInput = (
@@ -67,10 +68,10 @@ const WriteForm = () => {
     if (Object.values(insertData).every((item) => !!item)) {
       if (session) {
         await postRecruitApi(insertData);
+        router.refresh();
         router.replace('/study');
       } else {
-        console.log(Object.values(insertData));
-        // alert("인증이 필요합니다.");
+        alert("로그인후 등록 가능합니다.");
         return;
       }
     } else {
@@ -98,7 +99,7 @@ const WriteForm = () => {
             <div className={style.mt35}>
               <h4 className={style.text}>교재 정보 링크</h4>
               <input
-                type="text"
+                type="url"
                 name="materialUrl"
                 placeholder="교재 정보를 알 수 있는 페이지 링크를 붙여넣어주세요."
                 value={materialUrl}
@@ -205,7 +206,7 @@ const WriteForm = () => {
           </div>
         </div>
         <div className={style.btn_wrap}>
-          <button className={style.btn_component} onClick={onClose}>
+          <button className={style.btn_component} type="button" onClick={onClose}>
             취소
           </button>
           <button className={style.save_btn}>모집글 등록</button>

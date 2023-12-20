@@ -3,6 +3,8 @@ import React, { useState, useEffect, useRef } from "react";
 import style from "./study.module.css";
 import Button from "@/components/common/Button";
 import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 import { set } from "mongoose";
 
@@ -23,11 +25,12 @@ const Page = () => {
   const [isEdit, setIsEdit] = useState<boolean>(false);
   // 수정 상태
   const [inputs, setInputs] = useState([
-    { week_input: "", study_content_input: "" },
+    { week_input: "1주차", study_content_input: "" },
   ]);
 
   const [noteData, setNoteData] = useState<WeekGoal[]>([]);
   // 노트 데이터 상태
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -113,6 +116,8 @@ const Page = () => {
     // 상태 업데이트
   };
 
+  // 주차 클릭 링크
+
   return (
     <div className={style.progress_container}>
       <div className={style.change_btn}>
@@ -129,18 +134,27 @@ const Page = () => {
           );
           return (
             <div className={style.input_box} key={note ? note.week : index}>
-              <input
-                className={`${style.week_input} ${
-                  isEdit ? style.edit_week_input : ""
-                }`}
-                type="text"
-                placeholder={`${index + 1}주차`}
-                value={`${index + 1}주차`}
-                onChange={(e) =>
-                  onInputChange(index, "week_input", e.target.value)
-                }
-                disabled={!isEdit}
-              />
+              {isEdit ? (
+            <input
+              className={`${style.week_input} ${
+                isEdit ? style.edit_week_input : ""
+              }`}
+              type="text"
+              placeholder={`${index + 1}주차`}
+              value={`${index + 1}주차`}
+              onChange={(e) =>
+                onInputChange(index, "week_input", e.target.value)
+              }
+              disabled={!isEdit}
+            />
+              ) : (
+                <Link href={`/study/${id}/note`}>
+                <p className={`${style.week_input} ${style.link_style}`}>
+                  {`${index + 1}주차`}
+                </p>
+                </Link>
+            )}
+              
 
               {isEdit && (
                 <textarea

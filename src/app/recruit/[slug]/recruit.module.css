@@ -125,12 +125,6 @@ transform: rotateX(-90deg);
 box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
 }
 
-/* .list:nth-child(4) > button:hover{
-  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
-  background-color: #bac8ff;
-  color: black;
-} */
-
 .list:nth-child(5) {
   margin-top: 26px;
 }
@@ -211,7 +205,6 @@ box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
   margin-top: 10px;
   border-radius: 10px;
   cursor: pointer;
-  /* box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5); */
   transition: all 0.3s;
 
 }
@@ -254,7 +247,6 @@ box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
   border-radius: 10px;
   color: #748ffc;
   cursor: pointer;
-  /* box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5); */
   transition: all 0.3s;
 }
 
@@ -263,9 +255,6 @@ box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
   height: 17px;
   margin-left: 2px;
 }
-/* .good:hover {
-  background-color: rgb(250, 213, 238);
-} */
 
 .good_check:checked ~ label {
   .good {
@@ -292,30 +281,10 @@ box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
     transition: all 3s;
     filter: opacity(0.2) drop-shadow(0 0 0 red);
   }
-  /*
-  .box:nth-child(2){
-    --size: 1.7;
-    top: 28px;
-    left: 164px;
-  }
-  .box:nth-child(3){
-    --size: 2.6;
-    top: 30px;
-    left: 180px;
-  }
-  .box:nth-child(4){
-    --size: 2;
-    top: 14px;
-    left: 154px;
-  }
-  .box:nth-child(5){
-    --size: 1.3;
-    top: 12px;
-    left: 180px;
-  } */
 }
 .like_count {
-  margin: 8px 5px 0 0;
+  padding: 2px 0 0 4px;
+  position: relative;
 }
 .good_check:checked ~ .like_count  {
   font-size: 15px;
@@ -338,7 +307,6 @@ box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
 @keyframes anime {
   30% { width: 80%; height: 1px;}
   50% { width: 60px; height: 20px; }
-  /* 50% { width: 60px; height: 40px; } */
   70% { width: 60px; height: 60px; border-radius: 50%; }
   80% { width: 70px; height: 50px; }
   100% { width: 60px; height: 60px; border-radius: 50%; background-color: rgb(250, 213, 238); }
@@ -366,7 +334,7 @@ box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
   flex-direction: column;
 }
 .recruit_post > h2 {
-  font-size: 24px;
+  font-size: 28px;
   display: flex;
   margin-bottom: 20px;
   padding-bottom: 17px;
@@ -374,16 +342,42 @@ box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
   width: auto;
   height: auto;
 }
+
+.writer_like{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #E3E5EF;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+.writer {
+  display: flex;
+}
+.writer > p {
+  font-weight: 600;
+  margin-left: 8px;
+  margin-right: 4px;
+  padding-top: 2px;
+}
+.like_count {
+  float: right;
+}
+.like_count > img {
+  height: 16px;
+  width: 16px;
+  padding-top: 2px;
+  margin: 2px 4px 0 6px;
+}
+
 .recruit_post > p {
   display: flex;
-  margin: 20px 0;
-  border-bottom: 1px solid #E3E5EF;
-  padding-bottom: 30px;
+  margin: 10px 0;
   width: auto;
   height: auto;
   min-height: 100px;
+  border-bottom: 1px solid #E3E5EF;
+  padding-bottom: 30px;
 }
-
 /*  */
 
 .comment {
@@ -400,15 +394,6 @@ box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
   padding-left: 4px;
   font-size: 18px;
 }
-/* .comment > textarea {
-  margin-bottom: 20px;
-  width: 740px;
-  height: 112px;
-  resize: none;
-  border: 1px solid #0033ff;
-  border-radius: 5px;
-  margin: 0 auto;
-} */
 
 .comment > button {
   width: 100px;
@@ -546,4 +531,23 @@ box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5);
     100% {
         transform: rotate(360deg);
     }
+}
+
+/* 좋아요 추가 */
+
+.animate::before{
+  animation: addition 1.5s forwards;
+  content: '❤';
+  color: pink;
+  font-size: 18px;
+  line-height: 1;
+  position: absolute;
+  top: 4px;
+  left: 9px;
+}
+@keyframes addition {
+  0%{ opacity: 0; }
+  50%{ opacity: 0; }
+  70%{ top: 4px; opacity: 1;}
+  100% { top: -4px; opacity: 0; }
 }

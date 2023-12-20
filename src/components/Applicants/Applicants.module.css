@@ -131,6 +131,11 @@
   cursor: pointer;
 }
 
+.btn_disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
 .member {
   background-color: white;
   margin-bottom: 10px;

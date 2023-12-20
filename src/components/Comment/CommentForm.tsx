@@ -12,12 +12,13 @@ import Button from "@/components/common/Button";
 import style from "./comment.module.css";
 
 interface IPrpps {
+  studyId: string;
   postId: string;
   user: { name: string; image: string };
   fetcher: (data: any) => Promise<any>;
 }
 
-const CommentForm = ({ user, postId, fetcher }: IPrpps) => {
+const CommentForm = ({ user, studyId, postId, fetcher }: IPrpps) => {
   const [content, setContent] = useState("");
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const onChange = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -37,6 +38,7 @@ const CommentForm = ({ user, postId, fetcher }: IPrpps) => {
       if (content) {
         content.replaceAll("\n", "&#10;");
         const insertData = {
+          studyId,
           postId,
           user,
           content,

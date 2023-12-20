@@ -158,12 +158,11 @@
   list-style: none;
   background-color: #f8f8f8;
   transform-origin: 0% 0%;
-  /* transform: translate(-100px, -1000%); */
   transition: transfrom 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
   -webkit-font-smoothing: antialiased;
   top: 20px;
   border-radius: 10px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.05), 0 10px 10px rgba(0, 0, 0, 0.05);
   cursor: auto;
   transition: all 0.3s;
 }
@@ -238,7 +237,6 @@
   position: absolute;
   list-style: none;
   transform-origin: 0% 0%;
-  /* transform: translate(-200px, -1000%); */
   transition: transfrom 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
   -webkit-font-smoothing: antialiased;
   cursor: auto;
@@ -302,7 +300,7 @@
   top: 80px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  box-shadow: 0 12px 10px -1px #c3c6d3;
+  box-shadow: 0 12px 10px -1px #c3c6d371;
 }
 .profile_menu_sheet > li {
   margin: 10px;

@@ -4,37 +4,51 @@ import { useRouter } from "next/navigation";
 import Button from "@/components/common/Button";
 import BoardPost from "@/components/BoardPost/BoardPost";
 import PostForm from "@/components/BoardPost/PostForm";
-import { postBoardApi } from "@/axios/fetcher/board/postBoardApi";
 import { IResponseBoard } from "@/interfaces/study_board";
-import { deleteBoardApi } from "@/axios/fetcher/board/deleteBoardApi";
+import { deleteBoardApi, postBoardApi } from "@/axios/fetcher/board";
 import style from "./board.module.css";
 
 interface IProps {
   data: IResponseBoard[];
+  studyId: string;
 }
 
-const BoardView = ({ data }: IProps) => {
+const BoardView = ({ data, studyId }: IProps) => {
   const router = useRouter();
   const [content, setContent] = useState("");
   const [isEdit, setEdit] = useState(false);
 
   const onAddNewPost = useCallback(async () => {
     if (content) {
-      const data = await postBoardApi(content);
-      data && router.refresh();
+      try {
+        const data = await postBoardApi(studyId, content);
+        data && router.refresh();
+      } catch (error: any) {
+        if (error?.response?.status === 403) {
+          alert("스터디원이 아닙니다");
+        }
+      }
       setContent("");
     }
-  }, [content, router]);
+  }, [content, router, studyId]);
 
   const onDelPost = useCallback(
     async (id: string) => {
-      const con = confirm('정말로 삭제하시겠습니까?')
-      if(con) {
-        const data = await deleteBoardApi(id);
-        data && router.refresh();
+      const con = confirm("정말로 삭제하시겠습니까?");
+      if (con) {
+        try {
+          const data = await deleteBoardApi(studyId, id);
+          data && router.refresh();
+        } catch (error: any) {
+          if (error?.response?.status === 403) {
+            const errorMsg = error?.response?.data?.msg;
+            alert(errorMsg);
+            return;
+          }
+        }
       }
     },
-    [router]
+    [router, studyId]
   );
 
   const onEditPost = useCallback(() => {
@@ -74,7 +88,7 @@ const BoardView = ({ data }: IProps) => {
         ) : (
           <>
             {data?.map((item) => (
-              <BoardPost key={item._id} onDelPost={onDelPost} board={item} />
+              <BoardPost key={item._id} onDelPost={onDelPost} studyId={studyId} board={item} />
             ))}
           </>
         )}

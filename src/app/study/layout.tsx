@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "스튜",
+  title: "스튜 | 메인",
   description: "스터디 모집해서 사람들과 같이 스터디해봐요",
 };
 

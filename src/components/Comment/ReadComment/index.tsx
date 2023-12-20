@@ -7,9 +7,14 @@ import { loadUserApi } from "@/axios/fetcher/user/loadUserApi";
 interface IProps {
   comment: IRequestCommont;
   postId: string;
+  boardId: string;
   user?: any;
-  onUpdate: (pro: any) => Promise<any>;
-  onDelFetch: (pId: string, comment: any) => Promise<any>;
+  onUpdate:
+    | ((postId: string, commentId: string) => Promise<any>)
+    | ((postId: string, boardId: string, commentId: string) => Promise<any>);
+  onDelFetch:
+    | ((postId: string, commentId: string) => Promise<any>)
+    | ((postId: string, boardId: string, commentId: string) => Promise<any>);
 }
 
 const getNewLine = (str: string) => {
@@ -17,7 +22,13 @@ const getNewLine = (str: string) => {
 };
 
 const Card = dynamic(async () => await import("@/components/common/Card"));
-const ReadComment = ({ comment, postId, onUpdate, onDelFetch }: IProps) => {
+const ReadComment = ({
+  postId,
+  boardId,
+  comment,
+  onUpdate,
+  onDelFetch,
+}: IProps) => {
   const [currentUserId, setCurrentUserId] = useState("");
   useEffect(() => {
     (async () => {
@@ -25,7 +36,7 @@ const ReadComment = ({ comment, postId, onUpdate, onDelFetch }: IProps) => {
       setCurrentUserId(data._id);
     })();
   }, []);
-
+  console.log({comment})
   return (
     <div className="comment_container">
       <Card
@@ -36,27 +47,42 @@ const ReadComment = ({ comment, postId, onUpdate, onDelFetch }: IProps) => {
           <div className={style.button_wrap}>
             {currentUserId === comment?.user?._id && (
               <>
-                <Button
-                  text="수정"
-                  onClick={async () => {
-                    console.log("수정 기능");
-                  }}
+                <input
+                  className={style.check}
+                  type="checkbox"
+                  name={comment._id}
+                  id={comment._id}
                 />
-                <Button
-                  text="삭제"
-                  style={{
-                    background: "#fd9494",
-                    color: "#fdfdfd",
-                    border: "none",
-                  }}
-                  onClick={async () => {
-                    const con = confirm("정말로 삭제하시겠습니까?");
-                    if (con) {
-                      const data = await onDelFetch(postId, comment._id);
-                      data && location.reload();
-                    }
-                  }}
-                />
+                <label className={style.check_label} htmlFor={comment._id}>
+                  <img src="/icons/icon_dot3.svg" alt="" />
+                  <div className={style.expansion_box}>
+                    <Button
+                      text="수정"
+                      onClick={async () => {
+                        console.log("수정 기능");
+                      }}
+                    />
+                    <Button
+                      text="삭제"
+                      style={{
+                        background: "#fd9494",
+                        color: "#fdfdfd",
+                        border: "none",
+                      }}
+                      onClick={async () => {
+                        const con = confirm("정말로 삭제하시겠습니까?");
+                        if (con) {
+                          const data = await onDelFetch(
+                            postId,
+                            boardId,
+                            comment._id
+                          );
+                          data && location.reload();
+                        }
+                      }}
+                    />
+                  </div>
+                </label>
               </>
             )}
           </div>

@@ -119,9 +119,9 @@
 }
 
 .selected {
-  background-color: #748FFC;
-  color: #fff;
-  outline: none;
+  background-color:  #748FFC !important;
+  color: #fff  !important;
+  outline: none  !important;
 }
 
 .Kategorie_list_box {

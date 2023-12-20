@@ -14,14 +14,14 @@
   align-items: center;
   padding-top: 70px;
   width: 650px;
-  height: 60%;
-  max-height: 400px;
+  height: 450px;
+  max-height: 450px;
   background-color: white;
   border-radius: 10px;
 }
 .profile_img {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 8px;
   overflow: hidden;
   object-fit: cover;
@@ -45,7 +45,7 @@
 
 .input_text {
   margin-top: 20px;
-  width: 315px;
+  width: 250px;
   height: 50px;
   border-radius: 8px;
   border: 1px solid #878ca0;
@@ -58,6 +58,7 @@
 }
 
 .save_btn {
+  width: 250px;
   margin-top: 20px;
   padding: 8px 20px;
   font-weight: 400;
@@ -69,13 +70,21 @@
   cursor: pointer;
 }
 .withdrawal_btn {
-  margin-top: 20px;
+  margin-top: 50px;
   padding: 8px 20px;
   font-weight: 400;
   font-size: 18px;
-  background-color: #ff5eb7;
+  background-color: #ed0086;
   color: #f5f7ff;
   border: 1px #ff5eb7 solid;
   border-radius: 5px;
   cursor: pointer;
+  margin-left: 30rem;
+  width: 120px;
+}
+.save_btn:active {
+  transform: scale(0.95);
+}
+.withdrawal_btn:active {
+  transform: scale(0.95);
 }
