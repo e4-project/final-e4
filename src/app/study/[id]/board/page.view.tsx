@@ -88,7 +88,7 @@ const BoardView = ({ data, studyId }: IProps) => {
         ) : (
           <>
             {data?.map((item) => (
-              <BoardPost key={item._id} onDelPost={onDelPost} board={item} />
+              <BoardPost key={item._id} onDelPost={onDelPost} studyId={studyId} board={item} />
             ))}
           </>
         )}

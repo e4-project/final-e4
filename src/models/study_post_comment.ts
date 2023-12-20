@@ -2,6 +2,7 @@ import mongoose, { Schema, Types } from "mongoose";
 
 interface IStudyPostCommentEntity {
   user: Types.ObjectId;
+  studyId: Types.ObjectId;
   studyPostId: Types.ObjectId;
   content: string;
 }
@@ -12,6 +13,10 @@ const StudyPostCommentSchema = new Schema<IStudyPostCommentEntity>(
       type: Schema.Types.ObjectId,
       require: true,
       ref: "User",
+    },
+    studyId: {
+      type: Schema.Types.ObjectId,
+      ref: "RecruitPost",
     },
     studyPostId: {
       type: Schema.Types.ObjectId,

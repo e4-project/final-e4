@@ -7,14 +7,15 @@ import { IResponseBoard } from "@/interfaces/study_board";
 import style from "./boardPost.module.css";
 import LikeButton from "./like_button/LikeButton";
 import ExpansionButton from "./expansion_button/ExpansionButton";
-import { loadStudyPostComment, postStudyPostComment } from "@/axios/fetcher/studyPostComment";
+import { deleteStudyPostComment, loadStudyPostComment, postStudyPostComment } from "@/axios/fetcher/studyPostComment";
 
 interface Iprops {
+  studyId: string;
   board: IResponseBoard;
   onDelPost: (id: string) => void;
 }
 
-const BoardPost = ({ board, onDelPost }: Iprops) => {
+const BoardPost = ({ studyId, board, onDelPost }: Iprops) => {
   const { _id, content, user, createdAt } = board;
 
   return (
@@ -39,16 +40,16 @@ const BoardPost = ({ board, onDelPost }: Iprops) => {
       </div>
       <div className={style.comment_container}>
         <div>
-          <CommentForm user={user} postId="" fetcher={postStudyPostComment} />
+          <CommentForm user={user} studyId={studyId} postId={_id} fetcher={postStudyPostComment} />
         </div>
         <div>
           <SingleComment
             isToggleCtrl
-            postId=""
-            boardId=""
+            postId={studyId}
+            boardId={_id}
             loadFetcher={loadStudyPostComment}
+            delFetcher={deleteStudyPostComment}
             updateFetcher={async () => {}}
-            delFetcher={async () => {}}
           />
         </div>
       </div>
