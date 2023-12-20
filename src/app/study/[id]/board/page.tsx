@@ -1,12 +1,13 @@
 // 프론트 서버
-import { loadBoardApi } from "@/axios/fetcher/board/loadBoardApi";
 import BoardView from "./page.view";
+import { loadBoardApi } from "@/axios/fetcher/board";
 import { IResponseBoard } from "@/interfaces/study_board";
 
-const Page = async () => {
+const Page = async ({ params }: { params: { id: string } }) => {
   try {
-    const data: IResponseBoard[] = await loadBoardApi();
-    return <BoardView data={data} />;
+    const studyId = params.id
+    const data: IResponseBoard[] = await loadBoardApi(studyId);
+    return <BoardView data={data} studyId={studyId}/>;
   } catch(error) {
     console.error(error)
     throw new Error('error loading board');

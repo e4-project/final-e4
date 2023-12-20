@@ -244,7 +244,7 @@ export default function StudyPageView({ data, likesData, members }: IProps) {
             <li className={style.list}>
               <img src="/icons/icon_member.svg" alt="" />
               <span>모집 인원</span>
-              <span className={style.font_bold}>{data?.headCount}명</span>
+              <span className={style.font_bold}>{members?.memberCommon?.length}&#47;{data?.headCount}명</span>
             </li>
             <li className={style.list}>
               <img src="/icons/icon_time.svg" alt="" />
@@ -299,10 +299,6 @@ export default function StudyPageView({ data, likesData, members }: IProps) {
                     <img src="/icons/icon_like.svg" alt="" />
                   </div>
                   <div className={style.box}></div>
-                  <div className={style.box}></div>
-                  <div className={style.box}></div>
-                  <div className={style.box}></div>
-                  <div className={style.box}></div>
                 </label>
               </div>
             </li>
@@ -342,6 +338,7 @@ export default function StudyPageView({ data, likesData, members }: IProps) {
               <SingleComment
                 isToggleCtrl={false}
                 postId={data?._id}
+                boardId=""
                 loadFetcher={loadRecruitComment}
                 delFetcher={deleteRecruitComment}
                 updateFetcher={async () => {}}

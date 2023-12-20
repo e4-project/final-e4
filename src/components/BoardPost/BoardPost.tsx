@@ -5,16 +5,17 @@ import CommentForm from "@/components/Comment/CommentForm";
 import SingleComment from "@/components/Comment/SingleComment";
 import { IResponseBoard } from "@/interfaces/study_board";
 import style from "./boardPost.module.css";
-import { loadStudyPostComment } from "@/axios/fetcher/studyPostComment/loadStudyPostComment";
 import LikeButton from "./like_button/LikeButton";
-import ExpansionButton from "./expansion_button/ExpansionButton"
+import ExpansionButton from "./expansion_button/ExpansionButton";
+import { deleteStudyPostComment, loadStudyPostComment, postStudyPostComment } from "@/axios/fetcher/studyPostComment";
 
 interface Iprops {
+  studyId: string;
   board: IResponseBoard;
   onDelPost: (id: string) => void;
 }
 
-const BoardPost = ({ board, onDelPost }: Iprops) => {
+const BoardPost = ({ studyId, board, onDelPost }: Iprops) => {
   const { _id, content, user, createdAt } = board;
 
   return (
@@ -28,21 +29,28 @@ const BoardPost = ({ board, onDelPost }: Iprops) => {
               createdAt={createdAt}
               actionEl={
                 <div className={style.post_btn_wrap}>
-                  <ExpansionButton onDelPost={onDelPost} _id = {_id}/>
+                  <ExpansionButton onDelPost={onDelPost} _id={_id} />
                 </div>
               }
               content={content}
             />
           }
         </div>
-        <LikeButton _id = {_id}/>
+        <LikeButton _id={_id} />
       </div>
       <div className={style.comment_container}>
         <div>
-          <CommentForm user={user} postId="" fetcher={async () => {}}/>
+          <CommentForm user={user} studyId={studyId} postId={_id} fetcher={postStudyPostComment} />
         </div>
         <div>
-          <SingleComment isToggleCtrl postId={_id} loadFetcher={loadStudyPostComment} updateFetcher={async () => {}} delFetcher={async () => {}}/>
+          <SingleComment
+            isToggleCtrl
+            postId={studyId}
+            boardId={_id}
+            loadFetcher={loadStudyPostComment}
+            delFetcher={deleteStudyPostComment}
+            updateFetcher={async () => {}}
+          />
         </div>
       </div>
     </div>
