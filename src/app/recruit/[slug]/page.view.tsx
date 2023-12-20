@@ -62,7 +62,7 @@ export default function StudyPageView({ data, likesData, members }: IProps) {
   const isCompletedRecruit = useMemo(() => {
     // return data?.applicants.length === data.headCount;
     return members?.memberCommon?.length === data?.headCount;
-  }, [data.headCount, members.memberCommon.length]);
+  }, [data?.headCount, members?.memberCommon.length]);
   const isRejected = data?.rejectedApplications.includes(currentUser?._id as string);
 
   useEffect(() => {

@@ -15,6 +15,7 @@ const LeftContainer = () => {
   const pathname = usePathname(); // useRouter 쓰면 에러가 됨 그래서 usePathname 사용
   const [data, setData] = useState<any>(null);
   const { id } = useParams<{ id: string }>() || {};
+  console.log({data})
   useEffect(() => {
     if (pathname) {
       const fetchData = async () => {
