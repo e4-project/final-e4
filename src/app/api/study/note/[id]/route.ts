@@ -82,7 +82,6 @@ export const POST = routeWrapperWithError(
       return NextResponse.json({ success: true, note: savedNote });
     } catch (error) {
       console.error("저장 오류", error);
-
       return NextResponse.json(
         { success: false, error: "서버 오류" },
         { status: 500 }
