@@ -1,8 +1,16 @@
 .container {
-  display: flex;
   justify-content: center;
 }
-.intro_container {
-  margin-top: 2rem;
-  width: 86%;
+/* .intro_container {
+  width: 100%;
+} */
+
+.container > h2 {
+  font-size: 28px;
+  display: flex;
+  margin-bottom: 30px;
+  padding-bottom: 17px;
+  border-bottom: 1px solid #E3E5EF;
+  width: auto;
+  height: auto;
 }
