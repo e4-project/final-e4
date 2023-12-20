@@ -195,7 +195,6 @@ const Page = ({ contents }: any) => {
               selectWeek={selectWeek}
               memberNoteContents={memberNoteContents}
             />
-            <div dangerouslySetInnerHTML={{ __html: memberNoteContents }} />
           </div>
         )}
       </div>

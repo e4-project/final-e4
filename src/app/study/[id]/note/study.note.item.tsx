@@ -45,7 +45,7 @@ const StudyNoteItem = (props: any) => {
           <div dangerouslySetInnerHTML={{ __html: memberNoteContents }} />
         </div>
       )}
-      {memberNoteContents}
+      <div dangerouslySetInnerHTML={{ __html: memberNoteContents }} />
     </div>
   );
 };
