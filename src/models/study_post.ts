@@ -3,8 +3,6 @@ import mongoose, { Schema, Types } from "mongoose";
 interface IStudyPostEntity {
   user: Types.ObjectId;
   studyId: Types.ObjectId;
-  likes: Types.ObjectId;
-  views: number;
   content: string;
 }
 
@@ -20,14 +18,6 @@ const StudyPostSchema = new Schema<IStudyPostEntity>(
       type: Schema.Types.ObjectId,
       ref: "RecruitPost",
     },
-    // likes: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: "Likes",
-    // },
-    // views: {
-    //   type: Number,
-    //   default: 0,
-    // },
     content: {
       type: String,
       required: true,

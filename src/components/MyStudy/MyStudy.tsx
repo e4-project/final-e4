@@ -16,21 +16,24 @@ interface IProps {
 }
 
 const MyStudy = ({ data }: IProps) => {
-  console.log(data?.myCreatedStudy)
+  // console.log(data?.myCreatedStudy);
+  // console.log(data?.myAppliedStudy);
   const myAppliedstudy = data?.myAppliedStudy?.map((info: any) => ({
     _id: info?.studyId?._id,
+    userId: info?.applicant,
     studyName: info?.studyId?.studyName,
-    start: info?.studyId?.start
+    rejects: info?.studyId?.rejectedApplications,
+    start: info?.studyId?.start,
   }));
   const myCreatedStudy = data?.myCreatedStudy?.map((info: any) => ({
     _id: info?._id,
     studyName: info?.studyName,
-    start: info?.start
+    start: info?.start,
   }));
 
   data?.myAppliedStudy?.map((info: any) => console.log(info));
-  const studyRoomInfo = myAppliedstudy.concat(myCreatedStudy);
-  studyRoomInfo.map((item: any )=> console.log({item}))
+  const studyRoomInfo = myAppliedstudy?.concat(myCreatedStudy);
+  // studyRoomInfo.map((item: any) => console.log({ item: item.userId }));
 
   return (
     <div className={style.bg}>
@@ -74,15 +77,20 @@ const MyStudy = ({ data }: IProps) => {
           <h1 className={style.section_title}>공부하러 가기 👇</h1>
           {/* 이 링크를 통해 스터디페이지(/study/study_id)로 이동 */}
           {/*  */}
-          {studyRoomInfo.map((study: any) => (
-            study.start && (
-            <Link key={study?._id} href={`/study/${study?._id}`}>
-              <span className={`${style.section_item} ${style.study_name}`}>
-                {study?.studyName}
-              </span>
-            </Link>
-            )
-          ))}
+          {studyRoomInfo?.map((study: any) => {
+            // 스터디가 start되거나 거절되지 않는 참여 신청자만 스터디룸에 참여 가능
+            const studyRoomCondition =
+              study.start && !study?.rejects?.includes(study?.userId);
+            return (
+              studyRoomCondition && (
+                <Link key={study?._id} href={`/study/${study?._id}`}>
+                  <span className={`${style.section_item} ${style.study_name}`}>
+                    {study?.studyName}
+                  </span>
+                </Link>
+              )
+            );
+          })}
         </div>
       </div>
     </div>

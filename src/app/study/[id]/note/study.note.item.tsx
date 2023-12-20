@@ -31,8 +31,15 @@ const StudyNoteItem = (props: any) => {
       }
     };
 
-    fetchMemberNoteContents();
-  }, [studyMember?.member?._id, selectWeek, setMemberNoteContents]);
+    if (studyMember?.member?._id === selectedMemberNote) {
+      fetchMemberNoteContents();
+    }
+  }, [
+    studyMember?.member?._id,
+    selectWeek,
+    setMemberNoteContents,
+    selectedMemberNote,
+  ]);
 
   return (
     <div onClick={handleClick}>

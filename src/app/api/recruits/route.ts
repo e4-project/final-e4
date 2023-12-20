@@ -8,7 +8,7 @@ import Member from "@/models/member";
 
 /* 모집글 모아보기 */
 export const GET = routeWrapperWithError(async (req: NextRequest) => {
-  const post = await RecruitPost.find({});
+  const post = await RecruitPost.find({}).sort({createdAt: -1});
   return NextResponse.json(post);
 });
 

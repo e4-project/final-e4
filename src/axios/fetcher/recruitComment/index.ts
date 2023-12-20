@@ -2,6 +2,7 @@ import { getBaseUrl } from "@/utils/getBaseUrl";
 import axios from "axios";
 
 export const loadRecruitComment = async (postId: string) => {
+  console.log({postId})
   try {
     const { data } = await axios.get(getBaseUrl(`/api/recruit/${postId}/comment`));
     return data;
@@ -26,10 +27,10 @@ export const postRecruitComment = async (insertData: any) => {
   }
 };
 
-export const deleteRecruitComment = async (pId: string, cId: string, ) => {
+export const deleteRecruitComment = async (postId: string, boadId: string, commentId: string ) => {
   try {
     const { data } = await axios.delete(
-      getBaseUrl(`/api/recruit/${pId}/comment/${cId}`)
+      getBaseUrl(`/api/recruit/${postId}/comment/${commentId}`)
     );
     return data;
   } catch (err: any) {
