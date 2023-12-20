@@ -23,8 +23,9 @@ const Page = ({ contents }: any) => {
   const [editorContent, setEditorContent] = useState(""); // 에디터에서 작성한 내용
   const [data, setData] = useState<any>();
   const [memberNoteContents, setMemberNoteContents] = useState(""); // 멤버 노트 데이터 저장 상태
-  const [selectedMemberNote, setSelectedMemberNote] = useState<string | null>(null); // 멤버 노트 나왔다 안나왔다
-
+  const [selectedMemberNote, setSelectedMemberNote] = useState<string | null>(
+    null
+  ); // 멤버 노트 나왔다 안나왔다
   const onWeekChange = (event: any) => {
     const weekNumber = event.target.value.match(/\d+/)[0]; // "4주차"에서 숫자를 추출
     setSelectWeek(weekNumber);
@@ -61,9 +62,10 @@ const Page = ({ contents }: any) => {
     setEditorContent(content);
   };
 
-  const onSelectMemberNote = (memberId: string) => {
+  const onSelectMemberNote = async (memberId: string) => {
     setSelectedMemberNote(memberId);
     setOnEditor(false); // 멤버 노트를 선택하면 에디터 닫음
+    await memberNotes(memberId); // 선택된 멤버의 노트 내용을 가져옵니다.
   };
 
   const onListButtonClick = () => {
@@ -76,7 +78,9 @@ const Page = ({ contents }: any) => {
     try {
       const url = `/api/study/note/${id}/?week=${selectWeek}`;
       console.log(url);
-      const result = await fetch(`/api/study/note/${memberId}?week=${selectWeek}`);
+      const result = await fetch(
+        `/api/study/note/${memberId}?week=${selectWeek}`
+      );
       const data = await result.json();
       console.log(data);
       setMemberNoteContents(data.contents);
@@ -162,7 +166,7 @@ const Page = ({ contents }: any) => {
         </div>
       </div>
       <div className={style.view_note}>
-      {onEditor ? (
+        {onEditor ? (
           <MyEditorComponent onSave={onSaveEditorContent} />
         ) : selectedMemberNote === null ? (
           <div className={style.member_note}>
@@ -172,7 +176,11 @@ const Page = ({ contents }: any) => {
                 studyMember={studyMember}
                 onSelectMemberNote={onSelectMemberNote}
                 selectWeek={selectWeek}
-                memberNoteContents={memberNoteContents}
+                memberNoteContents={
+                  selectedMemberNote === studyMember.id
+                    ? memberNoteContents
+                    : null
+                } // 선택된 멤버의 노트 내용을 전달합니다.
               />
             ))}
           </div>
@@ -195,4 +203,3 @@ const Page = ({ contents }: any) => {
 };
 
 export default Page;
-
