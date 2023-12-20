@@ -299,10 +299,6 @@ export default function StudyPageView({ data, likesData, members }: IProps) {
                     <img src="/icons/icon_like.svg" alt="" />
                   </div>
                   <div className={style.box}></div>
-                  <div className={style.box}></div>
-                  <div className={style.box}></div>
-                  <div className={style.box}></div>
-                  <div className={style.box}></div>
                 </label>
               </div>
             </li>

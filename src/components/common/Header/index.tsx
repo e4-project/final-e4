@@ -192,8 +192,6 @@ const Header = () => {
                   </li>
                 </ul>
               </label>
-
-              {/*  */}
             </div>
           </div>
         ) : null}

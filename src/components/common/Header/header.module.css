@@ -158,7 +158,6 @@
   list-style: none;
   background-color: #f8f8f8;
   transform-origin: 0% 0%;
-  /* transform: translate(-100px, -1000%); */
   transition: transfrom 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
   -webkit-font-smoothing: antialiased;
   top: 20px;
@@ -238,7 +237,6 @@
   position: absolute;
   list-style: none;
   transform-origin: 0% 0%;
-  /* transform: translate(-200px, -1000%); */
   transition: transfrom 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
   -webkit-font-smoothing: antialiased;
   cursor: auto;
