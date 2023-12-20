@@ -219,8 +219,8 @@ const RecruitList: React.FC<IProps> = ({ data }: IProps) => {
                 ))}
               </>
                ) : noResults ? (  //필터링 안되는 단어들은 여기로 실행
-                <p className={style.noResults}>지금 입력하신 단어는 여기에 없네용... 
-                                              스터디등록 해서  모집 해 볼까요?  </p>
+                <div className={style.noResults}>죄송해요, 지금은 찾으시는 스터디가 없는 것 같아요... <br/>
+                다른 키워드로 검색하거나, 스터디 등록을 통해 원하는 주제로 스터디를 만들어보세요😉 </div>
             ) : (
               <>
                 {data?.map((item: IResponseRecruitPost) => (
