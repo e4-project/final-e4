@@ -29,6 +29,8 @@ export const GET = routeWrapperWithError(
           { status: 404 }
         );
       }
+      const { material, applicants, duration, leader, materialUrl, weekGoal } =
+        userRecruitPost;
       console.log({ userRecruitPost });
       // applicants에 있는 id값이 string 이니까 그걸로 User에서 같은 걸 찾게한 다음 name을 가져오게함.
       // const applicants = applicants.map((id: any) => new Object(id)).populate("applicants", "name, image");
@@ -37,7 +39,16 @@ export const GET = routeWrapperWithError(
         "member",
         "name"
       );
-      return NextResponse.json(userRecruitPost)
+      return NextResponse.json({
+        material,
+        duration,
+        applicants,
+        leader,
+        materialUrl,
+        weekGoal,
+        // studyNoteContents,
+        studyMembers
+      });
     } catch (error) {
       console.error("데이터 로딩 중 에러", error);
       return NextResponse.json(
