@@ -28,15 +28,21 @@ function Apply(props: any) {
             {recognition !== "승인" ? (
               recognition === "거절" ? (
                 <div>
-                  <p style={{ opacity: 0.5, textDecoration: "line-through" }}>
-                    {study?.studyName}
-                  </p>
+                  <Link href={`/recruit/${study?._id}`}>
+                    <p style={{ opacity: 0.5, textDecoration: "line-through" }}>
+                      {study?.studyName}
+                    </p>
+                    </Link>
+                  
                 </div>
               ) : (
                 /* 신청 취소 */
                 <div style={{ display: "flex" }}>
-                  <p style={{ width: "80%" }}>
-                    <span style={{ opacity: 0.5 }}>{study?.studyName}</span>
+                  <p style={{ width: "96%", display: "flex", alignItems: "center" }}>
+                    <Link href={`/recruit/${study?._id}`}>
+                      <p>{study?.studyName}</p>
+                    </Link>
+                    {/* <span style={{ opacity: 1 }}>{study?.studyName}</span> */}
                     <CancelApplicant
                       recruitId={study?._id}
                       userId={applicant}

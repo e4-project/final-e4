@@ -13,10 +13,8 @@ const page = async (props: any) => {
     return (
       <>
         <div className={style.container}>
-          <div
-            className={style.intro_container}
-            dangerouslySetInnerHTML={{ __html: result.content }}
-          />
+          <h2>github으로 협업 연습하기</h2>
+          <p dangerouslySetInnerHTML={{ __html: result.content }}></p>
         </div>
       </>
     );

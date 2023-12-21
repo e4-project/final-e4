@@ -1,11 +1,10 @@
 .board_view_wrap {
-  width: 87%;
+  width: 732px;
   margin: 0 auto;
 }
 
 .top_button {
-  padding: 15px 0;
-  margin: 10px 0px;
+  padding-bottom: 15px;
   text-align: end;
 }
 
@@ -14,4 +13,37 @@
   flex-direction: column;
   gap: 25px;
   margin-bottom: 35px;
+}
+.edit_save_btn{
+  width: 115px;
+  height: 40px;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.edit_btn {
+  border: 1px solid #f5f7ff;
+  background-color: #f5f7ff;
+  color: #748ffc;
+}
+
+.save_btn {
+  border: 1px solid #748ffc;
+  background-color: #748ffc;
+  color: #f5f7ff;
+}
+
+.cancel_btn{
+  margin-right: 5px;
+  padding: 6px 18px;
+  height: 40px;
+  font-weight: 400;
+  font-size: 18px;
+  background-color: #F8F8F8;
+  border: 1px #F8F8F8 solid;
+  border-radius: 5px;
+  cursor:pointer;
 }

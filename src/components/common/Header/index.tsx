@@ -90,8 +90,8 @@ const Header = () => {
   return (
     <div className={style.bar}>
       <div className={style.sheet}>
-        <Link href="/intropage" className={style.logo}>
-          <Image src={"/img/logo.png"} alt="logo" width={55} height={55} />
+        <Link href="/intropage">
+          <Image src={"/img/logo.svg"} alt="logo" width={57} height={30} />
         </Link>
         <ul className={style.link}>
           <li>

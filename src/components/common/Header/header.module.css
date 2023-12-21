@@ -21,6 +21,10 @@
   max-width: 1280px;
   font-size: 18px;
   letter-spacing: -0.5px;
+  margin-left: 40px;
+}
+.sheet > a {
+  height: 30px
 }
 
 /*  */
@@ -32,7 +36,7 @@
   margin-right: 40px;
   cursor: pointer;
   transition: all 0.3s;
-  font-weight: bold;
+  font-weight: 400;
   height: 30px;
 }
 
@@ -45,9 +49,9 @@
   position: absolute;
   top: 0;
   right: 0;
-  height: 2px;
+  height: 1px;
   width: 0;
-  background-color: #4e515b;
+  background-color: #bac8ff;
   transition: 200ms ease all;
 }
 .login::after {
@@ -63,10 +67,6 @@
 }
 
 /*  */
-
-.logo {
-  margin-left: 40px;
-}
 
 .link {
   display: flex;
@@ -151,12 +151,12 @@
   display: none;
   height: 0;
   margin: 0;
-  width: 200px;
+  width: 230px;
   padding: 0;
   padding-top: 20px;
   position: absolute;
   list-style: none;
-  background-color: #f8f8f8;
+  background-color: #fff;
   transform-origin: 0% 0%;
   transition: transfrom 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
   -webkit-font-smoothing: antialiased;
@@ -175,17 +175,16 @@
   border-radius: 10px;
   cursor: pointer;
   text-align: left;
+  font-size: 16px;
 }
 .bell_menu > li:hover {
-  background-color: #bac8ff;
+  background-color: #f5f7ff;
   box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5);
   scale: 110%;
-  font-weight: bold;
 }
 
 .bell_check:checked + label > .bell_menu {
   transform: translate(-80px, 30px);
-  border: 1px solid #999;
   display: block;
   height: auto;
 }

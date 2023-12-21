@@ -6,9 +6,8 @@ import { useParams } from "next/navigation";
 import Avatar from "@/components/common/Avatar";
 
 const StyledImg = {
-  display: "inline-block",
+  // display: "inline-block",
   borderRadius: "5px",
-  padding: "2px",
 };
 
 const LeftContainer = () => {
@@ -53,11 +52,12 @@ const LeftContainer = () => {
   }) => (
     <div
       key={user?._id}
+      className={style.member_list}
       style={{
         display: "flex",
-        gap: 9,
+        gap: 12,
         alignItems: "center",
-        fontWeight: "bold",
+        fontWeight: "600",
       }}
     >
       <Avatar src={user?.image} alt="pimg" style={StyledImg} />
@@ -70,43 +70,43 @@ const LeftContainer = () => {
         <h4>함께 공부할 강의</h4>
         <p>{data?.material}</p>
         <div className={style.study_mini_info}>
-          <p className={style.study_room}>
-            스터디룸
-            <a href={data?.materialUrl} target="_blank">
+          <li className={style.list}>
+            <img src="/icons/icon_zoom.svg" alt="" />
+            <span>스터디룸</span>
+            <a href={data?.materialUrl} target='_blank'>
               <button className={style.Entrance}>
                 <span>드과자</span>
                 <span>입장하기</span>
               </button>
             </a>
-          </p>
-          <p>
-            스터디 기간 <span>{data?.duration}</span>
-          </p>
-          <p style={{ marginBottom: 20 }}>스터디 멤버</p>
-          {data && (
-            <>
-              <div className={style.study_leader}>
-                <MemberList user={data.leader} />
-                <div
-                  style={{
-                    color: "#748ffc",
-                    background:
-                      "linear-gradient(0deg, #f5f7ff 0%, #f5f7ff 100%)",
-                    width: "fit-content",
-                    borderRadius: 4,
-                    padding: 5,
-                  }}
-                >
-                  <span>리더</span>
+            {/* <button>🖍 줌 링크 어케 넣는데</button> */}
+          </li>
+          <li className={style.list}>
+            <img src="/icons/icon_calendar.svg" alt="" />
+            <span>스터디 기간</span>
+            <span className={style.font_bold} style={{ paddingLeft: '12px', color: "#4E515B" }}>{data?.duration}</span>
+          </li>
+          <li className={style.list}>
+            <img src="/icons/icon_member.svg" alt="" />
+            <span>스터디 멤버</span>
+          </li>
+          <div className={style.member}>
+            {data && (
+              <>
+                <div className={style.study_leader}>
+                  <MemberList user={data.leader} />
+                  <div>
+                    <span className={style.leader_tag}>리더</span>
+                  </div>
                 </div>
-              </div>
-              <div>
-                {data?.applicants?.map((member: any) => (
-                  <MemberList key={member._id} user={member} />
-                ))}
-              </div>
-            </>
-          )}
+                <div className={style.study_member}>
+                  {data?.applicants?.map((member: any) => (
+                    <MemberList key={member._id} user={member} />
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -121,11 +121,11 @@ const Page = () => {
   return (
     <div className={style.progress_container}>
       <div className={style.change_btn}>
-        <Button
-          text={isEdit ? "저장" : "수정"}
-          className={style.edit_save_btn}
+        <button
           onClick={isEdit ? onSaveClick : onEditClick}
-        />
+          className={`${style.edit_save_btn} ${isEdit ? style.save_btn : style.edit_btn}`}>
+          {isEdit ? "진도표 저장" : "진도표 수정"}
+        </button>
       </div>
       <div className={style.input_container}>
         {inputs.map((input, index) => {
@@ -169,22 +169,17 @@ const Page = () => {
                 <p className={style.contents_p}>{note.content}</p>
               )}
               {isEdit && (
-                <Button
-                  text="삭제"
-                  color="#748ffc"
-                  onClick={() => onRemoveClick(index)}
-                />
+                <button className={style.remove_btn} onClick={() => onRemoveClick(index)}>
+                  삭제
+                </button>
               )}
             </div>
           );
         })}
         {isEdit && (
-          <Button
-            text="추가"
-            className={style.add_btn}
-            color="#748ffc"
-            onClick={onAddClick}
-          />
+          <button className={style.add_btn} onClick={onAddClick}>
+            추가
+          </button>
         )}
       </div>
     </div>

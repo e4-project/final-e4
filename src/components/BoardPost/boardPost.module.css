@@ -1,15 +1,15 @@
 .board_post_wrap {
-  padding: 12px 8px;
+  padding: 10px 22px 30px 22px;
   width: 100%;
-  border: 1px solid #e9e9e9;
+  border: 1px solid #BAC8FF;
   background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 1px 4px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 1px 4px 0px rgb(186, 200, 255, 0.1);
 }
 
-.board_post_container {
+/* .board_post_container {
   border-bottom: 1px solid #f1f3f5;
-}
+} */
 
 .post_btn {
   width: 60px;
@@ -56,7 +56,7 @@
   height: 40px;
   top: 0;
   left: 0;
-  border: 1px solid #eee;
+  border: 1px solid #E3E5EF;
   border-radius: 20px;
   color: #748FFC;
   transition: all 0.3s;
