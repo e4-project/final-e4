@@ -123,6 +123,14 @@
   width: 100%;
   border: 1px solid #999;
 }
+.text_area > h2 {
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+.text_area > h2 > img {
+  height: 30px;
+}
 .area1 .appear {
   opacity: 0;
   animation: appear1 1s forwards;
@@ -241,7 +249,7 @@
 }
 .study_img{
   position: absolute;
-  top: -400px;
+  top: -300px;
   left: 20px;
   opacity: 0;
   width: 700px;
@@ -272,6 +280,15 @@
   margin-top: 200px;
   width: 100%;
   border: 1px solid #999;
+}
+
+.text_area2 > h2 {
+  line-height: 1;
+  display: flex;
+  align-items: center;
+}
+.text_area2 > h2 > img {
+  height: 30px;
 }
 .area2 .appear {
   opacity: 0;

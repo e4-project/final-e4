@@ -145,7 +145,7 @@ export default function Mainpage() {
                   스터디 모임을 찾고 있다구요?
                 </h1>
                 <div className={mainstyle.text_area}>
-                  <h2>e4에서 새로운 스터디그룹을 찾아보세요</h2>
+                  <h2><img src="/img/logo.svg" alt="" />에서 스터디그룹을 찾아보세요</h2>
                   <span> </span>
                   <p>스터디와 사이드프로젝트를 찾는 곳</p>
                 </div>
@@ -190,10 +190,9 @@ export default function Mainpage() {
                 </h1>
                 <div className={mainstyle.text_area2}>
                   <h2>
-                    e4에서
-                    <br />
-                    새로운 스터디원을 모집해 보세요
+                    <img src="/img/logo.svg" alt="" />에서
                   </h2>
+                  <h2>새로운 스터디원을 모집해 보세요</h2>
                   <p>
                     당신이
                     <strong> 생각하는, 하고싶은</strong>
