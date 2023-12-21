@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import Link from "next/link";
 import style from "./MyStudy.module.css";
 import Apply from "./Apply";
+import Button from "@/components/common/Button";
 // 불러올 데이타 인터페이스 다 임포트해야댐
 
 /**
@@ -115,6 +116,42 @@ function MyRecruitPost(props: any) {
         {/* 해당 recruit post의 _id 로 구분된 applicants 페이지로*/}
         {/* if close==true(신청 마감되면) -> 버튼 대신 '신청 마감' 표기 */}
       </Link>
+      <input
+        className={style.check}
+        type="checkbox"
+        name={data._id}
+        id={data._id}
+      />
+      <label className={style.check_label} htmlFor={data._id}>
+        <img src="/icons/icon_dot3.svg" alt="" />
+        <div className={style.expansion_box}>
+          <Button
+            text="수정"
+            onClick={async () => {
+              console.log("수정 기능");
+            }}
+          />
+          <Button
+            text="삭제"
+            style={{
+              background: "#fd9494",
+              color: "#fdfdfd",
+              border: "none",
+            }}
+            onClick={async () => {
+              const con = confirm("정말로 삭제하시겠습니까?");
+              // if (con) {
+              //   const data = await onDelFetch(
+              //     postId,
+              //     boardId,
+              //     data._id
+              //   );
+              //   data && location.reload();
+              // }
+            }}
+          />
+        </div>
+      </label>
     </div>
   );
 }
