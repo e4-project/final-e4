@@ -1,9 +1,14 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import style from "./study.module.css";
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useParams } from "next/navigation";
 import Avatar from "@/components/common/Avatar";
+import { useSession } from "next-auth/react";
+import { loadUserApi } from "@/axios/fetcher/user/loadUserApi";
+import { IResponseUser } from "@/interfaces/user";
+import { useRouter } from "next/navigation";
+import StudyRoomForm from "@/components/StudyRoom/studyRoomForm";
 
 const StyledImg = {
   // display: "inline-block",
@@ -13,28 +18,31 @@ const StyledImg = {
 const LeftContainer = () => {
   const pathname = usePathname(); // useRouter 쓰면 에러가 됨 그래서 usePathname 사용
   const [data, setData] = useState<any>(null);
+  const [currentUser, setCurrentUser] = useState<IResponseUser | null>(null);
   const { id } = useParams<{ id: string }>() || {};
-  console.log({data})
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    (async () => {
+      if (session) {
+        const data = await loadUserApi();
+        setCurrentUser(data);
+      }
+    })();
+  }, [session]);
+
   useEffect(() => {
     if (pathname) {
       const fetchData = async () => {
         try {
           // 데이터 가져옴
           const result = await fetch(`/api/study/studyinfo/${id}`);
-          console.log(result);
-
           const data = await result.json();
           console.log(data);
 
           // 상태 업데이트
           if (data) {
-            setData({
-              material: data.material,
-              duration: data.duration,
-              applicants: data.applicants,
-              leader: data.leader,
-              materialUrl: data.materialUrl,
-            });
+            setData(data);
           }
         } catch (error) {
           console.error("스터디 정보를 가져오는 중 에러 발생", error);
@@ -64,27 +72,60 @@ const LeftContainer = () => {
       <p key={user?._id}>{user?.name}</p>
     </div>
   );
+  console.log(data)
   return (
     <div className={style.left_container}>
       <div className={style.left_info}>
         <h4>함께 공부할 강의</h4>
         <p>{data?.material}</p>
         <div className={style.study_mini_info}>
-          <li className={style.list}>
+          <li className={style.list} style={{ position: "relative" }}>
             <img src="/icons/icon_zoom.svg" alt="" />
             <span>스터디룸</span>
-            <a href={data?.materialUrl} target='_blank'>
-              <button className={style.Entrance}>
-                <span>드과자</span>
-                <span>입장하기</span>
-              </button>
-            </a>
-            {/* <button>🖍 줌 링크 어케 넣는데</button> */}
+            {data !== null? (
+              data?.studyRoomUrl ? (
+                <>
+                  <a href={data?.studyRoomUrl} target="_blank">
+                    <button className={style.Entrance}>
+                      <span>드과자</span>
+                      <span>입장하기</span>
+                    </button>
+                  </a>
+                  <div>
+                    <StudyRoomForm data={data} />
+                  </div>
+                </>
+              ) : (
+                <div>
+                  {data?.leader._id === currentUser?._id ? (
+                    <StudyRoomForm data={data} />
+                  ) : (
+                    <span
+                      className={style.font_bold}
+                      style={{
+                        paddingLeft: "12px",
+                        color: "#4E515B",
+                        fontSize: 14,
+                      }}
+                    >
+                      미정
+                    </span>
+                  )}
+                </div>
+              )
+            ) : (
+              <div className={style.loading_spinner}></div>
+            )}
           </li>
           <li className={style.list}>
             <img src="/icons/icon_calendar.svg" alt="" />
             <span>스터디 기간</span>
-            <span className={style.font_bold} style={{ paddingLeft: '12px', color: "#4E515B" }}>{data?.duration}</span>
+            <span
+              className={style.font_bold}
+              style={{ paddingLeft: "12px", color: "#4E515B" }}
+            >
+              {data?.duration}
+            </span>
           </li>
           <li className={style.list}>
             <img src="/icons/icon_member.svg" alt="" />
