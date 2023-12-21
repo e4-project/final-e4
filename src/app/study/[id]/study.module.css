@@ -6,6 +6,7 @@
   min-height: 1000px;
   background-color: #F8F8F8;
 }
+
 .area {
   display: flex;
   max-width: 1280px;
@@ -14,6 +15,7 @@
   position: relative;
   background-color: #F8F8F8;
 }
+
 .left_container {
   padding: 30px 28px;
   display: flex;
@@ -30,11 +32,25 @@
   left: -20px;
   opacity: 0;
 }
+
 @keyframes study {
-  0%{ top: -100px; opacity: 0;}
-  40%{ top: 10px;}
-  60%{ top: -10px;}
-  100%{top: 0; opacity: 1;}
+  0% {
+    top: -100px;
+    opacity: 0;
+  }
+
+  40% {
+    top: 10px;
+  }
+
+  60% {
+    top: -10px;
+  }
+
+  100% {
+    top: 0;
+    opacity: 1;
+  }
 }
 
 .right_container {
@@ -46,30 +62,45 @@
   border-radius: 10px;
   overflow-x: hidden;
   position: absolute;
-  top: 0; 
-  left: 412px; 
+  top: 0;
+  left: 412px;
   right: -40px;
   animation: board 1s forwards;
   animation-delay: 0.5s;
   opacity: 0;
 }
+
 @keyframes board {
-  0%{right: -100px; opacity: 0;}
-  40%{right: -30px;}
-  60%{right: -45px;}
-  100%{ right: -40px; opacity: 1;}
+  0% {
+    right: -100px;
+    opacity: 0;
+  }
+
+  40% {
+    right: -30px;
+  }
+
+  60% {
+    right: -45px;
+  }
+
+  100% {
+    right: -40px;
+    opacity: 1;
+  }
 }
 
 
 /* left container */
 
-.left_info > h4{
+.left_info>h4 {
   /* margin-top: 22px; */
   font-size: 14px;
   font-weight: 400;
   margin-bottom: 8px;
 }
-.left_info > p {
+
+.left_info>p {
   font-size: 20px;
   line-height: 1.3;
   font-weight: 600;
@@ -84,15 +115,15 @@
   height: 150px;
 }
 
-.study_mini_info li:nth-child(1){
+.study_mini_info li:nth-child(1) {
   margin-bottom: 13px;
 }
 
-.study_mini_info li:nth-child(2){
+.study_mini_info li:nth-child(2) {
   margin-bottom: 17px;
 }
 
-.study_mini_info li:nth-child(3){
+.study_mini_info li:nth-child(3) {
   margin-bottom: 13px;
 }
 
@@ -102,7 +133,7 @@
   text-align: center;
 }
 
-.list > span {
+.list>span {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -117,7 +148,7 @@
   font-weight: 500;
 }
 
-.member_list{
+.member_list {
   display: flex;
   align-items: center;
 }
@@ -137,7 +168,7 @@
   font-size: 14px;
 }
 
-.study_member > div {
+.study_member>div {
   padding-top: 16px;
 }
 
@@ -162,7 +193,8 @@
   -webkit-perspective: 230px;
   perspective: 230px;
 }
-.Entrance > span {
+
+.Entrance>span {
   border-radius: 5px;
   top: 0;
   left: 0;
@@ -183,7 +215,8 @@
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
-.Entrance > span:nth-child(1) {
+
+.Entrance>span:nth-child(1) {
   -webkit-transform: rotateX(90deg);
   -moz-transform: rotateX(90deg);
   transform: rotateX(90deg);
@@ -191,7 +224,8 @@
   -moz-transform-origin: 50% 50% -10px;
   transform-origin: 50% 50% -10px;
 }
-.Entrance > span:nth-child(2) {
+
+.Entrance>span:nth-child(2) {
   -webkit-transform: rotateX(0deg);
   -moz-transform: rotateX(0deg);
   transform: rotateX(0deg);
@@ -199,12 +233,14 @@
   -moz-transform-origin: 50% 50% -10px;
   transform-origin: 50% 50% -10px;
 }
-.Entrance:hover > span:nth-child(1) {
+
+.Entrance:hover>span:nth-child(1) {
   -webkit-transform: rotateX(0deg);
   -moz-transform: rotateX(0deg);
   transform: rotateX(0deg);
 }
-.Entrance:hover > span:nth-child(2) {
+
+.Entrance:hover>span:nth-child(2) {
   color: transparent;
   -webkit-transform: rotateX(-90deg);
   -moz-transform: rotateX(-90deg);
@@ -213,9 +249,10 @@
 
 /* right container */
 
-.content_warp{
+.content_warp {
   padding: 20px 56px;
 }
+
 .link_list {
   display: flex;
   width: 40vw;
@@ -267,7 +304,7 @@
   margin-bottom: 6px;
 }
 
-.edit_save_btn{
+.edit_save_btn {
   width: 115px;
   height: 40px;
   font-size: 18px;
@@ -350,6 +387,7 @@
   color: #878CA0;
   font-weight: 400;
 }
+
 .isEdit_input:focus {
   outline: none;
   border: 1px solid #748ffc;
@@ -380,4 +418,24 @@
   font-weight: 500;
   cursor: pointer;
   color: #748ffc;
+}
+
+.loading_spinner {
+  display: inline-block;
+  border: 3px solid #f3f3f3; /* Light grey */
+  border-top: 3px solid #64859a; /* Blue */
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  animation: spin 1s linear infinite;
+  margin: 13px 10px;
+}
+
+@keyframes spin {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
 }

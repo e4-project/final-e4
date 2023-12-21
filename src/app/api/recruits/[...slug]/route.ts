@@ -34,3 +34,22 @@ export const GET = routeWrapperWithError(
     }
   }
 );
+
+export const PATCH = routeWrapperWithError(
+  async (req: NextRequest, { params }: { params: { slug: string } }) => {
+    if (params.slug[0] === "id") {
+      //slug === id인경우
+      const {studyRoomUrl} = await req.json();
+      const studyId = params.slug[1];
+      const ObjectId = mongoose.Types.ObjectId;
+      const recuitsId = new ObjectId(studyId);
+      const recuitsPost = await RecruitPost.findById(recuitsId)
+      await recuitsPost.updateOne({
+        $set: {
+          studyRoomUrl,
+        },
+      });
+      return NextResponse.json("수정완료");
+    }
+  }
+);
