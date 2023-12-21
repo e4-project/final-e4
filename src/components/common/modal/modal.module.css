@@ -1,96 +1,20 @@
-.back {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 20;
-}
-.modal {
-  background-color: #fff;
-  position: absolute;
-  width: 800px;
-  height: 400px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 100;
-  border-radius: 10px;
-  transition: all 0.3s;
-  animation: openmodal 1s forwards;
-}
-@keyframes openmodal {
-  0%{opacity: 0;}
-  100%{opacity: 1;}
-}
+.back { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; justify-content: center; align-items: center; text-align: center; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 20; } 
+.modal { background-color: #fff; position: absolute; width: 800px; height: 400px; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100; border-radius: 10px; transition: all 0.3s; animation: openmodal 1s forwards; } 
+@keyframes openmodal { 
+ 0% { opacity: 0; } 
+ 100% { opacity: 1; } 
+ }
 
-.modal_text > h2 {
-  margin-bottom: 20px;
-  font-size: 24pt;
-}
-.modal_text > p {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
+.modal_text > h2 { margin-bottom: 20px; font-size: 24pt; } 
+.modal_text > p { font-size: 16px; margin-bottom: 10px; } 
 
-.close {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 16px;
-}
+.close { display: flex; justify-content: flex-end; margin-top: 16px; } 
 
-.close > button {
-  background-color: #fff;
-  margin-right: 16px;
-  border: 0;
-  padding: 8px;
-  transition: all 0.3s;
-  cursor: pointer;
-}
-.close > button:hover {
-  scale: 110%;
-  transform: rotate(-10deg);
-}
-.textarea > textarea {
-  display: flex;
-  margin-bottom: 20px;
-  width: 570px;
-  height: 135px;
-  resize: none;
-  border: 1px solid #E3E5EF;
-  margin: 0 auto;
-  font-size: 16px;
-  border-radius: 10px;
-  padding: 8px;
-}
-.textarea > textarea:focus {
-  outline: none;
-  border: 1px solid #748ffc;
-}
+.close > button { background-color: #fff; margin-right: 16px; border: 0; padding: 8px; transition: all 0.3s; cursor: pointer; } 
+.close > button:hover { scale: 110%; transform: rotate(-10deg); } 
+.textarea > textarea { display: flex; margin-bottom: 20px; width: 570px; height: 135px; resize: none; border: 1px solid #E3E5EF; margin: 0 auto; font-size: 16px; border-radius: 10px; padding: 8px; } 
+.textarea > textarea:focus { outline: none; border: 1px solid #748ffc; } 
 
-.application {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-.application > button {
-  width: 96px;
-  height: 36px;
-  border-radius: 5px;
-  background-color: #748ffc;
-  margin-top: 30px;
-  border: none;
-  transition: all 0.3s;
-  font-size: 16px;
-  color: #fff;
-}
-.application > button:hover{
-  scale: 110%;
-}
+.application { display: flex; justify-content: center; align-items: center; text-align: center; } 
+.application > button { width: 96px; height: 36px; border-radius: 5px; background-color: #748ffc; margin-top: 30px; border: none; transition: all 0.3s; font-size: 16px; color: #fff; } 
+.application > button:hover { scale: 110%; } 

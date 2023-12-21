@@ -1,141 +1,50 @@
-.board_post_wrap {
-  padding: 10px 22px 30px 22px;
-  width: 100%;
-  border: 1px solid #BAC8FF;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px 0px rgb(186, 200, 255, 0.1);
-}
+.board_post_wrap { padding: 10px 22px 30px 22px; width: 100%; border: 1px solid #BAC8FF; background-color: #fff; border-radius: 8px; box-shadow: 0 1px 4px 0px rgb(186, 200, 255, 0.1); } 
 
-/* .board_post_container {
-  border-bottom: 1px solid #f1f3f5;
-} */
+/* .board_post_container { border-bottom: 1px solid #f1f3f5; } */
 
-.post_btn {
-  width: 60px;
-  height: 30px;
-}
+.post_btn { width: 60px; height: 30px; } 
 
-.post_btn.btn_del {
-  background: #fd9494;
-  color: #fdfdfd;
-  border: none;
-}
+.post_btn.btn_del { background: #fd9494; color: #fdfdfd; border: none; } 
 
-.comment_container {
-  margin-top: 30px;
-}
+.comment_container { margin-top: 30px; } 
 
 
 
 /* postReaction 게시글 상태 */
-.post_reaction {
-  position: relative;
-  padding: 15px;
-  display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
-}
+.post_reaction { position: relative; padding: 15px; display: flex; gap: 15px; margin-bottom: 20px; } 
 
 /* 게시글 폼 */
-.boardPostForm {
-  background-color: #fff;
-}
+.boardPostForm { background-color: #fff; } 
 
 /* 좋아용 */
 
-.like_check{
-  display: none;
-}
-.like{
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100px;
-  height: 40px;
-  top: 0;
-  left: 0;
-  border: 1px solid #E3E5EF;
-  border-radius: 20px;
-  color: #748FFC;
-  transition: all 0.3s;
-  cursor: pointer;
-}
-.like_img{
-  width: 20px;
-  height: 18px;
-  margin-left: 3px;
-}
+.like_check { display: none; } 
+.like { position: absolute; display: flex; justify-content: center; align-items: center; width: 100px; height: 40px; top: 0; left: 0; border: 1px solid #E3E5EF; border-radius: 20px; color: #748FFC; transition: all 0.3s; cursor: pointer; } 
+.like_img { width: 20px; height: 18px; margin-left: 3px; } 
 
-.like_check:checked ~ label {
-  .like:before{
-    position: absolute;
-    content: '❤';
-    color: pink;
-    font-size: 20px;
-    line-height: 1;
-    cursor: pointer;
-    animation: heart 1.5s forwards;
-    animation-delay: 0.2s;
-    z-index: 2;
-    opacity: 0;
-  }
-  .like_img{
-    animation: like_anime 1s forwards;
-  }
-  .like{
-    border: 2px solid #BAC8FF;
-  }
-}
-@keyframes like_anime {
-  0%{ }
-  100%{ filter: opacity(0.3) drop-shadow(0 0 0 red); }
-}
-@keyframes heart {
-  0%{left: 62px; top: 8px; opacity: 1;}
-  100%{left: 62px; top: -12px; opacity: 0; }
-}
+.like_check:checked ~ label { .like:before { position: absolute; content: '❤'; color: pink; font-size: 20px; line-height: 1; cursor: pointer; animation: heart 1.5s forwards; animation-delay: 0.2s; z-index: 2; opacity: 0; } 
+ .like_img { animation: like_anime 1s forwards; } 
+ .like { border: 2px solid #BAC8FF; } 
+ }
+@keyframes like_anime { 
+ 0% { } 
+ 100% { filter: opacity(0.3) drop-shadow(0 0 0 red); } 
+ }
+@keyframes heart { 
+ 0% { left: 62px; top: 8px; opacity: 1; } 
+ 100% { left: 62px; top: -12px; opacity: 0; } 
+ }
 
 
-/*  */
+/* */
 
 
-.check{
-  display: none;
-}
-.check_label{
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  width: 30px;
-  height: 30px;
-}
-.check:checked + .check_label > .expansion_box{
-  display: flex;
-  top: 30px;
-  left: -30px;
-}
-.check_label > span{
-  display: block;
-  width: 3px;
-  height: 3px;
-  background-color: #4E515B;
-  border-radius: 50%;
-  margin-left: 6px;
-}
+.check { display: none; } 
+.check_label { position: relative; cursor: pointer; display: flex; width: 30px; height: 30px; } 
+.check:checked + .check_label > .expansion_box { display: flex; top: 30px; left: -30px; } 
+.check_label > span { display: block; width: 3px; height: 3px; background-color: #4E515B; border-radius: 50%; margin-left: 6px; } 
 
 
-.expansion_box{
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-  position: absolute;
-  width: 60px;
-  height: auto;
-}
+.expansion_box { display: none; flex-direction: column; justify-content: center; align-content: center; position: absolute; width: 60px; height: auto; } 
 
-.expansion_box > button {
-  margin-top: 10px;
-}
+.expansion_box > button { margin-top: 10px; } 
