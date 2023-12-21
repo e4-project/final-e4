@@ -29,7 +29,7 @@ export const GET = routeWrapperWithError(
           { status: 404 }
         );
       }
-      const { material, applicants, duration, leader, materialUrl, weekGoal } =
+      const { material, applicants, duration, leader, studyRoomUrl, materialUrl, weekGoal } =
         userRecruitPost;
       console.log({ userRecruitPost });
       // applicants에 있는 id값이 string 이니까 그걸로 User에서 같은 걸 찾게한 다음 name을 가져오게함.
@@ -46,6 +46,7 @@ export const GET = routeWrapperWithError(
         leader,
         materialUrl,
         weekGoal,
+        studyRoomUrl,
         // studyNoteContents,
         studyMembers
       });
