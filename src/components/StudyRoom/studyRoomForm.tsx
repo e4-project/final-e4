@@ -11,6 +11,7 @@ interface TStudyRoomForm {
 }
 
 const StudyRoomForm = ({ data }: TStudyRoomForm) => {
+  console.log(data)
   const [currentUser, setCurrentUser] = useState<IResponseUser | null>(null);
   const [showInput, setShowInput] = useState(false);
   const [studyUrl, setStudyUrl] = useState("");
@@ -36,6 +37,7 @@ const StudyRoomForm = ({ data }: TStudyRoomForm) => {
     e.preventDefault();
     if (studyUrl) {
       const res = await updateStudyRoomUrl(data?._id, studyUrl);
+      console.log({res})
       alert("스터디룸을 생성했습니다.");
       location.reload();
     }
