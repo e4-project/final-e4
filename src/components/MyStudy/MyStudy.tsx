@@ -60,10 +60,10 @@ const MyStudy = ({ data }: IProps) => {
               {study?.studyName}
             </span>
           </Link> */}
-          {/* <p className={style.section_item}>아직 좋아요한 스터디가 없습니다.</p> */}
-          <Link href={`/recruit/658310b3bc5fdfc975244aec`}>
+          <p className={style.section_item}>아직 좋아요한 스터디가 없습니다.</p>
+          {/* <Link href={`/recruit/658310b3bc5fdfc975244aec`}>
             <p className={style.section_item}>해외취업 목표로 JS 기초부터 코딩테스트까지</p>
-          </Link>
+          </Link> */}
         </div>
         <div className={`${style.section} ${style.c}`}>
           <h2 className={style.section_title}>작성한 모집글</h2>
