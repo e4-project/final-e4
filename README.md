@@ -1,8 +1,5 @@
- # ![image](https://github.com/hyun0509-iva/final_project_sub/assets/151101433/c3d745c3-728f-4ae4-a9a8-29768ddfe6c3)
-
-
-## 📆 프로젝트 기간
-#### 2023.11.20 ~ 2023.12.21 (4주)  | [ST.U 보려가기](https://final-e4.vercel.app/)
+ ## 📆 프로젝트 기간
+#### 2023.11.20 ~ 2023.12.21 (4주)  | [ST.U 보러가기](https://final-e4.vercel.app/)
 
 <br/>
 
