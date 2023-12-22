@@ -29,7 +29,7 @@ function Apply(props: any) {
               recognition === "거절" ? (
                 <div>
                   <Link href={`/recruit/${study?._id}`}>
-                    <p style={{ opacity: 0.5, textDecoration: "line-through" }}>
+                    <p style={{ opacity: 0.5, textDecoration: "line-through", paddingTop: "4.4px", paddingBottom:"4.4px" }}>
                       {study?.studyName}
                     </p>
                     </Link>
@@ -53,7 +53,7 @@ function Apply(props: any) {
               )
             ) : (
               <Link href={`/recruit/${study?._id}`}>
-                <p>{study?.studyName}</p>
+                <p className={style.h34}>{study?.studyName}</p>
               </Link>
             )}
           </div>
