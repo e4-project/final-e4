@@ -58,7 +58,7 @@
 <br/>
 
 ## ⚒ 기술 스택
-<img src="https://camo.githubusercontent.com/494b0f23952229478851f520adfe3e140e629a5f0423e7c9d6c333ed88be65a0/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f52656163742d3631444146423f7374796c653d666c61742d737175617265266c6f676f3d5265616374266c6f676f436f6c6f723d7768697465" /><img src="https://img.shields.io/badge/Next.js-000?style=for-the-badge&logo=Next.js&logoColor=fff" height="20px"/><img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=TypeScript&logoColor=fff"/><img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=fff" height="20px"/><img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=fff" height="20px"/>
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/><img src="https://img.shields.io/badge/Next.js-000?style=for-the-badge&logo=Next.js&logoColor=fff" height="20px"/><img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=TypeScript&logoColor=fff"/><img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=fff" height="20px"/><img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=Axios&logoColor=fff" height="20px"/>
 
 <br/>
 
