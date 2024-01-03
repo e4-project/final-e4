@@ -1,12 +1,13 @@
 "use client";
 import Link from "next/link";
-import style from "./header.module.css";
+import { usePathname  } from 'next/navigation';
 import { useRef, useEffect, useState } from "react";
+import Image from "next/image";
 import LoginModal from "@/components/LoginModal/LoginModal";
 import { useSession, signOut } from "next-auth/react";
-import Image from "next/image";
 import { IResponseUser } from "@/interfaces/user";
 import { loadUserApi } from "@/axios/fetcher/user/loadUserApi";
+import style from "./header.module.css";
 /**
  * @name header
  * @author 오동주
@@ -16,6 +17,8 @@ import { loadUserApi } from "@/axios/fetcher/user/loadUserApi";
  */
 const Header = () => {
   // 외부 영역 클릭시 드롭다운창 닫기
+  const pathname = usePathname();
+  console.log(pathname)
   const bellRef = useRef<HTMLInputElement | null>(null);
   const searchRef = useRef<HTMLInputElement | null>(null);
   const [currentUser, setCurrentUser] = useState<IResponseUser | null>(null);
@@ -94,12 +97,12 @@ const Header = () => {
           <Image src={"/img/logo.svg"} alt="logo" width={57} height={30} />
         </Link>
         <ul className={style.link}>
-          <li>
-            <Link href="/study">스터디 홈</Link>
+          <li className={pathname === '/study' ? style.active : ''}>
+            <Link href="/study" scroll={false}>스터디 홈</Link>
           </li>
           {session ? (
-            <li>
-              <Link href={`/mystudy/me/${currentUser?._id}`}>내 스터디</Link>
+            <li className={pathname === `/mystudy/me/${currentUser?._id}` ? style.active : ''}>
+              <Link href={`/mystudy/me/${currentUser?._id}`} scroll={false}>내 스터디</Link>
             </li>
           ) : (
             <li style={{ display: "none" }}> </li>
