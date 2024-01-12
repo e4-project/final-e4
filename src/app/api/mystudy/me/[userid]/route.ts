@@ -1,8 +1,7 @@
 import { NextResponse, NextRequest } from "next/server";
-import RecruitPost from "@/models/recruit_post";
 import { routeWrapperWithError } from "@/utils/routeWrapperWithError";
-import User from "@/models/user";
-import Member from "@/models/member";
+import RecruitPost from "@/models/recruit_post";
+import LikedRecruitPost from "@/models/recruit_like";
 
 /* 
    내스터디 정보
@@ -16,12 +15,17 @@ import Member from "@/models/member";
 */
 export const GET = routeWrapperWithError(
   async (req: NextRequest, { params }: { params: { userid: string } }) => {
-    console.log("실행")
+    console.log("실행");
     const userId = params.userid;
-    const createdMyStudy = await RecruitPost.find({ leader: userId }, {studyName: 1, leader:1, start: 1}); //내가 만든 스터디
-    // const myJoinedStudy = await Member.find({leader: userId}) // 참여중인 스터디
-    // const myLikedStudy = await Likes.find({leader: userId}) // 좋아요한 스터디
+    const createdMyStudy = await RecruitPost.find(
+      { leader: userId },
+      { studyName: 1, leader: 1, start: 1 }
+    ); 
+    //내가 만든 스터디
     const mySutdyData = { createdMyStudy };
+    //내가 좋아요한 스터디
+    const myLikedStudy = await LikedRecruitPost.find({ userId }); // 좋아요한 스터디
+    console.log({myLike: myLikedStudy})
     return NextResponse.json(mySutdyData);
   }
 );

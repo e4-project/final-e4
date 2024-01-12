@@ -4,6 +4,8 @@ import Link from "next/link";
 import style from "./MyStudy.module.css";
 import Apply from "./Apply";
 import Button from "@/components/common/Button";
+import { IMystudy } from "@/interfaces/recruit";
+import { IApplicant } from "@/interfaces/applicants";
 // 불러올 데이타 인터페이스 다 임포트해야댐
 
 /**
@@ -17,8 +19,10 @@ interface IProps {
 }
 
 const MyStudy = ({ data }: IProps) => {
+  console.log({data})
   // console.log(data?.myCreatedStudy);
   // console.log(data?.myAppliedStudy);
+  data?.myAppliedStudy?.map((info: any )=> console.log({info}))
   const myAppliedstudy = data?.myAppliedStudy?.map((info: any) => ({
     _id: info?.studyId?._id,
     userId: info?.applicant,
@@ -26,21 +30,21 @@ const MyStudy = ({ data }: IProps) => {
     rejects: info?.studyId?.rejectedApplications,
     start: info?.studyId?.start,
   }));
-  const myCreatedStudy = data?.myCreatedStudy?.map((info: any) => ({
+  const myCreatedStudy = data?.myCreatedStudy?.map((info: IMystudy) => ({
     _id: info?._id,
     studyName: info?.studyName,
     start: info?.start,
   }));
 
-  data?.myAppliedStudy?.map((info: any) => console.log(info));
   const studyRoomInfo = myAppliedstudy?.concat(myCreatedStudy);
-  // studyRoomInfo.map((item: any) => console.log({ item: item.userId }));
+  const notOpeningStudy = studyRoomInfo.every((s: any) => !s.start)
 
   return (
     <div className={style.bg}>
       <div className={style.container}>
         <h1 className={style.e}>스터디 관리</h1>
         <div className={`${style.section} ${style.d}`}>
+          {/* 참여 신청 내역 */}
           <h2 className={style.section_title}>참여 신청 내역</h2>
           {data?.myAppliedStudy?.length ? (
             data?.myAppliedStudy?.map((item: any) => (
@@ -53,19 +57,16 @@ const MyStudy = ({ data }: IProps) => {
           )}
         </div>
         <div className={`${style.section} ${style.b}`}>
+          {/* 좋아요한 내역 */}
           <h2 className={style.section_title}>좋아요</h2>
           {/* 좋아요한 recruit post 개수 만큼 map */}
-          {/* <Link href={"/해당recruit post링크"}>
-            <span className={`${style.section_item} ${style.study_name}`}>
-              {study?.studyName}
-            </span>
-          </Link> */}
           <p className={style.section_item}>아직 좋아요한 스터디가 없습니다.</p>
           {/* <Link href={`/recruit/658310b3bc5fdfc975244aec`}>
             <p className={style.section_item}>해외취업 목표로 JS 기초부터 코딩테스트까지</p>
           </Link> */}
         </div>
         <div className={`${style.section} ${style.c}`}>
+          {/* 작성한 모집글 */}
           <h2 className={style.section_title}>작성한 모집글</h2>
           {data?.myCreatedStudy?.length ? (
             data?.myCreatedStudy?.map((study: any) => (
@@ -78,31 +79,29 @@ const MyStudy = ({ data }: IProps) => {
           )}
         </div>
         <div className={`${style.section} ${style.a}`}>
+          {/* 공부하러 가기(열린 스터디) */}
           <h1 className={style.section_title}>공부하러 가기 👇</h1>
           {/* 이 링크를 통해 스터디페이지(/study/study_id)로 이동 */}
-          {/*  */}
-          {studyRoomInfo.length ? (
-            studyRoomInfo?.map((study: any) => {
-              // 스터디가 start되거나 거절되지 않는 참여 신청자만 스터디룸에 참여 가능
-              const studyRoomCondition =
-                study.start && !study?.rejects?.includes(study?.userId);
-              return (
-                studyRoomCondition && (
-                  <Link key={study?._id} href={`/study/${study?._id}`}>
-                    <span
-                      className={`${style.section_item} ${style.study_name}`}
-                    >
-                      {study?.studyName}
-                    </span>
-                  </Link>
-                )
-              );
-            })
-          ) : (
-            <div className={style.section_item}>
-              아직 열린 스터디가 없습니다.
-            </div>
+          {studyRoomInfo?.map((study: any) => {
+            // 스터디가 start되거나 거절되지 않는 참여 신청자만 스터디룸에 참여 가능
+            const studyRoomCondition =
+              study.start && !study?.rejects?.includes(study?.userId);
+            return (
+              studyRoomCondition && (
+                <Link key={study?._id} href={`/study/${study?._id}`}>
+                  <span className={`${style.section_item} ${style.study_name}`}>
+                    {study?.studyName}
+                  </span>
+                </Link>
+              )
+            );
+          })}
+          { studyRoomInfo.length && notOpeningStudy &&(
+           <div className={style.section_item}>
+            아직 열린 스터디가 없습니다.
+          </div>
           )}
+
         </div>
       </div>
     </div>

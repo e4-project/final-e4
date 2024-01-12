@@ -40,4 +40,7 @@ export interface IResponseRecruitPost {
   content: string; // 스터디 소개
   weekGoal: [string]; // 스터디 주차별 목표
   createdAt: string;
+  start: boolean;
 }
+
+export type IMystudy = Pick<IResponseRecruitPost, "_id" | "leader" | "studyName" | "start"> 
